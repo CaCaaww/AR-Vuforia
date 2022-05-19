@@ -11,8 +11,10 @@ public class ARPlaceTrackedImages : MonoBehaviour
     // Cache AR tracked images manager from ARCoreSession
     private ARTrackedImageManager _trackedImagesManager;
 
+    [SerializeField] private SpawnableObjectSO spawnableObject;
+
     // List of prefabs - these have to have the same names as the 2D images in the reference image library
-    public GameObject[] ArPrefabs;
+    //public GameObject[] ArPrefabs;
 
     // Internal storage of created prefabs for easier updating
     private readonly Dictionary<string, GameObject> _instantiatedPrefabs = new();
@@ -46,7 +48,7 @@ public class ARPlaceTrackedImages : MonoBehaviour
         {
             // Get the name of the reference image to search for the corresponding prefab
             var imageName = trackedImage.referenceImage.name;
-            foreach (var curPrefab in ArPrefabs)
+            foreach (var curPrefab in spawnableObject.SpawnableObjects)
             {
                 if (string.Compare(curPrefab.name, imageName, StringComparison.Ordinal) == 0 
                     && !_instantiatedPrefabs.ContainsKey(imageName))
