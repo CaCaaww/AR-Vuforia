@@ -10,6 +10,10 @@ using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 [RequireComponent(typeof(ARPlaneManager))]
 public class ARPlaceHologram : MonoBehaviour
 {
+
+    [SerializeField]
+    private DebugUIEventChannelSO debugUIEventChannel;
+
     /// <summary>
     /// The prefab to instantiate on touch.
     /// </summary>
@@ -110,6 +114,7 @@ public class ARPlaceHologram : MonoBehaviour
             _anchorManager.anchorPrefab = _prefabToPlace;
             anchor = _anchorManager.AttachAnchor(hitPlane, hit.pose);
             _anchorManager.anchorPrefab = oldPrefab;
+            debugUIEventChannel.RaiseDebugEvent();
 
             // Note: the following method seems to produce an offset when placing
             // the prefab instance in AR Foundation 5.0 pre 8
@@ -125,6 +130,8 @@ public class ARPlaceHologram : MonoBehaviour
             // Otherwise, just create a regular anchor at the hit pose
             // Note: the anchor can be anywhere in the scene hierarchy
             var instantiatedObject = Instantiate(_prefabToPlace, hit.pose.position, hit.pose.rotation);
+
+            debugUIEventChannel.RaiseDebugEvent();
 
             // Make sure the new GameObject has an ARAnchor component.
             if (!instantiatedObject.TryGetComponent<ARAnchor>(out anchor))
