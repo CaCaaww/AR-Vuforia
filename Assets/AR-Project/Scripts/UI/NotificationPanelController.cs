@@ -47,7 +47,11 @@ public class NotificationPanelController : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
 
-        alertButton.onClick.AddListener(() => debugUIEventChannelSO.RaiseDebugEvent());
+        alertButton.onClick.AddListener(() => 
+        { 
+            debugUIEventChannelSO.RaiseDebugEvent();
+            canvas.enabled = false;
+        });
     }
     #endregion
 

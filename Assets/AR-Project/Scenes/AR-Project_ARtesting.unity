@@ -563,7 +563,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -280.04, y: 124.63}
+  m_AnchoredPosition: {x: 193, y: -927}
   m_SizeDelta: {x: 519.9274, y: 279.2576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &329724315
@@ -840,6 +840,7 @@ MonoBehaviour:
   debugUIEventChannelSO: {fileID: 11400000, guid: 9f4c4087d26805f48880da47d8521c32,
     type: 2}
   canvasDebugUI: {fileID: 948288513}
+  panel: {fileID: 329724313}
 --- !u!1 &1001029203
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,8 +991,6 @@ GameObject:
   - component: {fileID: 1073187042}
   - component: {fileID: 1073187041}
   - component: {fileID: 1073187040}
-  - component: {fileID: 1073187048}
-  - component: {fileID: 1073187047}
   - component: {fileID: 1073187049}
   m_Layer: 0
   m_Name: AR Session Origin
@@ -1098,37 +1097,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1073187047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073187039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c283eba3d40a76d41b4954dc9849779c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnableObject: {fileID: 11400000, guid: 56d43881d50e20e4883ccd0a5e8dba53, type: 2}
-  Log: {fileID: 0}
---- !u!114 &1073187048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073187039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5a2e8a572e66d44f82126208270319f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debugUIEventChannel: {fileID: 11400000, guid: 9f4c4087d26805f48880da47d8521c32,
-    type: 2}
-  _prefabToPlace: {fileID: 7734861169323980269, guid: 173685bc93484464b88d9f788d582359,
-    type: 3}
-  Log: {fileID: 0}
 --- !u!114 &1073187049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,7 +1109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fdd5195f9f4e35c81e9f67795695cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aREventChannelSO: {fileID: 0}
+  aREventChannelSO: {fileID: 11400000, guid: c5d003a6a03cb85a98af92927018363f, type: 2}
   spawnableObject: {fileID: 0}
   Log: {fileID: 0}
 --- !u!1 &1268686831
@@ -1561,7 +1529,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arEventChannelSO: {fileID: 11400000, guid: c5d003a6a03cb85a98af92927018363f, type: 2}
-  debugUIEventChannelSO: {fileID: 0}
+  debugUIEventChannelSO: {fileID: 11400000, guid: 9f4c4087d26805f48880da47d8521c32,
+    type: 2}
   alertButton: {fileID: 16858929}
 --- !u!1 &1436648760
 GameObject:

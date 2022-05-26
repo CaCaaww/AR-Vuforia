@@ -18,6 +18,8 @@ public class DebugUIPanelController : MonoBehaviour
     [SerializeField]
     private Canvas canvasDebugUI;
 
+    [SerializeField]
+    private GameObject panel;
     #endregion
 
     #region Variables
@@ -35,10 +37,9 @@ public class DebugUIPanelController : MonoBehaviour
         debugUIEventChannelSO.OnDebugEventRaised += HandleDebugEventRaised;
     }
 
-
     private void OnDisable()
     {
-        
+        debugUIEventChannelSO.OnDebugEventRaised -= HandleDebugEventRaised;
     }
 
     #endregion
@@ -48,7 +49,6 @@ public class DebugUIPanelController : MonoBehaviour
     #endregion
 
     #region Callback Methods
-
     /// <summary>
     /// 
     /// </summary>
@@ -56,24 +56,8 @@ public class DebugUIPanelController : MonoBehaviour
     private void HandleDebugEventRaised()
     {
         canvasDebugUI.enabled = true;
+        panel.SetActive(true);
         Debug.Log("Callback Called");
     }
-
     #endregion
-
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
