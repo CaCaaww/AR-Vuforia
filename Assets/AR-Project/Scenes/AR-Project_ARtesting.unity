@@ -160,7 +160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -30, y: -32}
+  m_AnchoredPosition: {x: -415, y: -1731}
   m_SizeDelta: {x: 250, y: 150}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &16858929
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073187039}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ab0e80cee9cc1d44928bfe488dd1e2d, type: 3}
   m_Name: 
@@ -1020,7 +1020,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073187039}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
@@ -1141,6 +1141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fdd5195f9f4e35c81e9f67795695cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aREventChannelSO: {fileID: 0}
+  spawnableObject: {fileID: 0}
+  Log: {fileID: 0}
 --- !u!1 &1268686831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,6 +1458,7 @@ GameObject:
   - component: {fileID: 1397393400}
   - component: {fileID: 1397393399}
   - component: {fileID: 1397393398}
+  - component: {fileID: 1397393401}
   m_Layer: 5
   m_Name: NotificationCanvas
   m_TagString: Untagged
@@ -1530,7 +1534,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397393396}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -1544,6 +1548,21 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 20
   m_TargetDisplay: 0
+--- !u!114 &1397393401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397393396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 785bea760b2c687a285f4ed2afc04a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arEventChannelSO: {fileID: 11400000, guid: c5d003a6a03cb85a98af92927018363f, type: 2}
+  debugUIEventChannelSO: {fileID: 0}
+  alertButton: {fileID: 16858929}
 --- !u!1 &1436648760
 GameObject:
   m_ObjectHideFlags: 0

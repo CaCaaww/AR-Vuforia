@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Events/Void Event Channel")]
+[CreateAssetMenu(menuName = "Events/DebugUI Event Channel")]
 public class DebugUIEventChannelSO : ScriptableObject
 {
 	public Action OnDebugEventRaised;
