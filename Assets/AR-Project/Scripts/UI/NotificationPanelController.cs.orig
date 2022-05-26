@@ -50,9 +50,15 @@ public class NotificationPanelController : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
 
+<<<<<<< HEAD
+        alertButton.onClick.AddListener(() => 
+        { 
+            debugUIEventChannelSO.RaiseDebugEvent();
+=======
         notificationButton.onClick.AddListener(() =>
         {   
             uiEventsChannelSO.OnClueFoundNotificationEventRaised(imageName);
+>>>>>>> testJoshua
             canvas.enabled = false;
         });
     }
