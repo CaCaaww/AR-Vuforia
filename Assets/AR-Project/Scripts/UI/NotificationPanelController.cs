@@ -19,10 +19,10 @@ public class NotificationPanelController : MonoBehaviour
     /// The SO channel for the DebugUI events
     /// </summary>
     [Tooltip("The SO channel for the DebugUI events")]
-    [SerializeField] private DebugUIEventChannelSO debugUIEventChannelSO;
+    [SerializeField] private UIEventsChannelSO uiEventsChannelSO;
 
     [Header("References")]
-    [SerializeField] private Button alertButton;
+    [SerializeField] private Button notificationButton;
     #endregion
 
     #region Private variables
@@ -30,6 +30,9 @@ public class NotificationPanelController : MonoBehaviour
     /// 
     /// </summary>
     private Canvas canvas;
+
+    private string imageName;
+
     #endregion
 
     #region Unity methods
@@ -47,7 +50,11 @@ public class NotificationPanelController : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
 
-        alertButton.onClick.AddListener(() => debugUIEventChannelSO.RaiseDebugEvent());
+        notificationButton.onClick.AddListener(() =>
+        {   
+            uiEventsChannelSO.OnClueFoundNotificationEventRaised(imageName);
+            canvas.enabled = false;
+        });
     }
     #endregion
 
@@ -58,6 +65,8 @@ public class NotificationPanelController : MonoBehaviour
     private void HandleARImageRecognized(string imageName)
     {
         Debug.Log("Image Detected: " + imageName);
+
+        this.imageName = imageName;
 
         canvas.enabled = true;
     }
