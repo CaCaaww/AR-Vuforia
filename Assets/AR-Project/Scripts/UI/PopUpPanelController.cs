@@ -26,14 +26,11 @@ public class PopUpPanelController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI objectTitle;
     [SerializeField] private TextMeshProUGUI objectDescription;
     [SerializeField] private RawImage objectImage;
-    [SerializeField] private TrackableObjectSO trackableObjectSO;
+    [SerializeField] private PointsOfInterestSO pointsOfInterestSO;
     [SerializeField] private Button closeButton;
     #endregion
 
-
-
     #region UnityMethods
-
     private void OnEnable()
     {
         uiEventsChannelSO.OnClueFoundNotificationEventRaised += HandleClueFoundNotification;
@@ -51,27 +48,22 @@ public class PopUpPanelController : MonoBehaviour
             canvas.enabled = false;
         });
     }
-
     #endregion
 
     #region Callbacks
-
     private void HandleClueFoundNotification(string imageName)
     {
         canvas.enabled = true;
-        foreach (var trackedObject in trackableObjectSO.trackableObjects)
+        foreach (var point in pointsOfInterestSO.Points)
         {
-            if (trackedObject.objectName == imageName)
+            if (point.imageName == imageName)
             {
-
-                objectTitle.text = trackedObject.objectName;
-                objectDescription.text = trackedObject.objectDescription;
-                objectImage = trackedObject.objectImage;
+                objectTitle.text = point.imageName;
+                objectImage.texture = point.image;
 
                 break;
             }
         }
     }
-
     #endregion
 }

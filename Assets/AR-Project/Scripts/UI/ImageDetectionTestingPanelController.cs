@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class NotificationPanelController : MonoBehaviour
+public class ImageDetectionTestingPanelController : MonoBehaviour
 {
     #region Inspector
     [Header("LISTEN Channels")]
@@ -14,25 +15,12 @@ public class NotificationPanelController : MonoBehaviour
     [Tooltip("The SO channel for the AR events")]
     [SerializeField] private AREventChannelSO arEventChannelSO;
 
-    [Header("SEND Channels")]
-    /// <summary>
-    /// The SO channel for the DebugUI events
-    /// </summary>
-    [Tooltip("The SO channel for the DebugUI events")]
-    [SerializeField] private UIEventsChannelSO uiEventsChannelSO;
-
     [Header("References")]
-    [SerializeField] private Button notificationButton;
-    #endregion
-
-    #region Private variables
-    /// <summary>
-    /// 
-    /// </summary>
-    private Canvas canvas;
-
-    private string imageName;
-
+    [SerializeField] private Canvas canvas;
+    [SerializeField] private TextMeshProUGUI objectTitle;
+    [SerializeField] private RawImage objectImage;
+    [SerializeField] private PointsOfInterestSO pointsOfInterestSO;
+    [SerializeField] private Button closeButton;
     #endregion
 
     #region Unity methods
@@ -50,15 +38,8 @@ public class NotificationPanelController : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
 
-<<<<<<< HEAD
-        alertButton.onClick.AddListener(() => 
-        { 
-            debugUIEventChannelSO.RaiseDebugEvent();
-=======
-        notificationButton.onClick.AddListener(() =>
+        closeButton.onClick.AddListener(() =>
         {   
-            uiEventsChannelSO.OnClueFoundNotificationEventRaised(imageName);
->>>>>>> testJoshua
             canvas.enabled = false;
         });
     }
@@ -70,12 +51,17 @@ public class NotificationPanelController : MonoBehaviour
     #region Callbacks
     private void HandleARImageRecognized(string imageName)
     {
-        Debug.Log("Image Detected: " + imageName);
-
-        this.imageName = imageName;
-
         canvas.enabled = true;
+        foreach (var point in pointsOfInterestSO.Points)
+        {
+            if (point.imageName == imageName)
+            {
+                objectTitle.text = point.imageName;
+                objectImage.texture = point.image;
+
+                break;
+            }
+        }
     }
     #endregion
-
 }

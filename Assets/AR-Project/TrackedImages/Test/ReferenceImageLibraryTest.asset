@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: ReferenceImageLibraryTest
+  m_EditorClassIdentifier: 
+  m_GuidLow: 5334797616358410062
+  m_GuidHigh: 2654837656526229648
+  m_DataStore:
+    m_Storage: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5283903213057707990
+      m_GuidHigh: 4669110741232506273
+    m_SerializedTextureGuid:
+      m_GuidLow: 885990977819670078
+      m_GuidHigh: 6279576869620098840
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Rocca01
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4757929169543049171
+      m_GuidHigh: 1811357716872985243
+    m_SerializedTextureGuid:
+      m_GuidLow: 3513244828641517514
+      m_GuidHigh: 715896724236273466
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Rocca02
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5448590827491134841
+      m_GuidHigh: 6833831398292135863
+    m_SerializedTextureGuid:
+      m_GuidLow: 670460068643630461
+      m_GuidHigh: 17002004911395260010
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Rocca03
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4906643506176233937
+      m_GuidHigh: 12192923197134254464
+    m_SerializedTextureGuid:
+      m_GuidLow: 2299167995753483437
+      m_GuidHigh: 6376351282372834187
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Rocca04
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4634420574812017531
+      m_GuidHigh: 4955534103712444822
+    m_SerializedTextureGuid:
+      m_GuidLow: 17282359043973001431
+      m_GuidHigh: 17252053000620283978
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Rocca05
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4640430931217346056
+      m_GuidHigh: 6713935628593312652
+    m_SerializedTextureGuid:
+      m_GuidLow: 15213482385158972313
+      m_GuidHigh: 11556950751206513161
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Rocca06
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5039346997765042395
+      m_GuidHigh: 2893423901240087961
+    m_SerializedTextureGuid:
+      m_GuidLow: 15127530006752620848
+      m_GuidHigh: 14004798784039952107
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Rocca07
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4663368531083668527
+      m_GuidHigh: 11819221177325471671
+    m_SerializedTextureGuid:
+      m_GuidLow: 5645369410324569369
+      m_GuidHigh: 1548778392712509272
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Rocca08
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5368296353488026620
+      m_GuidHigh: 9541921016031263120
+    m_SerializedTextureGuid:
+      m_GuidLow: 12455476256330298496
+      m_GuidHigh: 1885462798341263115
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Rocca09
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5456319139304034838
+      m_GuidHigh: 13091661051301093279
+    m_SerializedTextureGuid:
+      m_GuidLow: 9116576107614642203
+      m_GuidHigh: 10468477402077077016
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: Rocca10
+    m_Texture: {fileID: 0}

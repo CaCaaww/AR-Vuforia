@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 349eb84dad482144998efddbd9c475dd, type: 3}
-  m_Name: SpawnableObjects
+  m_Script: {fileID: 11500000, guid: aa277683ed45c6f1c89c928d0b25c99a, type: 3}
+  m_Name: SessionData
   m_EditorClassIdentifier: 
-  spawnableObjects:
-  - {fileID: 8524644889373255077, guid: 9d7b21943b5259b47b07c3ba2a41442a, type: 3}
-  - {fileID: 6378763645007927171, guid: e5b76e4e2953b40899e6eb98c85b5f32, type: 3}
+  pointsOfInterestSO: {fileID: 11400000, guid: acdecdfcee683a950856b0b27ff27a88, type: 2}
+  boostsAtStart: 0

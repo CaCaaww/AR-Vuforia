@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b871cd39907b3eda4b30ab736f88910e, type: 3}
+  m_Name: PointsOfInterest
+  m_EditorClassIdentifier: 
+  points:
+  - name: Rocca01
+    description: 
+    poiType: 0
+    imageName: Rocca01
+    image: {fileID: 2800000, guid: a324763eac190c4b1827776de4892557, type: 3}
+  - name: Rocca02
+    description: 
+    poiType: 0
+    imageName: Rocca02
+    image: {fileID: 2800000, guid: c427dfca8d8e30c13a07f8174760ef09, type: 3}
+  - name: Rocca03
+    description: 
+    poiType: 0
+    imageName: Rocca03
+    image: {fileID: 0}

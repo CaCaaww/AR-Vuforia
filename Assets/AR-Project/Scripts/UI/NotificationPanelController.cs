@@ -71,5 +71,4 @@ public class NotificationPanelController : MonoBehaviour
         canvas.enabled = true;
     }
     #endregion
-
 }
