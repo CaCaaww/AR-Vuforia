@@ -6,13 +6,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Events/DebugUI Event Channel")]
 public class DebugUIEventChannelSO : ScriptableObject
 {
-	public Action OnDebugEventRaised;
+	public Action<string> OnDebugEventRaised;
 
-	public void RaiseDebugEvent()
+	public void RaiseDebugEvent(string text)
 	{
 		if (OnDebugEventRaised != null)
         {
-			OnDebugEventRaised.Invoke();
+			OnDebugEventRaised.Invoke(text);
 			Debug.Log("Event Raised");
 		}
 			
