@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,6 +18,7 @@ public class WebRequestManager : MonoBehaviour
     #endregion
 
     #region Properties
+    private DataStructure dataStructure;
     #endregion
 
     #region Unity methods
@@ -24,24 +27,31 @@ public class WebRequestManager : MonoBehaviour
     {
         var result = await TestPost();
 
-        Debug.Log("Result: " + result);
+        dataStructure = JsonConvert.DeserializeObject<DataStructure>(result);
+
+        Debug.Log("Number of hints: " + dataStructure.hints);
+
+        Debug.Log("Number of images: " + dataStructure.pois.Count);
+
+        for (int i = 0; i < dataStructure.pois.Count; i++)
+        {
+            Debug.Log(dataStructure.pois[i].name);
+            Debug.Log(dataStructure.pois[i].type);
+            Debug.Log(dataStructure.pois[i].description);
+            Debug.Log(dataStructure.pois[i].image_name);
+            //Debug.Log(dataStructure.pois[i].image_url);
+        }
     }
-    
     #endregion
     
     #region Helper methods
     private async Task<string> TestPost()
     {
-        WWWForm form = new WWWForm();
-        form.AddField("code", remoteWebConsoleSO.AccessCode);
+        string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", remoteWebConsoleSO.AccessCode);
 
-        var www = UnityWebRequest.Get(remoteWebConsoleSO.JoinGate);
+        Debug.Log(url);
 
-        www.SetRequestHeader("Content-Type", "application/json");
-
-        www.SetRequestHeader("code", remoteWebConsoleSO.AccessCode);
-
-        Debug.Log(www.GetRequestHeader("code"));
+        var www = UnityWebRequest.Get(url);
 
         // Set the request timeout
         www.timeout = 10;
