@@ -53,7 +53,7 @@ public class ARImageTracker : MonoBehaviour
     {
         // Good reference: https://forum.unity.com/threads/arfoundation-2-image-tracking-with-many-ref-images-and-many-objects.680518/#post-4668326
         // https://github.com/Unity-Technologies/arfoundation-samples/issues/261#issuecomment-555618182
-        
+
         // Go through all tracked images that have been added
         // (-> new markers detected)
         foreach (var trackedImage in eventArgs.added)
@@ -65,7 +65,7 @@ public class ARImageTracker : MonoBehaviour
             if (!detectedImages.Contains(trackedImage.referenceImage.name))
             {
                 // Raise an ARImageRecognized event passing the name of the image
-                aREventChannelSO.RaiseARImageRecognizedEvent(trackedImage.referenceImage.name);
+                aREventChannelSO.RaisePOIDetectionEvent(trackedImage.referenceImage.name);
 
                 // Add the hash to the hashset
                 detectedImages.Add(trackedImage.referenceImage.name);

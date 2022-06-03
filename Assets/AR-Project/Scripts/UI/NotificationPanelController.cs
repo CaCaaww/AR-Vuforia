@@ -38,12 +38,12 @@ public class NotificationPanelController : MonoBehaviour
     #region Unity methods
     private void OnEnable()
     {
-        arEventChannelSO.OnARImageRecognized += HandleARImageRecognized;
+        arEventChannelSO.OnPOIDetected += HandleARImageRecognized;
     }
 
     private void OnDisable()
     {
-        arEventChannelSO.OnARImageRecognized -= HandleARImageRecognized;
+        arEventChannelSO.OnPOIDetected -= HandleARImageRecognized;
     }
 
     void Awake()
