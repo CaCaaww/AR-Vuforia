@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DebugUIPanelController : MonoBehaviour
 {
 
     #region Inspector
-
     /// <summary>
     /// SO Channel to send debug event to the UI
     /// </summary>
@@ -16,8 +16,7 @@ public class DebugUIPanelController : MonoBehaviour
     private DebugUIEventChannelSO debugUIEventChannelSO = default;
 
     [SerializeField]
-    private Canvas canvasDebugUI;
-
+    private TextMeshProUGUI debugText;
     #endregion
 
     #region Variables
@@ -35,10 +34,9 @@ public class DebugUIPanelController : MonoBehaviour
         debugUIEventChannelSO.OnDebugEventRaised += HandleDebugEventRaised;
     }
 
-
     private void OnDisable()
     {
-        
+        debugUIEventChannelSO.OnDebugEventRaised -= HandleDebugEventRaised;
     }
 
     #endregion
@@ -48,32 +46,15 @@ public class DebugUIPanelController : MonoBehaviour
     #endregion
 
     #region Callback Methods
-
     /// <summary>
     /// 
     /// </summary>
     /// <exception cref="NotImplementedException"></exception>
-    private void HandleDebugEventRaised()
+    private void HandleDebugEventRaised(string text)
     {
-        canvasDebugUI.enabled = true;
-        Debug.Log("Callback Called");
+        debugText.enabled = true;
+        debugText.text = text;
+        Debug.Log("Debug Callback Called");
     }
-
     #endregion
-
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

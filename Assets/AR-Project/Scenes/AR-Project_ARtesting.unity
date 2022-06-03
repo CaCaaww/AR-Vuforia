@@ -303,7 +303,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &280346427
 GameObject:
@@ -351,7 +351,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &280346431
 MonoBehaviour:
@@ -563,7 +563,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -280.04, y: 124.63}
+  m_AnchoredPosition: {x: 193, y: -927}
   m_SizeDelta: {x: 519.9274, y: 279.2576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &329724315
@@ -687,7 +687,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &345575456
 MonoBehaviour:
@@ -840,6 +840,7 @@ MonoBehaviour:
   debugUIEventChannelSO: {fileID: 11400000, guid: 9f4c4087d26805f48880da47d8521c32,
     type: 2}
   canvasDebugUI: {fileID: 948288513}
+  panel: {fileID: 329724313}
 --- !u!1 &1001029203
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,12 +987,7 @@ GameObject:
   - component: {fileID: 1073187046}
   - component: {fileID: 1073187045}
   - component: {fileID: 1073187044}
-  - component: {fileID: 1073187043}
   - component: {fileID: 1073187042}
-  - component: {fileID: 1073187041}
-  - component: {fileID: 1073187040}
-  - component: {fileID: 1073187048}
-  - component: {fileID: 1073187047}
   - component: {fileID: 1073187049}
   m_Layer: 0
   m_Name: AR Session Origin
@@ -1000,33 +996,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1073187040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073187039}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ab0e80cee9cc1d44928bfe488dd1e2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PointCloudPrefab: {fileID: 0}
---- !u!114 &1073187041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073187039}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 0}
-  m_DetectionMode: -1
 --- !u!114 &1073187042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1043,19 +1012,6 @@ MonoBehaviour:
     type: 2}
   m_MaxNumberOfMovingImages: 0
   m_TrackedImagePrefab: {fileID: 0}
---- !u!114 &1073187043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073187039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728ad7fae8e460a4ba41265c7308d757, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AnchorPrefab: {fileID: 0}
 --- !u!114 &1073187044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,39 +1052,8 @@ Transform:
   m_Children:
   - {fileID: 1268686837}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1073187047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073187039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c283eba3d40a76d41b4954dc9849779c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnableObject: {fileID: 11400000, guid: 56d43881d50e20e4883ccd0a5e8dba53, type: 2}
-  Log: {fileID: 0}
---- !u!114 &1073187048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073187039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5a2e8a572e66d44f82126208270319f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debugUIEventChannel: {fileID: 11400000, guid: 9f4c4087d26805f48880da47d8521c32,
-    type: 2}
-  _prefabToPlace: {fileID: 7734861169323980269, guid: 173685bc93484464b88d9f788d582359,
-    type: 3}
-  Log: {fileID: 0}
 --- !u!114 &1073187049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,9 +1066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fdd5195f9f4e35c81e9f67795695cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aREventChannelSO: {fileID: 0}
-  spawnableObject: {fileID: 0}
-  Log: {fileID: 0}
+  aREventChannelSO: {fileID: 11400000, guid: c5d003a6a03cb85a98af92927018363f, type: 2}
 --- !u!1 &1268686831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,6 +1220,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1073187046}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1382213374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1382213375}
+  m_Layer: 0
+  m_Name: GameManagers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1382213375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382213374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 475.35443, y: 712.21643, z: 1.7980671}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1385290006
@@ -1561,8 +1515,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arEventChannelSO: {fileID: 11400000, guid: c5d003a6a03cb85a98af92927018363f, type: 2}
-  debugUIEventChannelSO: {fileID: 0}
-  alertButton: {fileID: 16858929}
+  uiEventsChannelSO: {fileID: 0}
+  notificationButton: {fileID: 0}
 --- !u!1 &1436648760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,7 +1610,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &1436648763
 MonoBehaviour:
@@ -1709,7 +1663,7 @@ Transform:
   - {fileID: 948288514}
   - {fileID: 1397393397}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2038863809
 GameObject:
