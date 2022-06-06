@@ -10,17 +10,17 @@ public class AREventChannelSO : ScriptableObject
     /// <summary>
     /// Public action for when an image is recognized
     /// </summary>
-	public Action<string> OnARImageRecognized;
+	public Action<string> OnPOIDetected;
     #endregion
 
     /// <summary>
     /// Raise an event when an image is recognized
     /// </summary>
-	public void RaiseARImageRecognizedEvent(string imageName)
+	public void RaisePOIDetectionEvent(string imageName)
 	{
-		if (OnARImageRecognized != null)
+		if (OnPOIDetected != null)
         {
-			OnARImageRecognized.Invoke(imageName);
+			OnPOIDetected.Invoke(imageName);
 		}
     }
 }
