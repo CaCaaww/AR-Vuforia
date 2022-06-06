@@ -31,15 +31,15 @@ public class WebRequestManager : MonoBehaviour
 
         Debug.Log("Number of hints: " + dataStructure.hints);
 
-        Debug.Log("Number of images: " + dataStructure.pois.Count);
+        Debug.Log("Number of images: " + dataStructure.arPOIs.Count);
 
-        for (int i = 0; i < dataStructure.pois.Count; i++)
+        for (int i = 0; i < dataStructure.arPOIs.Count; i++)
         {
-            Debug.Log(dataStructure.pois[i].name);
-            Debug.Log(dataStructure.pois[i].type);
-            Debug.Log(dataStructure.pois[i].description);
-            Debug.Log(dataStructure.pois[i].image_name);
-            //Debug.Log(dataStructure.pois[i].image_url);
+            Debug.Log(dataStructure.arPOIs[i].name);
+            Debug.Log(dataStructure.arPOIs[i].type);
+            Debug.Log(dataStructure.arPOIs[i].description);
+            Debug.Log(dataStructure.arPOIs[i].image_name);
+            //Debug.Log(dataStructure.arPOIs[i].image_url);
         }
     }
     #endregion
