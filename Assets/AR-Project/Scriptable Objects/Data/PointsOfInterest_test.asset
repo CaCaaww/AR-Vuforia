@@ -15,51 +15,61 @@ MonoBehaviour:
   points:
   - name: Rocca01
     description: 
-    poiType: 0
+    clueType: 0
     imageName: Rocca01
     image: {fileID: 2800000, guid: a324763eac190c4b1827776de4892557, type: 3}
+    imageUrl: 
   - name: Rocca02
     description: 
-    poiType: 0
+    clueType: 2
     imageName: Rocca02
     image: {fileID: 2800000, guid: c427dfca8d8e30c13a07f8174760ef09, type: 3}
+    imageUrl: 
   - name: Rocca03
     description: 
-    poiType: 0
+    clueType: 1
     imageName: Rocca03
     image: {fileID: 2800000, guid: 53966d7df3e1094d6a4629ed6241f3eb, type: 3}
+    imageUrl: 
   - name: Rocca04
     description: 
-    poiType: 0
+    clueType: 1
     imageName: Rocca04
     image: {fileID: 2800000, guid: 51d54cad491c1fe88b73f03cb5597d58, type: 3}
+    imageUrl: 
   - name: Rocca05
     description: 
-    poiType: 0
+    clueType: 0
     imageName: Rocca05
     image: {fileID: 2800000, guid: 10c530d745fcefd74a182f7ccc9a6bef, type: 3}
+    imageUrl: 
   - name: Rocca06
     description: 
-    poiType: 0
+    clueType: 1
     imageName: Rocca06
     image: {fileID: 2800000, guid: f4102399259fd321091a59147a8962a0, type: 3}
+    imageUrl: 
   - name: Rocca07
     description: 
-    poiType: 0
+    clueType: 2
     imageName: Rocca07
     image: {fileID: 2800000, guid: 5d8d7130c864d1efeb1e86214b0a5bc2, type: 3}
+    imageUrl: 
   - name: Rocca08
     description: 
-    poiType: 0
+    clueType: 0
     imageName: Rocca08
     image: {fileID: 2800000, guid: 78409d1961914e5858f76d0dbe5d7e15, type: 3}
+    imageUrl: 
   - name: Rocca09
     description: 
-    poiType: 0
+    clueType: 0
     imageName: Rocca09
     image: {fileID: 2800000, guid: c6e13480bda9acda0b4f58ec6c822a1a, type: 3}
+    imageUrl: 
   - name: Rocca10
     description: 
-    poiType: 0
+    clueType: 0
     imageName: Rocca10
     image: {fileID: 2800000, guid: 0e2f201b95ab7e84181e029abb804791, type: 3}
+    imageUrl: 

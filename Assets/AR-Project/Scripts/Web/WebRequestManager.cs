@@ -9,9 +9,15 @@ using UnityEngine.Networking;
 public class WebRequestManager : MonoBehaviour
 {
     #region Inspector
+    [Header("SO Send Channels")]
+    [SerializeField]
+    private UIEventsChannelSO uiEventsChannelSO;
+
     [Header("References")]
     [SerializeField]
     private RemoteWebConsoleSO remoteWebConsoleSO;
+    [SerializeField]
+    private SessionDataSO sessionDataSO;
     #endregion
 
     #region Variables
@@ -25,27 +31,50 @@ public class WebRequestManager : MonoBehaviour
 
     async void Start()
     {
-        var result = await TestPost();
+        var result = await GetRemoteData();
 
         dataStructure = JsonConvert.DeserializeObject<DataStructure>(result);
 
+        sessionDataSO.Hints = dataStructure.hints;
         Debug.Log("Number of hints: " + dataStructure.hints);
 
-        Debug.Log("Number of images: " + dataStructure.arPOIs.Count);
+        sessionDataSO.IntroText = dataStructure.intro_text;
 
-        for (int i = 0; i < dataStructure.arPOIs.Count; i++)
+        sessionDataSO.VictoryText = dataStructure.victory_text;
+
+        sessionDataSO.DefeatText = dataStructure.defeat_text;
+
+        int numberOfPois = dataStructure.ar_pois.Count;
+        Debug.Log("Number of images: " + numberOfPois);
+
+        // Clear the POI list
+        sessionDataSO.PointsOfInterest.Points.Clear();
+        
+        for (int i = 0; i < numberOfPois; i++)
         {
-            Debug.Log(dataStructure.arPOIs[i].name);
-            Debug.Log(dataStructure.arPOIs[i].type);
-            Debug.Log(dataStructure.arPOIs[i].description);
-            Debug.Log(dataStructure.arPOIs[i].image_name);
-            //Debug.Log(dataStructure.arPOIs[i].image_url);
+            sessionDataSO.PointsOfInterest.Points.Add(new PointOfInterest());
+
+            sessionDataSO.PointsOfInterest.Points[i].name = dataStructure.ar_pois[i].title;
+            Debug.Log(dataStructure.ar_pois[i].title);
+            sessionDataSO.PointsOfInterest.Points[i].clueType = (EClueType)dataStructure.ar_pois[i].type;
+            Debug.Log(dataStructure.ar_pois[i].type);
+            sessionDataSO.PointsOfInterest.Points[i].description = dataStructure.ar_pois[i].description;
+            Debug.Log(dataStructure.ar_pois[i].description);
+            sessionDataSO.PointsOfInterest.Points[i].imageName = dataStructure.ar_pois[i].image_name;
+            Debug.Log(dataStructure.ar_pois[i].image_name);
+            sessionDataSO.PointsOfInterest.Points[i].imageUrl = dataStructure.ar_pois[i].image_url;
+            Debug.Log(dataStructure.ar_pois[i].image_url);
+
+            // TO DO: retrieve the actual image as a texture2D
+            sessionDataSO.PointsOfInterest.Points[i].image = await Utils.GetRemoteTexture(sessionDataSO.PointsOfInterest.Points[i].imageUrl);      
         }
+
+        uiEventsChannelSO.RaiseSessionDataLoadedEvent();
     }
     #endregion
     
     #region Helper methods
-    private async Task<string> TestPost()
+    private async Task<string> GetRemoteData()
     {
         string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", remoteWebConsoleSO.AccessCode);
 

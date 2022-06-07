@@ -14,15 +14,35 @@ public class SessionDataSO : ScriptableObject
     [SerializeField] PointsOfInterestSO pointsOfInterestSO;
     [Header("Session Parameters")]
     /// <summary>
-    /// The number of boosts at the start of the session
+    /// The number of hints at the start of the session
     /// </summary>
-    [Tooltip("The number of boosts at the start of the session")]
-    [SerializeField] int boostsAtStart;
+    [Tooltip("The number of hints at the start of the session")]
+    [SerializeField] int hints;
+    /// <summary>
+    /// The intro text for the session
+    /// </summary>
+    [Tooltip("The intro text for the session")]
+    [SerializeField] string introText;
+    /// <summary>
+    /// The victory text for the session
+    /// </summary>
+    [Tooltip("The victory text for the session")]
+    [SerializeField] string victoryText;
+    /// <summary>
+    /// The defeat text for the session
+    /// </summary>
+    [Tooltip("The defaeat text for the session")]
+    [SerializeField] string defeatText;
     #endregion
 
     #region Variables
     #endregion
 
     #region Properties
+    public int Hints { get => hints; set => hints = value; }
+    public string IntroText { get => introText; set => introText = value; }
+    public string VictoryText { get => victoryText; set => victoryText = value; }
+    public string DefeatText { get => defeatText; set => defeatText = value; }
+    public PointsOfInterestSO PointsOfInterest { get => pointsOfInterestSO; } 
     #endregion
-}
+    }

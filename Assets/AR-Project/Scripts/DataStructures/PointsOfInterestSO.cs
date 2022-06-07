@@ -16,9 +16,10 @@ public class PointOfInterest
 {
     public string name;
     public string description;
-    public EClueType poiType;
+    public EClueType clueType;
     public string imageName;
     public Texture2D image;
+    public string imageUrl;
 }
 #endregion
 
@@ -38,8 +39,23 @@ public class PointsOfInterestSO : ScriptableObject
     private List<PointOfInterest> points = new List<PointOfInterest>();
     #endregion
 
+    #region Private variables
+    Dictionary<string, string> imageNameAndTitle = new Dictionary<string, string>();
+    #endregion
+
     #region Public properties
-    public List<PointOfInterest> Points { get { return points; } }
+    public List<PointOfInterest> Points  { get => points; }
+    public Dictionary<string, string> ImageNameAndTitle { get => imageNameAndTitle; } 
     #endregion 
+
+    #region Public Methods
+    public void AddImageNameAndTitle(string imageName, string title)
+    {
+        if (!imageNameAndTitle.ContainsKey(imageName))
+        {
+            imageNameAndTitle.Add(imageName, title);
+        }
+    }
+    #endregion
 }
 

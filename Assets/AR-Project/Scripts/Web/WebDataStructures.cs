@@ -5,9 +5,9 @@ using UnityEngine;
 public class ARPOI
 {
     // The name of the AR p.o.i.
-    public string name;
-    // The type of the AR p.o.i. (where, when, how)
-    public string type;
+    public string title;
+    // The type of the AR p.o.i. (0 = where, 1 = when, 2 = how)
+    public int type;
     // The description of the AR p.o.i.
     public string description;
     // The image name for the AR p.o.i
@@ -21,7 +21,7 @@ public class ARPOI
 public class QRPOI
 {
     // The name of the QR p.o.i.
-    public string name;
+    public string title;
     // The description of the QR p.o.i.
     public string description;
     // The QR code name for the QR p.o.i
@@ -45,7 +45,5 @@ public class DataStructure
     // The endgame defeat text 
     public string defeat_text;
     // The list of all the AR p.o.i.
-    public List<ARPOI> arPOIs = new List<ARPOI>();
-    // The list of all the QR p.o.i.
-    public List<QRPOI> qrPOIs = new List<QRPOI>();
+    public List<ARPOI> ar_pois = new List<ARPOI>();
 }

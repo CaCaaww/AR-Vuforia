@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3f657e85a7d63dda95771d8995df010, type: 3}
-  m_Name: RemoteWebConsole
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: MutableImageLibrary
   m_EditorClassIdentifier: 
-  host: https://test1.dedalus.cc/arGame/public/api/
-  joinGate: join
-  accessCode: ae4OX
+  m_GuidLow: 5135111884006127286
+  m_GuidHigh: 5456752821812138120
+  m_DataStore:
+    m_Storage: []
+  m_Images: []
