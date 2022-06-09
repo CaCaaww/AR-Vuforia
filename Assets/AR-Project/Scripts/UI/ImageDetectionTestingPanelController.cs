@@ -51,8 +51,15 @@ public class ImageDetectionTestingPanelController : MonoBehaviour
     #region Callbacks
     private void HandleARImageRecognized(string imageName)
     {
+
+        Debug.Log("[ARP] Image detected: " + pointsOfInterestSO.ImageNameAndTitle[imageName]);
+
         canvas.enabled = true;
-        foreach (var point in pointsOfInterestSO.Points)
+
+        objectTitle.text = pointsOfInterestSO.ImageNameAndTitle[imageName];
+        objectImage.texture = pointsOfInterestSO.ImageNameAndTexture[imageName];
+
+        /*foreach (var point in pointsOfInterestSO.Points)
         {
             if (point.imageName == imageName)
             {
@@ -61,7 +68,7 @@ public class ImageDetectionTestingPanelController : MonoBehaviour
 
                 break;
             }
-        }
+        }*/
     }
     #endregion
 }

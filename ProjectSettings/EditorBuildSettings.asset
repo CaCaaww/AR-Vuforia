@@ -5,18 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/AR-Project/Scenes/AR-Project.unity
-    guid: bbc81ad5b73762ab2beacdf813e182d4
-  - enabled: 0
-    path: Assets/AR-Project/Scenes/00-Test/AR-Project_ARtesting.unity
-    guid: 8d634621b01c0a29fab01636c01ee8f8
-  - enabled: 0
-    path: Assets/AR-Project/Scenes/AR-Project_Rocca.unity
-    guid: 14444b56f667867728e6fb1c0cc8214f
   - enabled: 1
-    path: Assets/AR-Project/Scenes/00-Test/AR-Project_RoccaTest.unity
-    guid: 2ad29a3c45fe69807afe4ac9ef5f7794
+    path: Assets/AR-Project/Scenes/01-LoadingScene/01-LoadingScene.unity
+    guid: fc3ab3a9a3518af0a8ebbe58d24546d9
+  - enabled: 1
+    path: Assets/AR-Project/Scenes/00-Test/AR-Project_RoccaRemoteData.unity
+    guid: b40281dfb7fcf36aa849a3f00b742d9f
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6f0840a7e7441439fb6d24beae3bd013,
       type: 2}

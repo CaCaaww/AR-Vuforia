@@ -36,16 +36,19 @@ public class WebRequestManager : MonoBehaviour
         dataStructure = JsonConvert.DeserializeObject<DataStructure>(result);
 
         sessionDataSO.Hints = dataStructure.hints;
-        Debug.Log("Number of hints: " + dataStructure.hints);
+        Debug.Log("[ARP] Number of hints: " + sessionDataSO.Hints);
 
         sessionDataSO.IntroText = dataStructure.intro_text;
+        Debug.Log("[ARP] Intro text: " + sessionDataSO.IntroText);
 
         sessionDataSO.VictoryText = dataStructure.victory_text;
+        Debug.Log("[ARP] Victory text: " + sessionDataSO.VictoryText);
 
         sessionDataSO.DefeatText = dataStructure.defeat_text;
+        Debug.Log("[ARP] Defeat text: " + sessionDataSO.DefeatText);
 
         int numberOfPois = dataStructure.ar_pois.Count;
-        Debug.Log("Number of images: " + numberOfPois);
+        Debug.Log("[ARP] Number of images: " + numberOfPois);
 
         // Clear the POI list
         sessionDataSO.PointsOfInterest.Points.Clear();
@@ -54,19 +57,27 @@ public class WebRequestManager : MonoBehaviour
         {
             sessionDataSO.PointsOfInterest.Points.Add(new PointOfInterest());
 
-            sessionDataSO.PointsOfInterest.Points[i].name = dataStructure.ar_pois[i].title;
-            Debug.Log(dataStructure.ar_pois[i].title);
+            sessionDataSO.PointsOfInterest.Points[i].title = dataStructure.ar_pois[i].title;
+            Debug.Log("[ARP] Title: " + dataStructure.ar_pois[i].title);
+            
             sessionDataSO.PointsOfInterest.Points[i].clueType = (EClueType)dataStructure.ar_pois[i].type;
-            Debug.Log(dataStructure.ar_pois[i].type);
+            Debug.Log("[ARP] Clue type: " + dataStructure.ar_pois[i].type);
+            
             sessionDataSO.PointsOfInterest.Points[i].description = dataStructure.ar_pois[i].description;
-            Debug.Log(dataStructure.ar_pois[i].description);
+            Debug.Log("[ARP] Description: " + dataStructure.ar_pois[i].description);
+            
             sessionDataSO.PointsOfInterest.Points[i].imageName = dataStructure.ar_pois[i].image_name;
-            Debug.Log(dataStructure.ar_pois[i].image_name);
+            Debug.Log("[ARP] Image name: " + dataStructure.ar_pois[i].image_name);
+            
             sessionDataSO.PointsOfInterest.Points[i].imageUrl = dataStructure.ar_pois[i].image_url;
-            Debug.Log(dataStructure.ar_pois[i].image_url);
+            Debug.Log("[ARP] Image Url: " + dataStructure.ar_pois[i].image_url);
+
+            sessionDataSO.PointsOfInterest.AddImageNameAndTitle(sessionDataSO.PointsOfInterest.Points[i].imageName, sessionDataSO.PointsOfInterest.Points[i].title);
 
             // TO DO: retrieve the actual image as a texture2D
             sessionDataSO.PointsOfInterest.Points[i].image = await Utils.GetRemoteTexture(sessionDataSO.PointsOfInterest.Points[i].imageUrl);      
+
+            sessionDataSO.PointsOfInterest.AddImageNameAndTexture(sessionDataSO.PointsOfInterest.Points[i].imageName, sessionDataSO.PointsOfInterest.Points[i].image);
         }
 
         uiEventsChannelSO.RaiseSessionDataLoadedEvent();

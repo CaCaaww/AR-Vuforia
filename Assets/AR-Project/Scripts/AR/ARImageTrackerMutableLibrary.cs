@@ -11,6 +11,17 @@ using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(ARTrackedImageManager))]
 public class ARImageTrackerMutableLibrary : MonoBehaviour
 {
+    #region Classes
+    enum EState
+        {
+            NoImagesAdded,
+            AddImagesRequested,
+            AddingImages,
+            Done,
+            Ignore,
+        }
+    #endregion
+
     #region Inspector
     [Header("SEND Channels")]
     /// <summary>
@@ -33,22 +44,25 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
     /// Reference for the ARTrackedImageManager from ARCoreSession
     /// </summary>
     private ARTrackedImageManager trackedImagesManager;
+
+    EState m_State;
+
+    int numberOfPois;
     #endregion
-         
+
     #region Unity methods
     void Awake()
     {
+         // Disable screen dimming
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
         trackedImagesManager = GetComponent<ARTrackedImageManager>();
+        trackedImagesManager.enabled = false;
 
-        if (trackedImagesManager.referenceLibrary is MutableRuntimeReferenceImageLibrary mutableLibrary)
-        {
-            Debug.LogError("ARRIVO QUI 0");
- 
-            mutableLibrary = trackedImagesManager.CreateRuntimeLibrary() as MutableRuntimeReferenceImageLibrary;
-            Debug.LogError("ARRIVO QUI 1");
+        Debug.Log("[ARP] MEGATEST");
 
-            StartCoroutine(AddAllImagesToMutableReferenceImageLibraryAR(mutableLibrary));
-        }
+        int numberOfPois = sessionDataSO.PointsOfInterest.Points.Count;
+        Debug.Log("[ARP] numberOfPois: " + numberOfPois);
     }
 
     void OnEnable()
@@ -60,12 +74,140 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
     {
         trackedImagesManager.trackedImagesChanged -= OnTrackedImagesChanged;
     }
+
+    IEnumerator Start()
+    {
+        yield return new WaitForSeconds(2);
+        m_State = EState.AddImagesRequested;
+        Debug.Log("[ARP] m_State: " + m_State);
+    }
+
+    void Update()
+    {
+        switch (m_State) 
+        {
+            case EState.AddImagesRequested: 
+                {
+                    // You can either add raw image bytes or use the extension method (used below) which accepts
+                    // a texture. To use a texture, however, its import settings must have enabled read/write
+                    // access to the texture.
+                    for (int i = 0; i < numberOfPois; i++)
+                    {
+                        if (!sessionDataSO.PointsOfInterest.Points[i].image.isReadable) 
+                        {
+                            Debug.Log($"[ARP] Image {sessionDataSO.PointsOfInterest.Points[i].image.name} must be readable to be added to the image library.");
+                            break;
+                        }
+                    }
+
+                    if (trackedImagesManager == null)
+                    {
+                        Debug.Log($"No {nameof(ARTrackedImageManager)} available.");
+                        break;
+                    } 
+                                 
+                    if (trackedImagesManager.referenceLibrary == null) 
+                    {
+                        Debug.Log("[AFP] PRE Library is null");
+                    } 
+                    else 
+                    {
+                        Debug.Log("[AFP] PRE Library exists");
+                    }
+
+                    trackedImagesManager.referenceLibrary = trackedImagesManager.CreateRuntimeLibrary();
+
+                    if (trackedImagesManager.referenceLibrary == null) 
+                    {
+                        Debug.Log("[AFP] POST Library is null");
+                    } 
+                    else 
+                    {
+                        Debug.Log("[AFP] POST Library exists");
+                    }
+
+                    if (trackedImagesManager.referenceLibrary is MutableRuntimeReferenceImageLibrary mutableLibrary) 
+                    {
+                        try 
+                        {
+                            foreach (var point in sessionDataSO.PointsOfInterest.Points) 
+                            {
+                                Debug.Log("[ARP] Foreach loop");
+                                // Note: You do not need to do anything with the returned JobHandle, but it can be
+                                // useful if you want to know when the image has been added to the library since it may
+                                // take several frames.
+                                point.jobState = mutableLibrary.ScheduleAddImageWithValidationJob
+                                (
+                                    point.image,
+                                    point.imageName,
+                                    null
+                                );
+                                Debug.Log("[ARP] " + point.imageName + " jobState: " + point.jobState.status);
+                            }
+
+                            m_State = EState.AddingImages;
+                        } 
+                        catch (InvalidOperationException e) 
+                            {
+                                Debug.Log($"[ARP] ScheduleAddImageWithValidationJob threw exception: {e.Message}");
+                            }
+                    } 
+                    else
+                    {
+                        Debug.Log($"[ARP]The reference image library is not mutable.");
+                    }
+
+                    break;
+                }
+            case EState.AddingImages: 
+                {
+                    // Check for completion
+                    bool done = true;
+                    foreach (var point in sessionDataSO.PointsOfInterest.Points) 
+                    {
+                        if (!point.jobState.jobHandle.IsCompleted) 
+                        {
+                            Debug.Log("[ARP] 2a jobState: " + point.jobState.status);
+                            done = false;
+                            break;
+                        }
+                        else
+                        {   
+                            Debug.Log("[ARP] 2b jobState: " + point.jobState.status);
+                        }
+                    }
+
+                    if (done) 
+                    {
+                        Debug.Log("[AFP] Library Count: " + trackedImagesManager.referenceLibrary.count);
+                        trackedImagesManager.enabled = true;
+                        
+                        m_State = EState.Done;
+                    }
+                    break;
+                }
+            case EState.Done:
+                {
+                    Debug.Log("[ARP] State Done");
+
+                    for (int i = 0; i < trackedImagesManager.referenceLibrary.count; i++)
+                    {
+                        Debug.Log("[ARP] Image name: " + trackedImagesManager.referenceLibrary[i].name);
+                    }
+
+                    m_State = EState.Ignore;
+                    break;
+                }
+        }
+    }
     #endregion 
     
     #region Helper methods
     private IEnumerator AddAllImagesToMutableReferenceImageLibraryAR(MutableRuntimeReferenceImageLibrary mutableLibrary)
     {   
         int numberOfPois = sessionDataSO.PointsOfInterest.Points.Count;
+
+        Debug.Log("numberOfPois: " + numberOfPois);
 
         AddReferenceImageJobState job;
 
@@ -77,11 +219,13 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
                 yield return new WaitUntil(() => job.jobHandle.IsCompleted);
             }
 
-            Debug.LogError("mutableLibrary.count = " + mutableLibrary.count);
+            Debug.Log("mutableLibrary.count = " + mutableLibrary.count);
         }
 
-            
-        //trackedImagesManager.referenceLibrary = mutableLibrary;
+
+        trackedImagesManager.referenceLibrary = mutableLibrary;
+
+        trackedImagesManager.enabled = true;
     } 
     #endregion
 
@@ -103,6 +247,8 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
             {
                 // Raise an ARImageRecognized event passing the name of the image
                 aREventChannelSO.RaisePOIDetectionEvent(trackedImage.referenceImage.name);
+
+                Debug.Log("[AFP] IMAGE DETECTED");
 
                 // Add the hash to the hashset
                 detectedImages.Add(trackedImage.referenceImage.name);

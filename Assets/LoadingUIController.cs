@@ -32,8 +32,9 @@ public class LoadingUIController : MonoBehaviour
     #region Callback methods
     private void HandleSessionDataLoadedEvent() 
     {
-        continueButton.GetComponent<Button>().onClick.AddListener(() => {
-            SceneManager.LoadScene("AR-Project");
+        continueButton.GetComponent<Button>().onClick.AddListener(() => 
+        {
+            SceneManager.LoadScene("AR-Project_RoccaRemoteData");
         });
 
         continueButton.SetActive(true);
