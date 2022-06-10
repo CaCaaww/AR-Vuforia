@@ -16,10 +16,14 @@ public class ImageDetectionTestingPanelController : MonoBehaviour
     [SerializeField] private AREventChannelSO arEventChannelSO;
 
     [Header("References")]
+    [Header("SO References")]
+    [SerializeField] private GameStateSO gameStateSO;
+    [SerializeField] private PointsOfInterestSO pointsOfInterestSO;
+    
+    [Header("Panel References")]
     [SerializeField] private Canvas canvas;
     [SerializeField] private TextMeshProUGUI objectTitle;
     [SerializeField] private RawImage objectImage;
-    [SerializeField] private PointsOfInterestSO pointsOfInterestSO;
     [SerializeField] private Button closeButton;
     #endregion
 
@@ -39,8 +43,10 @@ public class ImageDetectionTestingPanelController : MonoBehaviour
         canvas = GetComponent<Canvas>();
 
         closeButton.onClick.AddListener(() =>
-        {   
+        {
+            gameStateSO.UpdateGameState(GameState.Tracking);
             canvas.enabled = false;
+            
         });
     }
     #endregion
@@ -58,17 +64,6 @@ public class ImageDetectionTestingPanelController : MonoBehaviour
 
         objectTitle.text = pointsOfInterestSO.ImageNameAndTitle[imageName];
         objectImage.texture = pointsOfInterestSO.ImageNameAndTexture[imageName];
-
-        /*foreach (var point in pointsOfInterestSO.Points)
-        {
-            if (point.imageName == imageName)
-            {
-                objectTitle.text = point.imageName;
-                objectImage.texture = point.image;
-
-                break;
-            }
-        }*/
     }
     #endregion
 }
