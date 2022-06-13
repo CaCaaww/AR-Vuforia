@@ -22,11 +22,16 @@ public class PopUpPanelController : MonoBehaviour
     //[SerializeField] private DebugUIEventChannelSO debugUIEventChannelSO;
 
     [Header("References")]
+    [Header("SO References")]
+    [SerializeField] private GameStateSO gameStateSO;
     [SerializeField] private PointsOfInterestSO pointsOfInterestSO;
+
+    [Header("Panel References")]
     [SerializeField] private Canvas canvas;
-    [SerializeField] private TextMeshProUGUI objectTitle;
-    [SerializeField] private TextMeshProUGUI objectDescription;
-    [SerializeField] private RawImage objectImage;
+    [SerializeField] private TextMeshProUGUI poiTitle;
+    [SerializeField] private RawImage poiTellerImage;
+    [SerializeField] private RawImage poiImage;
+    [SerializeField] private TextMeshProUGUI poiDescription;
     [SerializeField] private Button closeButton;
     #endregion
 
@@ -43,8 +48,12 @@ public class PopUpPanelController : MonoBehaviour
 
     private void Awake()
     {
+        // Disable the canvas (just to be sure)
+        canvas.enabled = false;
+
         closeButton.onClick.AddListener(() =>
         {
+            gameStateSO.UpdateGameState(GameState.Tracking);
             canvas.enabled = false;
         });
     }
@@ -53,17 +62,14 @@ public class PopUpPanelController : MonoBehaviour
     #region Callbacks
     private void HandlePOIDetection(string imageName)
     {
-        canvas.enabled = true;
-        foreach (var point in pointsOfInterestSO.Points)
-        {
-            if (point.imageName == imageName)
-            {
-                objectTitle.text = point.imageName;
-                objectImage.texture = point.image;
+        Debug.Log("[ARP] Image detected: " + pointsOfInterestSO.ImageNameAndTitle[imageName]);
 
-                break;
-            }
-        }
+        gameStateSO.UpdateGameState(GameState.POIPopUp);
+
+        canvas.enabled = true;
+
+        poiTitle.text = pointsOfInterestSO.ImageNameAndTitle[imageName];
+        poiImage.texture = pointsOfInterestSO.ImageNameAndTexture[imageName];
     }
     #endregion
 }

@@ -2,7 +2,6 @@
 using System.Text;
 using Unity.Jobs;
 using UnityEngine;
-
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 

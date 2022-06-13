@@ -7,17 +7,16 @@ using UnityEngine.UI;
 public class GameplayUIController : MonoBehaviour
 {
     #region Inspector
-    [Header("Base Screen")]
-    [SerializeField] private GameObject baseScreen;
+    [Header("Base UI")]
     [SerializeField] private Button baseInventoryButton;
     [SerializeField] private Button baseSolutionButton;
 
-    [Header("Inventory Screen")]
-    [SerializeField] private GameObject inventoryScreen;
-    [SerializeField] private InventoryScreenController inventoryScreenController;
+    [Header("Inventory UI")]
+    [SerializeField] private Canvas inventoryCanvas;
+    //[SerializeField] private InventoryUIController inventoryUIController;
 
-    [Header("Solution Screen")]
-    [SerializeField] private GameObject solutionScreen;
+    [Header("Solution UI")]
+    [SerializeField] private Canvas solutionCanvas;
     #endregion
 
     #region Variables
@@ -31,38 +30,26 @@ public class GameplayUIController : MonoBehaviour
     {
         SetupUI();
     }
-
-    void Start()
-    {
-        
-    }
-    
-    void Update()
-    {
-        
-    }
-    
     #endregion
     
     #region Helper methods
     private void SetupUI()
     {
-        baseScreen.SetActive(true);
+        // Disable the canvases (just to be sure)
+        inventoryCanvas.enabled = false;
+        solutionCanvas.enabled = false;
 
         baseSolutionButton.onClick.AddListener(() =>
         {
-            inventoryScreen.SetActive(false);
-            solutionScreen.SetActive(true);            
+            inventoryCanvas.enabled = false;
+            solutionCanvas.enabled = true;
         });
     
         baseInventoryButton.onClick.AddListener(() =>
         {
-            solutionScreen.SetActive(false);
-            inventoryScreen.SetActive(true);
-        });
-
-        inventoryScreen.SetActive(false);
+            solutionCanvas.enabled = false;
+            inventoryCanvas.enabled = true;
+        });  
     }
-
     #endregion
 }

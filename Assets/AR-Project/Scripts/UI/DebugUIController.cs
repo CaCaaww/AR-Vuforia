@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class DebugUIPanelController : MonoBehaviour
+public class DebugUIController : MonoBehaviour
 {
 
     #region Inspector

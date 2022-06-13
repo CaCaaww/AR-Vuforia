@@ -167,9 +167,7 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
                     continue;
                 }
             }
-        }
-
-        
+        } 
     }
 
     private void OnARSessionStateChanged(ARSessionStateChangedEventArgs obj) 
@@ -182,12 +180,9 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
             {
                 isTracking = true;
 
-                //m_State = EState.AddImagesRequested;
                 StartCoroutine(AddAllImagesToMutableReferenceImageLibraryAR());
             }
-        }
-
-        
+        }   
     }
     #endregion
 }

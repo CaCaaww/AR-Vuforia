@@ -8,9 +8,9 @@ public class SessionDataSO : ScriptableObject
     #region Inspector
     [Header("References")]
     /// <summary>
-    /// SO containing all the trackable points of interest
+    /// SO containing all the AR trackable points of interest
     /// </summary>
-    [Tooltip("SO containing all the trackable points of interest")]
+    [Tooltip("SO containing all the AR trackable points of interest")]
     [SerializeField] PointsOfInterestSO pointsOfInterestSO;
     [Header("Session Parameters")]
     /// <summary>

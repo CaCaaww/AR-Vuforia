@@ -21,6 +21,7 @@ public class PointOfInterest
     public string imageName;
     public Texture2D image;
     public string imageUrl;
+    public bool isUseful;
     public AddReferenceImageJobState jobState;
 }
 #endregion
@@ -34,11 +35,19 @@ public class PointsOfInterestSO : ScriptableObject
     #region Inspector
     [Header("References")]
     /// <summary>
-    /// The list of all the points of interest for the session
+    /// The list of all the AR points of interest for the session
     /// </summary>
-    [Tooltip("The list of all the points of interest for the session")]
+    [Tooltip("The list of all the AR points of interest for the session")]
     [SerializeField]
     private List<PointOfInterest> points = new List<PointOfInterest>();
+    /// <summary>
+    /// The list of all the "where" P.O.Is found for the session
+    /// </summary>
+    [Tooltip("The list of all the _where_ P.O.Is found for the session")]
+    [SerializeField]
+    private List<PointOfInterest> wherePoisFound = new List<PointOfInterest>();
+    private List<PointOfInterest> whenPoisFound = new List<PointOfInterest>();
+    private List<PointOfInterest> howPoisFound = new List<PointOfInterest>();
     #endregion
 
     #region Private variables
@@ -48,6 +57,9 @@ public class PointsOfInterestSO : ScriptableObject
 
     #region Public properties
     public List<PointOfInterest> Points  { get => points; }
+    public List<PointOfInterest> WherePois { get => wherePoisFound; }
+    public List<PointOfInterest> WhenPois { get => whenPoisFound; }
+    public List<PointOfInterest> HowPois { get => howPoisFound; }
     public Dictionary<string, string> ImageNameAndTitle { get => imageNameAndTitle; } 
     public Dictionary<string, Texture2D> ImageNameAndTexture { get => imageNameAndTexture; }
     #endregion 
