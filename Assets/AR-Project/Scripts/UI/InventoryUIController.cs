@@ -18,20 +18,24 @@ public class InventoryUIController : MonoBehaviour
     [Header("Where References")]
     [SerializeField] private Canvas whereCanvas;
     [SerializeField] private Button whereButton;
-    
+    [SerializeField] private Image whereButtonBackground;
+
     [Header("When References")]
     [SerializeField] private Canvas whenCanvas;
     [SerializeField] private Button whenButton;
-    
+    [SerializeField] private Image whenButtonBackground;
+
     [Header("How References")]
     [SerializeField] private Canvas howCanvas;
     [SerializeField] private Button howButton;
+    [SerializeField] private Image howButtonBackground;
     #endregion
 
     #region Variables
     #endregion
 
     #region Properties
+    private Color32 buttonSelectedColor = new Color32(200, 171, 116, 255);
     #endregion
 
     #region Unity methods
@@ -45,23 +49,37 @@ public class InventoryUIController : MonoBehaviour
     private void WhereButtonBehaviour()
     {
         whereCanvas.enabled = true;
+        whereButtonBackground.color = buttonSelectedColor;
+
         whenCanvas.enabled = false;
+        whenButtonBackground.color = Color.white;
+
         howCanvas.enabled = false;
+        howButtonBackground.color = Color.white;
     }
 
     private void WhenButtonBehaviour()
     {
         whenCanvas.enabled = true;
-        whereCanvas.enabled = false;
-        howCanvas.enabled = false; 
+        whenButtonBackground.color = buttonSelectedColor;
         
+        whereCanvas.enabled = false;
+        whereButtonBackground.color = Color.white;
+
+        howCanvas.enabled = false; 
+        howButtonBackground.color = Color.white;
     }
 
     private void HowButtonBehaviour()
     {
-        howCanvas.enabled = true; 
+        howCanvas.enabled = true;
+        howButtonBackground.color = buttonSelectedColor;
+
         whenCanvas.enabled = false;
+        whenButtonBackground.color = Color.white;
+
         whereCanvas.enabled = false;
+        whereButtonBackground.color = Color.white;
     }
     
     private void SetupUI()

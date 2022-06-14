@@ -15,12 +15,7 @@ public class PopUpPanelController : MonoBehaviour
     [SerializeField] private AREventChannelSO arEventChannelSO;
 
     [Header("SEND Channels")]
-    /// <summary>
-    /// The SO channel for the DebugUI events
-    /// </summary>
-    //[Tooltip("The SO channel for the DebugUI events")]
-    //[SerializeField] private DebugUIEventChannelSO debugUIEventChannelSO;
-
+    
     [Header("References")]
     [Header("SO References")]
     [SerializeField] private GameStateSO gameStateSO;

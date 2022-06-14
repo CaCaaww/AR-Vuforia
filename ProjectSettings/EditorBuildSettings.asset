@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/AR-Project/Scenes/AR-Project_ARtesting.unity
     guid: 8d634621b01c0a29fab01636c01ee8f8
   - enabled: 0
-    path: Assets/AR-Project/Scenes/AR-Project_Rocca.unity
+    path: Assets/AR-Project/Scenes/00-Test/99-Project_Rocca/AR-Project_Rocca.unity
     guid: 14444b56f667867728e6fb1c0cc8214f
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6f0840a7e7441439fb6d24beae3bd013,

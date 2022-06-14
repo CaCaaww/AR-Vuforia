@@ -7,7 +7,7 @@ using UnityEngine;
 public class UIEventsChannelSO : ScriptableObject
 {
 	public Action OnSessionDataLoadedEventRaised;
-	public Action<string> OnClueFoundNotificationEventRaised;
+	public Action<PointOfInterest> OnClueFoundNotificationEventRaised;
 	
 
 	public void RaiseSessionDataLoadedEvent()
@@ -18,11 +18,11 @@ public class UIEventsChannelSO : ScriptableObject
 		}
 	}
 
-	public void RaiseClueFoundNotificationEvent(string imageName)
+	public void RaiseClueFoundNotificationEvent(PointOfInterest poi)
 	{
 		if (OnClueFoundNotificationEventRaised != null)
 		{
-			OnClueFoundNotificationEventRaised.Invoke(imageName);
+			OnClueFoundNotificationEventRaised.Invoke(poi);
 		}
 	}
 }
