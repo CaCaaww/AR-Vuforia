@@ -60,7 +60,7 @@ public class WebRequestManager : MonoBehaviour
             sessionDataSO.PointsOfInterest.Points[i].title = dataStructure.ar_pois[i].title;
             Debug.Log("[ARP] Title: " + dataStructure.ar_pois[i].title);
             
-            sessionDataSO.PointsOfInterest.Points[i].clueType = (EClueType)dataStructure.ar_pois[i].type;
+            sessionDataSO.PointsOfInterest.Points[i].clueType = (EPOIType)dataStructure.ar_pois[i].type;
             Debug.Log("[ARP] Clue type: " + dataStructure.ar_pois[i].type);
             
             sessionDataSO.PointsOfInterest.Points[i].description = dataStructure.ar_pois[i].description;
@@ -72,12 +72,12 @@ public class WebRequestManager : MonoBehaviour
             sessionDataSO.PointsOfInterest.Points[i].imageUrl = dataStructure.ar_pois[i].image_url;
             Debug.Log("[ARP] Image Url: " + dataStructure.ar_pois[i].image_url);
 
-            sessionDataSO.PointsOfInterest.AddImageNameAndTitle(sessionDataSO.PointsOfInterest.Points[i].imageName, sessionDataSO.PointsOfInterest.Points[i].title);
+            //sessionDataSO.PointsOfInterest.AddImageNameAndTitle(sessionDataSO.PointsOfInterest.Points[i].imageName, sessionDataSO.PointsOfInterest.Points[i].title);
 
             // TO DO: retrieve the actual image as a texture2D
             sessionDataSO.PointsOfInterest.Points[i].image = await Utils.GetRemoteTexture(sessionDataSO.PointsOfInterest.Points[i].imageUrl);      
 
-            sessionDataSO.PointsOfInterest.AddImageNameAndTexture(sessionDataSO.PointsOfInterest.Points[i].imageName, sessionDataSO.PointsOfInterest.Points[i].image);
+            //sessionDataSO.PointsOfInterest.AddImageNameAndTexture(sessionDataSO.PointsOfInterest.Points[i].imageName, sessionDataSO.PointsOfInterest.Points[i].image);
         }
 
         uiEventsChannelSO.RaiseSessionDataLoadedEvent();

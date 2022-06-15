@@ -5531,6 +5531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34c642a8022aab47b2ae892897854a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStateSO: {fileID: 11400000, guid: 50acf5239845e4484833b42b2d245639, type: 2}
   sessionDataSO: {fileID: 11400000, guid: e7976316756c36f39b48b0e4da3a268a, type: 2}
   inventoryCanvas: {fileID: 7318796280225935198}
   closeButton: {fileID: 7318796280669893086}
@@ -6419,10 +6420,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
-  sessionDataSO: {fileID: 11400000, guid: e7976316756c36f39b48b0e4da3a268a, type: 2}
-  buttonPrefab: {fileID: 7415952911738873494, guid: 42db873e5a2d8dc67b8dbedf7f3e083a,
+  pointsOfInterestSO: {fileID: 11400000, guid: 0cf13981b3d536550a47d4d3a5d86dfa, type: 2}
+  itemPrefab: {fileID: 7415952911738873494, guid: 42db873e5a2d8dc67b8dbedf7f3e083a,
     type: 3}
-  buttonParent: {fileID: 7318796280732912173}
+  itemParent: {fileID: 7318796280732912173}
   clueType: 0
 --- !u!1 &7318796280355094741
 GameObject:
@@ -7901,6 +7902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1242fbf736a696441af79dced3888a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStateSO: {fileID: 11400000, guid: 50acf5239845e4484833b42b2d245639, type: 2}
   baseInventoryButton: {fileID: 7318796281139556141}
   baseSolutionButton: {fileID: 7318796281089590218}
   inventoryCanvas: {fileID: 7318796280225935198}
@@ -9877,6 +9879,7 @@ GameObject:
   - component: {fileID: 7318796280805832303}
   - component: {fileID: 7318796280805832302}
   - component: {fileID: 7318796280805832297}
+  - component: {fileID: 7779165406168813870}
   m_Layer: 5
   m_Name: When_Scroll
   m_TagString: Untagged
@@ -9974,6 +9977,24 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7779165406168813870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7318796280805832299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f62f7139c368241799581e95a0a8a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uIEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
+  pointsOfInterestSO: {fileID: 11400000, guid: 0cf13981b3d536550a47d4d3a5d86dfa, type: 2}
+  itemPrefab: {fileID: 7415952911738873494, guid: 42db873e5a2d8dc67b8dbedf7f3e083a,
+    type: 3}
+  itemParent: {fileID: 7318796281443325361}
+  clueType: 1
 --- !u!1 &7318796280887174301
 GameObject:
   m_ObjectHideFlags: 0
@@ -9986,6 +10007,7 @@ GameObject:
   - component: {fileID: 7318796280887174289}
   - component: {fileID: 7318796280887174288}
   - component: {fileID: 7318796280887174291}
+  - component: {fileID: 7115655878742030717}
   m_Layer: 5
   m_Name: How_Scroll
   m_TagString: Untagged
@@ -10083,6 +10105,24 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7115655878742030717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7318796280887174301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f62f7139c368241799581e95a0a8a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uIEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
+  pointsOfInterestSO: {fileID: 11400000, guid: 0cf13981b3d536550a47d4d3a5d86dfa, type: 2}
+  itemPrefab: {fileID: 7415952911738873494, guid: 42db873e5a2d8dc67b8dbedf7f3e083a,
+    type: 3}
+  itemParent: {fileID: 7318796280184775595}
+  clueType: 2
 --- !u!1 &7318796280915560977
 GameObject:
   m_ObjectHideFlags: 0

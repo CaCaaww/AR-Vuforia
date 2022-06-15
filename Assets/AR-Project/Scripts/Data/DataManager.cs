@@ -16,6 +16,8 @@ public class DataManager : MonoBehaviour
 
     [Header("SO References")]
     [SerializeField]
+    private GameStateSO gameStateSO;
+    [SerializeField]
     private PointsOfInterestSO pointsOfInterestSO;
     #endregion
 
@@ -42,21 +44,9 @@ public class DataManager : MonoBehaviour
     {
         aREventChannelSO.OnPOIDetected -= HandlePOIDetected;
     }
-
-    void Start()
-    {
-        
-    }
-    
-    void Update()
-    {
-        
-    }
-    
     #endregion
     
     #region Helper methods
-
     #endregion
 
     #region Callbacks
@@ -68,24 +58,27 @@ public class DataManager : MonoBehaviour
             {
                 switch (pointsOfInterestSO.Points[i].clueType)
                 {
-                    case EClueType.Where:
+                    case EPOIType.Where:
                         {
                             pointsOfInterestSO.WherePois.Add(pointsOfInterestSO.Points[i]);
                         }
                         break;
-                    case EClueType.When:
+                    case EPOIType.When:
                         {
                             pointsOfInterestSO.WhenPois.Add(pointsOfInterestSO.Points[i]);
                         }
                         break;
-                    case EClueType.How:
+                    case EPOIType.How:
                         {
                             pointsOfInterestSO.HowPois.Add(pointsOfInterestSO.Points[i]);
                         }
                         break;
                 }
 
-                uIEventsChannelSO.OnClueFoundNotificationEventRaised(pointsOfInterestSO.Points[i]);
+                uIEventsChannelSO.OnPOIFoundEventRaised(pointsOfInterestSO.Points[i]);
+                
+                gameStateSO.UpdateGameState(GameState.POIPopUp);
+
                 return;
             }
         }

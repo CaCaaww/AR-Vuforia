@@ -5,7 +5,7 @@ using System;
 using UnityEngine.XR.ARSubsystems;
 
 #region Static classes
-public enum EClueType
+public enum EPOIType
 {
     Where,
     When,
@@ -17,7 +17,7 @@ public class PointOfInterest
 {
     public string title;
     public string description;
-    public EClueType clueType;
+    public EPOIType clueType;
     public string imageName;
     public Texture2D image;
     public string imageUrl;
@@ -46,13 +46,15 @@ public class PointsOfInterestSO : ScriptableObject
     [Tooltip("The list of all the _where_ P.O.Is found for the session")]
     [SerializeField]
     private List<PointOfInterest> wherePoisFound = new List<PointOfInterest>();
+    [SerializeField]
     private List<PointOfInterest> whenPoisFound = new List<PointOfInterest>();
+    [SerializeField]
     private List<PointOfInterest> howPoisFound = new List<PointOfInterest>();
     #endregion
 
     #region Private variables
-    Dictionary<string, string> imageNameAndTitle = new Dictionary<string, string>();
-    Dictionary<string, Texture2D> imageNameAndTexture = new Dictionary<string, Texture2D>();
+    //Dictionary<string, string> imageNameAndTitle = new Dictionary<string, string>();
+    //Dictionary<string, Texture2D> imageNameAndTexture = new Dictionary<string, Texture2D>();
     #endregion
 
     #region Public properties
@@ -60,26 +62,26 @@ public class PointsOfInterestSO : ScriptableObject
     public List<PointOfInterest> WherePois { get => wherePoisFound; }
     public List<PointOfInterest> WhenPois { get => whenPoisFound; }
     public List<PointOfInterest> HowPois { get => howPoisFound; }
-    public Dictionary<string, string> ImageNameAndTitle { get => imageNameAndTitle; } 
-    public Dictionary<string, Texture2D> ImageNameAndTexture { get => imageNameAndTexture; }
+    //public Dictionary<string, string> ImageNameAndTitle { get => imageNameAndTitle; } 
+    //public Dictionary<string, Texture2D> ImageNameAndTexture { get => imageNameAndTexture; }
     #endregion 
 
     #region Public Methods
-    public void AddImageNameAndTitle(string imageName, string title)
+    /*public void AddImageNameAndTitle(string imageName, string title)
     {
         if (!imageNameAndTitle.ContainsKey(imageName))
         {
             imageNameAndTitle.Add(imageName, title);
         }
-    }
+    }*/
 
-    public void AddImageNameAndTexture(string imageName, Texture2D texture)
+    /*public void AddImageNameAndTexture(string imageName, Texture2D texture)
     {
         if (!imageNameAndTexture.ContainsKey(imageName))
         {
             imageNameAndTexture.Add(imageName, texture);
         }
-    }
+    }*/
     #endregion
 }
 

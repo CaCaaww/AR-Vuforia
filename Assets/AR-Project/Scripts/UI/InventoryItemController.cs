@@ -7,6 +7,9 @@ using TMPro;
 public class InventoryItemController : MonoBehaviour
 {
     #region Inspector
+    [Header("SEND Channels")]
+    [SerializeField] UIEventsChannelSO uIEventsChannelSO;
+
     [Header("References")]
     [SerializeField]
     private Button itemButton;
@@ -30,9 +33,16 @@ public class InventoryItemController : MonoBehaviour
     void Start()
     {
         itemText.text = poi.title;
+
+        itemButton.onClick.AddListener(ViewPOI);
+
     }
     #endregion
-    
+
     #region Helper methods
+    private void ViewPOI()
+    {
+        uIEventsChannelSO.RaiseOnPOIViewEvent(poi);
+    }
     #endregion
 }

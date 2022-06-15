@@ -11,19 +11,20 @@ public class ScrollviewController : MonoBehaviour
 
     [Header("SO References")]
     [SerializeField]
-    private SessionDataSO sessionDataSO;
+    private PointsOfInterestSO pointsOfInterestSO;
 
     [SerializeField]
-    private GameObject buttonPrefab;
+    private GameObject itemPrefab;
 
     [SerializeField]
-    private GameObject buttonParent;
+    private GameObject itemParent;
 
     [SerializeField]
-    private EClueType clueType;
+    private EPOIType clueType;
     #endregion
 
     #region Variables
+    Dictionary<PointOfInterest, GameObject> scrollviewItems = new Dictionary<PointOfInterest, GameObject>();
     #endregion
 
     #region Properties
@@ -37,35 +38,29 @@ public class ScrollviewController : MonoBehaviour
 
     private void OnEnable()
     {
-        uIEventsChannelSO.OnClueFoundNotificationEventRaised += AddPOI;
-
-        
+        uIEventsChannelSO.OnPOIFoundEventRaised += AddPOI;       
     }
 
     private void OnDisable()
     {   
-        uIEventsChannelSO.OnClueFoundNotificationEventRaised -= AddPOI;
+        uIEventsChannelSO.OnPOIFoundEventRaised -= AddPOI;
     }
 
     void Start()
     {
-        foreach (var poi in sessionDataSO.PointsOfInterest.Points)
+        foreach (var poi in pointsOfInterestSO.Points)
         {
             if (poi.clueType == clueType)
             {
-                GameObject inventoryItem = Instantiate(buttonPrefab, buttonParent.transform);
+                GameObject inventoryItem = Instantiate(itemPrefab, itemParent.transform);
 
                 InventoryItemController inventoryItemController = inventoryItem.GetComponent<InventoryItemController>();
 
                 inventoryItemController.POI = poi;
+
+                scrollviewItems.Add(poi, inventoryItem);
             }      
         }
-
-    }
-    
-    void Update()
-    {
-        
     }
     #endregion
     
@@ -74,17 +69,17 @@ public class ScrollviewController : MonoBehaviour
     {
         if (poi.clueType == clueType)
         {
-            GameObject inventoryItem = Instantiate(buttonPrefab, buttonParent.transform);
+            GameObject inventoryItem = Instantiate(itemPrefab, itemParent.transform);
 
             InventoryItemController inventoryItemController = inventoryItem.GetComponent<InventoryItemController>();
 
-            inventoryItemController.POI = poi;
+            inventoryItemController.POI = poi;        
         }      
     }
 
     private void RemovePOI()
     {
-
+        //TO DO
     }
     #endregion
 }

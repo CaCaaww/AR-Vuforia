@@ -7,10 +7,11 @@ using UnityEngine;
 public class UIEventsChannelSO : ScriptableObject
 {
 	public Action OnSessionDataLoadedEventRaised;
-	public Action<PointOfInterest> OnClueFoundNotificationEventRaised;
-	
+	public Action<PointOfInterest> OnPOIFoundEventRaised;
+    public Action<PointOfInterest> OnPOIViewEventRaised;
 
-	public void RaiseSessionDataLoadedEvent()
+
+    public void RaiseSessionDataLoadedEvent()
 	{
 		if (OnSessionDataLoadedEventRaised != null)
 		{
@@ -18,11 +19,19 @@ public class UIEventsChannelSO : ScriptableObject
 		}
 	}
 
-	public void RaiseClueFoundNotificationEvent(PointOfInterest poi)
+	public void RaiseOnPOIFoundEvent(PointOfInterest poi)
 	{
-		if (OnClueFoundNotificationEventRaised != null)
+		if (OnPOIFoundEventRaised != null)
 		{
-			OnClueFoundNotificationEventRaised.Invoke(poi);
+			OnPOIFoundEventRaised.Invoke(poi);
+		}
+	}
+
+	public void RaiseOnPOIViewEvent(PointOfInterest poi)
+	{
+		if (OnPOIViewEventRaised != null)
+		{
+			OnPOIViewEventRaised.Invoke(poi);
 		}
 	}
 }

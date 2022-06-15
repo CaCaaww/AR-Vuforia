@@ -270,6 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1735e8e1c9c6df2a2994b834ab8180ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uIEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
   itemButton: {fileID: 7415952911738873492}
   itemImage: {fileID: 7415952911738873499}
   itemText: {fileID: 7415952911563296991}

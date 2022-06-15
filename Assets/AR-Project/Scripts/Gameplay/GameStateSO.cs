@@ -6,7 +6,7 @@ public enum GameState
 	Loading,
 	Tracking,
 	POIPopUp,
-	UI
+	UI,
 }
 
 [CreateAssetMenu(fileName = "New GameState", menuName = "Gameplay/GameState SO")]
@@ -17,8 +17,9 @@ public class GameStateSO : ScriptableObject
 	[SerializeField] private GameState _previousGameState = default;
 
 	public GameState CurrentGameState => _currentGameState;
-	
-	public void UpdateGameState(GameState newGameState)
+    public GameState PreviousGameState => _previousGameState;
+
+    public void UpdateGameState(GameState newGameState)
 	{
 		if (newGameState == CurrentGameState)
 			return;

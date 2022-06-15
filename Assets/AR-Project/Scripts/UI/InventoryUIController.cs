@@ -8,6 +8,7 @@ public class InventoryUIController : MonoBehaviour
 {
     #region Inspector
     [Header("SO References")]
+    [SerializeField] private GameStateSO gameStateSO;
     [SerializeField] private SessionDataSO sessionDataSO;
 
     [Header("Inventory References")]
@@ -95,6 +96,7 @@ public class InventoryUIController : MonoBehaviour
 
         closeButton.onClick.AddListener(() =>
         {
+            gameStateSO.UpdateGameState(GameState.Tracking);
             inventoryCanvas.enabled = false;
         });
 

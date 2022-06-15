@@ -7,13 +7,15 @@ using UnityEngine.UI;
 public class GameplayUIController : MonoBehaviour
 {
     #region Inspector
+    [Header("SO References")]
+    [SerializeField] private GameStateSO gameStateSO;
+
     [Header("Base UI")]
     [SerializeField] private Button baseInventoryButton;
     [SerializeField] private Button baseSolutionButton;
 
     [Header("Inventory UI")]
     [SerializeField] private Canvas inventoryCanvas;
-    //[SerializeField] private InventoryUIController inventoryUIController;
 
     [Header("Solution UI")]
     [SerializeField] private Canvas solutionCanvas;
@@ -39,17 +41,27 @@ public class GameplayUIController : MonoBehaviour
         inventoryCanvas.enabled = false;
         solutionCanvas.enabled = false;
 
-        baseSolutionButton.onClick.AddListener(() =>
-        {
-            inventoryCanvas.enabled = false;
-            solutionCanvas.enabled = true;
-        });
-    
         baseInventoryButton.onClick.AddListener(() =>
         {
-            solutionCanvas.enabled = false;
-            inventoryCanvas.enabled = true;
+            gameStateSO.UpdateGameState(GameState.UI);
+
+            if (!inventoryCanvas.enabled)
+            {
+                solutionCanvas.enabled = false;
+                inventoryCanvas.enabled = true;               
+            }   
         });  
+
+        baseSolutionButton.onClick.AddListener(() =>
+        {
+            gameStateSO.UpdateGameState(GameState.UI);
+
+            if (!solutionCanvas.enabled)
+            {
+                inventoryCanvas.enabled = false;
+                solutionCanvas.enabled = true;
+            }  
+        });       
     }
     #endregion
 }

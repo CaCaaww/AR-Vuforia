@@ -9,10 +9,10 @@ public class PopUpPanelController : MonoBehaviour
     #region Inspector
     [Header("LISTEN Channels")]
     /// <summary>
-    /// The SO channel for the AR events
+    /// The SO channel for the UI events
     /// </summary>
-    [Tooltip("The SO channel for the AR events")]
-    [SerializeField] private AREventChannelSO arEventChannelSO;
+    [Tooltip("The SO channel for the UI events")]
+    [SerializeField] private UIEventsChannelSO uiEventChannelSO;
 
     [Header("SEND Channels")]
     
@@ -33,12 +33,14 @@ public class PopUpPanelController : MonoBehaviour
     #region UnityMethods
     private void OnEnable()
     {
-        arEventChannelSO.OnPOIDetected += HandlePOIDetection;
+        uiEventChannelSO.OnPOIFoundEventRaised += ViewPOI;
+        uiEventChannelSO.OnPOIViewEventRaised += ViewPOI;
     }
 
     private void OnDisable()
     {
-        arEventChannelSO.OnPOIDetected -= HandlePOIDetection;
+        uiEventChannelSO.OnPOIFoundEventRaised -= ViewPOI;
+        uiEventChannelSO.OnPOIViewEventRaised -= ViewPOI;
     }
 
     private void Awake()
@@ -46,25 +48,40 @@ public class PopUpPanelController : MonoBehaviour
         // Disable the canvas (just to be sure)
         canvas.enabled = false;
 
-        closeButton.onClick.AddListener(() =>
+        closeButton.onClick.AddListener(CloseButtonBehaviour);
+    }
+    #endregion
+
+    #region Helper methods
+    private void CloseButtonBehaviour()
+    {
+        switch (gameStateSO.PreviousGameState)
         {
-            gameStateSO.UpdateGameState(GameState.Tracking);
-            canvas.enabled = false;
-        });
+            case GameState.Tracking:
+                {
+                    gameStateSO.UpdateGameState(GameState.Tracking);
+                }
+                break;
+            case GameState.UI:
+                {
+                    gameStateSO.UpdateGameState(GameState.UI);
+                }
+                break;
+        }
+
+        canvas.enabled = false;     
     }
     #endregion
 
     #region Callbacks
-    private void HandlePOIDetection(string imageName)
+    private void ViewPOI(PointOfInterest poi)
     {
-        Debug.Log("[ARP] Image detected: " + pointsOfInterestSO.ImageNameAndTitle[imageName]);
-
-        gameStateSO.UpdateGameState(GameState.POIPopUp);
+        Debug.Log("[ARP] Image detected/viewing: " + poi.imageName);
 
         canvas.enabled = true;
 
-        poiTitle.text = pointsOfInterestSO.ImageNameAndTitle[imageName];
-        poiImage.texture = pointsOfInterestSO.ImageNameAndTexture[imageName];
+        poiTitle.text = poi.imageName;
+        poiImage.texture = poi.image;
     }
     #endregion
 }
