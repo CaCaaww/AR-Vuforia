@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScrollviewController : MonoBehaviour
+public class InventoryScrollviewController : MonoBehaviour
 {
     #region Inspector
     [Header("LISTEN Channels")]
@@ -28,14 +28,10 @@ public class ScrollviewController : MonoBehaviour
     #endregion
 
     #region Properties
+
     #endregion
 
     #region Unity methods
-    private void Awake()
-    {
-
-    }
-
     private void OnEnable()
     {
         uIEventsChannelSO.OnPOIFoundEventRaised += AddPOI;

@@ -11,6 +11,7 @@ public class UIEventsChannelSO : ScriptableObject
     public Action<PointOfInterest> OnPOIViewEventRaised;
     public Action OnHintRequestedEventRaised;
     public Action<PointOfInterest> OnPOIRemovedEventRaised;
+    public Action<SolutionItemController> OnSolutionItemSelectedEventRaised;
 
 
     public void RaiseSessionDataLoadedEvent()
@@ -50,6 +51,14 @@ public class UIEventsChannelSO : ScriptableObject
 		if (OnPOIRemovedEventRaised != null)
 		{
             OnPOIRemovedEventRaised.Invoke(poi);
+        }
+	}
+
+	public void RaiseSolutionItemSelectedEvent(SolutionItemController controller)
+	{
+		if (OnSolutionItemSelectedEventRaised != null)
+		{
+            OnSolutionItemSelectedEventRaised.Invoke(controller);
         }
 	}
 }

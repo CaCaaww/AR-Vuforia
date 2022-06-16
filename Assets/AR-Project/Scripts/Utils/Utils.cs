@@ -8,6 +8,8 @@ using UnityEngine.Networking;
 
 public class Utils : MonoBehaviour
 {
+    public static Color32 buttonSelectedColor = new Color32(200, 171, 116, 255);
+
     public static void QuitGame()
     {
         Application.Quit();

@@ -4,21 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class InventoryUIController : MonoBehaviour
+public class SolutionUIController : MonoBehaviour
 {
     #region Inspector
     [Header("SEND Channels")]
-    [SerializeField] private UIEventsChannelSO uiEventsChannelSO;
-
-    [Header("SO References")]
     [SerializeField] private GameStateSO gameStateSO;
     [SerializeField] private SessionDataSO sessionDataSO;
 
-    [Header("Inventory UI References")]
-    [SerializeField] private Canvas inventoryCanvas;
+    [Header("Solution UI References")]
+    [SerializeField] private Canvas solutionCanvas;
     [SerializeField] private Button closeButton;
-    [SerializeField] private Button hintButton;
-    [SerializeField] private TextMeshProUGUI hintLabel;
+    [SerializeField] private Button solutionButton;
 
     [Header("Where References")]
     [SerializeField] private Canvas whereCanvas;
@@ -36,24 +32,17 @@ public class InventoryUIController : MonoBehaviour
     [SerializeField] private Image howButtonBackground;
     #endregion
 
-    #region Variables
-    #endregion
-
     #region Properties
     private Color32 buttonSelectedColor = new Color32(200, 171, 116, 255);
     #endregion
 
     #region Unity methods
-    void Awake()
+    private void Awake()
     {
-        #if UNITY_EDITOR
-        sessionDataSO.Hints = 5;
-        #endif
-
         SetupUI();
     }
     #endregion
-    
+
     #region Helper methods
     private void SetupUI()
     {
@@ -68,14 +57,7 @@ public class InventoryUIController : MonoBehaviour
 
         closeButton.onClick.AddListener(CloseButtonBehaviour);
 
-        hintLabel.text = "Get Hint (" + sessionDataSO.Hints + ")";
-        
-        if (sessionDataSO.Hints == 0)
-            {
-                hintButton.interactable = false;
-            }
-        
-        hintButton.onClick.AddListener(HintButtonBehaviour);
+        solutionButton.onClick.AddListener(SolutionButtonBehaviour);
     }
 
     private void WhereButtonBehaviour()
@@ -117,24 +99,12 @@ public class InventoryUIController : MonoBehaviour
     private void CloseButtonBehaviour()
     {
         gameStateSO.UpdateGameState(GameState.Tracking);
-        inventoryCanvas.enabled = false;
+        solutionCanvas.enabled = false;
     }
 
-    private void HintButtonBehaviour()
+    private void SolutionButtonBehaviour()
     {
-        if (sessionDataSO.Hints > 0f)
-        {
-            sessionDataSO.Hints--;
-
-            hintLabel.text = "Get Hint (" + sessionDataSO.Hints + ")";
-
-            if (sessionDataSO.Hints == 0)
-            {
-                hintButton.interactable = false;
-            }
-
-            uiEventsChannelSO.RaiseHintRequestedEvent();
-        } 
+        // To Do
     }
     #endregion
 }

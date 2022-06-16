@@ -21,8 +21,6 @@ public class InventoryItemController : MonoBehaviour
 
     #region Variables
     private PointOfInterest poi;
-    
-
     #endregion
 
     #region Properties
@@ -35,7 +33,6 @@ public class InventoryItemController : MonoBehaviour
         itemText.text = poi.title;
 
         itemButton.onClick.AddListener(ViewPOI);
-
     }
     #endregion
 
