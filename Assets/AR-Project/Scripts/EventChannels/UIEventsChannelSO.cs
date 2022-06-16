@@ -9,6 +9,8 @@ public class UIEventsChannelSO : ScriptableObject
 	public Action OnSessionDataLoadedEventRaised;
 	public Action<PointOfInterest> OnPOIFoundEventRaised;
     public Action<PointOfInterest> OnPOIViewEventRaised;
+    public Action OnHintRequestedEventRaised;
+    public Action<PointOfInterest> OnPOIRemovedEventRaised;
 
 
     public void RaiseSessionDataLoadedEvent()
@@ -33,5 +35,21 @@ public class UIEventsChannelSO : ScriptableObject
 		{
 			OnPOIViewEventRaised.Invoke(poi);
 		}
+	}
+
+    public void RaiseHintRequestedEvent() 
+	{
+		if (OnHintRequestedEventRaised != null)
+		{
+            OnHintRequestedEventRaised.Invoke();
+        }
+	}
+
+	public void RaisePOIRemovedEvent(PointOfInterest poi) 
+	{
+		if (OnPOIRemovedEventRaised != null)
+		{
+            OnPOIRemovedEventRaised.Invoke(poi);
+        }
 	}
 }

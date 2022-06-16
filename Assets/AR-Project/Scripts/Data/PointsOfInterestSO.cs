@@ -17,7 +17,7 @@ public class PointOfInterest
 {
     public string title;
     public string description;
-    public EPOIType clueType;
+    public EPOIType type;
     public string imageName;
     public Texture2D image;
     public string imageUrl;

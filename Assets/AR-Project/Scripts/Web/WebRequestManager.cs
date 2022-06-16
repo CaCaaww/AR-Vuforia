@@ -60,7 +60,7 @@ public class WebRequestManager : MonoBehaviour
             sessionDataSO.PointsOfInterest.Points[i].title = dataStructure.ar_pois[i].title;
             Debug.Log("[ARP] Title: " + dataStructure.ar_pois[i].title);
             
-            sessionDataSO.PointsOfInterest.Points[i].clueType = (EPOIType)dataStructure.ar_pois[i].type;
+            sessionDataSO.PointsOfInterest.Points[i].type = (EPOIType)dataStructure.ar_pois[i].type;
             Debug.Log("[ARP] Clue type: " + dataStructure.ar_pois[i].type);
             
             sessionDataSO.PointsOfInterest.Points[i].description = dataStructure.ar_pois[i].description;

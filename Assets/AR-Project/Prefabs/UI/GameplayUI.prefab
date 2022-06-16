@@ -5531,11 +5531,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34c642a8022aab47b2ae892897854a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
   gameStateSO: {fileID: 11400000, guid: 50acf5239845e4484833b42b2d245639, type: 2}
   sessionDataSO: {fileID: 11400000, guid: e7976316756c36f39b48b0e4da3a268a, type: 2}
   inventoryCanvas: {fileID: 7318796280225935198}
   closeButton: {fileID: 7318796280669893086}
   hintButton: {fileID: 7318796279694114495}
+  hintLabel: {fileID: 7318796281009488169}
   whereCanvas: {fileID: 7318796280915560981}
   whereButton: {fileID: 7318796281331912493}
   whereButtonBackground: {fileID: 7318796281331912482}
@@ -6424,7 +6426,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 7415952911738873494, guid: 42db873e5a2d8dc67b8dbedf7f3e083a,
     type: 3}
   itemParent: {fileID: 7318796280732912173}
-  clueType: 0
+  poiType: 0
 --- !u!1 &7318796280355094741
 GameObject:
   m_ObjectHideFlags: 0
@@ -9994,7 +9996,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 7415952911738873494, guid: 42db873e5a2d8dc67b8dbedf7f3e083a,
     type: 3}
   itemParent: {fileID: 7318796281443325361}
-  clueType: 1
+  poiType: 1
 --- !u!1 &7318796280887174301
 GameObject:
   m_ObjectHideFlags: 0
@@ -10122,7 +10124,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 7415952911738873494, guid: 42db873e5a2d8dc67b8dbedf7f3e083a,
     type: 3}
   itemParent: {fileID: 7318796280184775595}
-  clueType: 2
+  poiType: 2
 --- !u!1 &7318796280915560977
 GameObject:
   m_ObjectHideFlags: 0
@@ -10448,7 +10450,7 @@ GameObject:
   - component: {fileID: 7318796281009488174}
   - component: {fileID: 7318796281009488169}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: HintLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10502,7 +10504,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hint (3)
+  m_text: Get Hint (0)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

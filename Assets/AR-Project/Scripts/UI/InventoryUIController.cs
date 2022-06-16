@@ -7,6 +7,9 @@ using TMPro;
 public class InventoryUIController : MonoBehaviour
 {
     #region Inspector
+    [Header("SEND Channels")]
+    [SerializeField] private UIEventsChannelSO uiEventsChannelSO;
+
     [Header("SO References")]
     [SerializeField] private GameStateSO gameStateSO;
     [SerializeField] private SessionDataSO sessionDataSO;
@@ -15,6 +18,7 @@ public class InventoryUIController : MonoBehaviour
     [SerializeField] private Canvas inventoryCanvas;
     [SerializeField] private Button closeButton;
     [SerializeField] private Button hintButton;
+    [SerializeField] private TextMeshProUGUI hintLabel;
 
     [Header("Where References")]
     [SerializeField] private Canvas whereCanvas;
@@ -42,11 +46,39 @@ public class InventoryUIController : MonoBehaviour
     #region Unity methods
     void Awake()
     {
+
+        #if UNITY_EDITOR
+        sessionDataSO.Hints = 5;
+        #endif
+
         SetupUI();
     }
     #endregion
     
     #region Helper methods
+    private void SetupUI()
+    {
+        // Select the where canvas as the default one when opening the inventory (disable the others)
+        whereCanvas.enabled = true;
+        whenCanvas.enabled = false;
+        howCanvas.enabled = false;
+
+        whereButton.onClick.AddListener(WhereButtonBehaviour);
+        whenButton.onClick.AddListener(WhenButtonBehaviour);
+        howButton.onClick.AddListener(HowButtonBehaviour);
+
+        closeButton.onClick.AddListener(CloseButtonBehaviour);
+
+        hintLabel.text = "Get Hint (" + sessionDataSO.Hints + ")";
+        
+        if (sessionDataSO.Hints == 0)
+            {
+                hintButton.interactable = false;
+            }
+        
+        hintButton.onClick.AddListener(HintButtonBehaviour);
+    }
+
     private void WhereButtonBehaviour()
     {
         whereCanvas.enabled = true;
@@ -83,24 +115,27 @@ public class InventoryUIController : MonoBehaviour
         whereButtonBackground.color = Color.white;
     }
     
-    private void SetupUI()
+    private void CloseButtonBehaviour()
     {
-        // Select the where canvas as the default one when opening the inventory (disable the others)
-        whereCanvas.enabled = true;
-        whenCanvas.enabled = false;
-        howCanvas.enabled = false;
+        gameStateSO.UpdateGameState(GameState.Tracking);
+        inventoryCanvas.enabled = false;
+    }
 
-        whereButton.onClick.AddListener(WhereButtonBehaviour);
-        whenButton.onClick.AddListener(WhenButtonBehaviour);
-        howButton.onClick.AddListener(HowButtonBehaviour);
-
-        closeButton.onClick.AddListener(() =>
+    private void HintButtonBehaviour()
+    {
+        if (sessionDataSO.Hints > 0f)
         {
-            gameStateSO.UpdateGameState(GameState.Tracking);
-            inventoryCanvas.enabled = false;
-        });
+            sessionDataSO.Hints--;
 
-        // TODO: hint button
+            hintLabel.text = "Get Hint (" + sessionDataSO.Hints + ")";
+
+            if (sessionDataSO.Hints == 0)
+            {
+                hintButton.interactable = false;
+            }
+
+            uiEventsChannelSO.RaiseHintRequestedEvent();
+        } 
     }
     #endregion
 }

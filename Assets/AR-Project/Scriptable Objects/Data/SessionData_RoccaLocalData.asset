@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SessionData_RoccaLocalData
   m_EditorClassIdentifier: 
   pointsOfInterestSO: {fileID: 11400000, guid: 0cf13981b3d536550a47d4d3a5d86dfa, type: 2}
-  hints: 6
+  hints: 4
   introText: eweweq
   victoryText: gef3d
   defeatText: 3434rf

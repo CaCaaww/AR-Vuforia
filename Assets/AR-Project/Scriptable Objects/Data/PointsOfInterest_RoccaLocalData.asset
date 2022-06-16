@@ -15,43 +15,53 @@ MonoBehaviour:
   points:
   - title: Rocca01
     description: Prima immgine di test del castello
-    clueType: 0
+    type: 0
     imageName: Rocca01
     image: {fileID: 2800000, guid: a324763eac190c4b1827776de4892557, type: 3}
     imageUrl: https://test1.dedalus.cc/arGame/public/storage/pois/RsENhnxVFnnnwytj1Q8BoGvL23YHzhEGp4pW13Ot.jpg
+    isUseful: 1
   - title: Rocca02
     description: Seconda immgine di test del castello
-    clueType: 2
+    type: 0
     imageName: Ar3UnjK9DBWz1zif4M720ubnjrfimFyknY5tEG57
     image: {fileID: 2800000, guid: c427dfca8d8e30c13a07f8174760ef09, type: 3}
     imageUrl: https://test1.dedalus.cc/arGame/public/storage/pois/Ar3UnjK9DBWz1zif4M720ubnjrfimFyknY5tEG57.jpg
+    isUseful: 0
   - title: Rocca03
     description: Terza immgine di test del castello
-    clueType: 1
+    type: 1
     imageName: CkEpsdFsmp0kJ1NARBABAON0QAJ1rXoYm7JMKN3c
     image: {fileID: 2800000, guid: 53966d7df3e1094d6a4629ed6241f3eb, type: 3}
     imageUrl: https://test1.dedalus.cc/arGame/public/storage/pois/CkEpsdFsmp0kJ1NARBABAON0QAJ1rXoYm7JMKN3c.jpg
+    isUseful: 0
   - title: Rocca04
     description: Quarta immgine di test del castello
-    clueType: 0
+    type: 1
     imageName: Q7KanHEAk3JYKzD6zDrAEv1UAgxiyWoUsZkW658j
     image: {fileID: 2800000, guid: 51d54cad491c1fe88b73f03cb5597d58, type: 3}
     imageUrl: https://test1.dedalus.cc/arGame/public/storage/pois/Q7KanHEAk3JYKzD6zDrAEv1UAgxiyWoUsZkW658j.jpg
+    isUseful: 0
   - title: Rocca05
     description: Quinta immgine di test del castello
-    clueType: 1
+    type: 2
     imageName: Xk6lHGd57okVJkXK7vWCqwto4cAacMcxOJqBoRi7
     image: {fileID: 2800000, guid: 10c530d745fcefd74a182f7ccc9a6bef, type: 3}
     imageUrl: https://test1.dedalus.cc/arGame/public/storage/pois/Xk6lHGd57okVJkXK7vWCqwto4cAacMcxOJqBoRi7.jpg
+    isUseful: 0
   - title: BeatingHeart
     description: Quinta immgine di test del castello
-    clueType: 1
+    type: 2
     imageName: BeatingHeart
     image: {fileID: 2800000, guid: cbd6f1d2de9381f3f943529ca82d59e6, type: 3}
     imageUrl: 
+    isUseful: 1
   - title: HumanHeart
     description: Quinta immgine di test del castello
-    clueType: 1
+    type: 1
     imageName: TheHumanHeartImage
     image: {fileID: 2800000, guid: 4b6c6490a8cf57912b49c0bbb459a0ed, type: 3}
     imageUrl: 
+    isUseful: 1
+  wherePoisFound: []
+  whenPoisFound: []
+  howPoisFound: []

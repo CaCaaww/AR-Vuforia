@@ -20,7 +20,7 @@ public class ScrollviewController : MonoBehaviour
     private GameObject itemParent;
 
     [SerializeField]
-    private EPOIType clueType;
+    private EPOIType poiType;
     #endregion
 
     #region Variables
@@ -38,19 +38,22 @@ public class ScrollviewController : MonoBehaviour
 
     private void OnEnable()
     {
-        uIEventsChannelSO.OnPOIFoundEventRaised += AddPOI;       
+        uIEventsChannelSO.OnPOIFoundEventRaised += AddPOI;
+        uIEventsChannelSO.OnPOIRemovedEventRaised += RemovePOI;
     }
 
     private void OnDisable()
     {   
         uIEventsChannelSO.OnPOIFoundEventRaised -= AddPOI;
+        uIEventsChannelSO.OnPOIRemovedEventRaised -= RemovePOI;
     }
 
     void Start()
     {
+        #if UNITY_EDITOR
         foreach (var poi in pointsOfInterestSO.Points)
         {
-            if (poi.clueType == clueType)
+            if (poi.type == poiType)
             {
                 GameObject inventoryItem = Instantiate(itemPrefab, itemParent.transform);
 
@@ -61,25 +64,33 @@ public class ScrollviewController : MonoBehaviour
                 scrollviewItems.Add(poi, inventoryItem);
             }      
         }
+        #endif
     }
     #endregion
     
     #region Helper methods
     private void AddPOI(PointOfInterest poi)
     {
-        if (poi.clueType == clueType)
+        if (poi.type == poiType)
         {
             GameObject inventoryItem = Instantiate(itemPrefab, itemParent.transform);
 
             InventoryItemController inventoryItemController = inventoryItem.GetComponent<InventoryItemController>();
 
-            inventoryItemController.POI = poi;        
+            inventoryItemController.POI = poi;
+
+            scrollviewItems.Add(poi, inventoryItem);        
         }      
     }
 
-    private void RemovePOI()
+    private void RemovePOI(PointOfInterest poi)
     {
-        //TO DO
+        if (poi.type == poiType)
+        {
+            Destroy(scrollviewItems[poi].gameObject);
+
+            scrollviewItems.Remove(poi);
+        }
     }
     #endregion
 }
