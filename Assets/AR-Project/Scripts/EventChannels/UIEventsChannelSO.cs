@@ -13,6 +13,7 @@ public class UIEventsChannelSO : ScriptableObject
     public Action<PointOfInterest> OnPOIRemovedEventRaised;
     public Action<SolutionItemController> OnSolutionItemSelectedEventRaised;
     public Action OnSolutionGivenEventRaised;
+    public Action<bool, string> OnEndgameReachedEventRaised;
 
 
     public void RaiseSessionDataLoadedEvent()
@@ -68,6 +69,14 @@ public class UIEventsChannelSO : ScriptableObject
 		if (OnSolutionGivenEventRaised != null)
 		{
             OnSolutionGivenEventRaised.Invoke();
+        }
+	}
+
+	public void RaiseEndgameReachedEvent(bool isVictory, string endgameText)
+	{
+		if (OnEndgameReachedEventRaised != null)
+		{
+            OnEndgameReachedEventRaised.Invoke(isVictory, endgameText);
         }
 	}
 }

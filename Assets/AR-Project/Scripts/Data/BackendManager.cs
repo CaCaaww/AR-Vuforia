@@ -7,18 +7,15 @@ public class BackendManager : MonoBehaviour
 {
     #region Inspector
     [Header("LISTEN/SEND Channels")]
-    [SerializeField]
-    private UIEventsChannelSO uiEventsChannelSO;
+    [SerializeField] private UIEventsChannelSO uiEventsChannelSO;
 
     [Header("LISTEN Channels")]
-    [SerializeField]
-    private AREventChannelSO arEventChannelSO;
+    [SerializeField] private AREventChannelSO arEventChannelSO;
     
     [Header("SO References")]
-    [SerializeField]
-    private GameStateSO gameStateSO;
-    [SerializeField]
-    private PointsOfInterestSO pointsOfInterestSO;
+    [SerializeField] private GameStateSO gameStateSO;
+    [SerializeField] private SessionDataSO sessionDataSO;
+    [SerializeField] private PointsOfInterestSO pointsOfInterestSO;
     #endregion
 
     #region Private Variables
@@ -193,11 +190,15 @@ public class BackendManager : MonoBehaviour
             pointsOfInterestSO.WhenPOIChosenAsSolution.isUseful &&
             pointsOfInterestSO.HowPOIChosenAsSolution.isUseful)
         {
-            Debug.Log("VICTORY!!!!!!!!!!!!!");
+            // Victory
+            Debug.Log("Victory!");
+            uiEventsChannelSO.RaiseEndgameReachedEvent(true, sessionDataSO.VictoryText);
         }
         else
         {
+            // Defeat
             Debug.Log("Nope, the answer is not correct, game over");
+            uiEventsChannelSO.RaiseEndgameReachedEvent(false, sessionDataSO.DefeatText);
         }
     }
     #endregion
