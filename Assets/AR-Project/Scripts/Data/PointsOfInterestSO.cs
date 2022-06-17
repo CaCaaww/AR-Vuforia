@@ -38,23 +38,20 @@ public class PointsOfInterestSO : ScriptableObject
     /// The list of all the AR points of interest for the session
     /// </summary>
     [Tooltip("The list of all the AR points of interest for the session")]
-    [SerializeField]
-    private List<PointOfInterest> points = new List<PointOfInterest>();
+    [SerializeField] private List<PointOfInterest> points = new List<PointOfInterest>();
     /// <summary>
     /// The list of all the "where" P.O.Is found for the session
     /// </summary>
     [Tooltip("The list of all the _where_ P.O.Is found for the session")]
-    [SerializeField]
-    private List<PointOfInterest> wherePoisFound = new List<PointOfInterest>();
-    [SerializeField]
-    private List<PointOfInterest> whenPoisFound = new List<PointOfInterest>();
-    [SerializeField]
-    private List<PointOfInterest> howPoisFound = new List<PointOfInterest>();
+    [SerializeField] private List<PointOfInterest> wherePoisFound = new List<PointOfInterest>();
+    [SerializeField] private List<PointOfInterest> whenPoisFound = new List<PointOfInterest>();
+    [SerializeField] private List<PointOfInterest> howPoisFound = new List<PointOfInterest>();
     #endregion
 
     #region Private variables
-    //Dictionary<string, string> imageNameAndTitle = new Dictionary<string, string>();
-    //Dictionary<string, Texture2D> imageNameAndTexture = new Dictionary<string, Texture2D>();
+    private PointOfInterest wherePOIChosenAsSolution;
+    private PointOfInterest whenPOIChosenAsSolution;
+    private PointOfInterest howPOIChosenAsSolution;
     #endregion
 
     #region Public properties
@@ -62,26 +59,12 @@ public class PointsOfInterestSO : ScriptableObject
     public List<PointOfInterest> WherePois { get => wherePoisFound; }
     public List<PointOfInterest> WhenPois { get => whenPoisFound; }
     public List<PointOfInterest> HowPois { get => howPoisFound; }
-    //public Dictionary<string, string> ImageNameAndTitle { get => imageNameAndTitle; } 
-    //public Dictionary<string, Texture2D> ImageNameAndTexture { get => imageNameAndTexture; }
+    public PointOfInterest WherePOIChosenAsSolution { get => wherePOIChosenAsSolution; set => wherePOIChosenAsSolution = value; }
+    public PointOfInterest WhenPOIChosenAsSolution { get => whenPOIChosenAsSolution; set => whenPOIChosenAsSolution = value; }
+    public PointOfInterest HowPOIChosenAsSolution { get => howPOIChosenAsSolution; set => howPOIChosenAsSolution = value; }
     #endregion 
 
     #region Public Methods
-    /*public void AddImageNameAndTitle(string imageName, string title)
-    {
-        if (!imageNameAndTitle.ContainsKey(imageName))
-        {
-            imageNameAndTitle.Add(imageName, title);
-        }
-    }*/
-
-    /*public void AddImageNameAndTexture(string imageName, Texture2D texture)
-    {
-        if (!imageNameAndTexture.ContainsKey(imageName))
-        {
-            imageNameAndTexture.Add(imageName, texture);
-        }
-    }*/
     #endregion
 }
 

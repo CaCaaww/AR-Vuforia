@@ -9,12 +9,12 @@ public class SolutionUIController : MonoBehaviour
     #region Inspector
     [Header("SEND Channels")]
     [SerializeField] private GameStateSO gameStateSO;
-    [SerializeField] private SessionDataSO sessionDataSO;
+    [SerializeField] private UIEventsChannelSO uiEventsChannelSO;
 
     [Header("Solution UI References")]
     [SerializeField] private Canvas solutionCanvas;
     [SerializeField] private Button closeButton;
-    [SerializeField] private Button solutionButton;
+    [SerializeField] private Button solveButton;
 
     [Header("Where References")]
     [SerializeField] private Canvas whereCanvas;
@@ -33,7 +33,6 @@ public class SolutionUIController : MonoBehaviour
     #endregion
 
     #region Properties
-    private Color32 buttonSelectedColor = new Color32(200, 171, 116, 255);
     #endregion
 
     #region Unity methods
@@ -51,19 +50,21 @@ public class SolutionUIController : MonoBehaviour
         whenCanvas.enabled = false;
         howCanvas.enabled = false;
 
+        whereButtonBackground.color = Utils.buttonSelectedColor;
+
         whereButton.onClick.AddListener(WhereButtonBehaviour);
         whenButton.onClick.AddListener(WhenButtonBehaviour);
         howButton.onClick.AddListener(HowButtonBehaviour);
 
         closeButton.onClick.AddListener(CloseButtonBehaviour);
 
-        solutionButton.onClick.AddListener(SolutionButtonBehaviour);
+        solveButton.onClick.AddListener(SolveButtonBehaviour);
     }
 
     private void WhereButtonBehaviour()
     {
         whereCanvas.enabled = true;
-        whereButtonBackground.color = buttonSelectedColor;
+        whereButtonBackground.color = Utils.buttonSelectedColor;
 
         whenCanvas.enabled = false;
         whenButtonBackground.color = Color.white;
@@ -75,7 +76,7 @@ public class SolutionUIController : MonoBehaviour
     private void WhenButtonBehaviour()
     {
         whenCanvas.enabled = true;
-        whenButtonBackground.color = buttonSelectedColor;
+        whenButtonBackground.color = Utils.buttonSelectedColor;
         
         whereCanvas.enabled = false;
         whereButtonBackground.color = Color.white;
@@ -87,7 +88,7 @@ public class SolutionUIController : MonoBehaviour
     private void HowButtonBehaviour()
     {
         howCanvas.enabled = true;
-        howButtonBackground.color = buttonSelectedColor;
+        howButtonBackground.color = Utils.buttonSelectedColor;
 
         whenCanvas.enabled = false;
         whenButtonBackground.color = Color.white;
@@ -102,9 +103,9 @@ public class SolutionUIController : MonoBehaviour
         solutionCanvas.enabled = false;
     }
 
-    private void SolutionButtonBehaviour()
+    private void SolveButtonBehaviour()
     {
-        // To Do
+        uiEventsChannelSO.RaiseSolutionGivenEvent();
     }
     #endregion
 }

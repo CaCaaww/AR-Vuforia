@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataManager : MonoBehaviour
+public class BackendManager : MonoBehaviour
 {
     #region Inspector
     [Header("LISTEN/SEND Channels")]
@@ -30,7 +30,6 @@ public class DataManager : MonoBehaviour
     #endregion
 
     #region Unity methods
-
     void Awake()
     {
         numberOfPOIs = pointsOfInterestSO.Points.Count;       
@@ -40,6 +39,8 @@ public class DataManager : MonoBehaviour
     {
         arEventChannelSO.OnPOIDetected += HandlePOIDetected;
         uiEventsChannelSO.OnHintRequestedEventRaised += HandleHintRequest;
+        uiEventsChannelSO.OnSolutionItemSelectedEventRaised += HandleSolutionItemSelection;
+        uiEventsChannelSO.OnSolutionGivenEventRaised += HandleSolutionGiven;
 
     }
 
@@ -47,6 +48,8 @@ public class DataManager : MonoBehaviour
     {
         arEventChannelSO.OnPOIDetected -= HandlePOIDetected;
         uiEventsChannelSO.OnHintRequestedEventRaised -= HandleHintRequest;
+        uiEventsChannelSO.OnSolutionItemSelectedEventRaised -= HandleSolutionItemSelection;
+        uiEventsChannelSO.OnSolutionGivenEventRaised -= HandleSolutionGiven;
     }
     #endregion
 
@@ -82,6 +85,38 @@ public class DataManager : MonoBehaviour
     }
         
     #region Helper methods
+    private void RemoveItemFromList(List<PointOfInterest> pois, int totalPois)
+    {
+        // Clear the temp list (just to be sure)
+        tempPOIsList.Clear();
+
+        for (int i = 0; i < totalPois; i++) 
+        {
+            if (!pois[i].isUseful) 
+            {
+                tempPOIsList.Add(pois[i]);
+            }
+        }
+
+        if (tempPOIsList.Count > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, tempPOIsList.Count);
+
+            Debug.Log(pois[randomIndex].type + " index: " + randomIndex);
+
+            Debug.Log("Removed " + pois[randomIndex].type + " POI: " + tempPOIsList[randomIndex].title);
+
+            // Send the poi through the event channel for the ui
+            uiEventsChannelSO.RaisePOIRemovedEvent(tempPOIsList[randomIndex]);
+
+            // Remove the POI
+            pois.Remove(tempPOIsList[randomIndex]);
+        }
+        else
+        {
+            Debug.Log("No POI found");
+        }
+    }
     #endregion
 
     #region Callbacks
@@ -110,7 +145,7 @@ public class DataManager : MonoBehaviour
                         break;
                 }
 
-                uiEventsChannelSO.OnPOIFoundEventRaised(pointsOfInterestSO.Points[i]);
+                uiEventsChannelSO.RaiseOnPOIFoundEvent(pointsOfInterestSO.Points[i]);
                 
                 gameStateSO.UpdateGameState(GameState.POIPopUp);
 
@@ -125,99 +160,44 @@ public class DataManager : MonoBehaviour
         int totalWhenPois = pointsOfInterestSO.WhenPois.Count;
         int totalHowPois = pointsOfInterestSO.HowPois.Count;
 
-        int randomIndex;
-        int i;
-
-        // Remove from the _where_ list
-        // If we have any POIs in the _where_ list
-        if (totalWherePois > 0) 
+        RemoveItemFromList(pointsOfInterestSO.WherePois, totalWherePois);
+        RemoveItemFromList(pointsOfInterestSO.WhenPois, totalWhenPois);
+        RemoveItemFromList(pointsOfInterestSO.HowPois, totalHowPois);
+    }
+   
+    private void HandleSolutionItemSelection(SolutionItemController controller)
+    {
+        switch (controller.POI.type)
         {
-            // Clear the temp list (just to be sure)
-            tempPOIsList.Clear();
-
-            for (i = 0; i < totalWherePois; i++) 
-            {
-                if (!pointsOfInterestSO.WherePois[i].isUseful) 
+            case EPOIType.Where:
                 {
-                    tempPOIsList.Add(pointsOfInterestSO.WherePois[i]);
+                    pointsOfInterestSO.WherePOIChosenAsSolution = controller.POI;
                 }
-            }
-
-            if (tempPOIsList.Count > 0)
-            {
-                randomIndex = UnityEngine.Random.Range(0, tempPOIsList.Count);
-
-                Debug.Log("Where index: " + randomIndex);
-
-                Debug.Log("Removed _where_ POI: " + tempPOIsList[randomIndex].title);
-
-                // Send the poi through the event channel for the ui
-                uiEventsChannelSO.OnPOIRemovedEventRaised(tempPOIsList[randomIndex]);
-
-                // Remove the where POI
-                pointsOfInterestSO.WherePois.Remove(tempPOIsList[randomIndex]);
-            }
-            else
-            {
-                Debug.Log("No When POI found");
-            }
-            
+                break;
+            case EPOIType.When:
+                {
+                    pointsOfInterestSO.WhenPOIChosenAsSolution = controller.POI;
+                }
+                break;
+            case EPOIType.How:
+                {
+                    pointsOfInterestSO.HowPOIChosenAsSolution = controller.POI;
+                }
+                break;
         }
-
-        // Remove from the _when_ list
-        // If we have any POIs in the _when_ list
-        if (totalWhenPois > 0)
+    }
+    
+    private void HandleSolutionGiven() 
+    {
+        if (pointsOfInterestSO.WherePOIChosenAsSolution.isUseful &&
+            pointsOfInterestSO.WhenPOIChosenAsSolution.isUseful &&
+            pointsOfInterestSO.HowPOIChosenAsSolution.isUseful)
         {
-            // Clear the temp list (just to be sure)
-            tempPOIsList.Clear();
-
-            for (i = 0; i < totalWhenPois; i++) 
-            {
-                if (!pointsOfInterestSO.WhenPois[i].isUseful) 
-                {
-                    tempPOIsList.Add(pointsOfInterestSO.WhenPois[i]);
-                }
-            }
-
-            randomIndex = UnityEngine.Random.Range(0, tempPOIsList.Count);
-
-            Debug.Log("When index: " + randomIndex);
-
-            Debug.Log("Removed _when_ POI: " + tempPOIsList[randomIndex].title);
-
-            // Send the poi through the event channel for the ui
-            uiEventsChannelSO.OnPOIRemovedEventRaised(tempPOIsList[randomIndex]);
-
-            // Remove the when POI
-            pointsOfInterestSO.WhenPois.Remove(tempPOIsList[randomIndex]);
+            Debug.Log("VICTORY!!!!!!!!!!!!!");
         }
-
-        // Remove from the _how_ list
-        // If we have any POIs in the _how_ list
-        if (totalHowPois > 0)
+        else
         {
-            // Clear the temp list (just to be sure)
-            tempPOIsList.Clear();
-
-            for (i = 0; i < totalHowPois; i++) 
-            {
-                if (!pointsOfInterestSO.HowPois[i].isUseful) 
-                {
-                    tempPOIsList.Add(pointsOfInterestSO.HowPois[i]);
-                }
-            }
-
-            randomIndex = UnityEngine.Random.Range(0, tempPOIsList.Count);
-
-            Debug.Log("How index: " + randomIndex);
-
-            Debug.Log("Removed _how_ POI: " + tempPOIsList[randomIndex].title);
-
-            // Send the poi through the event channel for the ui
-            uiEventsChannelSO.OnPOIRemovedEventRaised(tempPOIsList[randomIndex]);
-            
-            // Remove the where POI
-            pointsOfInterestSO.HowPois.Remove(tempPOIsList[randomIndex]);
+            Debug.Log("Nope, the answer is not correct, game over");
         }
     }
     #endregion

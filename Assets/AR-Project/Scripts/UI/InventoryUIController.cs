@@ -40,7 +40,6 @@ public class InventoryUIController : MonoBehaviour
     #endregion
 
     #region Properties
-    private Color32 buttonSelectedColor = new Color32(200, 171, 116, 255);
     #endregion
 
     #region Unity methods
@@ -62,6 +61,8 @@ public class InventoryUIController : MonoBehaviour
         whenCanvas.enabled = false;
         howCanvas.enabled = false;
 
+        whereButtonBackground.color = Utils.buttonSelectedColor;
+
         whereButton.onClick.AddListener(WhereButtonBehaviour);
         whenButton.onClick.AddListener(WhenButtonBehaviour);
         howButton.onClick.AddListener(HowButtonBehaviour);
@@ -81,7 +82,7 @@ public class InventoryUIController : MonoBehaviour
     private void WhereButtonBehaviour()
     {
         whereCanvas.enabled = true;
-        whereButtonBackground.color = buttonSelectedColor;
+        whereButtonBackground.color = Utils.buttonSelectedColor;
 
         whenCanvas.enabled = false;
         whenButtonBackground.color = Color.white;
@@ -93,7 +94,7 @@ public class InventoryUIController : MonoBehaviour
     private void WhenButtonBehaviour()
     {
         whenCanvas.enabled = true;
-        whenButtonBackground.color = buttonSelectedColor;
+        whenButtonBackground.color = Utils.buttonSelectedColor;
         
         whereCanvas.enabled = false;
         whereButtonBackground.color = Color.white;
@@ -105,7 +106,7 @@ public class InventoryUIController : MonoBehaviour
     private void HowButtonBehaviour()
     {
         howCanvas.enabled = true;
-        howButtonBackground.color = buttonSelectedColor;
+        howButtonBackground.color = Utils.buttonSelectedColor;
 
         whenCanvas.enabled = false;
         whenButtonBackground.color = Color.white;
