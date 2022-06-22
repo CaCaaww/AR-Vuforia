@@ -29,7 +29,8 @@ public class BackendManager : MonoBehaviour
     #region Unity methods
     void Awake()
     {
-        numberOfPOIs = pointsOfInterestSO.Points.Count;       
+        numberOfPOIs = pointsOfInterestSO.Points.Count;
+        gameStateSO.UpdateGameState(GameState.Loading);
     }
 
     void OnEnable()

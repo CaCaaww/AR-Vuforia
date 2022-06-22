@@ -48,6 +48,8 @@ public class ImageDetectionTestingPanelController : MonoBehaviour
             canvas.enabled = false;
             
         });
+
+        gameStateSO.UpdateGameState(GameState.Tracking);
     }
     #endregion
 

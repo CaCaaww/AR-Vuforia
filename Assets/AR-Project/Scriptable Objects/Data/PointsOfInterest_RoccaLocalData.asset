@@ -62,6 +62,118 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 4b6c6490a8cf57912b49c0bbb459a0ed, type: 3}
     imageUrl: 
     isUseful: 1
+  - title: Rocca06
+    description: Sesta immgine di test del castello
+    type: 1
+    imageName: Rocca06
+    image: {fileID: 2800000, guid: f4102399259fd321091a59147a8962a0, type: 3}
+    imageUrl: 
+    isUseful: 0
+  - title: Foundation
+    description: The space opera from Asimov
+    type: 1
+    imageName: asimov
+    image: {fileID: 2800000, guid: 54b94128176d7c68a888b2a647f1eb6b, type: 3}
+    imageUrl: 
+    isUseful: 0
+  - title: Max Payne
+    description: Ragnarok
+    type: 2
+    imageName: maxpayne
+    image: {fileID: 2800000, guid: 4e117893882bc8aea856181709a4eb95, type: 3}
+    imageUrl: 
+    isUseful: 0
+  - title: Rocca09
+    description: Nona immgine di test del castello
+    type: 1
+    imageName: Rocca09
+    image: {fileID: 2800000, guid: c6e13480bda9acda0b4f58ec6c822a1a, type: 3}
+    imageUrl: 
+    isUseful: 0
+  - title: Revelation
+    description: Awesome 90s Label
+    type: 2
+    imageName: Revelation
+    image: {fileID: 2800000, guid: dfab92ce0bb78784db1b6c8476581b6d, type: 3}
+    imageUrl: 
+    isUseful: 0
+  - title: Candy apple grey
+    description: Husker Du
+    type: 0
+    imageName: husker
+    image: {fileID: 2800000, guid: dff252e89da3c399c9957bf4270c9d4b, type: 3}
+    imageUrl: 
+    isUseful: 0
+  - title: Earth
+    description: Our blue dot in space
+    type: 2
+    imageName: augmented-images-earth
+    image: {fileID: 2800000, guid: 284548fa86ac31ac3b0b9dbcbd3a053e, type: 3}
+    imageUrl: 
+    isUseful: 0
+  - title: Jade Tree
+    description: Jade Tree Records
+    type: 2
+    imageName: JadeTree
+    image: {fileID: 2800000, guid: 626527c8862cb8a94a3a8232e0c49cc7, type: 3}
+    imageUrl: 
+    isUseful: 0
+  - title: NoIdea
+    description: NoIdea Records
+    type: 2
+    imageName: NoIdea
+    image: {fileID: 2800000, guid: ce563c075688e2f17a7fdfe00d33ce3b, type: 3}
+    imageUrl: 
+    isUseful: 0
+  - title: Dr Strange
+    description: Dr Strange Records
+    type: 1
+    imageName: drstrange
+    image: {fileID: 2800000, guid: b1083fb955c9272e6a7c6f1ab96a7898, type: 3}
+    imageUrl: 
+    isUseful: 0
+  - title: Millencolin
+    description: Pennybridge
+    type: 1
+    imageName: millencolin
+    image: {fileID: 2800000, guid: e3468d64a73d3bb14b0479753735f141, type: 3}
+    imageUrl: 
+    isUseful: 0
+  - title: Assault On Precinct 13
+    description: Assault On Precinct 13
+    type: 0
+    imageName: assault
+    image: {fileID: 2800000, guid: 6ed6e42dd66eacdbfb675107728f4e5a, type: 3}
+    imageUrl: 
+    isUseful: 0
+  - title: Farside
+    description: Farside
+    type: 1
+    imageName: farside
+    image: {fileID: 2800000, guid: 923e4b0b4df7e251387748097bf1c8c1, type: 3}
+    imageUrl: 
+    isUseful: 0
+  - title: Soulreaver
+    description: Raziel
+    type: 2
+    imageName: soulreaver
+    image: {fileID: 2800000, guid: f51423f0d728c69b1bbcdb4649a02740, type: 3}
+    imageUrl: 
+    isUseful: 0
+  - title: Rocinante
+    description: An awesome ship
+    type: 0
+    imageName: rocinante
+    image: {fileID: 2800000, guid: 8c4af2e224713df7c880e6e5e5bbd127, type: 3}
+    imageUrl: 
+    isUseful: 0
+  - title: Starry nigth
+    description: Vincent
+    type: 1
+    imageName: starry
+    image: {fileID: 2800000, guid: ac7b4339141d72d89a2ff3b61fcbf181, type: 3}
+    imageUrl: 
+    isUseful: 0
   wherePoisFound: []
   whenPoisFound: []
   howPoisFound: []

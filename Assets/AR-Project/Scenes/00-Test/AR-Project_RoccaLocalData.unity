@@ -1214,7 +1214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aREventChannelSO: {fileID: 11400000, guid: c5d003a6a03cb85a98af92927018363f, type: 2}
   sessionDataSO: {fileID: 11400000, guid: e7976316756c36f39b48b0e4da3a268a, type: 2}
-  gameStateSO: {fileID: 0}
+  gameStateSO: {fileID: 11400000, guid: 50acf5239845e4484833b42b2d245639, type: 2}
 --- !u!1 &1268686831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,7 +1791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arEventChannelSO: {fileID: 11400000, guid: c5d003a6a03cb85a98af92927018363f, type: 2}
-  gameStateSO: {fileID: 0}
+  gameStateSO: {fileID: 11400000, guid: 50acf5239845e4484833b42b2d245639, type: 2}
   pointsOfInterestSO: {fileID: 11400000, guid: 0cf13981b3d536550a47d4d3a5d86dfa, type: 2}
   canvas: {fileID: 1949451308}
   objectTitle: {fileID: 1018014910}

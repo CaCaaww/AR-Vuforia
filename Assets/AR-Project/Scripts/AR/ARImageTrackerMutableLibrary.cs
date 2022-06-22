@@ -45,6 +45,7 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
 
         trackedImagesManager = GetComponent<ARTrackedImageManager>();
         trackedImagesManager.enabled = false;
+
     }
 
     void OnEnable() 
@@ -167,12 +168,18 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
                     continue;
                 }
             }
+
+            foreach (var trackedImage in eventArgs.removed)
+            {
+                Debug.Log("[ARP] Image removed: " + trackedImage.name);
+            }
         } 
     }
 
     private void OnARSessionStateChanged(ARSessionStateChangedEventArgs obj) 
     {
         Debug.Log("[ARP] ARSession.state: " + ARSession.state);
+        Debug.Log("[ARP] CurrentGameState: " + gameStateSO.CurrentGameState);
 
         if (gameStateSO.CurrentGameState == GameState.Loading)
         {
