@@ -77,6 +77,9 @@ public class UIEventsChannelSO : ScriptableObject
 		if (OnEndgameReachedEventRaised != null)
 		{
             OnEndgameReachedEventRaised.Invoke(isVictory, endgameText);
+
+			//Stop the timer
+			EndgameTimerController.instance.EndTimer();
         }
 	}
 }
