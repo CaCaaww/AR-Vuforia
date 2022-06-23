@@ -100,6 +100,7 @@ public class SolutionUIController : MonoBehaviour
     private void CloseButtonBehaviour()
     {
         gameStateSO.UpdateGameState(GameState.Tracking);
+        uiEventsChannelSO.RaiseClosingUIEvent();
         solutionCanvas.enabled = false;
     }
 

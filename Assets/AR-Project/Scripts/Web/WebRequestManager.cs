@@ -52,7 +52,10 @@ public class WebRequestManager : MonoBehaviour
 
         // Clear the POI list
         sessionDataSO.PointsOfInterest.Points.Clear();
-        
+
+        // Clear the helper dictionary
+        sessionDataSO.PointsOfInterest.ImageNameAndPOI_Dict.Clear();
+
         for (int i = 0; i < numberOfPois; i++)
         {
             sessionDataSO.PointsOfInterest.Points.Add(new PointOfInterest());
@@ -73,6 +76,8 @@ public class WebRequestManager : MonoBehaviour
             Debug.Log("[ARP] Image Url: " + dataStructure.ar_pois[i].image_url);
 
             //sessionDataSO.PointsOfInterest.AddImageNameAndTitle(sessionDataSO.PointsOfInterest.Points[i].imageName, sessionDataSO.PointsOfInterest.Points[i].title);
+            
+            sessionDataSO.PointsOfInterest.AddToImageNameAndPOI_Dict(sessionDataSO.PointsOfInterest.Points[i].imageName, sessionDataSO.PointsOfInterest.Points[i]);
 
             // TO DO: retrieve the actual image as a texture2D
             sessionDataSO.PointsOfInterest.Points[i].image = await Utils.GetRemoteTexture(sessionDataSO.PointsOfInterest.Points[i].imageUrl);      

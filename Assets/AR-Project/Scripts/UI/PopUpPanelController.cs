@@ -7,14 +7,12 @@ using TMPro;
 public class PopUpPanelController : MonoBehaviour
 {
     #region Inspector
-    [Header("LISTEN Channels")]
+    [Header("LISTEN/SEND Channels")]
     /// <summary>
     /// The SO channel for the UI events
     /// </summary>
     [Tooltip("The SO channel for the UI events")]
     [SerializeField] private UIEventsChannelSO uiEventChannelSO;
-
-    [Header("SEND Channels")]
     
     [Header("References")]
     [Header("SO References")]
@@ -68,6 +66,8 @@ public class PopUpPanelController : MonoBehaviour
                 }
                 break;
         }
+
+        uiEventChannelSO.RaiseClosingUIEvent();
 
         canvas.enabled = false;     
     }

@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class GameplayUIController : MonoBehaviour
 {
     #region Inspector
+    [Header("SEND Event Channels")]
+    [SerializeField] private UIEventsChannelSO uiEventsChannelSO;
+
     [Header("SO References")]
     [SerializeField] private GameStateSO gameStateSO;
 
@@ -49,6 +52,8 @@ public class GameplayUIController : MonoBehaviour
         {
             gameStateSO.UpdateGameState(GameState.UI);
 
+            uiEventsChannelSO.RaiseOpeningUIEvent();
+
             if (!inventoryCanvas.enabled)
             {
                 solutionCanvas.enabled = false;
@@ -59,6 +64,8 @@ public class GameplayUIController : MonoBehaviour
         baseSolutionButton.onClick.AddListener(() =>
         {
             gameStateSO.UpdateGameState(GameState.UI);
+
+            uiEventsChannelSO.RaiseOpeningUIEvent();
 
             if (!solutionCanvas.enabled)
             {

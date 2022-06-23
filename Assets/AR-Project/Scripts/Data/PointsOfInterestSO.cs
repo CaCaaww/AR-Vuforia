@@ -23,6 +23,7 @@ public class PointOfInterest
     public string imageUrl;
     public bool isUseful;
     public AddReferenceImageJobState jobState;
+    public bool alreadyDetected;
 }
 #endregion
 
@@ -52,6 +53,7 @@ public class PointsOfInterestSO : ScriptableObject
     private PointOfInterest wherePOIChosenAsSolution;
     private PointOfInterest whenPOIChosenAsSolution;
     private PointOfInterest howPOIChosenAsSolution;
+    private Dictionary<string, PointOfInterest> imageNameAndPOI_Dict = new Dictionary<string, PointOfInterest>();
     #endregion
 
     #region Public properties
@@ -62,9 +64,14 @@ public class PointsOfInterestSO : ScriptableObject
     public PointOfInterest WherePOIChosenAsSolution { get => wherePOIChosenAsSolution; set => wherePOIChosenAsSolution = value; }
     public PointOfInterest WhenPOIChosenAsSolution { get => whenPOIChosenAsSolution; set => whenPOIChosenAsSolution = value; }
     public PointOfInterest HowPOIChosenAsSolution { get => howPOIChosenAsSolution; set => howPOIChosenAsSolution = value; }
-    #endregion 
+    public Dictionary<string, PointOfInterest> ImageNameAndPOI_Dict { get => imageNameAndPOI_Dict; }
+    #endregion
 
     #region Public Methods
+    public void AddToImageNameAndPOI_Dict(string imageName, PointOfInterest poi)
+    {
+        imageNameAndPOI_Dict.Add(imageName, poi);
+    }
     #endregion
 }
 

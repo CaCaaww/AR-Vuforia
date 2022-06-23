@@ -118,6 +118,7 @@ public class InventoryUIController : MonoBehaviour
     private void CloseButtonBehaviour()
     {
         gameStateSO.UpdateGameState(GameState.Tracking);
+        uiEventsChannelSO.RaiseClosingUIEvent();
         inventoryCanvas.enabled = false;
     }
 

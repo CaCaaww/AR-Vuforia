@@ -14,6 +14,8 @@ public class UIEventsChannelSO : ScriptableObject
     public Action<SolutionItemController> OnSolutionItemSelectedEventRaised;
     public Action OnSolutionGivenEventRaised;
     public Action<bool, string> OnEndgameReachedEventRaised;
+    public Action OnClosingUI;
+	public Action OnOpeningUI;
 
 
     public void RaiseSessionDataLoadedEvent()
@@ -80,6 +82,22 @@ public class UIEventsChannelSO : ScriptableObject
 
 			//Stop the timer
 			EndgameTimerController.instance.EndTimer();
+        }
+	}
+
+	public void RaiseClosingUIEvent()
+	{
+		if (OnClosingUI != null)
+		{
+            OnClosingUI.Invoke();
+        }
+	}
+
+	public void RaiseOpeningUIEvent()
+	{
+		if (OnOpeningUI != null)
+		{
+            OnOpeningUI.Invoke();
         }
 	}
 }

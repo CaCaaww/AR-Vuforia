@@ -5383,6 +5383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1242fbf736a696441af79dced3888a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
   gameStateSO: {fileID: 11400000, guid: 50acf5239845e4484833b42b2d245639, type: 2}
   baseInventoryButton: {fileID: 7318796281139556141}
   baseSolutionButton: {fileID: 7318796281089590218}

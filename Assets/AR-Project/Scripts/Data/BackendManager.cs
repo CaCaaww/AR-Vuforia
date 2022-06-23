@@ -39,7 +39,6 @@ public class BackendManager : MonoBehaviour
         uiEventsChannelSO.OnHintRequestedEventRaised += HandleHintRequest;
         uiEventsChannelSO.OnSolutionItemSelectedEventRaised += HandleSolutionItemSelection;
         uiEventsChannelSO.OnSolutionGivenEventRaised += HandleSolutionGiven;
-
     }
 
     void OnDisable()
@@ -57,6 +56,8 @@ public class BackendManager : MonoBehaviour
         pointsOfInterestSO.WherePois.Clear();
         pointsOfInterestSO.WhenPois.Clear();
         pointsOfInterestSO.HowPois.Clear();
+
+        pointsOfInterestSO.ImageNameAndPOI_Dict.Clear();
 
         foreach (var poi in pointsOfInterestSO.Points)
         {
@@ -78,8 +79,15 @@ public class BackendManager : MonoBehaviour
                         }
                         break;
                 }
+
+            pointsOfInterestSO.AddToImageNameAndPOI_Dict(poi.imageName, poi);
         }
         #endif
+
+        foreach (var poi in pointsOfInterestSO.Points)
+        {
+            pointsOfInterestSO.AddToImageNameAndPOI_Dict(poi.imageName, poi);
+        }
     }
         
     #region Helper methods
@@ -124,6 +132,8 @@ public class BackendManager : MonoBehaviour
         {
             if (pointsOfInterestSO.Points[i].imageName == imageName)
             {
+                pointsOfInterestSO.Points[i].alreadyDetected = true;
+
                 switch (pointsOfInterestSO.Points[i].type)
                 {
                     case EPOIType.Where:
