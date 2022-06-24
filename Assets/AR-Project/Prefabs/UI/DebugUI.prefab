@@ -264,7 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugUIEventChannelSO: {fileID: 11400000, guid: 9f4c4087d26805f48880da47d8521c32,
     type: 2}
-  debugText: {fileID: 0}
+  debugText: {fileID: 4376085923446959942}
 --- !u!1 &4296602277444285468
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +466,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Null
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

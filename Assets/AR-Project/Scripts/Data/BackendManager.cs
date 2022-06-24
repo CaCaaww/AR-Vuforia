@@ -84,10 +84,12 @@ public class BackendManager : MonoBehaviour
         }
         #endif
 
+        #if UNITY_ANDROID
         foreach (var poi in pointsOfInterestSO.Points)
         {
             pointsOfInterestSO.AddToImageNameAndPOI_Dict(poi.imageName, poi);
         }
+        #endif
     }
         
     #region Helper methods

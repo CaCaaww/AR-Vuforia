@@ -54,7 +54,7 @@ public class DebugUIController : MonoBehaviour
     {
         debugText.enabled = true;
         debugText.text = text;
-        Debug.Log("Debug Callback Called");
+        //Debug.Log("Debug Callback Called");
     }
     #endregion
 }

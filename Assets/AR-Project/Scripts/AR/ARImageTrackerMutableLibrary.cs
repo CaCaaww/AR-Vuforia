@@ -30,8 +30,8 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
     [SerializeField] private SessionDataSO sessionDataSO;
     [SerializeField] private GameStateSO gameStateSO;
 
-    [Header("Debug")]
-    [SerializeField] private TextMeshProUGUI textArea;
+    [Header("Debug SO")]
+    [SerializeField] private DebugUIEventChannelSO debugUIEventChannelSO;
     #endregion
 
     #region Private variables 
@@ -164,13 +164,13 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
     private void EnableTrackedImageManager()
     {
         trackedImageManager.enabled = true;
-        textArea.text = "True";
+        debugUIEventChannelSO.RaiseDebugEvent(trackedImageManager.enabled.ToString());
     }
 
     private void DisableTrackedImageManager()
     {
         trackedImageManager.enabled = false;
-        textArea.text = "False";
+        debugUIEventChannelSO.RaiseDebugEvent(trackedImageManager.enabled.ToString());
     }
 
     private void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs) 

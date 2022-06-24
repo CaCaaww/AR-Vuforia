@@ -13,8 +13,7 @@ public class DebugUIEventChannelSO : ScriptableObject
 		if (OnDebugEventRaised != null)
         {
 			OnDebugEventRaised.Invoke(text);
-			Debug.Log("Event Raised");
-		}
-			
+			Debug.Log("[DEBUG]Event Raised");
+		}		
 	}
 }

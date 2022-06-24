@@ -89,6 +89,7 @@ public class UIEventsChannelSO : ScriptableObject
 	{
 		if (OnClosingUI != null)
 		{
+            Debug.Log("RaiseClosingUIEvent");
             OnClosingUI.Invoke();
         }
 	}
@@ -97,6 +98,7 @@ public class UIEventsChannelSO : ScriptableObject
 	{
 		if (OnOpeningUI != null)
 		{
+			Debug.Log("RaiseOpeningUIEvent");
             OnOpeningUI.Invoke();
         }
 	}
