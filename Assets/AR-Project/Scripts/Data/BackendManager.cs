@@ -84,7 +84,7 @@ public class BackendManager : MonoBehaviour
         }
         #endif
 
-        #if UNITY_ANDROID
+        #if UNITY_ANDROID && !UNITY_EDITOR
         foreach (var poi in pointsOfInterestSO.Points)
         {
             pointsOfInterestSO.AddToImageNameAndPOI_Dict(poi.imageName, poi);

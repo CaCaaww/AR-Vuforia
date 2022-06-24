@@ -12,7 +12,10 @@ public enum GameState
 [CreateAssetMenu(fileName = "New GameState", menuName = "Gameplay/GameState SO")]
 public class GameStateSO : ScriptableObject
 {
-	[Header("Game states")]
+    [Header("Debug")]
+    [SerializeField] private DebugUIEventChannelSO debugUIEventChannelSO;
+
+    [Header("Game states")]
 	[SerializeField] private GameState _currentGameState = default;
 	[SerializeField] private GameState _previousGameState = default;
 
@@ -26,7 +29,9 @@ public class GameStateSO : ScriptableObject
 
 		_previousGameState = _currentGameState;
 		_currentGameState = newGameState;
-	}
+
+        debugUIEventChannelSO.RaiseDebugEventGameState(newGameState.ToString());
+    }
 
 	public void ResetToPreviousGameState()
 	{

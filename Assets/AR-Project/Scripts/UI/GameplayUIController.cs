@@ -50,12 +50,12 @@ public class GameplayUIController : MonoBehaviour
 
         baseInventoryButton.onClick.AddListener(() =>
         {
-            gameStateSO.UpdateGameState(GameState.UI);
-
-            uiEventsChannelSO.RaiseOpeningUIEvent();
-
             if (!inventoryCanvas.enabled)
             {
+                gameStateSO.UpdateGameState(GameState.UI);
+
+                uiEventsChannelSO.RaiseOpeningUIEvent();
+
                 solutionCanvas.enabled = false;
                 inventoryCanvas.enabled = true;               
             }   
@@ -63,12 +63,12 @@ public class GameplayUIController : MonoBehaviour
 
         baseSolutionButton.onClick.AddListener(() =>
         {
-            gameStateSO.UpdateGameState(GameState.UI);
-
-            uiEventsChannelSO.RaiseOpeningUIEvent();
-
             if (!solutionCanvas.enabled)
             {
+                gameStateSO.UpdateGameState(GameState.UI);
+
+                uiEventsChannelSO.RaiseOpeningUIEvent();
+
                 inventoryCanvas.enabled = false;
                 solutionCanvas.enabled = true;
             }  

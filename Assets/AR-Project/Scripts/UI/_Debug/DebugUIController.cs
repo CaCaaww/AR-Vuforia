@@ -17,6 +17,8 @@ public class DebugUIController : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI debugText;
+    [SerializeField]
+    private TextMeshProUGUI debugText1;
     #endregion
 
     #region Variables
@@ -32,11 +34,13 @@ public class DebugUIController : MonoBehaviour
     private void OnEnable()
     {
         debugUIEventChannelSO.OnDebugEventRaised += HandleDebugEventRaised;
+        debugUIEventChannelSO.OnDebugEventRaisedGamesState += HandleDebugEventGameState;
     }
 
     private void OnDisable()
     {
         debugUIEventChannelSO.OnDebugEventRaised -= HandleDebugEventRaised;
+        debugUIEventChannelSO.OnDebugEventRaisedGamesState -= HandleDebugEventGameState;
     }
 
     #endregion
@@ -55,6 +59,11 @@ public class DebugUIController : MonoBehaviour
         debugText.enabled = true;
         debugText.text = text;
         //Debug.Log("Debug Callback Called");
+    }
+
+    private void HandleDebugEventGameState(string obj)
+    {
+        debugText1.text = obj;
     }
     #endregion
 }

@@ -57,7 +57,7 @@ public class InventoryUIController : MonoBehaviour
     private void SetupUI()
     {
         // Select the where canvas as the default one when opening the inventory (disable the others)
-        whereCanvas.enabled = true;
+        whereCanvas.enabled = false;
         whenCanvas.enabled = false;
         howCanvas.enabled = false;
 
@@ -119,7 +119,11 @@ public class InventoryUIController : MonoBehaviour
     {
         gameStateSO.UpdateGameState(GameState.Tracking);
         uiEventsChannelSO.RaiseClosingUIEvent();
+        
         inventoryCanvas.enabled = false;
+        whereCanvas.enabled = false;
+        whenCanvas.enabled = false;
+        howCanvas.enabled = false;
     }
 
     private void HintButtonBehaviour()

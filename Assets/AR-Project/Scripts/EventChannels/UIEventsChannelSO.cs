@@ -14,8 +14,8 @@ public class UIEventsChannelSO : ScriptableObject
     public Action<SolutionItemController> OnSolutionItemSelectedEventRaised;
     public Action OnSolutionGivenEventRaised;
     public Action<bool, string> OnEndgameReachedEventRaised;
-    public Action OnClosingUI;
-	public Action OnOpeningUI;
+    public Action OnClosingUIEventRaised;
+	public Action OnOpeningUIEventRaised;
 
 
     public void RaiseSessionDataLoadedEvent()
@@ -87,19 +87,19 @@ public class UIEventsChannelSO : ScriptableObject
 
 	public void RaiseClosingUIEvent()
 	{
-		if (OnClosingUI != null)
+		if (OnClosingUIEventRaised != null)
 		{
             Debug.Log("RaiseClosingUIEvent");
-            OnClosingUI.Invoke();
+            OnClosingUIEventRaised.Invoke();
         }
 	}
 
 	public void RaiseOpeningUIEvent()
 	{
-		if (OnOpeningUI != null)
+		if (OnOpeningUIEventRaised != null)
 		{
 			Debug.Log("RaiseOpeningUIEvent");
-            OnOpeningUI.Invoke();
+            OnOpeningUIEventRaised.Invoke();
         }
 	}
 }

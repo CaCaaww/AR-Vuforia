@@ -16,4 +16,14 @@ public class DebugUIEventChannelSO : ScriptableObject
 			Debug.Log("[DEBUG]Event Raised");
 		}		
 	}
+
+	public Action<string> OnDebugEventRaisedGamesState;
+
+	public void RaiseDebugEventGameState(string text)
+	{
+		if (OnDebugEventRaisedGamesState != null)
+        {
+			OnDebugEventRaisedGamesState.Invoke(text);
+		}		
+	}
 }

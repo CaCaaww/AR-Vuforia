@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3745ecf3660a39d7285fde3303c424d8, type: 3}
   m_Name: GameState
   m_EditorClassIdentifier: 
+  debugUIEventChannelSO: {fileID: 11400000, guid: 9f4c4087d26805f48880da47d8521c32,
+    type: 2}
   _currentGameState: 0
   _previousGameState: 0

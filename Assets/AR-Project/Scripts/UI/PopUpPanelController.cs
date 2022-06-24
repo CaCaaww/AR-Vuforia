@@ -53,11 +53,12 @@ public class PopUpPanelController : MonoBehaviour
     #region Helper methods
     private void CloseButtonBehaviour()
     {
-        switch (gameStateSO.PreviousGameState)
+        switch (gameStateSO.CurrentGameState)
         {
-            case GameState.Tracking:
+            case GameState.POIPopUp:
                 {
                     gameStateSO.UpdateGameState(GameState.Tracking);
+                    uiEventChannelSO.RaiseClosingUIEvent();
                 }
                 break;
             case GameState.UI:
@@ -66,8 +67,6 @@ public class PopUpPanelController : MonoBehaviour
                 }
                 break;
         }
-
-        uiEventChannelSO.RaiseClosingUIEvent();
 
         canvas.enabled = false;     
     }

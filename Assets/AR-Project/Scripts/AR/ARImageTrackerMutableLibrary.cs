@@ -61,8 +61,8 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
     {
         trackedImageManager.trackedImagesChanged += OnTrackedImagesChanged;
 
-        uiEventsChannelSO.OnClosingUI += EnableTrackedImageManager;
-        uiEventsChannelSO.OnOpeningUI += DisableTrackedImageManager;
+        uiEventsChannelSO.OnClosingUIEventRaised += EnableTrackedImageManager;
+        uiEventsChannelSO.OnOpeningUIEventRaised += DisableTrackedImageManager;
 
         ARSession.stateChanged += OnARSessionStateChanged;
     }
@@ -71,8 +71,8 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
     {
         trackedImageManager.trackedImagesChanged -= OnTrackedImagesChanged;
 
-        uiEventsChannelSO.OnClosingUI -= EnableTrackedImageManager;
-        uiEventsChannelSO.OnOpeningUI -= DisableTrackedImageManager;
+        uiEventsChannelSO.OnClosingUIEventRaised -= EnableTrackedImageManager;
+        uiEventsChannelSO.OnOpeningUIEventRaised -= DisableTrackedImageManager;
         
         ARSession.stateChanged -= OnARSessionStateChanged;
     }
