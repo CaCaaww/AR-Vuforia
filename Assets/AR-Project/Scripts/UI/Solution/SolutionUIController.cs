@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class SolutionUIController : MonoBehaviour
 {
     #region Inspector
     [Header("SEND Channels")]
-    [SerializeField] private GameStateSO gameStateSO;
     [SerializeField] private UIEventsChannelSO uiEventsChannelSO;
+
+    [Header("SO References")]
+    [SerializeField] private GameStateSO gameStateSO;
 
     [Header("Solution UI References")]
     [SerializeField] private Canvas solutionCanvas;
@@ -32,13 +35,24 @@ public class SolutionUIController : MonoBehaviour
     [SerializeField] private Image howButtonBackground;
     #endregion
 
-    #region Properties
+    #region Variables
+    EPOIType currentPOITypeMenu;
     #endregion
 
     #region Unity methods
     private void Awake()
     {
         SetupUI();
+    }
+
+    void OnEnable()
+    {
+        uiEventsChannelSO.OnOpeningUIEventRaised += HandleOpenSolutionUI;
+    }
+
+    void OnDisable()
+    {
+        uiEventsChannelSO.OnOpeningUIEventRaised -= HandleOpenSolutionUI;
     }
     #endregion
 
@@ -52,6 +66,8 @@ public class SolutionUIController : MonoBehaviour
 
         whereButtonBackground.color = Utils.buttonSelectedColor;
 
+        currentPOITypeMenu = EPOIType.Where;
+
         whereButton.onClick.AddListener(WhereButtonBehaviour);
         whenButton.onClick.AddListener(WhenButtonBehaviour);
         howButton.onClick.AddListener(HowButtonBehaviour);
@@ -63,6 +79,8 @@ public class SolutionUIController : MonoBehaviour
 
     private void WhereButtonBehaviour()
     {
+        currentPOITypeMenu = EPOIType.Where;
+
         whereCanvas.enabled = true;
         whereButtonBackground.color = Utils.buttonSelectedColor;
 
@@ -75,6 +93,8 @@ public class SolutionUIController : MonoBehaviour
 
     private void WhenButtonBehaviour()
     {
+        currentPOITypeMenu = EPOIType.When;
+
         whenCanvas.enabled = true;
         whenButtonBackground.color = Utils.buttonSelectedColor;
         
@@ -87,6 +107,8 @@ public class SolutionUIController : MonoBehaviour
 
     private void HowButtonBehaviour()
     {
+        currentPOITypeMenu = EPOIType.How;
+
         howCanvas.enabled = true;
         howButtonBackground.color = Utils.buttonSelectedColor;
 
@@ -111,6 +133,45 @@ public class SolutionUIController : MonoBehaviour
     private void SolveButtonBehaviour()
     {
         uiEventsChannelSO.RaiseSolutionGivenEvent();
+        
+        solutionCanvas.enabled = false;
+        whereCanvas.enabled = false;
+        whenCanvas.enabled = false;
+        howCanvas.enabled = false;
+
+    }
+    #endregion
+
+    #region Callbacks
+    private void HandleOpenSolutionUI()
+    {
+        if (!solutionCanvas.enabled)
+            return;
+
+        switch (currentPOITypeMenu)
+        {
+            case EPOIType.Where:
+                {
+                    whereCanvas.enabled = true;
+                    whenCanvas.enabled = false;
+                    howCanvas.enabled = false;
+                }
+                break;
+            case EPOIType.When:
+                {
+                    whereCanvas.enabled = false;
+                    whenCanvas.enabled = true;
+                    howCanvas.enabled = false;
+                }
+                break;
+            case EPOIType.How:
+                {
+                    whereCanvas.enabled = false;
+                    whenCanvas.enabled = false;
+                    howCanvas.enabled = true;
+                }
+                break;
+        }
     }
     #endregion
 }

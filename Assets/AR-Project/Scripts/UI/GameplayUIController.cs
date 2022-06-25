@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,12 +24,6 @@ public class GameplayUIController : MonoBehaviour
     [SerializeField] private Canvas endgameCanvas;
     #endregion
 
-    #region Variables
-    #endregion
-
-    #region Properties
-    #endregion
-
     #region Unity methods
     void Awake()
     {
@@ -54,10 +45,10 @@ public class GameplayUIController : MonoBehaviour
             {
                 gameStateSO.UpdateGameState(GameState.UI);
 
-                uiEventsChannelSO.RaiseOpeningUIEvent();
-
                 solutionCanvas.enabled = false;
-                inventoryCanvas.enabled = true;               
+                inventoryCanvas.enabled = true;
+
+                uiEventsChannelSO.RaiseOpeningUIEvent();                       
             }   
         });  
 
@@ -67,10 +58,10 @@ public class GameplayUIController : MonoBehaviour
             {
                 gameStateSO.UpdateGameState(GameState.UI);
 
-                uiEventsChannelSO.RaiseOpeningUIEvent();
-
                 inventoryCanvas.enabled = false;
                 solutionCanvas.enabled = true;
+
+                uiEventsChannelSO.RaiseOpeningUIEvent();  
             }  
         });       
     }

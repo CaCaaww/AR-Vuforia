@@ -37,9 +37,7 @@ public class InventoryUIController : MonoBehaviour
     #endregion
 
     #region Variables
-    #endregion
-
-    #region Properties
+    EPOIType currentPOITypeMenu;
     #endregion
 
     #region Unity methods
@@ -50,6 +48,16 @@ public class InventoryUIController : MonoBehaviour
         #endif
 
         SetupUI();
+    }
+
+    void OnEnable()
+    {
+        uiEventsChannelSO.OnOpeningUIEventRaised += HandleOpenInventoryUI;
+    }
+
+    void OnDisable()
+    {
+        uiEventsChannelSO.OnOpeningUIEventRaised -= HandleOpenInventoryUI;
     }
     #endregion
     
@@ -62,6 +70,8 @@ public class InventoryUIController : MonoBehaviour
         howCanvas.enabled = false;
 
         whereButtonBackground.color = Utils.buttonSelectedColor;
+
+        currentPOITypeMenu = EPOIType.Where;
 
         whereButton.onClick.AddListener(WhereButtonBehaviour);
         whenButton.onClick.AddListener(WhenButtonBehaviour);
@@ -81,6 +91,8 @@ public class InventoryUIController : MonoBehaviour
 
     private void WhereButtonBehaviour()
     {
+        currentPOITypeMenu = EPOIType.Where;
+
         whereCanvas.enabled = true;
         whereButtonBackground.color = Utils.buttonSelectedColor;
 
@@ -93,6 +105,8 @@ public class InventoryUIController : MonoBehaviour
 
     private void WhenButtonBehaviour()
     {
+        currentPOITypeMenu = EPOIType.When;
+
         whenCanvas.enabled = true;
         whenButtonBackground.color = Utils.buttonSelectedColor;
         
@@ -105,6 +119,8 @@ public class InventoryUIController : MonoBehaviour
 
     private void HowButtonBehaviour()
     {
+        currentPOITypeMenu = EPOIType.How;
+
         howCanvas.enabled = true;
         howButtonBackground.color = Utils.buttonSelectedColor;
 
@@ -141,6 +157,39 @@ public class InventoryUIController : MonoBehaviour
 
             uiEventsChannelSO.RaiseHintRequestedEvent();
         } 
+    }
+    #endregion
+
+    #region Callbacks
+    private void HandleOpenInventoryUI()
+    {
+        if(!inventoryCanvas.enabled)
+            return;
+
+        switch (currentPOITypeMenu)
+        {
+            case EPOIType.Where:
+                {
+                    whereCanvas.enabled = true;
+                    whenCanvas.enabled = false;
+                    howCanvas.enabled = false;
+                }
+                break;
+            case EPOIType.When:
+                {
+                    whereCanvas.enabled = false;
+                    whenCanvas.enabled = true;
+                    howCanvas.enabled = false;
+                }
+                break;
+            case EPOIType.How:
+                {
+                    whereCanvas.enabled = false;
+                    whenCanvas.enabled = false;
+                    howCanvas.enabled = true;
+                }
+                break;
+        }
     }
     #endregion
 }
