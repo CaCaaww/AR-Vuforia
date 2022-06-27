@@ -1,49 +1,21 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class EndgameTimerController : MonoBehaviour
 {
-
-    #region Inspector
-    
-    [SerializeField]
-    public TextMeshProUGUI timeCounter;
-    
-    #endregion
-
-    #region Variables
-
-    public static EndgameTimerController instance;
-
+    #region Private variables
     private TimeSpan timePlaying;
-
     private bool timerGoing;
-
     private float elapsedTime;
-
     #endregion
 
-    #region Unity Methods
+    #region Public properties
+    public TimeSpan TimePlaying => timePlaying;
+    #endregion
 
-    private void Awake()
-    {
-        instance = this;
-    }
-
-    private void Start()
-    {
-        timeCounter.text = "You played for 00:00 minutes!";
-        //timerGoing = false;
-
-        //This is just for testing, once a start button is implemented this should go in there
-        BeginTimer();
-    }
-
-    public void BeginTimer()
+    #region Helper methods
+    public void StartTimer()
     {
         timerGoing = true;
         elapsedTime = 0f;
@@ -51,31 +23,22 @@ public class EndgameTimerController : MonoBehaviour
         StartCoroutine(UpdateTimer());
     }
 
-    public void EndTimer()
+    public void StopTimer()
     {
-        timerGoing= false;
+        timerGoing = false;
     }
+    #endregion
 
+    #region Coroutines
     private IEnumerator UpdateTimer()
     {
-
         while (timerGoing)
         {
             //Debug.Log(timePlaying.ToString("mm:ss"));
             elapsedTime += Time.deltaTime;
             timePlaying = TimeSpan.FromSeconds(elapsedTime);
-            //string timePlayingStr = "You played for " + timePlaying.ToString("mm ':' ss") + " minutes";
-            timeCounter.SetText("You played for " + timePlaying.Minutes + " minutes and " + timePlaying.Seconds + " seconds");
-
             yield return null;
         }
-
     }
-
     #endregion
-
-    #region Callback Methods
-
-    #endregion
-
 }

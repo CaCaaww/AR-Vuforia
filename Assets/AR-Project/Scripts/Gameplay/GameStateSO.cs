@@ -3,10 +3,12 @@ using UnityEngine;
 
 public enum GameState 
 {
+	Intro,
 	Loading,
 	Tracking,
 	POIPopUp,
 	UI,
+	GameOver,
 }
 
 [CreateAssetMenu(fileName = "New GameState", menuName = "Gameplay/GameState SO")]
@@ -42,4 +44,10 @@ public class GameStateSO : ScriptableObject
 		_previousGameState = _currentGameState;
 		_currentGameState = stateToReturnTo;
 	}
+
+	public void ResetToState(GameState state)
+	{
+        _previousGameState = state;
+        _currentGameState = state;
+    }
 }

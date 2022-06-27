@@ -49,10 +49,6 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
     #region Unity methods
     void Awake() 
     {
-        // Disable screen dimming
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
-        Screen.orientation = ScreenOrientation.Portrait;
-
         trackedImageManager = GetComponent<ARTrackedImageManager>();
         DisableTrackedImageManager();
     }

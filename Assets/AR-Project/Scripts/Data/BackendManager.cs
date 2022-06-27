@@ -19,6 +19,7 @@ public class BackendManager : MonoBehaviour
     #endregion
 
     #region Private Variables
+    private EndgameTimerController endgameTimerController;
     private int numberOfPOIs;
     private List<PointOfInterest> tempPOIsList = new List<PointOfInterest>();
     #endregion
@@ -29,24 +30,35 @@ public class BackendManager : MonoBehaviour
     #region Unity methods
     void Awake()
     {
+        // Disable screen dimming
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        Screen.orientation = ScreenOrientation.Portrait;
+
+        endgameTimerController = GetComponent<EndgameTimerController>();
+
         numberOfPOIs = pointsOfInterestSO.Points.Count;
-        gameStateSO.UpdateGameState(GameState.Loading);
+        gameStateSO.ResetToState(GameState.Intro);
     }
 
     void OnEnable()
     {
-        arEventChannelSO.OnPOIDetected += HandlePOIDetected;
+        uiEventsChannelSO.OnStartGameEventRaised += HandleStartGameEvent;
         uiEventsChannelSO.OnHintRequestedEventRaised += HandleHintRequest;
         uiEventsChannelSO.OnSolutionItemSelectedEventRaised += HandleSolutionItemSelection;
         uiEventsChannelSO.OnSolutionGivenEventRaised += HandleSolutionGiven;
+
+        arEventChannelSO.OnPOIDetected += HandlePOIDetected;
+        
     }
 
     void OnDisable()
     {
-        arEventChannelSO.OnPOIDetected -= HandlePOIDetected;
+        uiEventsChannelSO.OnStartGameEventRaised -= HandleStartGameEvent;
         uiEventsChannelSO.OnHintRequestedEventRaised -= HandleHintRequest;
         uiEventsChannelSO.OnSolutionItemSelectedEventRaised -= HandleSolutionItemSelection;
         uiEventsChannelSO.OnSolutionGivenEventRaised -= HandleSolutionGiven;
+        
+        arEventChannelSO.OnPOIDetected -= HandlePOIDetected;
     }
     #endregion
 
@@ -128,6 +140,10 @@ public class BackendManager : MonoBehaviour
     #endregion
 
     #region Callbacks
+    private void HandleStartGameEvent()
+    {
+        endgameTimerController.StartTimer();
+    }
     private void HandlePOIDetected(string imageName)
     {
         for (int i = 0; i < numberOfPOIs; i ++)
@@ -205,13 +221,16 @@ public class BackendManager : MonoBehaviour
         {
             // Victory
             Debug.Log("Victory!");
-            uiEventsChannelSO.RaiseEndgameReachedEvent(true, sessionDataSO.VictoryText);
+
+            endgameTimerController.StopTimer();
+
+            uiEventsChannelSO.RaiseEndgameReachedEvent(true, sessionDataSO.VictoryText, endgameTimerController.TimePlaying);
         }
         else
         {
             // Defeat
             Debug.Log("Nope, the answer is not correct, game over");
-            uiEventsChannelSO.RaiseEndgameReachedEvent(false, sessionDataSO.DefeatText);
+            uiEventsChannelSO.RaiseEndgameReachedEvent(false, sessionDataSO.DefeatText, endgameTimerController.TimePlaying);
         }
     }
     #endregion

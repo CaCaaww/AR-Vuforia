@@ -19,9 +19,6 @@ public class GameplayUIController : MonoBehaviour
 
     [Header("Solution UI")]
     [SerializeField] private Canvas solutionCanvas;
-
-    [Header("Endgame UI")]
-    [SerializeField] private Canvas endgameCanvas;
     #endregion
 
     #region Unity methods
@@ -37,7 +34,6 @@ public class GameplayUIController : MonoBehaviour
         // Disable the canvases (just to be sure)
         inventoryCanvas.enabled = false;
         solutionCanvas.enabled = false;
-        endgameCanvas.enabled = false;
 
         baseInventoryButton.onClick.AddListener(() =>
         {

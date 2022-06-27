@@ -13,6 +13,7 @@ public class EndgameUIController : MonoBehaviour
 
     [Header("References")]
     [SerializeField] Canvas endgameCanvas;
+    [SerializeField] TextMeshProUGUI endgameTimerText;
     [SerializeField] TextMeshProUGUI endgameDescription;
     #endregion
 
@@ -27,25 +28,19 @@ public class EndgameUIController : MonoBehaviour
         uiEventsChannelsSO.OnEndgameReachedEventRaised -= HandleEndgameReached;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Disable the canvas just to be sure
+        endgameCanvas.enabled = false;
     }
     #endregion
 
     #region Callbacks
-    private void HandleEndgameReached(bool isVictory, string endgameText) 
+    private void HandleEndgameReached(bool isVictory, string endgameText, TimeSpan timePlaying) 
     {
+        endgameTimerText.text = "You played for " + timePlaying.Minutes + " minutes and " + timePlaying.Seconds + " seconds";
         endgameDescription.text = endgameText;
-        endgameCanvas.enabled = true;
-        
+        endgameCanvas.enabled = true;       
     }
     #endregion
 }

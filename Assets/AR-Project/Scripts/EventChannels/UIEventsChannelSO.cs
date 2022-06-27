@@ -13,9 +13,10 @@ public class UIEventsChannelSO : ScriptableObject
     public Action<PointOfInterest> OnPOIRemovedEventRaised;
     public Action<SolutionItemController> OnSolutionItemSelectedEventRaised;
     public Action OnSolutionGivenEventRaised;
-    public Action<bool, string> OnEndgameReachedEventRaised;
+    public Action<bool, string, TimeSpan> OnEndgameReachedEventRaised;
     public Action OnClosingUIEventRaised;
 	public Action OnOpeningUIEventRaised;
+    public Action OnStartGameEventRaised;
 
 
     public void RaiseSessionDataLoadedEvent()
@@ -74,14 +75,14 @@ public class UIEventsChannelSO : ScriptableObject
         }
 	}
 
-	public void RaiseEndgameReachedEvent(bool isVictory, string endgameText)
+	public void RaiseEndgameReachedEvent(bool isVictory, string endgameText, TimeSpan timeSpan)
 	{
 		if (OnEndgameReachedEventRaised != null)
 		{
-            OnEndgameReachedEventRaised.Invoke(isVictory, endgameText);
+            OnEndgameReachedEventRaised.Invoke(isVictory, endgameText, timeSpan);
 
 			//Stop the timer
-			EndgameTimerController.instance.EndTimer();
+			//EndgameTimerController.instance.EndTimer();
         }
 	}
 
@@ -89,7 +90,6 @@ public class UIEventsChannelSO : ScriptableObject
 	{
 		if (OnClosingUIEventRaised != null)
 		{
-            Debug.Log("RaiseClosingUIEvent");
             OnClosingUIEventRaised.Invoke();
         }
 	}
@@ -98,8 +98,15 @@ public class UIEventsChannelSO : ScriptableObject
 	{
 		if (OnOpeningUIEventRaised != null)
 		{
-			Debug.Log("RaiseOpeningUIEvent");
-            OnOpeningUIEventRaised.Invoke();
+			OnOpeningUIEventRaised.Invoke();
+        }
+	}
+
+    public void RaiseStartGameEvent()
+	{
+		if (OnStartGameEventRaised != null)
+		{
+			OnStartGameEventRaised.Invoke();
         }
 	}
 }
