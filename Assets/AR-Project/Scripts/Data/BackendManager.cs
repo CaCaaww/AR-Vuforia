@@ -33,6 +33,7 @@ public class BackendManager : MonoBehaviour
         // Disable screen dimming
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         Screen.orientation = ScreenOrientation.Portrait;
+        UnityEngine.Rendering.DebugManager.instance.enableRuntimeUI = false;
 
         endgameTimerController = GetComponent<EndgameTimerController>();
 
@@ -144,6 +145,7 @@ public class BackendManager : MonoBehaviour
     {
         endgameTimerController.StartTimer();
     }
+    
     private void HandlePOIDetected(string imageName)
     {
         for (int i = 0; i < numberOfPOIs; i ++)
