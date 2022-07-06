@@ -22,8 +22,7 @@ public class PopUpPanelController : MonoBehaviour
     [Header("Panel References")]
     [SerializeField] private Canvas canvas;
     [SerializeField] private TextMeshProUGUI poiTitle;
-    [SerializeField] private RawImage poiTellerImage;
-    [SerializeField] private RawImage poiImage;
+    [SerializeField] private Image poiTellerImage;
     [SerializeField] private TextMeshProUGUI poiDescription;
     [SerializeField] private Button closeButton;
     #endregion
@@ -80,7 +79,6 @@ public class PopUpPanelController : MonoBehaviour
         canvas.enabled = true;
 
         poiTitle.text = poi.imageName;
-        poiImage.texture = poi.image;
     }
     #endregion
 }

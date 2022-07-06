@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.XR.ARSubsystems;
 
-#region Static classes
+#region External classes
 public enum EPOIType
 {
     Where,
