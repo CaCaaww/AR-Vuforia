@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b788d0eb68bd204bebb553aa4ee6757f, type: 3}
   m_Name: NPCAvatarCollection
   m_EditorClassIdentifier: 
+  npcAvatars: []

@@ -20,6 +20,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: a324763eac190c4b1827776de4892557, type: 3}
     imageUrl: https://test1.dedalus.cc/arGame/public/storage/pois/RsENhnxVFnnnwytj1Q8BoGvL23YHzhEGp4pW13Ot.jpg
     isUseful: 1
+    iconType: 0
     alreadyDetected: 0
   - title: Rocca02
     description: Seconda immgine di test del castello
@@ -28,6 +29,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: c427dfca8d8e30c13a07f8174760ef09, type: 3}
     imageUrl: https://test1.dedalus.cc/arGame/public/storage/pois/Ar3UnjK9DBWz1zif4M720ubnjrfimFyknY5tEG57.jpg
     isUseful: 0
+    iconType: 1
     alreadyDetected: 0
   - title: Rocca03
     description: Terza immgine di test del castello
@@ -36,6 +38,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 53966d7df3e1094d6a4629ed6241f3eb, type: 3}
     imageUrl: https://test1.dedalus.cc/arGame/public/storage/pois/CkEpsdFsmp0kJ1NARBABAON0QAJ1rXoYm7JMKN3c.jpg
     isUseful: 0
+    iconType: 2
     alreadyDetected: 0
   - title: Rocca04
     description: Quarta immgine di test del castello
@@ -44,6 +47,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 51d54cad491c1fe88b73f03cb5597d58, type: 3}
     imageUrl: https://test1.dedalus.cc/arGame/public/storage/pois/Q7KanHEAk3JYKzD6zDrAEv1UAgxiyWoUsZkW658j.jpg
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Rocca05
     description: Quinta immgine di test del castello
@@ -52,6 +56,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 10c530d745fcefd74a182f7ccc9a6bef, type: 3}
     imageUrl: https://test1.dedalus.cc/arGame/public/storage/pois/Xk6lHGd57okVJkXK7vWCqwto4cAacMcxOJqBoRi7.jpg
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: BeatingHeart
     description: Quinta immgine di test del castello
@@ -60,6 +65,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: cbd6f1d2de9381f3f943529ca82d59e6, type: 3}
     imageUrl: 
     isUseful: 1
+    iconType: 0
     alreadyDetected: 0
   - title: HumanHeart
     description: Quinta immgine di test del castello
@@ -68,6 +74,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 4b6c6490a8cf57912b49c0bbb459a0ed, type: 3}
     imageUrl: 
     isUseful: 1
+    iconType: 0
     alreadyDetected: 0
   - title: Rocca06
     description: Sesta immgine di test del castello
@@ -76,6 +83,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: f4102399259fd321091a59147a8962a0, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Foundation
     description: The space opera from Asimov
@@ -84,6 +92,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 54b94128176d7c68a888b2a647f1eb6b, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Max Payne
     description: Ragnarok
@@ -92,6 +101,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 4e117893882bc8aea856181709a4eb95, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Rocca09
     description: Nona immgine di test del castello
@@ -100,6 +110,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: c6e13480bda9acda0b4f58ec6c822a1a, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Revelation
     description: Awesome 90s Label
@@ -108,6 +119,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: dfab92ce0bb78784db1b6c8476581b6d, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Candy apple grey
     description: Husker Du
@@ -116,6 +128,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: dff252e89da3c399c9957bf4270c9d4b, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Earth
     description: Our blue dot in space
@@ -124,6 +137,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 284548fa86ac31ac3b0b9dbcbd3a053e, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Jade Tree
     description: Jade Tree Records
@@ -132,6 +146,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 626527c8862cb8a94a3a8232e0c49cc7, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: NoIdea
     description: NoIdea Records
@@ -140,6 +155,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: ce563c075688e2f17a7fdfe00d33ce3b, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Dr Strange
     description: Dr Strange Records
@@ -148,6 +164,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: b1083fb955c9272e6a7c6f1ab96a7898, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Millencolin
     description: Pennybridge
@@ -156,6 +173,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: e3468d64a73d3bb14b0479753735f141, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Assault On Precinct 13
     description: Assault On Precinct 13
@@ -164,6 +182,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 6ed6e42dd66eacdbfb675107728f4e5a, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Farside
     description: Farside
@@ -172,6 +191,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 923e4b0b4df7e251387748097bf1c8c1, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Soulreaver
     description: Raziel
@@ -180,6 +200,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: f51423f0d728c69b1bbcdb4649a02740, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Rocinante
     description: An awesome ship
@@ -188,6 +209,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 8c4af2e224713df7c880e6e5e5bbd127, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Starry nigth
     description: Vincent
@@ -196,6 +218,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: ac7b4339141d72d89a2ff3b61fcbf181, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   wherePoisFound:
   - title: Rocca01
@@ -205,6 +228,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: a324763eac190c4b1827776de4892557, type: 3}
     imageUrl: https://test1.dedalus.cc/arGame/public/storage/pois/RsENhnxVFnnnwytj1Q8BoGvL23YHzhEGp4pW13Ot.jpg
     isUseful: 1
+    iconType: 0
     alreadyDetected: 0
   - title: Rocca02
     description: Seconda immgine di test del castello
@@ -213,6 +237,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: c427dfca8d8e30c13a07f8174760ef09, type: 3}
     imageUrl: https://test1.dedalus.cc/arGame/public/storage/pois/Ar3UnjK9DBWz1zif4M720ubnjrfimFyknY5tEG57.jpg
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Rocca03
     description: Terza immgine di test del castello
@@ -221,6 +246,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 53966d7df3e1094d6a4629ed6241f3eb, type: 3}
     imageUrl: https://test1.dedalus.cc/arGame/public/storage/pois/CkEpsdFsmp0kJ1NARBABAON0QAJ1rXoYm7JMKN3c.jpg
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Rocca04
     description: Quarta immgine di test del castello
@@ -229,6 +255,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 51d54cad491c1fe88b73f03cb5597d58, type: 3}
     imageUrl: https://test1.dedalus.cc/arGame/public/storage/pois/Q7KanHEAk3JYKzD6zDrAEv1UAgxiyWoUsZkW658j.jpg
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Rocca05
     description: Quinta immgine di test del castello
@@ -237,6 +264,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 10c530d745fcefd74a182f7ccc9a6bef, type: 3}
     imageUrl: https://test1.dedalus.cc/arGame/public/storage/pois/Xk6lHGd57okVJkXK7vWCqwto4cAacMcxOJqBoRi7.jpg
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Rocca06
     description: Sesta immgine di test del castello
@@ -245,6 +273,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: f4102399259fd321091a59147a8962a0, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Foundation
     description: The space opera from Asimov
@@ -253,6 +282,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 54b94128176d7c68a888b2a647f1eb6b, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Max Payne
     description: Ragnarok
@@ -261,6 +291,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 4e117893882bc8aea856181709a4eb95, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Rocca09
     description: Nona immgine di test del castello
@@ -269,6 +300,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: c6e13480bda9acda0b4f58ec6c822a1a, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Revelation
     description: Awesome 90s Label
@@ -277,6 +309,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: dfab92ce0bb78784db1b6c8476581b6d, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Candy apple grey
     description: Husker Du
@@ -285,6 +318,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: dff252e89da3c399c9957bf4270c9d4b, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Earth
     description: Our blue dot in space
@@ -293,6 +327,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 284548fa86ac31ac3b0b9dbcbd3a053e, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Jade Tree
     description: Jade Tree Records
@@ -301,6 +336,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 626527c8862cb8a94a3a8232e0c49cc7, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: NoIdea
     description: NoIdea Records
@@ -309,6 +345,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: ce563c075688e2f17a7fdfe00d33ce3b, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Dr Strange
     description: Dr Strange Records
@@ -317,6 +354,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: b1083fb955c9272e6a7c6f1ab96a7898, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Millencolin
     description: Pennybridge
@@ -325,6 +363,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: e3468d64a73d3bb14b0479753735f141, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Assault On Precinct 13
     description: Assault On Precinct 13
@@ -333,6 +372,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 6ed6e42dd66eacdbfb675107728f4e5a, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Farside
     description: Farside
@@ -341,6 +381,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 923e4b0b4df7e251387748097bf1c8c1, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   - title: Rocinante
     description: An awesome ship
@@ -349,6 +390,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 8c4af2e224713df7c880e6e5e5bbd127, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   whenPoisFound:
   - title: HumanHeart
@@ -358,6 +400,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: 4b6c6490a8cf57912b49c0bbb459a0ed, type: 3}
     imageUrl: 
     isUseful: 1
+    iconType: 0
     alreadyDetected: 0
   - title: Starry nigth
     description: Vincent
@@ -366,6 +409,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: ac7b4339141d72d89a2ff3b61fcbf181, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0
   howPoisFound:
   - title: BeatingHeart
@@ -375,6 +419,7 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: cbd6f1d2de9381f3f943529ca82d59e6, type: 3}
     imageUrl: 
     isUseful: 1
+    iconType: 0
     alreadyDetected: 0
   - title: Soulreaver
     description: Raziel
@@ -383,4 +428,5 @@ MonoBehaviour:
     image: {fileID: 2800000, guid: f51423f0d728c69b1bbcdb4649a02740, type: 3}
     imageUrl: 
     isUseful: 0
+    iconType: 0
     alreadyDetected: 0

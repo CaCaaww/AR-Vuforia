@@ -10,7 +10,7 @@ public class NPCAvatar
 {
     public int avatarID;
     public string avatarName;
-    public Texture2D image;
+    public Sprite sprite;
 }
 
 #endregion

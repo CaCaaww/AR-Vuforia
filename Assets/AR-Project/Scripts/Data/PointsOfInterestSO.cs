@@ -23,6 +23,7 @@ public class PointOfInterest
     public string imageUrl;
     public bool isUseful;
     public AddReferenceImageJobState jobState;
+    public EIconType iconType;
     public bool alreadyDetected;
 }
 #endregion

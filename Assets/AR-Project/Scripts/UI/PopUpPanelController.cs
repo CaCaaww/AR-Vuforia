@@ -18,10 +18,12 @@ public class PopUpPanelController : MonoBehaviour
     [Header("SO References")]
     [SerializeField] private GameStateSO gameStateSO;
     [SerializeField] private PointsOfInterestSO pointsOfInterestSO;
+    [SerializeField] private POIIconCollectionSO poiIconCollectionSO;
 
     [Header("Panel References")]
     [SerializeField] private Canvas canvas;
     [SerializeField] private TextMeshProUGUI poiTitle;
+    [SerializeField] private Image poiIconImage;
     [SerializeField] private Image poiTellerImage;
     [SerializeField] private TextMeshProUGUI poiDescription;
     [SerializeField] private Button closeButton;
@@ -78,7 +80,19 @@ public class PopUpPanelController : MonoBehaviour
 
         canvas.enabled = true;
 
-        poiTitle.text = poi.imageName;
+        poiTitle.text = poi.title;
+
+        poiDescription.text = poi.description;
+
+        for (int i = 0; i < poiIconCollectionSO.POIIcons.Length; i++)
+        {
+            if (poiIconCollectionSO.POIIcons[i].iconType == poi.iconType)
+            {
+                poiIconImage.sprite = poiIconCollectionSO.POIIcons[i].sprite;
+
+                return;
+            }
+        }
     }
     #endregion
 }
