@@ -124,7 +124,7 @@ TextureImporter:
         width: 786
         height: 1283
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -132,27 +132,6 @@ TextureImporter:
       bones: []
       spriteID: c5cb13700fb471514994713c471ae131
       internalID: -1973816916
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Peasants_04_1
-      rect:
-        serializedVersion: 2
-        x: 556
-        y: 1288
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 71c2749940cb0a63daa008f48671379a
-      internalID: -1258046434
       vertices: []
       indices: 
       edges: []

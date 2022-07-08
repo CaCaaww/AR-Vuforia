@@ -22,6 +22,8 @@ MonoBehaviour:
     isUseful: 1
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: Reginald
   - title: Rocca02
     description: Seconda immgine di test del castello
     type: 0
@@ -31,6 +33,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 1
     alreadyDetected: 0
+    avatarID: 1
+    avatarName: John
   - title: Rocca03
     description: Terza immgine di test del castello
     type: 0
@@ -40,6 +44,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 2
     alreadyDetected: 0
+    avatarID: 3
+    avatarName: John
   - title: Rocca04
     description: Quarta immgine di test del castello
     type: 0
@@ -49,6 +55,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 4
+    avatarName: John
   - title: Rocca05
     description: Quinta immgine di test del castello
     type: 0
@@ -58,6 +66,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 5
+    avatarName: John
   - title: BeatingHeart
     description: Quinta immgine di test del castello
     type: 2
@@ -67,6 +77,8 @@ MonoBehaviour:
     isUseful: 1
     iconType: 0
     alreadyDetected: 0
+    avatarID: 6
+    avatarName: 
   - title: HumanHeart
     description: Quinta immgine di test del castello
     type: 1
@@ -76,6 +88,8 @@ MonoBehaviour:
     isUseful: 1
     iconType: 0
     alreadyDetected: 0
+    avatarID: 7
+    avatarName: 
   - title: Rocca06
     description: Sesta immgine di test del castello
     type: 0
@@ -85,6 +99,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 10
+    avatarName: 
   - title: Foundation
     description: The space opera from Asimov
     type: 0
@@ -94,6 +110,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 11
+    avatarName: 
   - title: Max Payne
     description: Ragnarok
     type: 0
@@ -103,6 +121,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Rocca09
     description: Nona immgine di test del castello
     type: 0
@@ -112,6 +132,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Revelation
     description: Awesome 90s Label
     type: 0
@@ -121,6 +143,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Candy apple grey
     description: Husker Du
     type: 0
@@ -130,6 +154,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Earth
     description: Our blue dot in space
     type: 0
@@ -139,6 +165,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Jade Tree
     description: Jade Tree Records
     type: 0
@@ -148,6 +176,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: NoIdea
     description: NoIdea Records
     type: 0
@@ -157,6 +187,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Dr Strange
     description: Dr Strange Records
     type: 0
@@ -166,6 +198,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Millencolin
     description: Pennybridge
     type: 0
@@ -175,6 +209,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Assault On Precinct 13
     description: Assault On Precinct 13
     type: 0
@@ -184,6 +220,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Farside
     description: Farside
     type: 0
@@ -193,6 +231,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Soulreaver
     description: Raziel
     type: 2
@@ -202,6 +242,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Rocinante
     description: An awesome ship
     type: 0
@@ -211,6 +253,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Starry nigth
     description: Vincent
     type: 1
@@ -220,6 +264,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   wherePoisFound:
   - title: Rocca01
     description: Prima immgine di test del castello
@@ -230,6 +276,8 @@ MonoBehaviour:
     isUseful: 1
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Rocca02
     description: Seconda immgine di test del castello
     type: 0
@@ -239,6 +287,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Rocca03
     description: Terza immgine di test del castello
     type: 0
@@ -248,6 +298,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Rocca04
     description: Quarta immgine di test del castello
     type: 0
@@ -257,6 +309,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Rocca05
     description: Quinta immgine di test del castello
     type: 0
@@ -266,6 +320,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Rocca06
     description: Sesta immgine di test del castello
     type: 0
@@ -275,6 +331,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Foundation
     description: The space opera from Asimov
     type: 0
@@ -284,6 +342,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Max Payne
     description: Ragnarok
     type: 0
@@ -293,6 +353,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Rocca09
     description: Nona immgine di test del castello
     type: 0
@@ -302,6 +364,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Revelation
     description: Awesome 90s Label
     type: 0
@@ -311,6 +375,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Candy apple grey
     description: Husker Du
     type: 0
@@ -320,6 +386,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Earth
     description: Our blue dot in space
     type: 0
@@ -329,6 +397,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Jade Tree
     description: Jade Tree Records
     type: 0
@@ -338,6 +408,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: NoIdea
     description: NoIdea Records
     type: 0
@@ -347,6 +419,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Dr Strange
     description: Dr Strange Records
     type: 0
@@ -356,6 +430,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Millencolin
     description: Pennybridge
     type: 0
@@ -365,6 +441,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Assault On Precinct 13
     description: Assault On Precinct 13
     type: 0
@@ -374,6 +452,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Farside
     description: Farside
     type: 0
@@ -383,6 +463,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Rocinante
     description: An awesome ship
     type: 0
@@ -392,6 +474,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   whenPoisFound:
   - title: HumanHeart
     description: Quinta immgine di test del castello
@@ -402,6 +486,8 @@ MonoBehaviour:
     isUseful: 1
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Starry nigth
     description: Vincent
     type: 1
@@ -411,6 +497,8 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   howPoisFound:
   - title: BeatingHeart
     description: Quinta immgine di test del castello
@@ -421,6 +509,8 @@ MonoBehaviour:
     isUseful: 1
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 
   - title: Soulreaver
     description: Raziel
     type: 2
@@ -430,3 +520,5 @@ MonoBehaviour:
     isUseful: 0
     iconType: 0
     alreadyDetected: 0
+    avatarID: 0
+    avatarName: 

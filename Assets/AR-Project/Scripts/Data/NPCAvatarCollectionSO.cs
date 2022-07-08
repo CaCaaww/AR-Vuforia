@@ -8,7 +8,6 @@ using UnityEngine;
 [Serializable]
 public class NPCAvatar
 {
-    public int avatarID;
     public string avatarName;
     public Sprite sprite;
 }
@@ -20,10 +19,21 @@ public class NPCAvatar
 public class NPCAvatarCollectionSO : ScriptableObject
 {
     #region Inspector
-    [SerializeField] private List<NPCAvatar> npcAvatars = new List<NPCAvatar>();
+    [SerializeField] private GenericDictionary<int, NPCAvatar> npcAvatars = new GenericDictionary<int, NPCAvatar>();
     #endregion
 
     #region Properties
-    public List<NPCAvatar> NPCAvatars { get => npcAvatars; }
+    #endregion
+
+    #region Public methods
+    public Sprite GetAvatarSpriteByID(int id)
+    {
+        return npcAvatars[id].sprite;
+    }
+
+    public string GetAvatarNameByID(int id)
+    {
+        return npcAvatars[id].avatarName;
+    }
     #endregion
 }

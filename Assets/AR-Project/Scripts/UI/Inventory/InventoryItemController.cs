@@ -10,13 +10,13 @@ public class InventoryItemController : MonoBehaviour
     [Header("SEND Channels")]
     [SerializeField] UIEventsChannelSO uIEventsChannelSO;
 
-    [Header("References")]
-    [SerializeField]
-    private Button itemButton;
-    [SerializeField]
-    private Image itemImage;
-    [SerializeField]
-    private TextMeshProUGUI itemText;
+    [Header("SO References")]
+    [SerializeField] private POIIconCollectionSO poiIconCollectionSO;
+
+    [Header("UI References")]
+    [SerializeField] private Button itemButton;
+    [SerializeField] private Image itemIcon;
+    [SerializeField] private TextMeshProUGUI itemText;
     #endregion
 
     #region Variables
@@ -31,6 +31,8 @@ public class InventoryItemController : MonoBehaviour
     void Start()
     {
         itemText.text = poi.title;
+
+        itemIcon.sprite = poiIconCollectionSO.GetIconByType(poi.iconType);
 
         itemButton.onClick.AddListener(ViewPOI);
     }

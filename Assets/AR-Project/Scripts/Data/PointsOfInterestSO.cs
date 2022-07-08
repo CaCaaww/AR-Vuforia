@@ -25,6 +25,8 @@ public class PointOfInterest
     public AddReferenceImageJobState jobState;
     public EIconType iconType;
     public bool alreadyDetected;
+    public int avatarID;
+    public string avatarName;
 }
 #endregion
 

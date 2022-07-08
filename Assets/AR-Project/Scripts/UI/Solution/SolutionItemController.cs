@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
 
 public class SolutionItemController : MonoBehaviour
 {
@@ -11,13 +10,18 @@ public class SolutionItemController : MonoBehaviour
     [Header("LISTEN/SEND Channels")]
     [SerializeField] UIEventsChannelSO uIEventsChannelSO;
 
-    [Header("References")]
-    [SerializeField]
-    private Button itemButton;
-    [SerializeField]
-    private Image itemImage;
-    [SerializeField]
-    private TextMeshProUGUI itemText;
+    [Header("SO References")]
+    [SerializeField] private POIIconCollectionSO poiIconCollectionSO;
+
+    [Header("UI References")]
+    [SerializeField] private Button itemButton;
+    [SerializeField] private Image itemImage;
+    [SerializeField] private TextMeshProUGUI itemText;
+    [SerializeField] private Image itemIcon;
+
+    [Header("UI Style References")]
+    [SerializeField] private Sprite itemSelected;
+    [SerializeField] private Sprite itemUnselected;
     #endregion
 
     #region Variables
@@ -47,6 +51,10 @@ public class SolutionItemController : MonoBehaviour
         itemText.text = poi.title;
 
         itemButton.onClick.AddListener(SelectPOI);
+
+        itemIcon.sprite = poiIconCollectionSO.GetIconByType(poi.iconType);
+
+        itemImage.sprite = itemUnselected;
     }
     #endregion
 
@@ -56,14 +64,15 @@ public class SolutionItemController : MonoBehaviour
         if(!isSelected)
         {
             isSelected = true;
-            itemImage.color = Utils.buttonSelectedColor;
+
+            itemImage.sprite = itemSelected;
 
             uIEventsChannelSO.RaiseSolutionItemSelectedEvent(this);
         }
         else
         {
             isSelected = false;
-            itemImage.color = Color.white;
+            itemImage.sprite = itemUnselected;
         }
     }
     #endregion
@@ -81,7 +90,7 @@ public class SolutionItemController : MonoBehaviour
             return;
 
         isSelected = false;
-        itemImage.color = Color.white;
+        itemImage.sprite = itemImage.sprite = itemUnselected;
     }
     #endregion
 }

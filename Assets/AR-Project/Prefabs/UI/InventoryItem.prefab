@@ -426,6 +426,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
+  poiIconCollectionSO: {fileID: 11400000, guid: 041cb629f0fac8c28be5742fcf55e758,
+    type: 2}
   itemButton: {fileID: 7415952911738873492}
-  itemImage: {fileID: 7415952911738873499}
+  itemIcon: {fileID: 708410026540964253}
   itemText: {fileID: 7415952911563296991}

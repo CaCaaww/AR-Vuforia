@@ -19,6 +19,7 @@ public class PopUpPanelController : MonoBehaviour
     [SerializeField] private GameStateSO gameStateSO;
     [SerializeField] private PointsOfInterestSO pointsOfInterestSO;
     [SerializeField] private POIIconCollectionSO poiIconCollectionSO;
+    [SerializeField] private NPCAvatarCollectionSO npcAvatarCollectionSO;
 
     [Header("Panel References")]
     [SerializeField] private Canvas canvas;
@@ -84,15 +85,9 @@ public class PopUpPanelController : MonoBehaviour
 
         poiDescription.text = poi.description;
 
-        for (int i = 0; i < poiIconCollectionSO.POIIcons.Length; i++)
-        {
-            if (poiIconCollectionSO.POIIcons[i].iconType == poi.iconType)
-            {
-                poiIconImage.sprite = poiIconCollectionSO.POIIcons[i].sprite;
+        poiIconImage.sprite = poiIconCollectionSO.GetIconByType(poi.iconType);
 
-                return;
-            }
-        }
+        poiTellerImage.sprite = npcAvatarCollectionSO.GetAvatarSpriteByID(poi.avatarID);
     }
     #endregion
 }
