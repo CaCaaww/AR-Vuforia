@@ -21,7 +21,7 @@ public class Utils : MonoBehaviour
     /// </summary>
     public static async Task<Texture2D> GetRemoteTexture(string url)
     {
-        Debug.Log("url image: " + url);
+        Debug.Log("[WEB] URL image: " + url);
         
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(url);
 

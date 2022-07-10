@@ -143,7 +143,7 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
 
             // If we are still in the loading state it means that the scene it's just starting to run
             // so we can directly enable the ARTrackedImageManager
-            if (gameStateSO.CurrentGameState == GameState.Loading)
+            if (gameStateSO.CurrentGameState == GameState.Intro)
             {
                 EnableTrackedImageManager();
                 gameStateSO.UpdateGameState(GameState.Tracking);    
@@ -225,11 +225,13 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
         Debug.Log("[ARP] ARSession.state: " + eventArgs.state);
         Debug.Log("[ARP] CurrentGameState: " + gameStateSO.CurrentGameState);
 
-        if (gameStateSO.CurrentGameState == GameState.Loading)
+        if (gameStateSO.CurrentGameState == GameState.Intro)
         {
             if ((eventArgs.state == ARSessionState.SessionTracking) && !sessionTrackingFirstTimeDone) 
             {
                 sessionTrackingFirstTimeDone = true;
+
+                Debug.Log("[AFP] START BUILDING THE LIBRARY");
 
                 StartCoroutine(AddAllImagesToMutableReferenceImageLibraryAR());
             }

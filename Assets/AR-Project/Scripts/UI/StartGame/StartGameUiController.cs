@@ -35,7 +35,7 @@ public class StartGameUiController : MonoBehaviour
 
         startButton.onClick.AddListener(() => 
         { 
-            gameStateSO.UpdateGameState(GameState.Loading);
+            gameStateSO.UpdateGameState(GameState.Tracking);
 
             startGameCanvas.enabled = false;
 

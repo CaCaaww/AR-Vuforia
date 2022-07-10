@@ -13,7 +13,7 @@ public class DebugUIEventChannelSO : ScriptableObject
 		if (OnDebugEventRaised != null)
         {
 			OnDebugEventRaised.Invoke(text);
-			Debug.Log("[DEBUG]Event Raised");
+			Debug.Log("[DEBUG] TrackedImageManager: " + text);
 		}		
 	}
 

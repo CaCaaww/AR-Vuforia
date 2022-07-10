@@ -18,22 +18,6 @@ public class ARPOI
     public bool is_useful;
 }
 
-public class QRPOI
-{
-    // The name of the QR p.o.i.
-    public string title;
-    // The description of the QR p.o.i.
-    public string description;
-    // The QR code name for the QR p.o.i
-    public string qrcode_name;
-    // The url of the QR code for the p.o.i
-    public string qrcode_url;
-    // The image name for the QR p.o.i
-    public string image_name;
-    // The image url for the QR p.o.i.
-    public string image_url;
-}
-
 public class DataStructure
 {
     // The number of boosts at the start

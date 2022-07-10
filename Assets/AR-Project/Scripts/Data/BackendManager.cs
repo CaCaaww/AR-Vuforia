@@ -92,17 +92,20 @@ public class BackendManager : MonoBehaviour
                         }
                         break;
                 }
-
+            
             pointsOfInterestSO.AddToImageNameAndPOI_Dict(poi.imageName, poi);
+            
         }
         #endif
 
-        #if UNITY_ANDROID && !UNITY_EDITOR
+        // Uncomment only in builds with just the 02-AR-Project scene
+        /*#if UNITY_ANDROID && !UNITY_EDITOR
         foreach (var poi in pointsOfInterestSO.Points)
         {
             pointsOfInterestSO.AddToImageNameAndPOI_Dict(poi.imageName, poi);
         }
         #endif
+        */
     }
         
     #region Helper methods

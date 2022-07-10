@@ -34,7 +34,7 @@ public class LoadingUIController : MonoBehaviour
     {
         continueButton.GetComponent<Button>().onClick.AddListener(() => 
         {
-            SceneManager.LoadScene("AR-Project_RoccaRemoteData");
+            SceneManager.LoadScene("02-AR-Project");
         });
 
         continueButton.SetActive(true);
