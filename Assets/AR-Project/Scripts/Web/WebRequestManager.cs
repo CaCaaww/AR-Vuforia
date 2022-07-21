@@ -28,17 +28,63 @@ public class WebRequestManager : MonoBehaviour
     #endregion
 
     #region Unity methods
-
-    async void Start()
+    void OnEnable()
     {
-        var result = await GetRemoteData();
+        uiEventsChannelSO.OnLoginCredentialsSentEventRaised += Login;
+    }
+
+    void OnDisable()
+    {
+        uiEventsChannelSO.OnLoginCredentialsSentEventRaised -= Login;
+    }
+    #endregion
+    
+    #region Helper methods
+    private async Task<string> GetRemoteData(string nicknameText, string passwordText)
+    {
+        //string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", remoteWebConsoleSO.AccessCode);
+
+        string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", passwordText);
+
+        Debug.Log(url);
+
+        var www = UnityWebRequest.Get(url);
+
+        // Set the request timeout
+        www.timeout = 10;
+
+        var operation = www.SendWebRequest();
+
+        while (!operation.isDone)
+            await Task.Yield();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log($"[WEB] Success: {www.downloadHandler.text}");
+            return www.downloadHandler.text;
+        }
+        else
+        {
+            Debug.Log($"[WEB] Failed: {www.error}");
+            return www.error;
+        }         
+    }
+    #endregion
+
+    #region Callbacks
+    private async void Login(string nicknameText, string passwordText)
+    {
+        var result = await GetRemoteData(nicknameText, passwordText);
 
         dataStructure = JsonConvert.DeserializeObject<DataStructure>(result);
 
         sessionDataSO.Hints = dataStructure.hints;
         Debug.Log("[WEB] Number of hints: " + sessionDataSO.Hints);
 
-        sessionDataSO.IntroText = dataStructure.intro_text;
+        sessionDataSO.TitleText = dataStructure.title;
+        Debug.Log("[WEB] Intro text: " + sessionDataSO.IntroText);
+
+        sessionDataSO.IntroText = dataStructure.intro;
         Debug.Log("[WEB] Intro text: " + sessionDataSO.IntroText);
 
         sessionDataSO.VictoryText = dataStructure.victory_text;
@@ -48,7 +94,7 @@ public class WebRequestManager : MonoBehaviour
         Debug.Log("[WEB] Defeat text: " + sessionDataSO.DefeatText);
 
         int numberOfPois = dataStructure.ar_pois.Count;
-        Debug.Log("[WEB] Number of images: " + numberOfPois);
+        Debug.Log("[WEB] Number of POIs: " + numberOfPois);
 
         // Clear the POI list
         sessionDataSO.PointsOfInterest.Points.Clear();
@@ -82,36 +128,6 @@ public class WebRequestManager : MonoBehaviour
         }
 
         uiEventsChannelSO.RaiseSessionDataLoadedEvent();
-    }
-    #endregion
-    
-    #region Helper methods
-    private async Task<string> GetRemoteData()
-    {
-        string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", remoteWebConsoleSO.AccessCode);
-
-        Debug.Log(url);
-
-        var www = UnityWebRequest.Get(url);
-
-        // Set the request timeout
-        www.timeout = 10;
-
-        var operation = www.SendWebRequest();
-
-        while (!operation.isDone)
-            await Task.Yield();
-
-        if (www.result == UnityWebRequest.Result.Success)
-        {
-            Debug.Log($"[WEB] Success: {www.downloadHandler.text}");
-            return www.downloadHandler.text;
-        }
-        else
-        {
-            Debug.Log($"[WEB] Failed: {www.error}");
-            return www.error;
-        }         
     }
     #endregion
 }

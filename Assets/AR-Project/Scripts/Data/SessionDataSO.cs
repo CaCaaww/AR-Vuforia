@@ -19,6 +19,11 @@ public class SessionDataSO : ScriptableObject
     [Tooltip("The number of hints at the start of the session")]
     [SerializeField] int hints;
     /// <summary>
+    /// The title text for the session
+    /// </summary>
+    [Tooltip("The title text for the session")]
+    [SerializeField] string titleText;
+    /// <summary>
     /// The intro text for the session
     /// </summary>
     [Tooltip("The intro text for the session")]
@@ -40,9 +45,10 @@ public class SessionDataSO : ScriptableObject
 
     #region Properties
     public int Hints { get => hints; set => hints = value; }
+    public string TitleText { get => titleText; set => titleText = value; }
     public string IntroText { get => introText; set => introText = value; }
     public string VictoryText { get => victoryText; set => victoryText = value; }
     public string DefeatText { get => defeatText; set => defeatText = value; }
     public PointsOfInterestSO PointsOfInterest { get => pointsOfInterestSO; } 
     #endregion
-    }
+}

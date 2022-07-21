@@ -10,20 +10,28 @@ public class ARPOI
     public int type;
     // The description of the AR p.o.i.
     public string description;
-    // The image name for the AR p.o.i
+    // The image name of the AR p.o.i
     public string image_name;
     // The the url of the image for the AR p.o.i
     public string image_url;
-    // Return true if this AR p.o.i is part of the solution, false if not
+    // True if this AR p.o.i is part of the solution, false if not
     public bool is_useful;
+    // The icon type of the p.o.i.
+    public int icon_type;
+    // The id of the avatar
+    public int avatar_id;
+    // The name of the avatar
+    public string avatar_name;
 }
 
 public class DataStructure
 {
     // The number of boosts at the start
     public int hints;
+    // The title text for the story
+    public string title;
     // The introduction text for the story
-    public string intro_text;
+    public string intro;
     // The endgame victory text 
     public string victory_text;
     // The endgame defeat text 

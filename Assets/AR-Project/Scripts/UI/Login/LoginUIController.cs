@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LoginUIController : MonoBehaviour
 {
     #region Inspector
     [Header("SO Listen Channels")]
-    [SerializeField]
-    private UIEventsChannelSO uiEventsChannelSO;
+    [SerializeField] private UIEventsChannelSO uiEventsChannelSO;
 
     [Header("References")]
-    [SerializeField]
-    private GameObject loginButton;
+    [SerializeField] private GameObject loginButton;
+    [SerializeField] private TextMeshProUGUI nicknameText;
+    [SerializeField] private TextMeshProUGUI passwordText;
     #endregion
 
     #region Unity methods
@@ -26,6 +27,10 @@ public class LoginUIController : MonoBehaviour
     {
         uiEventsChannelSO.OnSessionDataLoadedEventRaised -= HandleSessionDataLoadedEvent;
     }
+    #endregion
+
+    #region Helper Methods
+
     #endregion
 
     #region Callback methods

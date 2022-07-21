@@ -6,8 +6,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Events/UI Events Channel")]
 public class UIEventsChannelSO : ScriptableObject
 {
-	public Action OnSessionDataLoadedEventRaised;
-	public Action<PointOfInterest> OnPOIFoundEventRaised;
+	#region Login Actions
+ 	public Action OnSessionDataLoadedEventRaised;
+    public Action<string, string> OnLoginCredentialsSentEventRaised;
+    #endregion
+
+    #region In-game Actions
+    public Action<PointOfInterest> OnPOIFoundEventRaised;
     public Action<PointOfInterest> OnPOIViewEventRaised;
     public Action OnHintRequestedEventRaised;
     public Action<PointOfInterest> OnPOIRemovedEventRaised;
@@ -17,8 +22,19 @@ public class UIEventsChannelSO : ScriptableObject
     public Action OnClosingUIEventRaised;
 	public Action OnOpeningUIEventRaised;
     public Action OnStartGameEventRaised;
+	#endregion
 
+	#region Login raiser methods
+	public void RaiseLoginCredentialsSentEvent(string nicknameText, string passwordText)
+	{
+		if (OnLoginCredentialsSentEventRaised != null)
+		{
+			OnLoginCredentialsSentEventRaised.Invoke(nicknameText, passwordText);
+		}
+	}
+	#endregion
 
+	#region In-game raiser methods
     public void RaiseSessionDataLoadedEvent()
 	{
 		if (OnSessionDataLoadedEventRaised != null)
@@ -109,4 +125,5 @@ public class UIEventsChannelSO : ScriptableObject
 			OnStartGameEventRaised.Invoke();
         }
 	}
+	#endregion
 }
