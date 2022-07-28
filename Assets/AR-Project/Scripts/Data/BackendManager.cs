@@ -19,7 +19,7 @@ public class BackendManager : MonoBehaviour
     #endregion
 
     #region Private Variables
-    private EndgameTimerController endgameTimerController;
+    private TimerController timerController;
     private int numberOfPOIs;
     private List<PointOfInterest> tempPOIsList = new List<PointOfInterest>();
     #endregion
@@ -35,10 +35,10 @@ public class BackendManager : MonoBehaviour
         Screen.orientation = ScreenOrientation.Portrait;
         UnityEngine.Rendering.DebugManager.instance.enableRuntimeUI = false;
 
-        endgameTimerController = GetComponent<EndgameTimerController>();
+        timerController = GetComponent<TimerController>();
 
         numberOfPOIs = pointsOfInterestSO.Points.Count;
-        gameStateSO.ResetToState(GameState.Intro);
+        gameStateSO.ResetToState(GameState.Loading);
     }
 
     void OnEnable()
@@ -146,7 +146,7 @@ public class BackendManager : MonoBehaviour
     #region Callbacks
     private void HandleStartGameEvent()
     {
-        endgameTimerController.StartTimer();
+        timerController.StartTimer();
     }
     
     private void HandlePOIDetected(string imageName)
@@ -227,15 +227,15 @@ public class BackendManager : MonoBehaviour
             // Victory
             Debug.Log("Victory!");
 
-            endgameTimerController.StopTimer();
+            timerController.StopTimer();
 
-            uiEventsChannelSO.RaiseEndgameReachedEvent(true, sessionDataSO.VictoryText, endgameTimerController.TimePlaying);
+            uiEventsChannelSO.RaiseEndgameReachedEvent(true, sessionDataSO.VictoryText, timerController.TimePlaying);
         }
         else
         {
             // Defeat
             Debug.Log("Nope, the answer is not correct, game over");
-            uiEventsChannelSO.RaiseEndgameReachedEvent(false, sessionDataSO.DefeatText, endgameTimerController.TimePlaying);
+            uiEventsChannelSO.RaiseEndgameReachedEvent(false, sessionDataSO.DefeatText, timerController.TimePlaying);
         }
     }
     #endregion

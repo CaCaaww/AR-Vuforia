@@ -1457,7 +1457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2114457207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1680,6 +1680,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LoginUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561897665855213222, guid: daa7fcb3342ffbc10b62b257081033fc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daa7fcb3342ffbc10b62b257081033fc, type: 3}

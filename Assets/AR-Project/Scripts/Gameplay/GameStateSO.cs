@@ -3,12 +3,12 @@ using UnityEngine;
 
 public enum GameState 
 {
-	Intro,
 	Loading,
+	Intro,
 	Tracking,
 	POIPopUp,
 	UI,
-	GameOver,
+	GameOver
 }
 
 [CreateAssetMenu(fileName = "New GameState", menuName = "Gameplay/GameState SO")]

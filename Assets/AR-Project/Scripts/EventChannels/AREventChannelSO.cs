@@ -11,6 +11,10 @@ public class AREventChannelSO : ScriptableObject
     /// Public action for when an image is recognized
     /// </summary>
 	public Action<string> OnPOIDetected;
+    /// <summary>
+    /// Public action for when an image is recognized
+    /// </summary>
+	public Action OnReferenceLibraryFirstTimeCreated;
     #endregion
 
     /// <summary>
@@ -21,6 +25,17 @@ public class AREventChannelSO : ScriptableObject
 		if (OnPOIDetected != null)
         {
 			OnPOIDetected.Invoke(imageName);
+		}
+    }
+
+    /// <summary>
+    /// Raise an event when an image is recognized
+    /// </summary>
+	public void RaiseReferenceLibraryFirstTimeCreatedEvent()
+	{
+		if (OnReferenceLibraryFirstTimeCreated != null)
+        {
+			OnReferenceLibraryFirstTimeCreated.Invoke();
 		}
     }
 }

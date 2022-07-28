@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class EndgameTimerController : MonoBehaviour
+public class TimerController : MonoBehaviour
 {
     #region Private variables
     private TimeSpan timePlaying;

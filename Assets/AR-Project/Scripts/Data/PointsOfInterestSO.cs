@@ -15,9 +15,11 @@ public enum EPOIType
 [Serializable]
 public class PointOfInterest
 {
+    public int id;
     public string title;
-    public string description;
     public EPOIType type;
+    public string description;
+    public bool isAR;
     public string imageName;
     public Texture2D image;
     public string imageUrl;
@@ -27,6 +29,8 @@ public class PointOfInterest
     public bool alreadyDetected;
     public int avatarID;
     public string avatarName;
+    public int timer;
+    public int linkedTo;
 }
 #endregion
 
@@ -57,6 +61,7 @@ public class PointsOfInterestSO : ScriptableObject
     private PointOfInterest whenPOIChosenAsSolution;
     private PointOfInterest howPOIChosenAsSolution;
     private Dictionary<string, PointOfInterest> imageNameAndPOI_Dict = new Dictionary<string, PointOfInterest>();
+    private Dictionary<int, PointOfInterest> idAndPOI_Dict = new Dictionary<int, PointOfInterest>();
     #endregion
 
     #region Public properties
@@ -68,12 +73,18 @@ public class PointsOfInterestSO : ScriptableObject
     public PointOfInterest WhenPOIChosenAsSolution { get => whenPOIChosenAsSolution; set => whenPOIChosenAsSolution = value; }
     public PointOfInterest HowPOIChosenAsSolution { get => howPOIChosenAsSolution; set => howPOIChosenAsSolution = value; }
     public Dictionary<string, PointOfInterest> ImageNameAndPOI_Dict { get => imageNameAndPOI_Dict; }
+    public Dictionary<int, PointOfInterest> IDAndPOI_Dict { get => idAndPOI_Dict; }
     #endregion
 
     #region Public Methods
     public void AddToImageNameAndPOI_Dict(string imageName, PointOfInterest poi)
     {
         imageNameAndPOI_Dict.Add(imageName, poi);
+    }
+
+    public void AddToIDAndPOI_Dict(int id, PointOfInterest poi)
+    {
+        idAndPOI_Dict.Add(id, poi);
     }
     #endregion
 }

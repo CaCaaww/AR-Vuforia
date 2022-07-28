@@ -142,11 +142,14 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
             Debug.Log("[AFP] Library Count: " + trackedImageManager.referenceLibrary.count);
 
             // If we are still in the loading state it means that the scene it's just starting to run
-            // so we can directly enable the ARTrackedImageManager
-            if (gameStateSO.CurrentGameState == GameState.Intro)
+            // so we can notify that the reference library creation is completed 
+            if (gameStateSO.CurrentGameState == GameState.Loading)
             {
-                EnableTrackedImageManager();
-                gameStateSO.UpdateGameState(GameState.Tracking);    
+                //EnableTrackedImageManager();
+                //gameStateSO.UpdateGameState(GameState.Tracking);
+
+                // Raise an event to notify that the reference library was created for the first time
+                arEventChannelSO.RaiseReferenceLibraryFirstTimeCreatedEvent();
             }        
         }
         else
@@ -191,7 +194,7 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
                 // Add the hash to the hashset
                 detectedImages.Add(trackedImage.referenceImage.name);
 
-                // Check if the dictionay is not null
+                // Check if the dictionary is not null
                 if (sessionDataSO.PointsOfInterest.ImageNameAndPOI_Dict == null) 
                 {
                     Debug.Log("ImageNameAndPOI_Dict is null");
@@ -225,7 +228,7 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
         Debug.Log("[ARP] ARSession.state: " + eventArgs.state);
         Debug.Log("[ARP] CurrentGameState: " + gameStateSO.CurrentGameState);
 
-        if (gameStateSO.CurrentGameState == GameState.Intro)
+        if (gameStateSO.CurrentGameState == GameState.Loading)
         {
             if ((eventArgs.state == ARSessionState.SessionTracking) && !sessionTrackingFirstTimeDone) 
             {

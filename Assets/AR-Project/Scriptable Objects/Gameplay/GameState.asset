@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugUIEventChannelSO: {fileID: 11400000, guid: 9f4c4087d26805f48880da47d8521c32,
     type: 2}
-  _currentGameState: 0
-  _previousGameState: 0
+  _currentGameState: 1
+  _previousGameState: 1
