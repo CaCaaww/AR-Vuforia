@@ -119,6 +119,8 @@ public class WebRequestManager : MonoBehaviour
         // Clear the helper dictionaries
         sessionDataSO.PointsOfInterest.ImageNameAndPOI_Dict.Clear();
         sessionDataSO.PointsOfInterest.IDAndPOI_Dict.Clear();
+        sessionDataSO.PointsOfInterest.IDAndARPOI_Dict.Clear();
+        sessionDataSO.PointsOfInterest.IDAndNOARPOI_Dict.Clear();
 
         for (int i = 0; i < numberOfPois; i++)
         {
@@ -164,8 +166,20 @@ public class WebRequestManager : MonoBehaviour
             Debug.Log("[WEB] The ID of the linked POI: " + dataStructure.ar_pois[i].linked_poi);
 
             sessionDataSO.PointsOfInterest.AddToImageNameAndPOI_Dict(sessionDataSO.PointsOfInterest.Points[i].imageName, sessionDataSO.PointsOfInterest.Points[i]);
+            
             //sessionDataSO.PointsOfInterest.AddToIDAndPOI_Dict(sessionDataSO.PointsOfInterest.Points[i].id, sessionDataSO.PointsOfInterest.Points[i]);
-
+            
+            if (sessionDataSO.PointsOfInterest.Points[i].isAR)
+            {
+                // Waiting for Simo to add the id to the json
+                //sessionDataSO.PointsOfInterest.AddToIDAndARPOI_Dict(sessionDataSO.PointsOfInterest.Points[i].id, sessionDataSO.PointsOfInterest.Points[i]);
+            }
+            else
+            {
+                // Waiting for Simo to add the id to the json
+                //sessionDataSO.PointsOfInterest.AddToIDAndNOARPOI_Dict(sessionDataSO.PointsOfInterest.Points[i].id, sessionDataSO.PointsOfInterest.Points[i]);
+            }
+            
             // Retrieve the actual image as a texture2D
             sessionDataSO.PointsOfInterest.Points[i].image = await Utils.GetRemoteTexture(sessionDataSO.PointsOfInterest.Points[i].imageUrl);      
         }

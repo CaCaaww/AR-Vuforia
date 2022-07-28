@@ -62,6 +62,9 @@ public class PointsOfInterestSO : ScriptableObject
     private PointOfInterest howPOIChosenAsSolution;
     private Dictionary<string, PointOfInterest> imageNameAndPOI_Dict = new Dictionary<string, PointOfInterest>();
     private Dictionary<int, PointOfInterest> idAndPOI_Dict = new Dictionary<int, PointOfInterest>();
+    private Dictionary<int, PointOfInterest> idAndARPOI_Dict = new Dictionary<int, PointOfInterest>();
+    private Dictionary<int, PointOfInterest> idAndNOARPOI_Dict = new Dictionary<int, PointOfInterest>();
+    
     #endregion
 
     #region Public properties
@@ -74,6 +77,8 @@ public class PointsOfInterestSO : ScriptableObject
     public PointOfInterest HowPOIChosenAsSolution { get => howPOIChosenAsSolution; set => howPOIChosenAsSolution = value; }
     public Dictionary<string, PointOfInterest> ImageNameAndPOI_Dict { get => imageNameAndPOI_Dict; }
     public Dictionary<int, PointOfInterest> IDAndPOI_Dict { get => idAndPOI_Dict; }
+    public Dictionary<int, PointOfInterest> IDAndARPOI_Dict { get => idAndARPOI_Dict; }
+    public Dictionary<int, PointOfInterest> IDAndNOARPOI_Dict { get => idAndNOARPOI_Dict; }
     #endregion
 
     #region Public Methods
@@ -85,6 +90,16 @@ public class PointsOfInterestSO : ScriptableObject
     public void AddToIDAndPOI_Dict(int id, PointOfInterest poi)
     {
         idAndPOI_Dict.Add(id, poi);
+    }
+
+    public void AddToIDAndARPOI_Dict(int id, PointOfInterest poi)
+    {
+        idAndARPOI_Dict.Add(id, poi);
+    }
+
+    public void AddToIDAndNOARPOI_Dict(int id, PointOfInterest poi)
+    {
+        idAndNOARPOI_Dict.Add(id, poi);
     }
     #endregion
 }
