@@ -93,8 +93,10 @@ public class BackendManager : MonoBehaviour
                         break;
                 }
             
-            pointsOfInterestSO.AddToImageNameAndPOI_Dict(poi.imageName, poi);
-            
+            foreach (var imageName in poi.imageNames)
+            {
+                pointsOfInterestSO.AddToImageNameAndPOI_Dict(imageName, poi);
+            }   
         }
         #endif
 
@@ -153,7 +155,10 @@ public class BackendManager : MonoBehaviour
     {
         for (int i = 0; i < numberOfPOIs; i ++)
         {
-            if (pointsOfInterestSO.Points[i].imageName == imageName)
+            if (pointsOfInterestSO.Points[i].alreadyDetected == true)
+                return;
+
+            if (pointsOfInterestSO.Points[i].imageNameAndUrl.ContainsKey(imageName))
             {
                 pointsOfInterestSO.Points[i].alreadyDetected = true;
 

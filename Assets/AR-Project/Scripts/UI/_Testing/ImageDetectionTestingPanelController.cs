@@ -61,12 +61,12 @@ public class ImageDetectionTestingPanelController : MonoBehaviour
     {
         for (int i = 0; i < pointsOfInterestSO.Points.Count; i++)
         {
-            if (pointsOfInterestSO.Points[i].imageName == imageName)
+            if (pointsOfInterestSO.Points[i].imageNames[0] == imageName)
             {
                 canvas.enabled = true;
 
                 objectTitle.text = pointsOfInterestSO.Points[i].title;
-                objectImage.texture = pointsOfInterestSO.Points[i].image;
+                objectImage.texture = pointsOfInterestSO.Points[i].images[0];
 
                 Debug.Log("[ARP] Image detected: " + objectTitle.text);
 

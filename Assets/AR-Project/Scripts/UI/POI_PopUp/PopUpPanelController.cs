@@ -77,7 +77,7 @@ public class PopUpPanelController : MonoBehaviour
     #region Callbacks
     private void ViewPOI(PointOfInterest poi)
     {
-        Debug.Log("[ARP] Image detected/viewing: " + poi.imageName);
+        Debug.Log("[ARP] Image detected/viewing: " + poi.title);
 
         canvas.enabled = true;
 

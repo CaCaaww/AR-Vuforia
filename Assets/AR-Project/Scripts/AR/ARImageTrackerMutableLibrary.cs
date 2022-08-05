@@ -75,7 +75,7 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
     #endregion
 
     #region Coroutines
-    private IEnumerator AddAllImagesToMutableReferenceImageLibraryAR()
+    private IEnumerator BuildMutableReferenceImageLibraryAR()
     {
         // You can either add raw image bytes or use the extension method (used below) which accepts
         // a texture. To use a texture, however, its import settings must have enabled read/write
@@ -84,6 +84,7 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
         // Disable the component
         DisableTrackedImageManager();
 
+        // Check if the image tracker is null
         if (trackedImageManager == null) 
         {
             Debug.Log($"No {nameof(ARTrackedImageManager)} available.");
@@ -91,6 +92,7 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
             yield break;
         }
 
+        // Check if the reference library is null
         if (trackedImageManager.referenceLibrary == null) 
         {
             Debug.Log("[AFP] PRE Library is null");
@@ -100,6 +102,7 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
             Debug.Log("[AFP] PRE Library exists");
         }
 
+        // Build the reference library at runtime
         trackedImageManager.referenceLibrary = trackedImageManager.CreateRuntimeLibrary();
 
         if (trackedImageManager.referenceLibrary == null) 
@@ -111,32 +114,43 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
             Debug.Log("[AFP] POST Library exists");
         }
 
+        // If the library is a mutable library
         if (trackedImageManager.referenceLibrary is MutableRuntimeReferenceImageLibrary mutableLibrary)
         {
-            foreach (var point in sessionDataSO.PointsOfInterest.Points)
+            // For every p.o.i. in the session
+            for (int i = 0; i < sessionDataSO.PointsOfInterest.Points.Count; i++)
             {
-                if (!point.alreadyDetected)
+                // Check if the poi was already detected, if not
+                if (!sessionDataSO.PointsOfInterest.Points[i].alreadyDetected)
                 {
-                    if (point.image.isReadable)
+                    // Loop through every image inside the p.o.i.
+                    for (int k = 0; k < sessionDataSO.PointsOfInterest.Points[i].images.Length; k++)
                     {
-                        point.jobState = mutableLibrary.ScheduleAddImageWithValidationJob
-                        (   
-                            point.image, 
-                            point.imageName, 
-                            null
-                        );
+                        // If the image is readable
+                        if (sessionDataSO.PointsOfInterest.Points[i].images[k].isReadable)
+                        {
+                            // Schedule a job to add the image to the library
+                            sessionDataSO.PointsOfInterest.Points[i].jobState = mutableLibrary.ScheduleAddImageWithValidationJob
+                            (
+                                sessionDataSO.PointsOfInterest.Points[i].images[k],
+                                sessionDataSO.PointsOfInterest.Points[i].imageNames[k],
+                                null
+                            );
 
-                        yield return new WaitUntil(() => point.jobState.jobHandle.IsCompleted);
+                            // Yield until the the image is added to the library
+                            yield return new WaitUntil(() => sessionDataSO.PointsOfInterest.Points[i].jobState.jobHandle.IsCompleted);
 
-                        Debug.Log("[ARP] " + point.title + " jobState: " + point.jobState.status);
+                            Debug.Log("[ARP] " + sessionDataSO.PointsOfInterest.Points[i].title + " jobState: " + sessionDataSO.PointsOfInterest.Points[i].jobState.status);
+                        }
+                        // if The image is not readable
+                        else
+                        {
+                            Debug.Log($"[ARP] Image {sessionDataSO.PointsOfInterest.Points[i].images[k].name} must be readable to be added to the image library.");
+
+                            yield return null;
+                        }
                     }
-                    else
-                    {
-                        Debug.Log($"[ARP] Image {point.image.name} must be readable to be added to the image library.");
-                    
-                        yield return null;
-                    }
-                }     
+                }
             }
 
             Debug.Log("[AFP] Library Count: " + trackedImageManager.referenceLibrary.count);
@@ -152,6 +166,7 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
                 arEventChannelSO.RaiseReferenceLibraryFirstTimeCreatedEvent();
             }        
         }
+        // If the reference library is not mutable
         else
         {
             Debug.LogError($"[ARP]The reference image library is not mutable.");
@@ -160,18 +175,27 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
     #endregion
 
     #region Callbacks
+    /// <summary>
+    /// Callback to enable the AR image tracker
+    /// </summary>
     private void EnableTrackedImageManager()
     {
         trackedImageManager.enabled = true;
         debugUIEventChannelSO.RaiseDebugEvent(trackedImageManager.enabled.ToString());
     }
 
+    /// <summary>
+    /// Callback to disable the AR image tracker
+    /// </summary>
     private void DisableTrackedImageManager()
     {
         trackedImageManager.enabled = false;
         debugUIEventChannelSO.RaiseDebugEvent(trackedImageManager.enabled.ToString());
     }
 
+    /// <summary>
+    /// Callback for when a tracked image status changes
+    /// </summary>
     private void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs) 
     {
         // Go through all tracked images that have been added (-> new markers detected)
@@ -207,7 +231,7 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
                 DisableTrackedImageManager();
 
                 // Refresh the image library
-                StartCoroutine(AddAllImagesToMutableReferenceImageLibraryAR());
+                StartCoroutine(BuildMutableReferenceImageLibraryAR());
             }
             // If the hash IS inside the hashset (the image was already detected)
             else 
@@ -217,26 +241,34 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
             }
         }
 
+        //Go through all tracked images that have been removed
         foreach (var trackedImage in eventArgs.removed)
         {
             Debug.Log("[ARP] Image removed: " + trackedImage.name);
         }      
     }
 
+    /// <summary>
+    /// Callback for when the session state changes
+    /// </summary>
     private void OnARSessionStateChanged(ARSessionStateChangedEventArgs eventArgs) 
     {
         Debug.Log("[ARP] ARSession.state: " + eventArgs.state);
         Debug.Log("[ARP] CurrentGameState: " + gameStateSO.CurrentGameState);
 
+        // If the game is in the loading state
         if (gameStateSO.CurrentGameState == GameState.Loading)
         {
+            // If the session is in the SessionTracking state and if it's first time that the game is tracking
             if ((eventArgs.state == ARSessionState.SessionTracking) && !sessionTrackingFirstTimeDone) 
             {
+                // Disable the flag
                 sessionTrackingFirstTimeDone = true;
 
                 Debug.Log("[AFP] START BUILDING THE LIBRARY");
 
-                StartCoroutine(AddAllImagesToMutableReferenceImageLibraryAR());
+                // Build the reference library
+                StartCoroutine(BuildMutableReferenceImageLibraryAR());
             }
         }   
     }

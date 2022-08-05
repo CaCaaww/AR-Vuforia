@@ -20,9 +20,11 @@ public class PointOfInterest
     public EPOIType type;
     public string description;
     public bool isAR;
-    public string imageName;
-    public Texture2D image;
-    public string imageUrl;
+    public string[] imageNames;
+    public string[] imageUrls;
+    public Texture2D[] images;
+    public Dictionary<string, Texture2D> imageNameAndTexture = new Dictionary<string, Texture2D>();
+    public Dictionary<string, string> imageNameAndUrl = new Dictionary<string, string>();
     public bool isUseful;
     public AddReferenceImageJobState jobState;
     public EIconType iconType;

@@ -13,12 +13,14 @@ public class POI
     // The description of the POI
     public string description;
     // True if the this is an AR POI
-    public bool is_ar;
+    //public bool is_ar;
     // The image name of the POI
-    public string image_name;
+    //public string[] image_names;
     // The the url of the image for the POI
-    public string image_url;
-    // True if this POI is part of the solution, false if not
+    //public string[] image_urls;
+    // The dictionary to correlate the image name with the image url
+    public Dictionary<string, string> images = new Dictionary<string, string>();
+    // True if this POI is part of the solution, false if not  
     public bool is_useful;
     // The icon type of the POI
     public int icon_type;
@@ -27,9 +29,9 @@ public class POI
     // The name of the avatar
     public string avatar_name;
     // How many seconds before showing the POI if it's not an AR POI
-    public int timer;
+    //public int timer;
     // The id for the linked POI without AR
-    public int linked_poi;
+    //public int linked_poi;
 }
 
 public class DataStructure
@@ -45,15 +47,15 @@ public class DataStructure
     // The number of hints at the start
     public int hints;
     // The session's logical duration in seconds
-    public int logical_duration;
+    //public int logical_duration;
     // True if the AR POIs are revealed automatically after some time
-    public bool autoreveal_pois;
+    //public bool autoreveal_pois;
     // Logical duration percentage for when starting to autoreveal AR and "not AR" POIs together
-    public int autoreveal_percentage;
+    //public int autoreveal_percentage;
     // How many POIs to autoreveal at the same time
-    public int autoreveal_number_of_pois;
+    //public int autoreveal_number_of_pois;
     // Interval in seconds to autoreveal the POIs
-    public int autoreveal_timer;
+    //public int autoreveal_timer;
     // The list of all the POIs
     public List<POI> ar_pois = new List<POI>();
 }
