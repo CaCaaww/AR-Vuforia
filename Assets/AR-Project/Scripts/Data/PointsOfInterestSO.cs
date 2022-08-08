@@ -20,9 +20,9 @@ public class PointOfInterest
     public EPOIType type;
     public string description;
     public bool isAR;
-    public string[] imageNames;
-    public string[] imageUrls;
-    public Texture2D[] images;
+    //public string[] imageNames;
+    //public string[] imageUrls;
+    public List<Texture2D> images = new List<Texture2D>();
     public Dictionary<string, Texture2D> imageNameAndTexture = new Dictionary<string, Texture2D>();
     public Dictionary<string, string> imageNameAndUrl = new Dictionary<string, string>();
     public bool isUseful;

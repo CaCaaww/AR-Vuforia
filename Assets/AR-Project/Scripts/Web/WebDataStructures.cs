@@ -12,12 +12,8 @@ public class POI
     public int type;
     // The description of the POI
     public string description;
-    // True if the this is an AR POI
-    //public bool is_ar;
-    // The image name of the POI
-    //public string[] image_names;
-    // The the url of the image for the POI
-    //public string[] image_urls;
+    //True if the this is an AR POI
+    public bool is_ar;
     // The dictionary to correlate the image name with the image url
     public Dictionary<string, string> images = new Dictionary<string, string>();
     // True if this POI is part of the solution, false if not  
@@ -57,5 +53,5 @@ public class DataStructure
     // Interval in seconds to autoreveal the POIs
     //public int autoreveal_timer;
     // The list of all the POIs
-    public List<POI> ar_pois = new List<POI>();
+    public List<POI> pois = new List<POI>();
 }

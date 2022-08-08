@@ -124,31 +124,31 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
                 if (!sessionDataSO.PointsOfInterest.Points[i].alreadyDetected)
                 {
                     // Loop through every image inside the p.o.i.
-                    for (int k = 0; k < sessionDataSO.PointsOfInterest.Points[i].images.Length; k++)
+                    foreach(KeyValuePair<string, Texture2D> image in sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture)
                     {
                         // If the image is readable
-                        if (sessionDataSO.PointsOfInterest.Points[i].images[k].isReadable)
+                        if (image.Value.isReadable)
                         {
                             // Schedule a job to add the image to the library
                             sessionDataSO.PointsOfInterest.Points[i].jobState = mutableLibrary.ScheduleAddImageWithValidationJob
                             (
-                                sessionDataSO.PointsOfInterest.Points[i].images[k],
-                                sessionDataSO.PointsOfInterest.Points[i].imageNames[k],
+                                image.Value,
+                                image.Key,
                                 null
                             );
 
                             // Yield until the the image is added to the library
                             yield return new WaitUntil(() => sessionDataSO.PointsOfInterest.Points[i].jobState.jobHandle.IsCompleted);
 
-                            Debug.Log("[ARP] " + sessionDataSO.PointsOfInterest.Points[i].title + " jobState: " + sessionDataSO.PointsOfInterest.Points[i].jobState.status);
+                            Debug.Log("[ARP] " + image.Key + " jobState: " + sessionDataSO.PointsOfInterest.Points[i].jobState.status);
                         }
                         // if The image is not readable
                         else
                         {
-                            Debug.Log($"[ARP] Image {sessionDataSO.PointsOfInterest.Points[i].images[k].name} must be readable to be added to the image library.");
+                            Debug.Log($"[ARP] Image {image.Key} must be readable to be added to the image library.");
 
                             yield return null;
-                        }
+                        }    
                     }
                 }
             }

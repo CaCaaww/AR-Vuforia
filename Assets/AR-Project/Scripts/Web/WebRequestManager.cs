@@ -83,6 +83,14 @@ public class WebRequestManager : MonoBehaviour
 
         dataStructure = JsonConvert.DeserializeObject<DataStructure>(result);
 
+        Debug.Log("DATASTRUCTURE");
+        foreach(KeyValuePair<string, string> entry in dataStructure.pois[0].images)
+        {
+            Debug.Log("Key: " + entry.Key);
+            Debug.Log("Value: " + entry.Value);
+        }
+
+
         sessionDataSO.Hints = dataStructure.hints;
         Debug.Log("[WEB] Number of hints: " + sessionDataSO.Hints);
 
@@ -98,19 +106,7 @@ public class WebRequestManager : MonoBehaviour
         sessionDataSO.DefeatText = dataStructure.defeat_text;
         Debug.Log("[WEB] Defeat text: " + sessionDataSO.DefeatText);
 
-        //sessionDataSO.Autoreveal = dataStructure.autoreveal_pois;
-        //Debug.Log("[WEB] Autoreveal POIs: " + sessionDataSO.Autoreveal);
-
-        //sessionDataSO.AutorevealPercentage = dataStructure.autoreveal_percentage;
-        //Debug.Log("[WEB] Autoreveal percentage: " + sessionDataSO.AutorevealPercentage);
-
-        //sessionDataSO.AutorevealNumber = dataStructure.autoreveal_number_of_pois;
-        //Debug.Log("[WEB] Autoreveal number of pois: " + sessionDataSO.AutorevealNumber);
-
-        //sessionDataSO.AutorevealTimer = dataStructure.autoreveal_timer;
-        //Debug.Log("[WEB] Autoreveal timer: " + sessionDataSO.AutorevealTimer);
-
-        int numberOfPois = dataStructure.ar_pois.Count;
+        int numberOfPois = dataStructure.pois.Count;
         Debug.Log("[WEB] Number of POIs: " + numberOfPois);
 
         // Clear the POI list
@@ -122,70 +118,61 @@ public class WebRequestManager : MonoBehaviour
         sessionDataSO.PointsOfInterest.IDAndARPOI_Dict.Clear();
         sessionDataSO.PointsOfInterest.IDAndNOARPOI_Dict.Clear();
 
+        
+    
         for (int i = 0; i < numberOfPois; i++)
         {
             // Add a new p.o.i. object
             sessionDataSO.PointsOfInterest.Points.Add(new PointOfInterest());
 
             // Set the p.o.i. id
-            sessionDataSO.PointsOfInterest.Points[i].id = dataStructure.ar_pois[i].id;
-            Debug.Log("[WEB] ID: " + dataStructure.ar_pois[i].id);
+            sessionDataSO.PointsOfInterest.Points[i].id = dataStructure.pois[i].id;
+            Debug.Log("[WEB] ID: " + dataStructure.pois[i].id);
 
             // Set the p.o.i. title
-            sessionDataSO.PointsOfInterest.Points[i].title = dataStructure.ar_pois[i].title;
-            Debug.Log("[WEB] Title: " + dataStructure.ar_pois[i].title);
+            sessionDataSO.PointsOfInterest.Points[i].title = dataStructure.pois[i].title;
+            Debug.Log("[WEB] Title: " + dataStructure.pois[i].title);
 
             // Set the p.o.i. type
-            sessionDataSO.PointsOfInterest.Points[i].type = (EPOIType)dataStructure.ar_pois[i].type;
-            Debug.Log("[WEB] Clue type: " + (EPOIType)dataStructure.ar_pois[i].type);
+            sessionDataSO.PointsOfInterest.Points[i].type = (EPOIType)dataStructure.pois[i].type;
+            Debug.Log("[WEB] Clue type: " + (EPOIType)dataStructure.pois[i].type);
 
             // Set the p.o.i. description
-            sessionDataSO.PointsOfInterest.Points[i].description = dataStructure.ar_pois[i].description;
-            Debug.Log("[WEB] Description: " + dataStructure.ar_pois[i].description);
-
-            // Create an index to loop the images
-            int k = 0;
+            sessionDataSO.PointsOfInterest.Points[i].description = dataStructure.pois[i].description;
+            Debug.Log("[WEB] Description: " + dataStructure.pois[i].description);
 
             // For every remote image name/url pair
-            foreach (KeyValuePair<string, string> image in dataStructure.ar_pois[i].images)
+            foreach (KeyValuePair<string, string> image in dataStructure.pois[i].images)
             {
-                // Store the image name inside an array
-                sessionDataSO.PointsOfInterest.Points[i].imageNames[k] = image.Key;
-                Debug.Log("[WEB] Image name: " + image.Key);
-
-                // Store the image url inside an array
-                sessionDataSO.PointsOfInterest.Points[i].imageUrls[k] = image.Value;
-                Debug.Log("[WEB] Image Url: " + image.Value);
-
                 // Store the pair (key = image name, value = image url) in a dictionary
                 sessionDataSO.PointsOfInterest.Points[i].imageNameAndUrl.Add(image.Key, image.Value);
+                Debug.Log("[WEB] Image name: " + image.Key);
+                Debug.Log("[WEB] Image Url: " + image.Value);
 
                 // and then add them to an helper dictionary for the reference image library rebuilding process
                 sessionDataSO.PointsOfInterest.AddToImageNameAndPOI_Dict(image.Key, sessionDataSO.PointsOfInterest.Points[i]);
 
                 // Retrieve the image as a texture2D
-                sessionDataSO.PointsOfInterest.Points[i].images[k] = await Utils.GetRemoteTexture(image.Value);
-
-                k += 1;
+                sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture.Add(image.Key, await Utils.GetRemoteTexture(image.Value));
+                sessionDataSO.PointsOfInterest.Points[i].images.Add(sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture[image.Key]);
             }
-
-            Debug.Log("K: " + k);
 
             //sessionDataSO.PointsOfInterest.Points[i].isAR = dataStructure.ar_pois[i].is_ar;
             //Debug.Log("[WEB] Is AR: " + dataStructure.ar_pois[i].is_ar);
 
+            sessionDataSO.PointsOfInterest.Points[i].isUseful = dataStructure.pois[i].is_useful;
+            Debug.Log("[WEB] Is useful to to the solution: " + dataStructure.pois[i].is_useful);
 
-            sessionDataSO.PointsOfInterest.Points[i].isUseful = dataStructure.ar_pois[i].is_useful;
-            Debug.Log("[WEB] Is useful to to the solution: " + dataStructure.ar_pois[i].is_useful);
+            sessionDataSO.PointsOfInterest.Points[i].iconType = (EIconType)dataStructure.pois[i].icon_type;
+            Debug.Log("[WEB] Icon type: " + (EIconType)dataStructure.pois[i].icon_type);
 
-            sessionDataSO.PointsOfInterest.Points[i].iconType = (EIconType)dataStructure.ar_pois[i].icon_type;
-            Debug.Log("[WEB] Icon type: " + (EIconType)dataStructure.ar_pois[i].icon_type);
+            sessionDataSO.PointsOfInterest.Points[i].avatarID = dataStructure.pois[i].avatar_id;
+            Debug.Log("[WEB] Avatar id: " + dataStructure.pois[i].avatar_id);
 
-            sessionDataSO.PointsOfInterest.Points[i].avatarID = dataStructure.ar_pois[i].avatar_id;
-            Debug.Log("[WEB] Avatar id: " + dataStructure.ar_pois[i].avatar_id);
+            sessionDataSO.PointsOfInterest.Points[i].avatarName = dataStructure.pois[i].avatar_name;
+            Debug.Log("[WEB] Avatar name: " + dataStructure.pois[i].avatar_name);
+            
 
-            sessionDataSO.PointsOfInterest.Points[i].avatarName = dataStructure.ar_pois[i].avatar_name;
-            Debug.Log("[WEB] Avatar name: " + dataStructure.ar_pois[i].avatar_name);
 
             //sessionDataSO.PointsOfInterest.Points[i].timer = dataStructure.ar_pois[i].timer;
             //Debug.Log("[WEB] Timer to wait before revealing: " + dataStructure.ar_pois[i].timer);
@@ -209,6 +196,7 @@ public class WebRequestManager : MonoBehaviour
             // Retrieve the actual image as a texture2D
             //sessionDataSO.PointsOfInterest.Points[i].image = await Utils.GetRemoteTexture(sessionDataSO.PointsOfInterest.Points[i].imageUrl);      
         }
+        
 
         uiEventsChannelSO.RaiseSessionDataLoadedEvent();
     }

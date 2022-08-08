@@ -92,11 +92,6 @@ public class BackendManager : MonoBehaviour
                         }
                         break;
                 }
-            
-            foreach (var imageName in poi.imageNames)
-            {
-                pointsOfInterestSO.AddToImageNameAndPOI_Dict(imageName, poi);
-            }   
         }
         #endif
 
