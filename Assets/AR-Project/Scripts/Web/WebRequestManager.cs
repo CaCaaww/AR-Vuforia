@@ -49,7 +49,9 @@ public class WebRequestManager : MonoBehaviour
     {
         string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", remoteWebConsoleSO.AccessCode);
 
-        //string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", passwordText);
+        #if UNITY_EDITOR
+        url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", "12345");
+        #endif
 
         Debug.Log(url);
 
@@ -114,9 +116,9 @@ public class WebRequestManager : MonoBehaviour
 
         // Clear the helper dictionaries
         sessionDataSO.PointsOfInterest.ImageNameAndPOI_Dict.Clear();
-        sessionDataSO.PointsOfInterest.IDAndPOI_Dict.Clear();
-        sessionDataSO.PointsOfInterest.IDAndARPOI_Dict.Clear();
-        sessionDataSO.PointsOfInterest.IDAndNOARPOI_Dict.Clear();
+        //sessionDataSO.PointsOfInterest.IDAndPOI_Dict.Clear();
+        //sessionDataSO.PointsOfInterest.IDAndARPOI_Dict.Clear();
+        //sessionDataSO.PointsOfInterest.IDAndNOARPOI_Dict.Clear();
 
         
     

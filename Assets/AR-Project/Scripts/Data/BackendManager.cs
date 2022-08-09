@@ -66,33 +66,7 @@ public class BackendManager : MonoBehaviour
     void Start()
     {
         #if UNITY_EDITOR
-        pointsOfInterestSO.WherePois.Clear();
-        pointsOfInterestSO.WhenPois.Clear();
-        pointsOfInterestSO.HowPois.Clear();
-
-        pointsOfInterestSO.ImageNameAndPOI_Dict.Clear();
-
-        foreach (var poi in pointsOfInterestSO.Points)
-        {
-            switch (poi.type)
-                {
-                    case EPOIType.Where:
-                        {
-                            pointsOfInterestSO.WherePois.Add(poi);
-                        }
-                        break;
-                    case EPOIType.When:
-                        {
-                            pointsOfInterestSO.WhenPois.Add(poi);
-                        }
-                        break;
-                    case EPOIType.How:
-                        {
-                            pointsOfInterestSO.HowPois.Add(poi);
-                        }
-                        break;
-                }
-        }
+            PopulateInventory();
         #endif
 
         // Uncomment only in builds with just the 02-AR-Project scene
@@ -111,6 +85,7 @@ public class BackendManager : MonoBehaviour
         // Clear the temp list (just to be sure)
         tempPOIsList.Clear();
 
+        // Add to the temp list only the POIs that ARE NOT useful for the solution
         for (int i = 0; i < totalPois; i++) 
         {
             if (!pois[i].isUseful) 
@@ -119,8 +94,10 @@ public class BackendManager : MonoBehaviour
             }
         }
 
+        // If the number of POIs not useful is more than zero
         if (tempPOIsList.Count > 0)
         {
+            // Get a radom index from the list
             int randomIndex = UnityEngine.Random.Range(0, tempPOIsList.Count);
 
             Debug.Log(pois[randomIndex].type + " index: " + randomIndex);
@@ -135,7 +112,7 @@ public class BackendManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("No POI found");
+            Debug.Log("No unuseful POI found");
         }
     }
     #endregion
@@ -143,20 +120,26 @@ public class BackendManager : MonoBehaviour
     #region Callbacks
     private void HandleStartGameEvent()
     {
+        // Start the timer
         timerController.StartTimer();
     }
     
     private void HandlePOIDetected(string imageName)
     {
+        // For all the POIs of the session
         for (int i = 0; i < numberOfPOIs; i ++)
         {
-            if (pointsOfInterestSO.Points[i].alreadyDetected == true)
+            // If the POI was already detected, skip it
+            if (pointsOfInterestSO.Points[i].alreadyDetected)
                 return;
 
+            // If the image name in inside the key/value pair imageName/url
             if (pointsOfInterestSO.Points[i].imageNameAndUrl.ContainsKey(imageName))
             {
+                // Set this POI as detected
                 pointsOfInterestSO.Points[i].alreadyDetected = true;
 
+                // Check the type of the POI and add the POI to the respective list
                 switch (pointsOfInterestSO.Points[i].type)
                 {
                     case EPOIType.Where:
@@ -176,8 +159,10 @@ public class BackendManager : MonoBehaviour
                         break;
                 }
 
+                // Raise an event informing that a POI was found
                 uiEventsChannelSO.RaiseOnPOIFoundEvent(pointsOfInterestSO.Points[i]);
                 
+                // Change the game state to POIPopUP
                 gameStateSO.UpdateGameState(GameState.POIPopUp);
 
                 return;
@@ -236,6 +221,39 @@ public class BackendManager : MonoBehaviour
             // Defeat
             Debug.Log("Nope, the answer is not correct, game over");
             uiEventsChannelSO.RaiseEndgameReachedEvent(false, sessionDataSO.DefeatText, timerController.TimePlaying);
+        }
+    }
+    #endregion
+
+    #region  Editor-only methods
+    private void PopulateInventory()
+    {
+        pointsOfInterestSO.WherePois.Clear();
+        pointsOfInterestSO.WhenPois.Clear();
+        pointsOfInterestSO.HowPois.Clear();
+
+        pointsOfInterestSO.ImageNameAndPOI_Dict.Clear();
+
+        foreach (var poi in pointsOfInterestSO.Points)
+        {
+            switch (poi.type)
+                {
+                    case EPOIType.Where:
+                        {
+                            pointsOfInterestSO.WherePois.Add(poi);
+                        }
+                        break;
+                    case EPOIType.When:
+                        {
+                            pointsOfInterestSO.WhenPois.Add(poi);
+                        }
+                        break;
+                    case EPOIType.How:
+                        {
+                            pointsOfInterestSO.HowPois.Add(poi);
+                        }
+                        break;
+                }
         }
     }
     #endregion

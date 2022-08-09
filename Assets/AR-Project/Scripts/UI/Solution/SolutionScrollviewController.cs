@@ -47,19 +47,7 @@ public class SolutionScrollviewController : MonoBehaviour
     void Start()
     {
         #if UNITY_EDITOR
-        foreach (var poi in pointsOfInterestSO.Points)
-        {
-            if (poi.type == poiType)
-            {
-                GameObject inventoryItem = Instantiate(itemPrefab, itemParent.transform);
-
-                SolutionItemController solutionItemController = inventoryItem.GetComponent<SolutionItemController>();
-
-                solutionItemController.POI = poi;
-
-                scrollviewItems.Add(poi, inventoryItem);
-            }      
-        }
+            PopulateSolutionView();
         #endif
     }
     #endregion
@@ -86,6 +74,25 @@ public class SolutionScrollviewController : MonoBehaviour
             Destroy(scrollviewItems[poi].gameObject);
 
             scrollviewItems.Remove(poi);
+        }
+    }
+    #endregion
+
+    #region Editor-only methods
+    private void PopulateSolutionView()
+    {
+        foreach (var poi in pointsOfInterestSO.Points)
+        {
+            if (poi.type == poiType)
+            {
+                GameObject inventoryItem = Instantiate(itemPrefab, itemParent.transform);
+
+                SolutionItemController solutionItemController = inventoryItem.GetComponent<SolutionItemController>();
+
+                solutionItemController.POI = poi;
+
+                scrollviewItems.Add(poi, inventoryItem);
+            }      
         }
     }
     #endregion

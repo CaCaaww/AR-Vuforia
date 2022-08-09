@@ -1104,6 +1104,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndgameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 7501537381790594725, guid: ced923ea727ee0b2183dab65e7f40a31,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8385875270651247440, guid: ced923ea727ee0b2183dab65e7f40a31,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1363,6 +1368,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 550485210542075331, guid: 8f15c25d7daa79a07b8a226c63632f18,
+        type: 3}
+      propertyPath: pointsOfInterestSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 86583b92ac7685836801b880c75ec801,
+        type: 2}
     - target: {fileID: 3190036187320056737, guid: 8f15c25d7daa79a07b8a226c63632f18,
         type: 3}
       propertyPath: pointsOfInterestSO
@@ -1370,6 +1381,12 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 86583b92ac7685836801b880c75ec801,
         type: 2}
     - target: {fileID: 4661347125236450334, guid: 8f15c25d7daa79a07b8a226c63632f18,
+        type: 3}
+      propertyPath: pointsOfInterestSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 86583b92ac7685836801b880c75ec801,
+        type: 2}
+    - target: {fileID: 5160687933537223901, guid: 8f15c25d7daa79a07b8a226c63632f18,
         type: 3}
       propertyPath: pointsOfInterestSO
       value: 
