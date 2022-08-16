@@ -999,7 +999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiEventChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
   gameStateSO: {fileID: 11400000, guid: 50acf5239845e4484833b42b2d245639, type: 2}
-  pointsOfInterestSO: {fileID: 11400000, guid: 0cf13981b3d536550a47d4d3a5d86dfa, type: 2}
+  pointsOfInterestSO: {fileID: 11400000, guid: 86583b92ac7685836801b880c75ec801, type: 2}
   poiIconCollectionSO: {fileID: 11400000, guid: 041cb629f0fac8c28be5742fcf55e758,
     type: 2}
   npcAvatarCollectionSO: {fileID: 11400000, guid: 296e6f2a40d8a61db82971f75516b988,

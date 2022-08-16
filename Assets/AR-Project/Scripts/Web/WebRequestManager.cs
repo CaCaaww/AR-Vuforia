@@ -115,11 +115,10 @@ public class WebRequestManager : MonoBehaviour
         sessionDataSO.PointsOfInterest.Points.Clear();
 
         // Clear the helper dictionaries
-        sessionDataSO.PointsOfInterest.ImageNameAndPOI_Dict.Clear();
+        sessionDataSO.PointsOfInterest.ImageNameAndPOI.Clear();
         //sessionDataSO.PointsOfInterest.IDAndPOI_Dict.Clear();
         //sessionDataSO.PointsOfInterest.IDAndARPOI_Dict.Clear();
         //sessionDataSO.PointsOfInterest.IDAndNOARPOI_Dict.Clear();
-
         
     
         for (int i = 0; i < numberOfPois; i++)
@@ -152,11 +151,13 @@ public class WebRequestManager : MonoBehaviour
                 Debug.Log("[WEB] Image Url: " + image.Value);
 
                 // and then add them to an helper dictionary for the reference image library rebuilding process
-                sessionDataSO.PointsOfInterest.AddToImageNameAndPOI_Dict(image.Key, sessionDataSO.PointsOfInterest.Points[i]);
+                sessionDataSO.PointsOfInterest.AddToImageNameAndPOI(image.Key, sessionDataSO.PointsOfInterest.Points[i]);
 
                 // Retrieve the image as a texture2D
                 sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture.Add(image.Key, await Utils.GetRemoteTexture(image.Value));
+                #if UNITY_EDITOR
                 sessionDataSO.PointsOfInterest.Points[i].images.Add(sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture[image.Key]);
+                #endif
             }
 
             //sessionDataSO.PointsOfInterest.Points[i].isAR = dataStructure.ar_pois[i].is_ar;

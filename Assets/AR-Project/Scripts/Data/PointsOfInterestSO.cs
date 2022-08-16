@@ -22,7 +22,9 @@ public class PointOfInterest
     public bool isAR;
     //public string[] imageNames;
     //public string[] imageUrls;
+    #if UNITY_EDITOR
     public List<Texture2D> images = new List<Texture2D>();
+    #endif
     public Dictionary<string, Texture2D> imageNameAndTexture = new Dictionary<string, Texture2D>();
     public Dictionary<string, string> imageNameAndUrl = new Dictionary<string, string>();
     public bool isUseful;
@@ -83,7 +85,7 @@ public class PointsOfInterestSO : ScriptableObject
     /// <summary>
     /// Dictionary to store the relation between image name and POI
     /// </summary>
-    private Dictionary<string, PointOfInterest> imageNameAndPOI_Dict = new Dictionary<string, PointOfInterest>();
+    private Dictionary<string, PointOfInterest> imageNameAndPOI = new Dictionary<string, PointOfInterest>();
     
     //private Dictionary<int, PointOfInterest> idAndPOI_Dict = new Dictionary<int, PointOfInterest>();
     //private Dictionary<int, PointOfInterest> idAndARPOI_Dict = new Dictionary<int, PointOfInterest>();
@@ -101,7 +103,7 @@ public class PointsOfInterestSO : ScriptableObject
     public PointOfInterest WhenPOIChosenAsSolution { get => whenPOIChosenAsSolution; set => whenPOIChosenAsSolution = value; }
     public PointOfInterest HowPOIChosenAsSolution { get => howPOIChosenAsSolution; set => howPOIChosenAsSolution = value; }
     
-    public Dictionary<string, PointOfInterest> ImageNameAndPOI_Dict { get => imageNameAndPOI_Dict; }
+    public Dictionary<string, PointOfInterest> ImageNameAndPOI { get => imageNameAndPOI; }
     
     //public Dictionary<int, PointOfInterest> IDAndPOI_Dict { get => idAndPOI_Dict; }
     //public Dictionary<int, PointOfInterest> IDAndARPOI_Dict { get => idAndARPOI_Dict; }
@@ -109,9 +111,9 @@ public class PointsOfInterestSO : ScriptableObject
     #endregion
 
     #region Public Methods
-    public void AddToImageNameAndPOI_Dict(string imageName, PointOfInterest poi)
+    public void AddToImageNameAndPOI(string imageName, PointOfInterest poi)
     {
-        imageNameAndPOI_Dict.Add(imageName, poi);
+        imageNameAndPOI.Add(imageName, poi);
     }
 
     /*

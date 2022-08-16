@@ -20,7 +20,7 @@ public class BackendManager : MonoBehaviour
 
     #region Private Variables
     private TimerController timerController;
-    private int numberOfPOIs;
+    //private int numberOfPOIs;
     private List<PointOfInterest> tempPOIsList = new List<PointOfInterest>();
     #endregion
 
@@ -33,11 +33,14 @@ public class BackendManager : MonoBehaviour
         // Disable screen dimming
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         Screen.orientation = ScreenOrientation.Portrait;
+
+        // Bypass a bug at runtime
         UnityEngine.Rendering.DebugManager.instance.enableRuntimeUI = false;
 
         timerController = GetComponent<TimerController>();
 
-        numberOfPOIs = pointsOfInterestSO.Points.Count;
+        //numberOfPOIs = pointsOfInterestSO.Points.Count;
+
         gameStateSO.ResetToState(GameState.Loading);
     }
 
@@ -51,17 +54,6 @@ public class BackendManager : MonoBehaviour
         arEventChannelSO.OnPOIDetected += HandlePOIDetected;
         
     }
-
-    void OnDisable()
-    {
-        uiEventsChannelSO.OnStartGameEventRaised -= HandleStartGameEvent;
-        uiEventsChannelSO.OnHintRequestedEventRaised -= HandleHintRequest;
-        uiEventsChannelSO.OnSolutionItemSelectedEventRaised -= HandleSolutionItemSelection;
-        uiEventsChannelSO.OnSolutionGivenEventRaised -= HandleSolutionGiven;
-        
-        arEventChannelSO.OnPOIDetected -= HandlePOIDetected;
-    }
-    #endregion
 
     void Start()
     {
@@ -78,9 +70,25 @@ public class BackendManager : MonoBehaviour
         #endif
         */
     }
+
+    void OnDisable()
+    {
+        uiEventsChannelSO.OnStartGameEventRaised -= HandleStartGameEvent;
+        uiEventsChannelSO.OnHintRequestedEventRaised -= HandleHintRequest;
+        uiEventsChannelSO.OnSolutionItemSelectedEventRaised -= HandleSolutionItemSelection;
+        uiEventsChannelSO.OnSolutionGivenEventRaised -= HandleSolutionGiven;
         
+        arEventChannelSO.OnPOIDetected -= HandlePOIDetected;
+    }
+    #endregion
+
     #region Helper methods
-    private void RemoveItemFromList(List<PointOfInterest> pois, int totalPois)
+    /// <summary>
+    /// Remove a random unuseful POI from a list
+    /// </summary>
+    /// <param name="pois">The list from where remove the POI</param>
+    /// <param name="totalPois">The total number of POIs in the list</param>
+    private void RemoveUnusefulPOI(List<PointOfInterest> pois, int totalPois)
     {
         // Clear the temp list (just to be sure)
         tempPOIsList.Clear();
@@ -118,14 +126,57 @@ public class BackendManager : MonoBehaviour
     #endregion
 
     #region Callbacks
+    /// <summary>
+    /// Handle the start of the game
+    /// </summary>
     private void HandleStartGameEvent()
     {
         // Start the timer
         timerController.StartTimer();
     }
     
+    /// <summary>
+    /// Handle when a POI is detected
+    /// </summary>
+    /// <param name="imageName">The name of the image detected</param>
     private void HandlePOIDetected(string imageName)
     {
+        // If the POI was already detected, skip it
+        if (pointsOfInterestSO.ImageNameAndPOI[imageName].alreadyDetected)
+            return;
+        
+        // Set this POI as detected
+        pointsOfInterestSO.ImageNameAndPOI[imageName].alreadyDetected = true;
+
+        // Check the type and add the POI to the respective list
+        switch (pointsOfInterestSO.ImageNameAndPOI[imageName].type)
+        {
+            case EPOIType.Where:
+                {
+                    pointsOfInterestSO.WherePois.Add(pointsOfInterestSO.ImageNameAndPOI[imageName]);
+                }
+                break;
+            case EPOIType.When:
+                {
+                    pointsOfInterestSO.WhenPois.Add(pointsOfInterestSO.ImageNameAndPOI[imageName]);
+                }
+                break;
+            case EPOIType.How:
+                {
+                    pointsOfInterestSO.HowPois.Add(pointsOfInterestSO.ImageNameAndPOI[imageName]);
+                }
+                break;
+        }
+
+        // Raise an event informing that a POI was found
+        uiEventsChannelSO.RaiseOnPOIFoundEvent(pointsOfInterestSO.ImageNameAndPOI[imageName]);
+        
+        // Change the game state to POIPopUP
+        gameStateSO.UpdateGameState(GameState.POIPopUp);
+
+
+        /*
+
         // For all the POIs of the session
         for (int i = 0; i < numberOfPOIs; i ++)
         {
@@ -168,19 +219,24 @@ public class BackendManager : MonoBehaviour
                 return;
             }
         }
+        */
     }
 
+    /// <summary>
+    /// Handle an hint request
+    /// </summary>
     private void HandleHintRequest()
     {
-        int totalWherePois = pointsOfInterestSO.WherePois.Count;
-        int totalWhenPois = pointsOfInterestSO.WhenPois.Count;
-        int totalHowPois = pointsOfInterestSO.HowPois.Count;
-
-        RemoveItemFromList(pointsOfInterestSO.WherePois, totalWherePois);
-        RemoveItemFromList(pointsOfInterestSO.WhenPois, totalWhenPois);
-        RemoveItemFromList(pointsOfInterestSO.HowPois, totalHowPois);
+        // Remove a single random item (not part of the solution) for every type
+        RemoveUnusefulPOI(pointsOfInterestSO.WherePois, pointsOfInterestSO.WherePois.Count);
+        RemoveUnusefulPOI(pointsOfInterestSO.WhenPois, pointsOfInterestSO.WhenPois.Count);
+        RemoveUnusefulPOI(pointsOfInterestSO.HowPois, pointsOfInterestSO.HowPois.Count);
     }
    
+    /// <summary>
+    /// Handle the selection of an item as part of the solution
+    /// </summary>
+    /// <param name="controller">The controller for the solution item</param>
     private void HandleSolutionItemSelection(SolutionItemController controller)
     {
         switch (controller.POI.type)
@@ -203,6 +259,9 @@ public class BackendManager : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Handle what happens when the solution is given by the player
+    /// </summary>
     private void HandleSolutionGiven() 
     {
         if (pointsOfInterestSO.WherePOIChosenAsSolution.isUseful &&
@@ -226,13 +285,17 @@ public class BackendManager : MonoBehaviour
     #endregion
 
     #region  Editor-only methods
+    /// <summary>
+    /// Populate the inventory when using the Unity Editor
+    /// </summary>
     private void PopulateInventory()
     {
+        // Clear the lists (just to be sure)
         pointsOfInterestSO.WherePois.Clear();
         pointsOfInterestSO.WhenPois.Clear();
         pointsOfInterestSO.HowPois.Clear();
 
-        pointsOfInterestSO.ImageNameAndPOI_Dict.Clear();
+        pointsOfInterestSO.ImageNameAndPOI.Clear();
 
         foreach (var poi in pointsOfInterestSO.Points)
         {

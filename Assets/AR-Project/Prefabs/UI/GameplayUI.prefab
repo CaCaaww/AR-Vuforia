@@ -2874,7 +2874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
-  pointsOfInterestSO: {fileID: 11400000, guid: 0cf13981b3d536550a47d4d3a5d86dfa, type: 2}
+  pointsOfInterestSO: {fileID: 11400000, guid: 86583b92ac7685836801b880c75ec801, type: 2}
   itemPrefab: {fileID: 6089917171901276208, guid: a3883532d3a1f090f9dcafc2acbf56ec,
     type: 3}
   itemParent: {fileID: 7318796280703702113}
@@ -3098,7 +3098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
-  pointsOfInterestSO: {fileID: 11400000, guid: 0cf13981b3d536550a47d4d3a5d86dfa, type: 2}
+  pointsOfInterestSO: {fileID: 11400000, guid: 86583b92ac7685836801b880c75ec801, type: 2}
   itemPrefab: {fileID: 6089917171901276208, guid: a3883532d3a1f090f9dcafc2acbf56ec,
     type: 3}
   itemParent: {fileID: 7318796279668630728}
@@ -3980,7 +3980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
-  pointsOfInterestSO: {fileID: 11400000, guid: 0cf13981b3d536550a47d4d3a5d86dfa, type: 2}
+  pointsOfInterestSO: {fileID: 11400000, guid: 86583b92ac7685836801b880c75ec801, type: 2}
   itemPrefab: {fileID: 6089917171901276208, guid: a3883532d3a1f090f9dcafc2acbf56ec,
     type: 3}
   itemParent: {fileID: 7318796280299779284}
@@ -5229,7 +5229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
   gameStateSO: {fileID: 11400000, guid: 50acf5239845e4484833b42b2d245639, type: 2}
-  sessionDataSO: {fileID: 11400000, guid: e7976316756c36f39b48b0e4da3a268a, type: 2}
+  sessionDataSO: {fileID: 11400000, guid: bd04b964e8642e264b2347319ec61a4a, type: 2}
   inventoryCanvas: {fileID: 7318796280225935198}
   closeButton: {fileID: 7318796280669893086}
   hintButton: {fileID: 7318796279694114495}
@@ -5812,7 +5812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
-  pointsOfInterestSO: {fileID: 11400000, guid: 0cf13981b3d536550a47d4d3a5d86dfa, type: 2}
+  pointsOfInterestSO: {fileID: 11400000, guid: 86583b92ac7685836801b880c75ec801, type: 2}
   itemPrefab: {fileID: 7415952911738873494, guid: 42db873e5a2d8dc67b8dbedf7f3e083a,
     type: 3}
   itemParent: {fileID: 7318796280732912173}
@@ -7231,7 +7231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
-  pointsOfInterestSO: {fileID: 11400000, guid: 0cf13981b3d536550a47d4d3a5d86dfa, type: 2}
+  pointsOfInterestSO: {fileID: 11400000, guid: 86583b92ac7685836801b880c75ec801, type: 2}
   itemPrefab: {fileID: 7415952911738873494, guid: 42db873e5a2d8dc67b8dbedf7f3e083a,
     type: 3}
   itemParent: {fileID: 7318796281443325361}
@@ -7328,7 +7328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
-  pointsOfInterestSO: {fileID: 11400000, guid: 0cf13981b3d536550a47d4d3a5d86dfa, type: 2}
+  pointsOfInterestSO: {fileID: 11400000, guid: 86583b92ac7685836801b880c75ec801, type: 2}
   itemPrefab: {fileID: 7415952911738873494, guid: 42db873e5a2d8dc67b8dbedf7f3e083a,
     type: 3}
   itemParent: {fileID: 7318796280184775595}

@@ -47,19 +47,7 @@ public class InventoryScrollviewController : MonoBehaviour
     void Start()
     {
         #if UNITY_EDITOR
-        foreach (var poi in pointsOfInterestSO.Points)
-        {
-            if (poi.type == poiType)
-            {
-                GameObject inventoryItem = Instantiate(itemPrefab, itemParent.transform);
-
-                InventoryItemController inventoryItemController = inventoryItem.GetComponent<InventoryItemController>();
-
-                inventoryItemController.POI = poi;
-
-                scrollviewItems.Add(poi, inventoryItem);
-            }      
-        }
+        PopulateInventoryView();
         #endif
     }
     #endregion
@@ -83,9 +71,30 @@ public class InventoryScrollviewController : MonoBehaviour
     {
         if (poi.type == poiType)
         {
+            Debug.Log("[UI] REMOVE POI From InventoryView - Title: " + poi.title + " Type: " + poi.type);
+
             Destroy(scrollviewItems[poi].gameObject);
 
             scrollviewItems.Remove(poi);
+        }
+    }
+    #endregion
+
+    #region Editor-only methods
+    private void PopulateInventoryView()
+    {
+        foreach (var poi in pointsOfInterestSO.Points)
+        {
+            if (poi.type == poiType)
+            {
+                GameObject inventoryItem = Instantiate(itemPrefab, itemParent.transform);
+
+                InventoryItemController inventoryItemController = inventoryItem.GetComponent<InventoryItemController>();
+
+                inventoryItemController.POI = poi;
+
+                scrollviewItems.Add(poi, inventoryItem);
+            }      
         }
     }
     #endregion

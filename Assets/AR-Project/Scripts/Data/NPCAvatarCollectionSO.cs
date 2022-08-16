@@ -4,14 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 #region External classes
-
 [Serializable]
 public class NPCAvatar
 {
     public string avatarName;
     public Sprite sprite;
 }
-
 #endregion
 
 

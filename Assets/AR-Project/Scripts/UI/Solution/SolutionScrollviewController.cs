@@ -47,7 +47,7 @@ public class SolutionScrollviewController : MonoBehaviour
     void Start()
     {
         #if UNITY_EDITOR
-            PopulateSolutionView();
+        PopulateSolutionView();
         #endif
     }
     #endregion
@@ -57,6 +57,8 @@ public class SolutionScrollviewController : MonoBehaviour
     {
         if (poi.type == poiType)
         {
+            Debug.Log("[UI] ADD POI To SolutionView - Title: " + poi.title + " Type: " + poi.type);
+
             GameObject inventoryItem = Instantiate(itemPrefab, itemParent.transform);
 
             SolutionItemController solutionItemController = inventoryItem.GetComponent<SolutionItemController>();
@@ -71,6 +73,8 @@ public class SolutionScrollviewController : MonoBehaviour
     {
         if (poi.type == poiType)
         {
+            Debug.Log("[UI] REMOVE POI From SolutionView - Title: " + poi.title + " Type: " + poi.type);
+
             Destroy(scrollviewItems[poi].gameObject);
 
             scrollviewItems.Remove(poi);

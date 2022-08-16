@@ -43,6 +43,9 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
     /// Reference for the ARTrackedImageManager from ARCoreSession
     /// </summary>
     private ARTrackedImageManager trackedImageManager;
+    /// <summary>
+    /// Flag to check if it's the first time that the AR is in tracking mode
+    /// </summary>
     bool sessionTrackingFirstTimeDone;
     #endregion
 
@@ -75,6 +78,9 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
     #endregion
 
     #region Coroutines
+    /// <summary>
+    /// Coroutine to build the Reference Image Library
+    /// </summary>
     private IEnumerator BuildMutableReferenceImageLibraryAR()
     {
         // You can either add raw image bytes or use the extension method (used below) which accepts
@@ -219,13 +225,13 @@ public class ARImageTrackerMutableLibrary : MonoBehaviour
                 detectedImages.Add(trackedImage.referenceImage.name);
 
                 // Check if the dictionary is not null
-                if (sessionDataSO.PointsOfInterest.ImageNameAndPOI_Dict == null) 
+                if (sessionDataSO.PointsOfInterest.ImageNameAndPOI == null) 
                 {
                     Debug.Log("ImageNameAndPOI_Dict is null");
                 }
 
                 // Flag this image as already detected
-                sessionDataSO.PointsOfInterest.ImageNameAndPOI_Dict[trackedImage.referenceImage.name].alreadyDetected = true;
+                sessionDataSO.PointsOfInterest.ImageNameAndPOI[trackedImage.referenceImage.name].alreadyDetected = true;
 
                 // Temporarily disable the ARTrackedImageManager
                 DisableTrackedImageManager();
