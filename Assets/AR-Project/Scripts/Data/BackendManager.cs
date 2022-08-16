@@ -173,53 +173,6 @@ public class BackendManager : MonoBehaviour
         
         // Change the game state to POIPopUP
         gameStateSO.UpdateGameState(GameState.POIPopUp);
-
-
-        /*
-
-        // For all the POIs of the session
-        for (int i = 0; i < numberOfPOIs; i ++)
-        {
-            // If the POI was already detected, skip it
-            if (pointsOfInterestSO.Points[i].alreadyDetected)
-                return;
-
-            // If the image name in inside the key/value pair imageName/url
-            if (pointsOfInterestSO.Points[i].imageNameAndUrl.ContainsKey(imageName))
-            {
-                // Set this POI as detected
-                pointsOfInterestSO.Points[i].alreadyDetected = true;
-
-                // Check the type of the POI and add the POI to the respective list
-                switch (pointsOfInterestSO.Points[i].type)
-                {
-                    case EPOIType.Where:
-                        {
-                            pointsOfInterestSO.WherePois.Add(pointsOfInterestSO.Points[i]);
-                        }
-                        break;
-                    case EPOIType.When:
-                        {
-                            pointsOfInterestSO.WhenPois.Add(pointsOfInterestSO.Points[i]);
-                        }
-                        break;
-                    case EPOIType.How:
-                        {
-                            pointsOfInterestSO.HowPois.Add(pointsOfInterestSO.Points[i]);
-                        }
-                        break;
-                }
-
-                // Raise an event informing that a POI was found
-                uiEventsChannelSO.RaiseOnPOIFoundEvent(pointsOfInterestSO.Points[i]);
-                
-                // Change the game state to POIPopUP
-                gameStateSO.UpdateGameState(GameState.POIPopUp);
-
-                return;
-            }
-        }
-        */
     }
 
     /// <summary>
