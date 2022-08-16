@@ -152,6 +152,8 @@ public class WebRequestManager : MonoBehaviour
 
                 // and then add them to an helper dictionary for the reference image library rebuilding process
                 sessionDataSO.PointsOfInterest.AddToImageNameAndPOI(image.Key, sessionDataSO.PointsOfInterest.Points[i]);
+                Debug.Log("[WEB VUFORIA] Image name: " + image.Key);
+                Debug.Log("[WEB VUFORIA] ImageNameAndPOI: " + sessionDataSO.PointsOfInterest.ImageNameAndPOI[image.Key].title);
 
                 // Retrieve the image as a texture2D
                 sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture.Add(image.Key, await Utils.GetRemoteTexture(image.Value));

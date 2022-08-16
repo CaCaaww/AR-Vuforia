@@ -393,6 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3090d1c037bb21e44820ba2398dd7fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arEventChannelSO: {fileID: 11400000, guid: c5d003a6a03cb85a98af92927018363f, type: 2}
   gameStateSO: {fileID: 11400000, guid: 50acf5239845e4484833b42b2d245639, type: 2}
   sessionDataSO: {fileID: 11400000, guid: bd04b964e8642e264b2347319ec61a4a, type: 2}
   pointsOfInterestSO: {fileID: 11400000, guid: 86583b92ac7685836801b880c75ec801, type: 2}

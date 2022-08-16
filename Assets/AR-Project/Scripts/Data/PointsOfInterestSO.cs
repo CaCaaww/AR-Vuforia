@@ -19,15 +19,12 @@ public class PointOfInterest
     public EPOIType type;
     public string description;
     public bool isAR;
-    //public string[] imageNames;
-    //public string[] imageUrls;
     #if UNITY_EDITOR
-    public List<Texture2D> images = new List<Texture2D>();
+    public List<Texture2D> images = new();
     #endif
     public Dictionary<string, Texture2D> imageNameAndTexture = new();
     public Dictionary<string, string> imageNameAndUrl = new();
     public bool isUseful;
-    //public AddReferenceImageJobState jobState;
     public EIconType iconType;
     public bool alreadyDetected;
     public int avatarID;
@@ -87,7 +84,7 @@ public class PointsOfInterestSO : ScriptableObject
     private readonly Dictionary<string, PointOfInterest> imageNameAndPOI = new();
 
     /// <summary>
-    /// Dictionaty to store the relation between image name and Vuforia ImageTarget object
+    /// Dictionary to store the relation between image name and Vuforia ImageTarget object
     /// </summary>
     private readonly Dictionary<string, GameObject> imageNameAndImageTargetObject = new();
 
@@ -107,7 +104,7 @@ public class PointsOfInterestSO : ScriptableObject
     public PointOfInterest HowPOIChosenAsSolution { get => howPOIChosenAsSolution; set => howPOIChosenAsSolution = value; }
     
     public Dictionary<string, PointOfInterest> ImageNameAndPOI { get => imageNameAndPOI; }
-    public Dictionary<string, GameObject> ImageNameAndImageTargetObject { get => ImageNameAndImageTargetObject; }
+    public Dictionary<string, GameObject> ImageNameAndImageTargetObject { get => imageNameAndImageTargetObject; }
     
     //public Dictionary<int, PointOfInterest> IDAndPOI_Dict { get => idAndPOI_Dict; }
     //public Dictionary<int, PointOfInterest> IDAndARPOI_Dict { get => idAndARPOI_Dict; }

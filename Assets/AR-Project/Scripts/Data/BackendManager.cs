@@ -51,7 +51,7 @@ public class BackendManager : MonoBehaviour
         uiEventsChannelSO.OnSolutionItemSelectedEventRaised += HandleSolutionItemSelection;
         uiEventsChannelSO.OnSolutionGivenEventRaised += HandleSolutionGiven;
 
-        arEventChannelSO.OnPOIDetected += HandlePOIDetected;
+        //arEventChannelSO.OnPOIDetected += HandlePOIDetected;
         
     }
 
@@ -78,7 +78,7 @@ public class BackendManager : MonoBehaviour
         uiEventsChannelSO.OnSolutionItemSelectedEventRaised -= HandleSolutionItemSelection;
         uiEventsChannelSO.OnSolutionGivenEventRaised -= HandleSolutionGiven;
         
-        arEventChannelSO.OnPOIDetected -= HandlePOIDetected;
+        //arEventChannelSO.OnPOIDetected -= HandlePOIDetected;
     }
     #endregion
 
@@ -247,8 +247,6 @@ public class BackendManager : MonoBehaviour
         pointsOfInterestSO.WherePois.Clear();
         pointsOfInterestSO.WhenPois.Clear();
         pointsOfInterestSO.HowPois.Clear();
-
-        pointsOfInterestSO.ImageNameAndPOI.Clear();
 
         foreach (var poi in pointsOfInterestSO.Points)
         {

@@ -26,6 +26,8 @@ public class VuforiaManager : MonoBehaviour
 
     #endregion
 
+    private PointOfInterest tempPOI = new();
+
     private void OnEnable()
     {
         arEventChannelSO.OnPOIDetected += HandlePOIDetected;
@@ -56,14 +58,16 @@ public class VuforiaManager : MonoBehaviour
         // For every p.o.i. in the session
         for (int i = 0; i < sessionDataSO.PointsOfInterest.Points.Count; i++)
         {
+            int k = 1;
+
             // Loop through every image inside the p.o.i.
-            foreach (KeyValuePair<string, Texture2D> image in sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture)
+            foreach (KeyValuePair<string, Texture2D> entry in sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture)
             {
                 // If the image is readable
-                if (image.Value.isReadable)
+                if (entry.Value.isReadable)
                 {
                     // Schedule a job to add the image to the library
-                    var mImageTarget = VuforiaBehaviour.Instance.ObserverFactory.CreateImageTarget(image.Value, 1, sessionDataSO.PointsOfInterest.Points[i].title);
+                    var mImageTarget = VuforiaBehaviour.Instance.ObserverFactory.CreateImageTarget(entry.Value, 1, sessionDataSO.PointsOfInterest.Points[i].title + k.ToString());
 
                     // Yield until the the image is added to the library
                     yield return new WaitUntil(() => mImageTarget != null);
@@ -77,17 +81,19 @@ public class VuforiaManager : MonoBehaviour
                     observer.AREventChannelSO = arEventChannelSO;
 
                     // Set image name
-                    observer.ImageName = image.Key;
+                    observer.ImageName = entry.Key;
 
-                    // Keep track of the relation between a poi title and a Vuforia Image Target Object
-                    sessionDataSO.PointsOfInterest.ImageNameAndImageTargetObject.Add(sessionDataSO.PointsOfInterest.Points[i].title, observer.gameObject);
+                    // Keep track of the relation between a POI image name and a Vuforia Image Target Object
+                    sessionDataSO.PointsOfInterest.ImageNameAndImageTargetObject.Add(entry.Key, observer.gameObject);
 
-                    Debug.Log("[ARP] " + image.Key + " imageName: " + mImageTarget.TargetName);
+                    Debug.Log("[ARP] " + entry.Key + " imageName: " + mImageTarget.TargetName);
+
+                    k++;
                 }
                 // if The image is not readable
                 else
                 {
-                    Debug.Log($"[ARP] Image {image.Key} must be readable to be added to the image library.");
+                    Debug.Log($"[ARP] Image {entry.Key} must be readable to be added to the image library.");
                     
                     yield return null;
                 }
@@ -111,7 +117,31 @@ public class VuforiaManager : MonoBehaviour
     #region Callbacks
     private void HandlePOIDetected(string imageName)
     {
+        Debug.Log("DETECTED image name: " + imageName);
 
+        // Get the poi related to the image name
+        if (sessionDataSO.PointsOfInterest.ImageNameAndPOI.ContainsKey(imageName))
+        {
+            tempPOI = sessionDataSO.PointsOfInterest.ImageNameAndPOI[imageName];
+
+            Debug.Log("BLA2");
+
+            Debug.Log("TEMP POI: " + tempPOI.title);
+        }
+        
+
+        
+        
+        // Delete the respectives Vuforia Image Target objects
+        // and then remove them from the dictionary
+        foreach (var entry in tempPOI.imageNameAndTexture)
+        {
+            // Destroy the Vuforia Image Target Object
+            Destroy(sessionDataSO.PointsOfInterest.ImageNameAndImageTargetObject[entry.Key]);
+
+            // Remove the Vuforia Image Target from the dictionary
+            sessionDataSO.PointsOfInterest.ImageNameAndImageTargetObject.Remove(entry.Key);
+        }
     }
     #endregion
 }

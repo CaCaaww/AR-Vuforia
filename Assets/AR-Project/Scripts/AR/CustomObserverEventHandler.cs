@@ -151,6 +151,7 @@ public class CustomObserverEventHandler : MonoBehaviour
     public virtual void OnTrackingFound()
     {
         arEventChannelSO.RaisePOIDetectionEvent(imageName);
+        Debug.Log("BLA");
     }
 
     public virtual void OnTrackingLost() {}  
