@@ -8,6 +8,13 @@ using Image = UnityEngine.UI.Image;
 public class VuforiaManager : MonoBehaviour
 {
     #region Inspector
+    [Header("LISTEN Channels")]
+    /// <summary>
+    /// The SO channel for the AR events
+    /// </summary>
+    [Tooltip("The SO channel for the AR events")]
+    [SerializeField] private AREventChannelSO arEventChannelSO;
+
     [Header("SO References")]
     [SerializeField] private GameStateSO gameStateSO;
     [SerializeField] private SessionDataSO sessionDataSO;
@@ -19,41 +26,36 @@ public class VuforiaManager : MonoBehaviour
 
     #endregion
 
+    private void OnEnable()
+    {
+        arEventChannelSO.OnPOIDetected += HandlePOIDetected;
+    }
+
+    private void OnDisable()
+    {
+        arEventChannelSO.OnPOIDetected -= HandlePOIDetected;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        VuforiaApplication.Instance.OnVuforiaInitialized += SpawnImageTargets;
+        VuforiaApplication.Instance.OnVuforiaInitialized += StartSpwanImageTargets;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void StartSpwanImageTargets(VuforiaInitError error)
     {
-        
+        StartCoroutine(SpawnImageTargets());
     }
 
     #region Coroutines
     /// <summary>
     /// Coroutine to build the Reference Image Library
     /// </summary>
-    private void SpawnImageTargets(VuforiaInitError error)
+    private IEnumerator SpawnImageTargets()
     {
-        Debug.Log(sessionDataSO.PointsOfInterest.Points[0].title);
-
-        debug.texture = texture;
-
-        var mTarget = VuforiaBehaviour.Instance.ObserverFactory.CreateImageTarget(
-            texture,
-            1f,
-            "Asimov");
-        // Add the DefaultObserverEventHandler to the newly created game object
-        mTarget.gameObject.AddComponent<DefaultObserverEventHandler>();
-        Debug.Log("Target created and active" + mTarget);
-
-        /*// For every p.o.i. in the session
+        // For every p.o.i. in the session
         for (int i = 0; i < sessionDataSO.PointsOfInterest.Points.Count; i++)
         {
-            GameObject imageTarget = new GameObject("ImageTarget" + i);
-
             // Loop through every image inside the p.o.i.
             foreach (KeyValuePair<string, Texture2D> image in sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture)
             {
@@ -61,12 +63,24 @@ public class VuforiaManager : MonoBehaviour
                 if (image.Value.isReadable)
                 {
                     // Schedule a job to add the image to the library
-                    var mImageTarget = VuforiaBehaviour.Instance.ObserverFactory.CreateImageTarget(image.Value, 1, image.Key);
+                    var mImageTarget = VuforiaBehaviour.Instance.ObserverFactory.CreateImageTarget(image.Value, 1, sessionDataSO.PointsOfInterest.Points[i].title);
 
-                    imageTarget.gameObject.AddComponent<ImageTargetBehaviour>();
+                    // Yield until the the image is added to the library
+                    yield return new WaitUntil(() => mImageTarget != null);
 
-                // Yield until the the image is added to the library
-                //yield return new WaitUntil(() => mImageTarget != null);
+                    // Add the Observer to the ImageTarget
+                    var observer = mImageTarget.gameObject.AddComponent<CustomObserverEventHandler>();
+
+                    Debug.Log("Target created and active" + mImageTarget.gameObject.name);
+
+                    // Set the reference for the AR Event Channel SO
+                    observer.AREventChannelSO = arEventChannelSO;
+
+                    // Set image name
+                    observer.ImageName = image.Key;
+
+                    // Keep track of the relation between a poi title and a Vuforia Image Target Object
+                    sessionDataSO.PointsOfInterest.ImageNameAndImageTargetObject.Add(sessionDataSO.PointsOfInterest.Points[i].title, observer.gameObject);
 
                     Debug.Log("[ARP] " + image.Key + " imageName: " + mImageTarget.TargetName);
                 }
@@ -74,8 +88,8 @@ public class VuforiaManager : MonoBehaviour
                 else
                 {
                     Debug.Log($"[ARP] Image {image.Key} must be readable to be added to the image library.");
-
-                    //yield return null;
+                    
+                    yield return null;
                 }
             }
         }
@@ -89,8 +103,15 @@ public class VuforiaManager : MonoBehaviour
 
             // Raise an event to notify that the reference library was created for the first time
             //arEventChannelSO.RaiseReferenceLibraryFirstTimeCreatedEvent();
-        }*/
+        }
     }
- 
+
+    #endregion
+
+    #region Callbacks
+    private void HandlePOIDetected(string imageName)
+    {
+
+    }
     #endregion
 }

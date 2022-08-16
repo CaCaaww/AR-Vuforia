@@ -396,7 +396,7 @@ MonoBehaviour:
   gameStateSO: {fileID: 11400000, guid: 50acf5239845e4484833b42b2d245639, type: 2}
   sessionDataSO: {fileID: 11400000, guid: bd04b964e8642e264b2347319ec61a4a, type: 2}
   pointsOfInterestSO: {fileID: 11400000, guid: 86583b92ac7685836801b880c75ec801, type: 2}
-  texture: {fileID: 0}
+  texture: {fileID: 2800000, guid: e57f8cc29439fb94393e0053d2e1639f, type: 3}
   debug: {fileID: 1533921578}
 --- !u!1 &345575452
 GameObject:
@@ -765,8 +765,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -18.685692, y: 29.066605}
-  m_SizeDelta: {x: 502.7805, y: 797.5994}
+  m_AnchoredPosition: {x: 284.01, y: -466}
+  m_SizeDelta: {x: 390.67, y: 348.5119}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1533921578
 MonoBehaviour:
@@ -1202,6 +1202,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StartGameUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938268334390600034, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2592ee63cef2f7e158d13f8c2669d6ca, type: 3}

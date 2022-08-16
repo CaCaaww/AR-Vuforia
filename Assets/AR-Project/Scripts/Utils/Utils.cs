@@ -44,6 +44,19 @@ public class Utils : MonoBehaviour
             return null;
         }
     }
+
+    public static T Attach<T>(GameObject go, int arg1, int arg2, string arg3) where T : Component
+    {
+            T componentToAttach = go.AddComponent<T>();
+            //componentToAttach.SetupSomeStuffWithTheArgs(arg1, arg2, arg3);
+            // do any other Awake() or Start() like stuff you want here
+            return componentToAttach;
+    }
+
+    public static T Create<T>(int arg1, int arg2, string arg3) where T : Component
+    {
+        return Attach<T>(new GameObject("ClassExample.Create();"), arg1, arg2, arg3);
+    }
 }
 
 

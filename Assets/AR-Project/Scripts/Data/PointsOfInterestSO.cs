@@ -84,9 +84,13 @@ public class PointsOfInterestSO : ScriptableObject
     /// <summary>
     /// Dictionary to store the relation between image name and POI
     /// </summary>
-    private Dictionary<string, PointOfInterest> imageNameAndPOI = new();
-    
-    //private Dictionary<int, PointOfInterest> idAndPOI_Dict = new Dictionary<int, PointOfInterest>();
+    private readonly Dictionary<string, PointOfInterest> imageNameAndPOI = new();
+
+    /// <summary>
+    /// Dictionaty to store the relation between image name and Vuforia ImageTarget object
+    /// </summary>
+    private readonly Dictionary<string, GameObject> imageNameAndImageTargetObject = new();
+
     //private Dictionary<int, PointOfInterest> idAndARPOI_Dict = new Dictionary<int, PointOfInterest>();
     //private Dictionary<int, PointOfInterest> idAndNOARPOI_Dict = new Dictionary<int, PointOfInterest>();
     
@@ -103,6 +107,7 @@ public class PointsOfInterestSO : ScriptableObject
     public PointOfInterest HowPOIChosenAsSolution { get => howPOIChosenAsSolution; set => howPOIChosenAsSolution = value; }
     
     public Dictionary<string, PointOfInterest> ImageNameAndPOI { get => imageNameAndPOI; }
+    public Dictionary<string, GameObject> ImageNameAndImageTargetObject { get => ImageNameAndImageTargetObject; }
     
     //public Dictionary<int, PointOfInterest> IDAndPOI_Dict { get => idAndPOI_Dict; }
     //public Dictionary<int, PointOfInterest> IDAndARPOI_Dict { get => idAndARPOI_Dict; }
