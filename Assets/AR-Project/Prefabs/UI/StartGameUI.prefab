@@ -600,7 +600,6 @@ GameObject:
   - component: {fileID: 4630046927883555418}
   - component: {fileID: 6480205651135492081}
   - component: {fileID: 3436088723784674094}
-  - component: {fileID: 6892632075642993901}
   m_Layer: 5
   m_Name: StartGameUI
   m_TagString: Untagged
@@ -709,18 +708,6 @@ MonoBehaviour:
   titleText: {fileID: 3492025180624393775}
   introText: {fileID: 7379295293756727868}
   startButton: {fileID: 6573181362652434864}
---- !u!114 &6892632075642993901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5938268334390600034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b58ea353ac9564bedb700f5ccce968b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8267692191706938821
 GameObject:
   m_ObjectHideFlags: 0

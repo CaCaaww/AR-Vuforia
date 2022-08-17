@@ -28,12 +28,12 @@ public class StartGameUiController : MonoBehaviour
     #region Unity methods
     private void OnEnable()
     {
-        arEventChannelSO.OnReferenceLibraryFirstTimeCreated += HandleReferenceLibraryFirstTimeCreatedEvent;
+        arEventChannelSO.OnFinishedCreatingImageTargets += HandleImageTargetsCreationFinishedEvent;
     }
 
     private void OnDisable()
     {
-        arEventChannelSO.OnReferenceLibraryFirstTimeCreated -= HandleReferenceLibraryFirstTimeCreatedEvent;
+        arEventChannelSO.OnFinishedCreatingImageTargets -= HandleImageTargetsCreationFinishedEvent;
     }
 
 
@@ -47,9 +47,9 @@ public class StartGameUiController : MonoBehaviour
     #endregion
 
     #region Callbacks
-    private void HandleReferenceLibraryFirstTimeCreatedEvent()
+    private void HandleImageTargetsCreationFinishedEvent()
     {
-        // Change to the intro GameState
+        // Switch to the intro GameState
         gameStateSO.UpdateGameState(GameState.Intro);
 
         // Set the title text for the current session 

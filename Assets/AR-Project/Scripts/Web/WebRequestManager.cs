@@ -201,7 +201,6 @@ public class WebRequestManager : MonoBehaviour
             // Retrieve the actual image as a texture2D
             //sessionDataSO.PointsOfInterest.Points[i].image = await Utils.GetRemoteTexture(sessionDataSO.PointsOfInterest.Points[i].imageUrl);      
         }
-        
 
         uiEventsChannelSO.RaiseSessionDataLoadedEvent();
     }

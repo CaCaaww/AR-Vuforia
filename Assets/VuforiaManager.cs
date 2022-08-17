@@ -10,6 +10,12 @@ public class VuforiaManager : MonoBehaviour
     #region Inspector
     [Header("LISTEN Channels")]
     /// <summary>
+    /// The SO channel for the UI events
+    /// </summary>
+    [Tooltip("The SO channel for the UI events")]
+    [SerializeField] private UIEventsChannelSO uiEventsChannelSO;
+
+    /// <summary>
     /// The SO channel for the AR events
     /// </summary>
     [Tooltip("The SO channel for the AR events")]
@@ -20,9 +26,14 @@ public class VuforiaManager : MonoBehaviour
     [SerializeField] private SessionDataSO sessionDataSO;
     [SerializeField] private PointsOfInterestSO pointsOfInterestSO;
 
-    [Header("Debug")]
-    [SerializeField] private Texture2D texture;
-    [SerializeField] private RawImage debug;
+    [Header("Debug SO")]
+    [SerializeField] private DebugUIEventChannelSO debugUIEventChannelSO;
+
+    //#if UNITY_EDITOR
+    //[Header("Debug")]
+    //[SerializeField] private Texture2D texture;
+    //[SerializeField] private RawImage debug;
+    //#endif
 
     #endregion
 
@@ -31,17 +42,25 @@ public class VuforiaManager : MonoBehaviour
     private void OnEnable()
     {
         arEventChannelSO.OnPOIDetected += HandlePOIDetected;
+
+        uiEventsChannelSO.OnOpeningUIEventRaised += DisableVuforiaBehaviour;
+        uiEventsChannelSO.OnClosingUIEventRaised += EnableVuforiaBehaviour;
     }
 
     private void OnDisable()
     {
         arEventChannelSO.OnPOIDetected -= HandlePOIDetected;
+        
+        uiEventsChannelSO.OnOpeningUIEventRaised -= DisableVuforiaBehaviour;
+        uiEventsChannelSO.OnClosingUIEventRaised -= EnableVuforiaBehaviour;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         VuforiaApplication.Instance.OnVuforiaInitialized += StartSpwanImageTargets;
+
+        DisableVuforiaBehaviour();
     }
 
     private void StartSpwanImageTargets(VuforiaInitError error)
@@ -104,17 +123,35 @@ public class VuforiaManager : MonoBehaviour
         // so we can notify that the reference library creation is completed 
         if (gameStateSO.CurrentGameState == GameState.Loading)
         {
-            //EnableTrackedImageManager();
-            //gameStateSO.UpdateGameState(GameState.Tracking);
-
             // Raise an event to notify that the reference library was created for the first time
-            //arEventChannelSO.RaiseReferenceLibraryFirstTimeCreatedEvent();
+            arEventChannelSO.RaiseImageTargetsCreationFinishedEvent();
         }
     }
-
     #endregion
 
     #region Callbacks
+    /// <summary>
+    /// Callback to enable the Vuforia Behaviour
+    /// </summary>
+    private void EnableVuforiaBehaviour()
+    {
+        VuforiaBehaviour.Instance.enabled = true;
+        debugUIEventChannelSO.RaiseDebugEvent(VuforiaBehaviour.Instance.enabled.ToString());
+    }
+
+    /// <summary>
+    /// Callback to disable the Vuforia Behaviour
+    /// </summary>
+    private void DisableVuforiaBehaviour()
+    {
+        VuforiaBehaviour.Instance.enabled = false;
+        debugUIEventChannelSO.RaiseDebugEvent(VuforiaBehaviour.Instance.enabled.ToString());
+    }
+
+    /// <summary>
+    /// Callback to handle a POI detection
+    /// </summary>
+    /// <param name="imageName"></param>
     private void HandlePOIDetected(string imageName)
     {
         Debug.Log("DETECTED image name: " + imageName);
@@ -123,15 +160,10 @@ public class VuforiaManager : MonoBehaviour
         if (sessionDataSO.PointsOfInterest.ImageNameAndPOI.ContainsKey(imageName))
         {
             tempPOI = sessionDataSO.PointsOfInterest.ImageNameAndPOI[imageName];
-
-            Debug.Log("BLA2");
-
-            Debug.Log("TEMP POI: " + tempPOI.title);
         }
-        
 
-        
-        
+        Debug.Log("of POI: " + tempPOI.title);
+                        
         // Delete the respectives Vuforia Image Target objects
         // and then remove them from the dictionary
         foreach (var entry in tempPOI.imageNameAndTexture)

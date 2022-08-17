@@ -42,7 +42,7 @@ MonoBehaviour:
     thirdPartyARCoreClientDetected: 0
   playmode:
     mSequencePath: C:/UnityProjects/ar-vuforia/Assets/AR-Project/Recordings/image_target.mp4
-    playModeType: 2
+    playModeType: 0
   webcam:
     renderTextureLayer: 30
   packageInformation:

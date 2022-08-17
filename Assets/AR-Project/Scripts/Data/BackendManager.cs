@@ -51,14 +51,17 @@ public class BackendManager : MonoBehaviour
         uiEventsChannelSO.OnSolutionItemSelectedEventRaised += HandleSolutionItemSelection;
         uiEventsChannelSO.OnSolutionGivenEventRaised += HandleSolutionGiven;
 
-        //arEventChannelSO.OnPOIDetected += HandlePOIDetected;
+        arEventChannelSO.OnPOIDetected += HandlePOIDetected;
         
     }
 
     void Start()
     {
         #if UNITY_EDITOR
-            PopulateInventory();
+        // Clear the lists (just to be sure)
+        pointsOfInterestSO.WherePois.Clear();
+        pointsOfInterestSO.WhenPois.Clear();
+        pointsOfInterestSO.HowPois.Clear();
         #endif
 
         // Uncomment only in builds with just the 02-AR-Project scene
@@ -78,7 +81,7 @@ public class BackendManager : MonoBehaviour
         uiEventsChannelSO.OnSolutionItemSelectedEventRaised -= HandleSolutionItemSelection;
         uiEventsChannelSO.OnSolutionGivenEventRaised -= HandleSolutionGiven;
         
-        //arEventChannelSO.OnPOIDetected -= HandlePOIDetected;
+        arEventChannelSO.OnPOIDetected -= HandlePOIDetected;
     }
     #endregion
 
@@ -149,7 +152,7 @@ public class BackendManager : MonoBehaviour
         pointsOfInterestSO.ImageNameAndPOI[imageName].alreadyDetected = true;
 
         // Check the type and add the POI to the respective list
-        switch (pointsOfInterestSO.ImageNameAndPOI[imageName].type)
+        /*switch (pointsOfInterestSO.ImageNameAndPOI[imageName].type)
         {
             case EPOIType.Where:
                 {
@@ -166,7 +169,7 @@ public class BackendManager : MonoBehaviour
                     pointsOfInterestSO.HowPois.Add(pointsOfInterestSO.ImageNameAndPOI[imageName]);
                 }
                 break;
-        }
+        }*/
 
         // Raise an event informing that a POI was found
         uiEventsChannelSO.RaiseOnPOIFoundEvent(pointsOfInterestSO.ImageNameAndPOI[imageName]);
@@ -244,9 +247,9 @@ public class BackendManager : MonoBehaviour
     private void PopulateInventory()
     {
         // Clear the lists (just to be sure)
-        pointsOfInterestSO.WherePois.Clear();
-        pointsOfInterestSO.WhenPois.Clear();
-        pointsOfInterestSO.HowPois.Clear();
+        //pointsOfInterestSO.WherePois.Clear();
+        //pointsOfInterestSO.WhenPois.Clear();
+        //pointsOfInterestSO.HowPois.Clear();
 
         foreach (var poi in pointsOfInterestSO.Points)
         {

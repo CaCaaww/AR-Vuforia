@@ -24,27 +24,11 @@ MonoBehaviour:
     - {fileID: 0}
     isUseful: 0
     iconType: 1
-    alreadyDetected: 0
+    alreadyDetected: 1
     avatarID: 0
     avatarName: CiccioGamer89
     timer: 0
     linkedTo: 0
-  wherePoisFound:
-  - id: 62
-    title: _Homer
-    type: 0
-    description: Doh!
-    isAR: 0
-    images:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    isUseful: 0
-    iconType: 1
-    alreadyDetected: 0
-    avatarID: 0
-    avatarName: CiccioGamer89
-    timer: 0
-    linkedTo: 0
+  wherePoisFound: []
   whenPoisFound: []
   howPoisFound: []
