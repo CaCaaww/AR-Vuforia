@@ -40,17 +40,20 @@ public class WebRequestManager : MonoBehaviour
 
     void Start()
     {
-        Login("aaa", "bbb");
+        //Login("aaa", "bbb");
     }
     #endregion
     
     #region Helper methods
-    private async Task<string> GetRemoteData(string nicknameText, string passwordText)
+    private async Task<UnityWebRequest> GetRemoteData(string nicknameText, string passwordText)
     {
-        string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", remoteWebConsoleSO.AccessCode);
+        //string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", remoteWebConsoleSO.AccessCode);
+        #if UNITY_ANDROID
+        string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", passwordText);
+        #endif
 
         #if UNITY_EDITOR
-        url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", "12345");
+        string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", "12345");
         #endif
 
         Debug.Log(url);
@@ -68,22 +71,25 @@ public class WebRequestManager : MonoBehaviour
         if (www.result == UnityWebRequest.Result.Success)
         {
             Debug.Log($"[WEB] Success: {www.downloadHandler.text}");
-            return www.downloadHandler.text;
         }
         else
         {
             Debug.Log($"[WEB] Failed: {www.error}");
-            return www.error;
-        }         
+        }
+
+        return www;
     }
     #endregion
 
     #region Callbacks
     private async void Login(string nicknameText, string passwordText)
     {
-        var result = await GetRemoteData(nicknameText, passwordText);
+        var www = await GetRemoteData(nicknameText, passwordText);
 
-        dataStructure = JsonConvert.DeserializeObject<DataStructure>(result);
+        if (www.result != UnityWebRequest.Result.Success)
+            return;
+
+        dataStructure = JsonConvert.DeserializeObject<DataStructure>(www.downloadHandler.text);
 
         Debug.Log("DATASTRUCTURE");
         foreach(KeyValuePair<string, string> entry in dataStructure.pois[0].images)
