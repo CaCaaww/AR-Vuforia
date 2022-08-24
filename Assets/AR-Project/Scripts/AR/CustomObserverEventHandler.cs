@@ -39,14 +39,29 @@ public class CustomObserverEventHandler : MonoBehaviour
     protected bool mCallbackReceivedOnce;
 
     protected string imageName;
-    
+
     protected AREventChannelSO arEventChannelSO;
+    protected UIEventsChannelSO uiEventsChannelSO;
 
     public string ImageName { get => imageName; set => imageName = value; }
     public AREventChannelSO AREventChannelSO { get => arEventChannelSO; set => arEventChannelSO = value; }
+    public UIEventsChannelSO UIEventChannelSO { get => uiEventsChannelSO; set => uiEventsChannelSO = value; }
+
+    protected void OnDisable()
+    {
+        uiEventsChannelSO.OnOpeningUIEventRaised -= DisableObserver;
+        uiEventsChannelSO.OnClosingUIEventRaised -= EnableObserver;
+        arEventChannelSO.OnPOIDetected -= DisableObserver;
+        uiEventsChannelSO.OnStartGameEventRaised -= EnableObserver;
+    }
 
     protected virtual void Start()
     {
+        uiEventsChannelSO.OnOpeningUIEventRaised += DisableObserver;
+        uiEventsChannelSO.OnClosingUIEventRaised += EnableObserver;
+        arEventChannelSO.OnPOIDetected += DisableObserver;
+        uiEventsChannelSO.OnStartGameEventRaised += EnableObserver;
+
         mObserverBehaviour = GetComponent<ObserverBehaviour>();
         
         if (mObserverBehaviour)
@@ -56,6 +71,23 @@ public class CustomObserverEventHandler : MonoBehaviour
 
             OnObserverStatusChanged(mObserverBehaviour, mObserverBehaviour.TargetStatus);
         }
+
+        mObserverBehaviour.enabled = false;
+    }
+
+    private void DisableObserver()
+    {
+        mObserverBehaviour.enabled = false;
+    }
+
+    private void EnableObserver()
+    {
+        mObserverBehaviour.enabled = true;
+    }
+
+    private void DisableObserver(string s)
+    {
+        mObserverBehaviour.enabled = false;
     }
 
     protected virtual void OnDestroy()
@@ -68,6 +100,7 @@ public class CustomObserverEventHandler : MonoBehaviour
     {
         mObserverBehaviour.OnTargetStatusChanged -= OnObserverStatusChanged;
         mObserverBehaviour.OnBehaviourDestroyed -= OnObserverDestroyed;
+
         mObserverBehaviour = null;
     }
 

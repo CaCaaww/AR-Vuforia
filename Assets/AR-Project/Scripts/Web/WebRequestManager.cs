@@ -48,12 +48,11 @@ public class WebRequestManager : MonoBehaviour
     private async Task<UnityWebRequest> GetRemoteData(string nicknameText, string passwordText)
     {
         //string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", remoteWebConsoleSO.AccessCode);
-        #if UNITY_ANDROID
-        string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", passwordText);
-        #endif
-
+        
         #if UNITY_EDITOR
-        string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", "12345");
+        string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", "OcaDu");
+        #elif UNITY_ANDROID
+        string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", passwordText);
         #endif
 
         Debug.Log(url);
@@ -79,9 +78,9 @@ public class WebRequestManager : MonoBehaviour
 
         return www;
     }
-    #endregion
+#endregion
 
-    #region Callbacks
+#region Callbacks
     private async void Login(string nicknameText, string passwordText)
     {
         var www = await GetRemoteData(nicknameText, passwordText);
@@ -163,9 +162,9 @@ public class WebRequestManager : MonoBehaviour
 
                 // Retrieve the image as a texture2D
                 sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture.Add(image.Key, await Utils.GetRemoteTexture(image.Value));
-                #if UNITY_EDITOR
+#if UNITY_EDITOR
                 sessionDataSO.PointsOfInterest.Points[i].images.Add(sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture[image.Key]);
-                #endif
+#endif
             }
 
             //sessionDataSO.PointsOfInterest.Points[i].isAR = dataStructure.ar_pois[i].is_ar;
@@ -210,5 +209,5 @@ public class WebRequestManager : MonoBehaviour
 
         uiEventsChannelSO.RaiseSessionDataLoadedEvent();
     }
-    #endregion
+#endregion
 }
