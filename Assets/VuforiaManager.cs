@@ -42,17 +42,13 @@ public class VuforiaManager : MonoBehaviour
     private void OnEnable()
     {
         arEventChannelSO.OnPOIDetected += HandlePOIDetected;
-
-        uiEventsChannelSO.OnOpeningUIEventRaised += DisableVuforiaBehaviour;
-        uiEventsChannelSO.OnClosingUIEventRaised += EnableVuforiaBehaviour;
+        //uiEventsChannelSO.OnStartGameEventRaised += EnableVuforiaBehaviour;
     }
 
     private void OnDisable()
     {
         arEventChannelSO.OnPOIDetected -= HandlePOIDetected;
-        
-        uiEventsChannelSO.OnOpeningUIEventRaised -= DisableVuforiaBehaviour;
-        uiEventsChannelSO.OnClosingUIEventRaised -= EnableVuforiaBehaviour;
+        //uiEventsChannelSO.OnStartGameEventRaised -= EnableVuforiaBehaviour;
     }
 
     // Start is called before the first frame update
@@ -60,12 +56,7 @@ public class VuforiaManager : MonoBehaviour
     {
         VuforiaApplication.Instance.OnVuforiaInitialized += StartSpwanImageTargets;
 
-        DisableVuforiaBehaviour();
-    }
-
-    private void StartSpwanImageTargets(VuforiaInitError error)
-    {
-        StartCoroutine(SpawnImageTargets());
+        //DisableVuforiaBehaviour();
     }
 
     #region Coroutines
@@ -98,6 +89,8 @@ public class VuforiaManager : MonoBehaviour
 
                     // Set the reference for the AR Event Channel SO
                     observer.AREventChannelSO = arEventChannelSO;
+                    // Set the reference for the UI Event Channel SO
+                    observer.UIEventChannelSO = uiEventsChannelSO;
 
                     // Set image name
                     observer.ImageName = entry.Key;
@@ -130,6 +123,15 @@ public class VuforiaManager : MonoBehaviour
     #endregion
 
     #region Callbacks
+    /// <summary>
+    /// Callbak to spawn all the Vuforia Image Target objects
+    /// </summary>
+    /// <param name="error">The Vuforia error value</param>
+    private void StartSpwanImageTargets(VuforiaInitError error)
+    {
+        StartCoroutine(SpawnImageTargets());
+    }
+
     /// <summary>
     /// Callback to enable the Vuforia Behaviour
     /// </summary>
