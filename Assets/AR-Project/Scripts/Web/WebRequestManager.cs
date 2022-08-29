@@ -40,17 +40,19 @@ public class WebRequestManager : MonoBehaviour
 
     void Start()
     {
-        Login("aaa", "bbb");
+        //Login("aaa", "bbb");
     }
     #endregion
     
     #region Helper methods
-    private async Task<string> GetRemoteData(string nicknameText, string passwordText)
+    private async Task<UnityWebRequest> GetRemoteData(string nicknameText, string passwordText)
     {
-        string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", remoteWebConsoleSO.AccessCode);
-
+        //string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", remoteWebConsoleSO.AccessCode);
+        
         #if UNITY_EDITOR
-        url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", "12345");
+        string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", "OcaDu");
+        #elif UNITY_ANDROID
+        string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", passwordText);
         #endif
 
         Debug.Log(url);
@@ -68,22 +70,25 @@ public class WebRequestManager : MonoBehaviour
         if (www.result == UnityWebRequest.Result.Success)
         {
             Debug.Log($"[WEB] Success: {www.downloadHandler.text}");
-            return www.downloadHandler.text;
         }
         else
         {
             Debug.Log($"[WEB] Failed: {www.error}");
-            return www.error;
-        }         
-    }
-    #endregion
+        }
 
-    #region Callbacks
+        return www;
+    }
+#endregion
+
+#region Callbacks
     private async void Login(string nicknameText, string passwordText)
     {
-        var result = await GetRemoteData(nicknameText, passwordText);
+        var www = await GetRemoteData(nicknameText, passwordText);
 
-        dataStructure = JsonConvert.DeserializeObject<DataStructure>(result);
+        if (www.result != UnityWebRequest.Result.Success)
+            return;
+
+        dataStructure = JsonConvert.DeserializeObject<DataStructure>(www.downloadHandler.text);
 
         Debug.Log("DATASTRUCTURE");
         foreach(KeyValuePair<string, string> entry in dataStructure.pois[0].images)
@@ -152,12 +157,14 @@ public class WebRequestManager : MonoBehaviour
 
                 // and then add them to an helper dictionary for the reference image library rebuilding process
                 sessionDataSO.PointsOfInterest.AddToImageNameAndPOI(image.Key, sessionDataSO.PointsOfInterest.Points[i]);
+                Debug.Log("[WEB VUFORIA] Image name: " + image.Key);
+                Debug.Log("[WEB VUFORIA] ImageNameAndPOI: " + sessionDataSO.PointsOfInterest.ImageNameAndPOI[image.Key].title);
 
                 // Retrieve the image as a texture2D
                 sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture.Add(image.Key, await Utils.GetRemoteTexture(image.Value));
-                #if UNITY_EDITOR
+#if UNITY_EDITOR
                 sessionDataSO.PointsOfInterest.Points[i].images.Add(sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture[image.Key]);
-                #endif
+#endif
             }
 
             //sessionDataSO.PointsOfInterest.Points[i].isAR = dataStructure.ar_pois[i].is_ar;
@@ -199,9 +206,8 @@ public class WebRequestManager : MonoBehaviour
             // Retrieve the actual image as a texture2D
             //sessionDataSO.PointsOfInterest.Points[i].image = await Utils.GetRemoteTexture(sessionDataSO.PointsOfInterest.Points[i].imageUrl);      
         }
-        
 
         uiEventsChannelSO.RaiseSessionDataLoadedEvent();
     }
-    #endregion
+#endregion
 }

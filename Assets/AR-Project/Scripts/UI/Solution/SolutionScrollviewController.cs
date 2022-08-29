@@ -47,7 +47,7 @@ public class SolutionScrollviewController : MonoBehaviour
     void Start()
     {
         #if UNITY_EDITOR
-        PopulateSolutionView();
+        //PopulateSolutionView();
         #endif
     }
     #endregion

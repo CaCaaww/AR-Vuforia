@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEngine.XR.ARSubsystems;
 
 #region External classes
 public enum EPOIType
@@ -20,15 +19,12 @@ public class PointOfInterest
     public EPOIType type;
     public string description;
     public bool isAR;
-    //public string[] imageNames;
-    //public string[] imageUrls;
     #if UNITY_EDITOR
-    public List<Texture2D> images = new List<Texture2D>();
+    public List<Texture2D> images = new();
     #endif
-    public Dictionary<string, Texture2D> imageNameAndTexture = new Dictionary<string, Texture2D>();
-    public Dictionary<string, string> imageNameAndUrl = new Dictionary<string, string>();
+    public Dictionary<string, Texture2D> imageNameAndTexture = new();
+    public Dictionary<string, string> imageNameAndUrl = new();
     public bool isUseful;
-    public AddReferenceImageJobState jobState;
     public EIconType iconType;
     public bool alreadyDetected;
     public int avatarID;
@@ -85,9 +81,13 @@ public class PointsOfInterestSO : ScriptableObject
     /// <summary>
     /// Dictionary to store the relation between image name and POI
     /// </summary>
-    private Dictionary<string, PointOfInterest> imageNameAndPOI = new Dictionary<string, PointOfInterest>();
-    
-    //private Dictionary<int, PointOfInterest> idAndPOI_Dict = new Dictionary<int, PointOfInterest>();
+    private readonly Dictionary<string, PointOfInterest> imageNameAndPOI = new();
+
+    /// <summary>
+    /// Dictionary to store the relation between image name and Vuforia ImageTarget object
+    /// </summary>
+    private readonly Dictionary<string, GameObject> imageNameAndImageTargetObject = new();
+
     //private Dictionary<int, PointOfInterest> idAndARPOI_Dict = new Dictionary<int, PointOfInterest>();
     //private Dictionary<int, PointOfInterest> idAndNOARPOI_Dict = new Dictionary<int, PointOfInterest>();
     
@@ -104,6 +104,7 @@ public class PointsOfInterestSO : ScriptableObject
     public PointOfInterest HowPOIChosenAsSolution { get => howPOIChosenAsSolution; set => howPOIChosenAsSolution = value; }
     
     public Dictionary<string, PointOfInterest> ImageNameAndPOI { get => imageNameAndPOI; }
+    public Dictionary<string, GameObject> ImageNameAndImageTargetObject { get => imageNameAndImageTargetObject; }
     
     //public Dictionary<int, PointOfInterest> IDAndPOI_Dict { get => idAndPOI_Dict; }
     //public Dictionary<int, PointOfInterest> IDAndARPOI_Dict { get => idAndARPOI_Dict; }

@@ -14,7 +14,7 @@ public class AREventChannelSO : ScriptableObject
     /// <summary>
     /// Public action for when an image is recognized
     /// </summary>
-	public Action OnReferenceLibraryFirstTimeCreated;
+	public Action OnFinishedCreatingImageTargets;
     #endregion
 
     /// <summary>
@@ -31,11 +31,11 @@ public class AREventChannelSO : ScriptableObject
     /// <summary>
     /// Raise an event when an image is recognized
     /// </summary>
-	public void RaiseReferenceLibraryFirstTimeCreatedEvent()
+	public void RaiseImageTargetsCreationFinishedEvent()
 	{
-		if (OnReferenceLibraryFirstTimeCreated != null)
+		if (OnFinishedCreatingImageTargets != null)
         {
-			OnReferenceLibraryFirstTimeCreated.Invoke();
+            OnFinishedCreatingImageTargets.Invoke();
 		}
     }
 }

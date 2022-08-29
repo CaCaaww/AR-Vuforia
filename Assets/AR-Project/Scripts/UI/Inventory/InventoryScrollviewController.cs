@@ -47,7 +47,7 @@ public class InventoryScrollviewController : MonoBehaviour
     void Start()
     {
         #if UNITY_EDITOR
-        PopulateInventoryView();
+        //PopulateInventoryView();
         #endif
     }
     #endregion

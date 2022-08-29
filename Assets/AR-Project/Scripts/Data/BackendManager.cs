@@ -58,7 +58,10 @@ public class BackendManager : MonoBehaviour
     void Start()
     {
         #if UNITY_EDITOR
-            PopulateInventory();
+        // Clear the lists (just to be sure)
+        pointsOfInterestSO.WherePois.Clear();
+        pointsOfInterestSO.WhenPois.Clear();
+        pointsOfInterestSO.HowPois.Clear();
         #endif
 
         // Uncomment only in builds with just the 02-AR-Project scene
@@ -149,7 +152,7 @@ public class BackendManager : MonoBehaviour
         pointsOfInterestSO.ImageNameAndPOI[imageName].alreadyDetected = true;
 
         // Check the type and add the POI to the respective list
-        switch (pointsOfInterestSO.ImageNameAndPOI[imageName].type)
+        /*switch (pointsOfInterestSO.ImageNameAndPOI[imageName].type)
         {
             case EPOIType.Where:
                 {
@@ -166,60 +169,13 @@ public class BackendManager : MonoBehaviour
                     pointsOfInterestSO.HowPois.Add(pointsOfInterestSO.ImageNameAndPOI[imageName]);
                 }
                 break;
-        }
+        }*/
 
         // Raise an event informing that a POI was found
         uiEventsChannelSO.RaiseOnPOIFoundEvent(pointsOfInterestSO.ImageNameAndPOI[imageName]);
         
         // Change the game state to POIPopUP
         gameStateSO.UpdateGameState(GameState.POIPopUp);
-
-
-        /*
-
-        // For all the POIs of the session
-        for (int i = 0; i < numberOfPOIs; i ++)
-        {
-            // If the POI was already detected, skip it
-            if (pointsOfInterestSO.Points[i].alreadyDetected)
-                return;
-
-            // If the image name in inside the key/value pair imageName/url
-            if (pointsOfInterestSO.Points[i].imageNameAndUrl.ContainsKey(imageName))
-            {
-                // Set this POI as detected
-                pointsOfInterestSO.Points[i].alreadyDetected = true;
-
-                // Check the type of the POI and add the POI to the respective list
-                switch (pointsOfInterestSO.Points[i].type)
-                {
-                    case EPOIType.Where:
-                        {
-                            pointsOfInterestSO.WherePois.Add(pointsOfInterestSO.Points[i]);
-                        }
-                        break;
-                    case EPOIType.When:
-                        {
-                            pointsOfInterestSO.WhenPois.Add(pointsOfInterestSO.Points[i]);
-                        }
-                        break;
-                    case EPOIType.How:
-                        {
-                            pointsOfInterestSO.HowPois.Add(pointsOfInterestSO.Points[i]);
-                        }
-                        break;
-                }
-
-                // Raise an event informing that a POI was found
-                uiEventsChannelSO.RaiseOnPOIFoundEvent(pointsOfInterestSO.Points[i]);
-                
-                // Change the game state to POIPopUP
-                gameStateSO.UpdateGameState(GameState.POIPopUp);
-
-                return;
-            }
-        }
-        */
     }
 
     /// <summary>
@@ -291,11 +247,9 @@ public class BackendManager : MonoBehaviour
     private void PopulateInventory()
     {
         // Clear the lists (just to be sure)
-        pointsOfInterestSO.WherePois.Clear();
-        pointsOfInterestSO.WhenPois.Clear();
-        pointsOfInterestSO.HowPois.Clear();
-
-        pointsOfInterestSO.ImageNameAndPOI.Clear();
+        //pointsOfInterestSO.WherePois.Clear();
+        //pointsOfInterestSO.WhenPois.Clear();
+        //pointsOfInterestSO.HowPois.Clear();
 
         foreach (var poi in pointsOfInterestSO.Points)
         {

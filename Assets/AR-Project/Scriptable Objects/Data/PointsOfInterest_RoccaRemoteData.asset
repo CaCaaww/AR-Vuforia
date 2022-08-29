@@ -12,4 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b871cd39907b3eda4b30ab736f88910e, type: 3}
   m_Name: PointsOfInterest_RoccaRemoteData
   m_EditorClassIdentifier: 
-  points: []
+  points:
+  - id: 62
+    title: _Homer
+    type: 0
+    description: Doh!
+    isAR: 0
+    images:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    isUseful: 0
+    iconType: 1
+    alreadyDetected: 1
+    avatarID: 0
+    avatarName: CiccioGamer89
+    timer: 0
+    linkedTo: 0
+  wherePoisFound: []
+  whenPoisFound: []
+  howPoisFound: []

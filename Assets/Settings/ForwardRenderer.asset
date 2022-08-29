@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: NewARBackgroundRendererFeature
   m_EditorClassIdentifier: 
   m_Active: 1
+  m_BackgroundMesh: {fileID: 0}
 --- !u!114 &-915657045999154824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41,9 +42,8 @@ MonoBehaviour:
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7,
       type: 3}
-  m_RendererFeatures:
-  - {fileID: -5386724604433099262}
-  m_RendererFeatureMap: 0296e82983823eb5
+  m_RendererFeatures: []
+  m_RendererFeatureMap: 
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}

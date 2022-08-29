@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class LoadingUIController : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class LoadingUIController : MonoBehaviour
     private UIEventsChannelSO uiEventsChannelSO;
 
     [Header("References")]
+    [SerializeField]
+    private TMP_InputField accessCodeText;
+    [SerializeField]
+    private GameObject loadingLabel;
+    [SerializeField]
+    private GameObject loginButton;
     [SerializeField]
     private GameObject continueButton;
     #endregion
@@ -29,6 +36,17 @@ public class LoadingUIController : MonoBehaviour
     }
     #endregion
 
+    private void Start()
+    {
+        loginButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            uiEventsChannelSO.RaiseLoginCredentialsSentEvent("aaa", accessCodeText.text);
+            loginButton.SetActive(false);
+            loadingLabel.SetActive(true);
+            Debug.Log(accessCodeText.text);
+        });
+    }
+
     #region Callback methods
     private void HandleSessionDataLoadedEvent() 
     {
@@ -36,7 +54,7 @@ public class LoadingUIController : MonoBehaviour
         {
             SceneManager.LoadScene("02-AR-Project");
         });
-
+        loadingLabel.SetActive(false);
         continueButton.SetActive(true);
     }
     #endregion
