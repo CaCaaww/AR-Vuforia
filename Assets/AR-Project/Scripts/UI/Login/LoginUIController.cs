@@ -9,12 +9,26 @@ public class LoginUIController : MonoBehaviour
 {
     #region Inspector
     [Header("SO Listen Channels")]
-    [SerializeField] private UIEventsChannelSO uiEventsChannelSO;
+    [SerializeField]
+    private UIEventsChannelSO uiEventsChannelSO;
 
     [Header("References")]
-    [SerializeField] private GameObject loginButton;
-    [SerializeField] private TextMeshProUGUI nicknameText;
-    [SerializeField] private TextMeshProUGUI passwordText;
+    [SerializeField]
+    private TextMeshProUGUI headerText;
+    [SerializeField]
+    private TextMeshProUGUI nicknameText;
+    [SerializeField]
+    private TextMeshProUGUI passwordText;
+    [SerializeField]
+    private GameObject loadingLabel;
+    [SerializeField]
+    private GameObject loadingCircle;
+    [SerializeField]
+    private Button loginButton;
+    [SerializeField]
+    private TextMeshProUGUI loginButtonText;
+
+    
     #endregion
 
     #region Unity methods
@@ -29,6 +43,19 @@ public class LoginUIController : MonoBehaviour
     }
     #endregion
 
+    private void Start()
+    {
+        loginButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            uiEventsChannelSO.RaiseLoginCredentialsSentEvent("aaa", passwordText.text);
+            loginButton.interactable = false;
+            //loadingLabel.SetActive(true);
+            loadingCircle.SetActive(true);
+            Debug.Log(passwordText.text);
+
+        });
+    }
+
     #region Helper Methods
 
     #endregion
@@ -41,7 +68,10 @@ public class LoginUIController : MonoBehaviour
             SceneManager.LoadScene("02-AR-Project");
         });
 
-        loginButton.SetActive(true);
+        //loadingLabel.SetActive(false);
+        Destroy(loadingCircle);
+        loginButtonText.text = "CONTINUE";
+        loginButton.interactable = true;
     }
     #endregion
 }
