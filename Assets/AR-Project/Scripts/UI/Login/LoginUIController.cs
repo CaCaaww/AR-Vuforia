@@ -45,25 +45,15 @@ public class LoginUIController : MonoBehaviour
 
     private void Start()
     {
-        loginButton.GetComponent<Button>().onClick.AddListener(() =>
-        {
-            uiEventsChannelSO.RaiseLoginCredentialsSentEvent("aaa", passwordText.text);
-            loginButton.interactable = false;
-            //loadingLabel.SetActive(true);
-            loadingCircle.SetActive(true);
-            Debug.Log(passwordText.text);
-
-        });
+        loginButton.GetComponent<Button>().onClick.AddListener(Login);
     }
-
-    #region Helper Methods
-
-    #endregion
 
     #region Callback methods
     private void HandleSessionDataLoadedEvent() 
     {
-        loginButton.GetComponent<Button>().onClick.AddListener(() => 
+        loginButton.onClick.RemoveListener(Login);
+
+        loginButton.onClick.AddListener(() => 
         {
             SceneManager.LoadScene("02-AR-Project");
         });
@@ -72,6 +62,17 @@ public class LoginUIController : MonoBehaviour
         Destroy(loadingCircle);
         loginButtonText.text = "CONTINUE";
         loginButton.interactable = true;
+    }
+    #endregion
+
+    #region Helper Methods
+    private void Login()
+    {
+        uiEventsChannelSO.RaiseLoginCredentialsSentEvent("aaa", passwordText.text);
+        loginButton.interactable = false;
+        //loadingLabel.SetActive(true);
+        loadingCircle.SetActive(true);
+        Debug.Log(passwordText.text);
     }
     #endregion
 }
