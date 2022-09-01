@@ -37,8 +37,6 @@ public class BackendManager : MonoBehaviour
         // Bypass a bug at runtime
         UnityEngine.Rendering.DebugManager.instance.enableRuntimeUI = false;
 
-        timerController = GetComponent<TimerController>();
-
         //numberOfPOIs = pointsOfInterestSO.Points.Count;
 
         gameStateSO.ResetToState(GameState.Loading);
@@ -57,6 +55,8 @@ public class BackendManager : MonoBehaviour
 
     void Start()
     {
+        timerController = GetComponent<TimerController>();
+
         #if UNITY_EDITOR
         // Clear the lists (just to be sure)
         pointsOfInterestSO.WherePois.Clear();
