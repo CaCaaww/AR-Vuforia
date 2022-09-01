@@ -1112,7 +1112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &948288511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2352,7 +2352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2114457207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2448,7 +2448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
-  accessCodeText: {fileID: 1395210804}
+  accessCodeText: {fileID: 0}
   loadingLabel: {fileID: 1972300301}
   loginButton: {fileID: 1456619960}
   continueButton: {fileID: 1858974646}
@@ -2459,16 +2459,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8561897665589177467, guid: daa7fcb3342ffbc10b62b257081033fc,
-        type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8561897665589177467, guid: daa7fcb3342ffbc10b62b257081033fc,
-        type: 3}
-      propertyPath: m_isRightToLeft
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8561897665855213218, guid: daa7fcb3342ffbc10b62b257081033fc,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2579,10 +2569,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoginUI
       objectReference: {fileID: 0}
-    - target: {fileID: 8561897665855213222, guid: daa7fcb3342ffbc10b62b257081033fc,
+    - target: {fileID: 8658309230738765440, guid: daa7fcb3342ffbc10b62b257081033fc,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_text
+      value: LOGIN
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658309230738765440, guid: daa7fcb3342ffbc10b62b257081033fc,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daa7fcb3342ffbc10b62b257081033fc, type: 3}
