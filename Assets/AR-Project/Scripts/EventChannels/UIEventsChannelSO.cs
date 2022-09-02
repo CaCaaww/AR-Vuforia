@@ -7,7 +7,7 @@ using UnityEngine;
 public class UIEventsChannelSO : ScriptableObject
 {
 	#region Login Actions
- 	public Action OnSessionDataLoadedEventRaised;
+ 	public Action<bool> OnSessionDataLoadedEventRaised;
     public Action<string, string> OnLoginCredentialsSentEventRaised;
     #endregion
 
@@ -35,11 +35,11 @@ public class UIEventsChannelSO : ScriptableObject
 	#endregion
 
 	#region In-game raiser methods
-    public void RaiseSessionDataLoadedEvent()
+    public void RaiseSessionDataLoadedEvent(bool success)
 	{
 		if (OnSessionDataLoadedEventRaised != null)
 		{
-			OnSessionDataLoadedEventRaised.Invoke();
+			OnSessionDataLoadedEventRaised.Invoke(success);
 		}
 	}
 

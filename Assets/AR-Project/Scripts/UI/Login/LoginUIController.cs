@@ -20,21 +20,28 @@ public class LoginUIController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI passwordText;
     [SerializeField]
-    private GameObject loadingLabel;
+    private TextMeshProUGUI logText;
     [SerializeField]
     private GameObject loadingCircle;
     [SerializeField]
     private Button loginButton;
     [SerializeField]
     private TextMeshProUGUI loginButtonText;
-
-    
     #endregion
+
+    #region Private variables
+    private const string errorMessage = "Login denied: check nickname/password or the network connection";
+    #endregion 
 
     #region Unity methods
     private void OnEnable()
     {
         uiEventsChannelSO.OnSessionDataLoadedEventRaised += HandleSessionDataLoadedEvent;
+    }
+
+    private void Start()
+    {
+        loginButton.GetComponent<Button>().onClick.AddListener(Login);
     }
 
     private void OnDisable()
@@ -43,36 +50,44 @@ public class LoginUIController : MonoBehaviour
     }
     #endregion
 
-    private void Start()
-    {
-        loginButton.GetComponent<Button>().onClick.AddListener(Login);
-    }
-
-    #region Callback methods
-    private void HandleSessionDataLoadedEvent() 
-    {
-        loginButton.onClick.RemoveListener(Login);
-
-        loginButton.onClick.AddListener(() => 
-        {
-            SceneManager.LoadScene("02-AR-Project");
-        });
-
-        //loadingLabel.SetActive(false);
-        Destroy(loadingCircle);
-        loginButtonText.text = "CONTINUE";
-        loginButton.interactable = true;
-    }
-    #endregion
-
     #region Helper Methods
     private void Login()
     {
-        uiEventsChannelSO.RaiseLoginCredentialsSentEvent("aaa", passwordText.text);
+        uiEventsChannelSO.RaiseLoginCredentialsSentEvent(nicknameText.text, passwordText.text);
         loginButton.interactable = false;
         //loadingLabel.SetActive(true);
         loadingCircle.SetActive(true);
-        Debug.Log(passwordText.text);
+        Debug.Log("[WEB] Nickname: " + nicknameText.text);
+        Debug.Log("[WEB] Password: " + passwordText.text);
     }
     #endregion
+
+    #region Callback methods
+    private void HandleSessionDataLoadedEvent(bool success) 
+    {
+        if (success)
+        {
+            loginButton.onClick.RemoveListener(Login);
+
+            loginButton.onClick.AddListener(() => 
+            {
+                SceneManager.LoadScene("02-AR-Project");
+            });
+
+            logText.enabled = false;
+            Destroy(loadingCircle);
+            loginButtonText.text = "CONTINUE";
+            loginButton.interactable = true;
+        }
+        else
+        {
+            loadingCircle.SetActive(false);
+            logText.enabled = true;
+            logText.text = errorMessage;
+            loginButton.interactable = true;
+        }     
+    }
+    #endregion
+
+    
 }
