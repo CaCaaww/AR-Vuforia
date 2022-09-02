@@ -30,19 +30,19 @@ public class RemoteWebConsoleSO : ScriptableObject
     /// Nickname value for the current session
     /// </summary>
     [Tooltip("Nickname for the current session")]
-    [SerializeField] private string nicknameValue = "Nick";
+    [SerializeField] private string nicknameValue = "";
 
     /// <summary>
-    /// The access code parameter name expected for the current session
+    /// The password parameter name expected for the current session
     /// </summary>
-    [Tooltip("Access code for the current session")]
-    [SerializeField] private string accessCodeParameter = "?code";
+    [Tooltip("The password parameter name expected for the current session")]
+    [SerializeField] private string passwordParameter = "?code";
 
     /// <summary>
-    /// Access code for the current session
+    /// Password value for the current session
     /// </summary>
-    [Tooltip("Access code for the current session")]
-    [SerializeField] private string accessCodeValue = "A8gk0";
+    [Tooltip("Password value for the current session")]
+    [SerializeField] private string passwordValue = "";
     #endregion 
 
     #region Properties
@@ -69,11 +69,11 @@ public class RemoteWebConsoleSO : ScriptableObject
     /// <summary>
     /// Return the access code parameter name
     /// </summary>
-    public string AccessCodeParameter => accessCodeParameter;
+    public string PasswordParameter => passwordParameter;
 
     /// <summary>
     /// Return the access code value for joining the session
     /// </summary>
-    public string AccessCodeValue { get => accessCodeValue; set => accessCodeValue = value; }
+    public string PasswordValue { get => passwordValue; set => passwordValue = value; }
     #endregion
 }

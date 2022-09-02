@@ -16,9 +16,9 @@ public class LoginUIController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI headerText;
     [SerializeField]
-    private TextMeshProUGUI nicknameText;
+    private TMP_InputField nicknameInputField;
     [SerializeField]
-    private TextMeshProUGUI passwordText;
+    private TMP_InputField passwordInputField;
     [SerializeField]
     private TextMeshProUGUI logText;
     [SerializeField]
@@ -30,6 +30,9 @@ public class LoginUIController : MonoBehaviour
     #endregion
 
     #region Private variables
+    /// <summary>
+    /// The message to show when the login is not successful
+    /// </summary>
     private const string errorMessage = "Login denied: check nickname/password or the network connection";
     #endregion 
 
@@ -41,7 +44,24 @@ public class LoginUIController : MonoBehaviour
 
     private void Start()
     {
-        loginButton.GetComponent<Button>().onClick.AddListener(Login);
+        // Hide the log text when selecting the nickname input field
+        nicknameInputField.onSelect.AddListener((string text) =>
+        {
+            if (logText.enabled)
+                logText.enabled = false;
+        });
+
+        // Hide the log text when selecting the password input field
+        passwordInputField.onSelect.AddListener((string text) =>
+        {
+            if (logText.enabled)
+                logText.enabled = false;
+        });
+
+        loginButton.onClick.AddListener(Login);
+
+        // Assign the error message to the log text
+        logText.text = errorMessage;
     }
 
     private void OnDisable()
@@ -51,43 +71,79 @@ public class LoginUIController : MonoBehaviour
     #endregion
 
     #region Helper Methods
+    /// <summary>
+    /// The login method to execute when tapping con the login button
+    /// </summary>
     private void Login()
     {
-        uiEventsChannelSO.RaiseLoginCredentialsSentEvent(nicknameText.text, passwordText.text);
+        // Raise an LoginCredentialsSentEvent
+        uiEventsChannelSO.RaiseLoginCredentialsSentEvent(nicknameInputField.text, passwordInputField.text);
+
+        // Hide the log text
+        if (logText.enabled)
+                logText.enabled = false;
+
+        // Make the login button not interactable        
         loginButton.interactable = false;
-        //loadingLabel.SetActive(true);
+
+        // Change the login button text
+        loginButtonText.text = "LOADING";
+        
+        // Enable the loading circle
         loadingCircle.SetActive(true);
-        Debug.Log("[WEB] Nickname: " + nicknameText.text);
-        Debug.Log("[WEB] Password: " + passwordText.text);
+
+        Debug.Log("[WEB] Nickname: " + nicknameInputField.text);
+        Debug.Log("[WEB] Password: " + passwordInputField.text);
     }
     #endregion
 
     #region Callback methods
+    /// <summary>
+    /// Callback to handle if the session data was successfully retrieved or not
+    /// </summary>
+    /// <param name="success">True if the login was successful, false if not</param>
     private void HandleSessionDataLoadedEvent(bool success) 
     {
+        // If it was successsful
         if (success)
         {
+            // Remove the listener from the login button
             loginButton.onClick.RemoveListener(Login);
 
+            // Add a lister to the login button to load the AR scene
             loginButton.onClick.AddListener(() => 
             {
                 SceneManager.LoadScene("02-AR-Project");
             });
 
+            // Hide the log text
             logText.enabled = false;
+
+            // Destroy the loading circle
             Destroy(loadingCircle);
+
+            // Change the login button text
             loginButtonText.text = "CONTINUE";
+
+            // Make the login button interactable
             loginButton.interactable = true;
         }
         else
         {
+            Debug.Log("[WEB] Login Denied");
+            
+            // Hide the loading circle
             loadingCircle.SetActive(false);
+
+            // Enable the log text
             logText.enabled = true;
-            logText.text = errorMessage;
+            
+            // Make the login button interactable
             loginButton.interactable = true;
+
+            // Change the login button text
+            loginButtonText.text = "LOGIN";
         }     
     }
     #endregion
-
-    
 }

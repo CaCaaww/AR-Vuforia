@@ -15,6 +15,6 @@ MonoBehaviour:
   host: https://test1.dedalus.cc/arGame/public/api/
   joinGate: join
   nicknameParameter: ?nickname=
-  nicknameValue: "\u200B"
-  accessCodeParameter: ?code=
-  accessCodeValue: 12345
+  nicknameValue: 
+  passwordParameter: ?code=
+  passwordValue: 12345

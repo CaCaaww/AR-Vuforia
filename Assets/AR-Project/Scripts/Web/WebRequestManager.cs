@@ -40,25 +40,25 @@ public class WebRequestManager : MonoBehaviour
     #endregion
     
     #region Helper methods
-    private async Task<UnityWebRequest> GetRemoteData(string nicknameText, string passwordText)
+    private async Task<UnityWebRequest> GetRemoteData(string nickname, string password)
     {
         #if UNITY_EDITOR
         //string url = String.Concat(
         //    remoteWebConsoleSO.JoinGate,
         //    remoteWebConsoleSO.NicknameParameter,
         //    remoteWebConsoleSO.NicknameValue,
-        //    remoteWebConsoleSO.AccessCodeParameter,
-        //    remoteWebConsoleSO.AccessCodeValue);
+        //    remoteWebConsoleSO.PasswordParameter,
+        //    remoteWebConsoleSO.PasswordValue);
         string url = String.Concat(
             remoteWebConsoleSO.JoinGate,
-            remoteWebConsoleSO.AccessCodeParameter,
-            remoteWebConsoleSO.AccessCodeValue);
+            remoteWebConsoleSO.PasswordParameter,
+            remoteWebConsoleSO.PasswordValue);
         #elif UNITY_ANDROID
         string url = String.Concat(
             remoteWebConsoleSO.JoinGate,
             remoteWebConsoleSO.NicknameParameter,
             nicknameText,
-            remoteWebConsoleSO.accessCodeParameter,
+            remoteWebConsoleSO.PasswordParameter,
             passwordText);
         #endif
 
@@ -78,9 +78,9 @@ public class WebRequestManager : MonoBehaviour
         {
             Debug.Log($"[WEB] Success: {www.downloadHandler.text}");
 
-            #if UNITY_ANDROID
-            remoteWebConsoleSO.NicknameValue = nicknameText;
-            remoteWebConsoleSO.AccessCodeValue = passwordText;
+            #if !UNITY_EDITOR && UNITY_ANDROID
+            remoteWebConsoleSO.NicknameValue = nickname;
+            remoteWebConsoleSO.PasswordValue = password;
             #endif
         }
         else
@@ -102,7 +102,6 @@ public class WebRequestManager : MonoBehaviour
             uiEventsChannelSO.RaiseSessionDataLoadedEvent(false);
             return;
         }
-            
 
         dataStructure = JsonConvert.DeserializeObject<DataStructure>(www.downloadHandler.text);
 
@@ -112,7 +111,6 @@ public class WebRequestManager : MonoBehaviour
             Debug.Log("Key: " + entry.Key);
             Debug.Log("Value: " + entry.Value);
         }
-
 
         sessionDataSO.Hints = dataStructure.hints;
         Debug.Log("[WEB] Number of hints: " + sessionDataSO.Hints);

@@ -279,7 +279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Loading ...
+  m_text: Log Text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8cdd5723664c25006b966428be5ffe2e, type: 2}
   m_sharedMaterial: {fileID: -3006480476494258450, guid: 8cdd5723664c25006b966428be5ffe2e,
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.8980393, g: 0.8117648, b: 0.7058824, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
+  m_fontSize: 35
   m_fontSizeBase: 65
   m_fontWeight: 400
   m_enableAutoSizing: 0
@@ -1375,7 +1375,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     m_SelectedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.33962262, g: 0.32520467, b: 0.32520467, a: 0.9137255}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2471,8 +2471,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
   headerText: {fileID: 8561897665589177467}
-  nicknameText: {fileID: 8561897663969779541}
-  passwordText: {fileID: 8561897664904205210}
+  nicknameInputField: {fileID: 8561897665583943461}
+  passwordInputField: {fileID: 8561897664437752283}
   logText: {fileID: 3232676236916450883}
   loadingCircle: {fileID: 2023663452136917673}
   loginButton: {fileID: 8561897665045698896}
