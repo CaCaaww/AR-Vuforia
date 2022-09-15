@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
@@ -347,6 +348,7 @@ MonoBehaviour:
     type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1 &313065862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,6 +1224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1051937974}
   - component: {fileID: 1051937973}
+  - component: {fileID: 1051937975}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1259,6 +1262,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1051937975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051937972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024a03bba9c1b004799632cf1b11268d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1365955828
 GameObject:
   m_ObjectHideFlags: 0

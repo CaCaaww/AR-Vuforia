@@ -152,7 +152,7 @@ public class BackendManager : MonoBehaviour
         pointsOfInterestSO.ImageNameAndPOI[imageName].alreadyDetected = true;
 
         // Check the type and add the POI to the respective list
-        /*switch (pointsOfInterestSO.ImageNameAndPOI[imageName].type)
+        switch (pointsOfInterestSO.ImageNameAndPOI[imageName].type)
         {
             case EPOIType.Where:
                 {
@@ -169,7 +169,7 @@ public class BackendManager : MonoBehaviour
                     pointsOfInterestSO.HowPois.Add(pointsOfInterestSO.ImageNameAndPOI[imageName]);
                 }
                 break;
-        }*/
+        }
 
         // Raise an event informing that a POI was found
         uiEventsChannelSO.RaiseOnPOIFoundEvent(pointsOfInterestSO.ImageNameAndPOI[imageName]);

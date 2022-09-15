@@ -13,14 +13,54 @@ MonoBehaviour:
   m_Name: PointsOfInterest_RoccaRemoteData
   m_EditorClassIdentifier: 
   points:
-  - id: 62
-    title: _Homer
+  - id: 65
+    title: _Astronaut
     type: 0
-    description: Doh!
+    description: Vuforia Astronaut
     isAR: 0
     images:
     - {fileID: 0}
+    isUseful: 0
+    iconType: 1
+    alreadyDetected: 1
+    avatarID: 0
+    avatarName: CiccioGamer89
+    timer: 0
+    linkedTo: 0
+  - id: 66
+    title: _Drone
+    type: 1
+    description: Vuforia Drone
+    isAR: 0
+    images:
     - {fileID: 0}
+    isUseful: 0
+    iconType: 1
+    alreadyDetected: 1
+    avatarID: 0
+    avatarName: CiccioGamer89
+    timer: 0
+    linkedTo: 0
+  - id: 68
+    title: _Fissure
+    type: 2
+    description: Vuforia Fissure
+    isAR: 0
+    images:
+    - {fileID: 0}
+    isUseful: 0
+    iconType: 1
+    alreadyDetected: 1
+    avatarID: 0
+    avatarName: CiccioGamer89
+    timer: 0
+    linkedTo: 0
+  - id: 67
+    title: _Oxygen
+    type: 2
+    description: Oxygen
+    isAR: 0
+    images:
     - {fileID: 0}
     isUseful: 0
     iconType: 1
