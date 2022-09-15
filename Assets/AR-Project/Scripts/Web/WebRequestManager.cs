@@ -56,10 +56,11 @@ public class WebRequestManager : MonoBehaviour
         #elif UNITY_ANDROID
         string url = String.Concat(
             remoteWebConsoleSO.JoinGate,
-            remoteWebConsoleSO.NicknameParameter,
-            nicknameText,
+        //    remoteWebConsoleSO.NicknameParameter,
+        //    nickname,
             remoteWebConsoleSO.PasswordParameter,
-            passwordText);
+            password);
+
         #endif
 
         Debug.Log(url);
