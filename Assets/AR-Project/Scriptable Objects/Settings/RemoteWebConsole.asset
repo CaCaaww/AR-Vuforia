@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   host: https://test1.dedalus.cc/arGame/public/api/
   joinGate: join
-  accessCode: 12345
+  nicknameParameter: ?nickname=
+  nicknameValue: 
+  passwordParameter: ?code=
+  passwordValue: OcaDu

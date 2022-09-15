@@ -441,6 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
@@ -468,6 +469,7 @@ MonoBehaviour:
     type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1001 &4480545860321167420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -615,11 +617,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PopupUI
       objectReference: {fileID: 0}
-    - target: {fileID: 4480545861599235093, guid: 3950eb205b05ac789b3b0b6c82a28834,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5519612832789160460, guid: 3950eb205b05ac789b3b0b6c82a28834,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -628,7 +625,7 @@ PrefabInstance:
     - target: {fileID: 5519612832789160460, guid: 3950eb205b05ac789b3b0b6c82a28834,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0009765625
+      value: -0.00012207031
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3950eb205b05ac789b3b0b6c82a28834, type: 3}
@@ -639,6 +636,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6079886710450631774, guid: ef0361d79c27f9c498cc8eb204eb11cb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6079886710450631776, guid: ef0361d79c27f9c498cc8eb204eb11cb,
         type: 3}
       propertyPath: m_RootOrder
@@ -942,10 +944,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2085430902047946824, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2085430902047946824, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2085430902047946824, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292171658406741398, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292171658406741398, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4292171658406741398, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5938268334390600034, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
         type: 3}
       propertyPath: m_Name
       value: StartGameUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820555890798734747, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820555890798734747, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000045776367
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2592ee63cef2f7e158d13f8c2669d6ca, type: 3}

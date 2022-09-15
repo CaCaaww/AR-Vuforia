@@ -21,10 +21,28 @@ public class RemoteWebConsoleSO : ScriptableObject
     [SerializeField] private string joinGate = "join";
 
     /// <summary>
-    /// Access code for the current session
+    /// The nickname parameter name expected by the join gate
     /// </summary>
-    [Tooltip("Access code for the current session")]
-    [SerializeField] private string accessCode = "A8gk0";
+    [Tooltip("Nickname for the current session")]
+    [SerializeField] private string nicknameParameter = "?nickname";
+
+    /// <summary>
+    /// Nickname value for the current session
+    /// </summary>
+    [Tooltip("Nickname for the current session")]
+    [SerializeField] private string nicknameValue = "";
+
+    /// <summary>
+    /// The password parameter name expected for the current session
+    /// </summary>
+    [Tooltip("The password parameter name expected for the current session")]
+    [SerializeField] private string passwordParameter = "?code";
+
+    /// <summary>
+    /// Password value for the current session
+    /// </summary>
+    [Tooltip("Password value for the current session")]
+    [SerializeField] private string passwordValue = "";
     #endregion 
 
     #region Properties
@@ -39,8 +57,23 @@ public class RemoteWebConsoleSO : ScriptableObject
     public string JoinGate => String.Concat(host, joinGate);
 
     /// <summary>
-    /// Return the access code for joining the session
+    /// Return the nickname parameter name
     /// </summary>
-    public string AccessCode => accessCode;
+    public string NicknameParameter => nicknameParameter;
+
+    /// <summary>
+    /// Return the nickname value for joining the session
+    /// </summary>
+    public string NicknameValue { get => nicknameValue; set => nicknameValue = value; }
+
+    /// <summary>
+    /// Return the access code parameter name
+    /// </summary>
+    public string PasswordParameter => passwordParameter;
+
+    /// <summary>
+    /// Return the access code value for joining the session
+    /// </summary>
+    public string PasswordValue { get => passwordValue; set => passwordValue = value; }
     #endregion
 }

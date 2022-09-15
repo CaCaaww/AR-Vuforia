@@ -37,22 +37,30 @@ public class WebRequestManager : MonoBehaviour
     {
         uiEventsChannelSO.OnLoginCredentialsSentEventRaised -= Login;
     }
-
-    void Start()
-    {
-        //Login("aaa", "bbb");
-    }
     #endregion
     
     #region Helper methods
-    private async Task<UnityWebRequest> GetRemoteData(string nicknameText, string passwordText)
+    private async Task<UnityWebRequest> GetRemoteData(string nickname, string password)
     {
-        //string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", remoteWebConsoleSO.AccessCode);
-        
         #if UNITY_EDITOR
-        string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", "OcaDu");
+        //string url = String.Concat(
+        //    remoteWebConsoleSO.JoinGate,
+        //    remoteWebConsoleSO.NicknameParameter,
+        //    remoteWebConsoleSO.NicknameValue,
+        //    remoteWebConsoleSO.PasswordParameter,
+        //    remoteWebConsoleSO.PasswordValue);
+        string url = String.Concat(
+            remoteWebConsoleSO.JoinGate,
+            remoteWebConsoleSO.PasswordParameter,
+            remoteWebConsoleSO.PasswordValue);
         #elif UNITY_ANDROID
-        string url = String.Concat(remoteWebConsoleSO.JoinGate, "?code=", passwordText);
+        string url = String.Concat(
+            remoteWebConsoleSO.JoinGate,
+        //    remoteWebConsoleSO.NicknameParameter,
+        //    nickname,
+            remoteWebConsoleSO.PasswordParameter,
+            password);
+
         #endif
 
         Debug.Log(url);
@@ -70,6 +78,11 @@ public class WebRequestManager : MonoBehaviour
         if (www.result == UnityWebRequest.Result.Success)
         {
             Debug.Log($"[WEB] Success: {www.downloadHandler.text}");
+
+            #if !UNITY_EDITOR && UNITY_ANDROID
+            remoteWebConsoleSO.NicknameValue = nickname;
+            remoteWebConsoleSO.PasswordValue = password;
+            #endif
         }
         else
         {
@@ -86,7 +99,10 @@ public class WebRequestManager : MonoBehaviour
         var www = await GetRemoteData(nicknameText, passwordText);
 
         if (www.result != UnityWebRequest.Result.Success)
+        {
+            uiEventsChannelSO.RaiseSessionDataLoadedEvent(false);
             return;
+        }
 
         dataStructure = JsonConvert.DeserializeObject<DataStructure>(www.downloadHandler.text);
 
@@ -96,7 +112,6 @@ public class WebRequestManager : MonoBehaviour
             Debug.Log("Key: " + entry.Key);
             Debug.Log("Value: " + entry.Value);
         }
-
 
         sessionDataSO.Hints = dataStructure.hints;
         Debug.Log("[WEB] Number of hints: " + sessionDataSO.Hints);
@@ -162,9 +177,9 @@ public class WebRequestManager : MonoBehaviour
 
                 // Retrieve the image as a texture2D
                 sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture.Add(image.Key, await Utils.GetRemoteTexture(image.Value));
-#if UNITY_EDITOR
+                #if UNITY_EDITOR
                 sessionDataSO.PointsOfInterest.Points[i].images.Add(sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture[image.Key]);
-#endif
+                #endif
             }
 
             //sessionDataSO.PointsOfInterest.Points[i].isAR = dataStructure.ar_pois[i].is_ar;
@@ -182,7 +197,6 @@ public class WebRequestManager : MonoBehaviour
             sessionDataSO.PointsOfInterest.Points[i].avatarName = dataStructure.pois[i].avatar_name;
             Debug.Log("[WEB] Avatar name: " + dataStructure.pois[i].avatar_name);
             
-
 
             //sessionDataSO.PointsOfInterest.Points[i].timer = dataStructure.ar_pois[i].timer;
             //Debug.Log("[WEB] Timer to wait before revealing: " + dataStructure.ar_pois[i].timer);
@@ -207,7 +221,7 @@ public class WebRequestManager : MonoBehaviour
             //sessionDataSO.PointsOfInterest.Points[i].image = await Utils.GetRemoteTexture(sessionDataSO.PointsOfInterest.Points[i].imageUrl);      
         }
 
-        uiEventsChannelSO.RaiseSessionDataLoadedEvent();
+        uiEventsChannelSO.RaiseSessionDataLoadedEvent(true);
     }
 #endregion
 }
