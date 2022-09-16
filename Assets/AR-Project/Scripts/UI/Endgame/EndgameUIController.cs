@@ -13,8 +13,10 @@ public class EndgameUIController : MonoBehaviour
 
     [Header("References")]
     [SerializeField] Canvas endgameCanvas;
-    [SerializeField] TextMeshProUGUI endgameTimerText;
-    [SerializeField] TextMeshProUGUI endgameDescription;
+    [SerializeField] TextMeshProUGUI headerText;
+    [SerializeField] TextMeshProUGUI descriptionText;
+    [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] Button exitButton;
     #endregion
 
     #region Unity methods
@@ -33,13 +35,29 @@ public class EndgameUIController : MonoBehaviour
         // Disable the canvas just to be sure
         endgameCanvas.enabled = false;
     }
+
+    void Start()
+    {
+        exitButton.GetComponent<Button>();
+    }
     #endregion
 
     #region Callbacks
     private void HandleEndgameReached(bool isVictory, string endgameText, TimeSpan timePlaying) 
     {
-        endgameTimerText.text = "You played for " + timePlaying.Minutes + " minutes and " + timePlaying.Seconds + " seconds";
-        endgameDescription.text = endgameText;
+        // Set the header text
+        headerText.text = isVictory ? "Victory" : "Defeat";
+
+        // Set the description text
+        descriptionText.text = endgameText;
+
+        // Set the timer text
+        timerText.text = "You played for " + timePlaying.Minutes + " minutes and " + timePlaying.Seconds + " seconds";
+
+        // Add a quit function to the exit button
+        exitButton.onClick.AddListener(() => Utils.QuitGame());
+
+        // Enable the canvas
         endgameCanvas.enabled = true;       
     }
     #endregion
