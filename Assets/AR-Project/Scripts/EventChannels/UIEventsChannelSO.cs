@@ -17,7 +17,8 @@ public class UIEventsChannelSO : ScriptableObject
     public Action OnHintRequestedEventRaised;
     public Action<PointOfInterest> OnPOIRemovedEventRaised;
     public Action<SolutionItemController> OnSolutionItemSelectedEventRaised;
-    public Action OnSolutionGivenEventRaised;
+	public Action<SolutionItemController> OnSolutionItemDeselectedEventRaised;
+	public Action OnSolutionGivenEventRaised;
     public Action<bool, string, TimeSpan> OnEndgameReachedEventRaised;
     public Action OnClosingUIEventRaised;
 	public Action OnOpeningUIEventRaised;
@@ -82,6 +83,13 @@ public class UIEventsChannelSO : ScriptableObject
             OnSolutionItemSelectedEventRaised.Invoke(controller);
         }
 	}
+	public void RaiseSolutionItemDeselectedEvent(SolutionItemController controller)
+	{
+		if (OnSolutionItemDeselectedEventRaised != null)
+		{
+			OnSolutionItemDeselectedEventRaised.Invoke(controller);
+		}
+	}
 
 	public void RaiseSolutionGivenEvent()
 	{
@@ -96,9 +104,6 @@ public class UIEventsChannelSO : ScriptableObject
 		if (OnEndgameReachedEventRaised != null)
 		{
             OnEndgameReachedEventRaised.Invoke(isVictory, endgameText, timeSpan);
-
-			//Stop the timer
-			//EndgameTimerController.instance.EndTimer();
         }
 	}
 

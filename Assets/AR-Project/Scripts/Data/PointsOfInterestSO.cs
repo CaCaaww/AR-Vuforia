@@ -46,38 +46,63 @@ public class PointsOfInterestSO : ScriptableObject
     /// The list of all the AR points of interest for the session
     /// </summary>
     [Tooltip("The list of all the AR points of interest for the session")]
-    [SerializeField] private List<PointOfInterest> points = new List<PointOfInterest>();
+    [SerializeField] private List<PointOfInterest> points = new();
     /// <summary>
     /// The list of all the "where" POIs found for the session
     /// </summary>
     [Tooltip("The list of all the _where_ POIs found for the session")]
-    [SerializeField] private List<PointOfInterest> wherePoisFound = new List<PointOfInterest>();
+    [SerializeField] private List<PointOfInterest> wherePoisFound = new();
     /// <summary>
     /// The list of all the "when" POIs found for the session
     /// </summary>
     [Tooltip("The list of all the _when_ POIs found for the session")]
-    [SerializeField] private List<PointOfInterest> whenPoisFound = new List<PointOfInterest>();
+    [SerializeField] private List<PointOfInterest> whenPoisFound = new();
     /// <summary>
     /// The list of all the "how" POIs found for the session
     /// </summary>
     [Tooltip("The list of all the _how_ POIs found for the session")]
-    [SerializeField] private List<PointOfInterest> howPoisFound = new List<PointOfInterest>();
+    [SerializeField] private List<PointOfInterest> howPoisFound = new();
+    
+    [Header("Solution")]
+    /// <summary>
+    /// The id of the _where_ POI that is part of the solution
+    /// </summary>
+    [Tooltip("The id of the _where_ POI that is part of the solution")]
+    [SerializeField]
+    private int wherePOISolutionId = 0;
+    /// <summary>
+    /// The id of the _when_ POI that is part of the solution
+    /// </summary>
+    [Tooltip("The id of the _when_ POI that is part of the solution")]
+    [SerializeField]
+    private int whenPOISolutionId = 0;
+    /// <summary>
+    /// The id of the _how_ POI that is part of the solution
+    /// </summary>
+    [Tooltip("The id of the _how_ POI that is part of the solution")]
+    [SerializeField]
+    private int howPOISolutionId = 0;
+    /// <summary>
+    /// The id of the "where" POI chosen as part of the solution
+    /// </summary>
+    [Tooltip("The id of the _where_ POI chosen as part of the solution")]
+    [SerializeField]
+    private int wherePOIChosenAsSolutionId = 0;
+    /// <summary>
+    /// The id of the "when" POI chosen as part of the solution
+    /// </summary>
+    [Tooltip("The id of the _when_ POI chosen as part of the solution")]
+    [SerializeField]
+    private int whenPOIChosenAsSolutionId = 0;
+    /// <summary>
+    /// The id of the "how" POI chosen as part of the solution
+    /// </summary>
+    [Tooltip("The id of the _how_ POI chosen as part of the solution")]
+    [SerializeField]
+    private int howPOIChosenAsSolutionId = 0;
     #endregion
 
     #region Private variables
-    /// <summary>
-    /// Reference to the where POIs chosen as part of the solution
-    /// </summary>
-    private PointOfInterest wherePOIChosenAsSolution;
-    /// <summary>
-    /// Reference to the when POIs chosen as part of the solution
-    /// </summary>
-    private PointOfInterest whenPOIChosenAsSolution;
-    /// <summary>
-    /// Reference to the how POIs chosen as part of the solution
-    /// </summary>
-    private PointOfInterest howPOIChosenAsSolution;
-
     /// <summary>
     /// Dictionary to store the relation between image name and POI
     /// </summary>
@@ -99,10 +124,16 @@ public class PointsOfInterestSO : ScriptableObject
     public List<PointOfInterest> WhenPois { get => whenPoisFound; }
     public List<PointOfInterest> HowPois { get => howPoisFound; }
 
-    public PointOfInterest WherePOIChosenAsSolution { get => wherePOIChosenAsSolution; set => wherePOIChosenAsSolution = value; }
-    public PointOfInterest WhenPOIChosenAsSolution { get => whenPOIChosenAsSolution; set => whenPOIChosenAsSolution = value; }
-    public PointOfInterest HowPOIChosenAsSolution { get => howPOIChosenAsSolution; set => howPOIChosenAsSolution = value; }
-    
+
+    public int WherePOISolutionId { get => wherePOISolutionId; set => wherePOISolutionId = value; }
+    public int WhenPOISolutionId { get => whenPOISolutionId; set => whenPOISolutionId = value; }
+    public int HowPOISolutionId { get => howPOISolutionId; set => howPOISolutionId = value; }
+
+    public int WherePOIChosenAsSolutionId { get => wherePOIChosenAsSolutionId; set => wherePOIChosenAsSolutionId = value; }
+    public int WhenPOIChosenAsSolutionId { get => whenPOIChosenAsSolutionId; set => whenPOIChosenAsSolutionId = value; }
+    public int HowPOIChosenAsSolutionId { get => howPOIChosenAsSolutionId; set => howPOIChosenAsSolutionId = value; }
+
+
     public Dictionary<string, PointOfInterest> ImageNameAndPOI { get => imageNameAndPOI; }
     public Dictionary<string, GameObject> ImageNameAndImageTargetObject { get => imageNameAndImageTargetObject; }
     
@@ -115,6 +146,20 @@ public class PointsOfInterestSO : ScriptableObject
     public void AddToImageNameAndPOI(string imageName, PointOfInterest poi)
     {
         imageNameAndPOI.Add(imageName, poi);
+    }
+
+    /// <summary>
+    /// Method to reset some variables before the start of the game (in editor mode)
+    /// </summary>
+    public void ResetVariables()
+    {
+        wherePoisFound.Clear();
+        whenPoisFound.Clear();
+        howPoisFound.Clear();
+
+        wherePOIChosenAsSolutionId = 0;
+        whenPOIChosenAsSolutionId = 0;
+        howPOIChosenAsSolutionId = 0;
     }
 
     /*
