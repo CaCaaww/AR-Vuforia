@@ -185,19 +185,45 @@ public class WebRequestManager : MonoBehaviour
             //sessionDataSO.PointsOfInterest.Points[i].isAR = dataStructure.ar_pois[i].is_ar;
             //Debug.Log("[WEB] Is AR: " + dataStructure.ar_pois[i].is_ar);
 
+            // Set if the p.o.i. is useful on not for the solution
             sessionDataSO.PointsOfInterest.Points[i].isUseful = dataStructure.pois[i].is_useful;
             Debug.Log("[WEB] Is useful to to the solution: " + dataStructure.pois[i].is_useful);
 
+            // If useful store the id in a variable (taking account of the p.o.i. type)
+            if (dataStructure.pois[i].is_useful)
+            {
+                switch (sessionDataSO.PointsOfInterest.Points[i].type)
+                {
+                    case EPOIType.Where:
+                        {
+                            sessionDataSO.PointsOfInterest.WherePOISolutionId = sessionDataSO.PointsOfInterest.Points[i].id;
+                        }
+                        break;
+                    case EPOIType.When:
+                        {
+                            sessionDataSO.PointsOfInterest.WhenPOISolutionId = sessionDataSO.PointsOfInterest.Points[i].id;
+                        }
+                        break;
+                    case EPOIType.How:
+                        {
+                            sessionDataSO.PointsOfInterest.HowPOISolutionId = sessionDataSO.PointsOfInterest.Points[i].id;
+                        }
+                        break;
+                }
+            }
+
+            // Set the icon type for the p.o.i.
             sessionDataSO.PointsOfInterest.Points[i].iconType = (EIconType)dataStructure.pois[i].icon_type;
             Debug.Log("[WEB] Icon type: " + (EIconType)dataStructure.pois[i].icon_type);
 
+            // Set the avatar id for the p.o.i.
             sessionDataSO.PointsOfInterest.Points[i].avatarID = dataStructure.pois[i].avatar_id;
             Debug.Log("[WEB] Avatar id: " + dataStructure.pois[i].avatar_id);
 
+            // Set the avatar name for the p.o.i.
             sessionDataSO.PointsOfInterest.Points[i].avatarName = dataStructure.pois[i].avatar_name;
             Debug.Log("[WEB] Avatar name: " + dataStructure.pois[i].avatar_name);
             
-
             //sessionDataSO.PointsOfInterest.Points[i].timer = dataStructure.ar_pois[i].timer;
             //Debug.Log("[WEB] Timer to wait before revealing: " + dataStructure.ar_pois[i].timer);
 
@@ -221,6 +247,7 @@ public class WebRequestManager : MonoBehaviour
             //sessionDataSO.PointsOfInterest.Points[i].image = await Utils.GetRemoteTexture(sessionDataSO.PointsOfInterest.Points[i].imageUrl);      
         }
 
+        // Raise an event for finishing the loading of the session data
         uiEventsChannelSO.RaiseSessionDataLoadedEvent(true);
     }
 #endregion

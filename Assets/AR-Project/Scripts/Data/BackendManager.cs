@@ -47,6 +47,7 @@ public class BackendManager : MonoBehaviour
         uiEventsChannelSO.OnStartGameEventRaised += HandleStartGameEvent;
         uiEventsChannelSO.OnHintRequestedEventRaised += HandleHintRequest;
         uiEventsChannelSO.OnSolutionItemSelectedEventRaised += HandleSolutionItemSelection;
+        uiEventsChannelSO.OnSolutionItemDeselectedEventRaised += HandleSolutionItemDeselection;
         uiEventsChannelSO.OnSolutionGivenEventRaised += HandleSolutionGiven;
 
         arEventChannelSO.OnPOIDetected += HandlePOIDetected;
@@ -58,10 +59,8 @@ public class BackendManager : MonoBehaviour
         timerController = GetComponent<TimerController>();
 
         #if UNITY_EDITOR
-        // Clear the lists (just to be sure)
-        pointsOfInterestSO.WherePois.Clear();
-        pointsOfInterestSO.WhenPois.Clear();
-        pointsOfInterestSO.HowPois.Clear();
+        // Reset the variables in the POIs SO
+        pointsOfInterestSO.ResetVariables();
         #endif
 
         // Uncomment only in builds with just the 02-AR-Project scene
@@ -79,6 +78,7 @@ public class BackendManager : MonoBehaviour
         uiEventsChannelSO.OnStartGameEventRaised -= HandleStartGameEvent;
         uiEventsChannelSO.OnHintRequestedEventRaised -= HandleHintRequest;
         uiEventsChannelSO.OnSolutionItemSelectedEventRaised -= HandleSolutionItemSelection;
+        uiEventsChannelSO.OnSolutionItemDeselectedEventRaised -= HandleSolutionItemDeselection;
         uiEventsChannelSO.OnSolutionGivenEventRaised -= HandleSolutionGiven;
         
         arEventChannelSO.OnPOIDetected -= HandlePOIDetected;
@@ -199,17 +199,43 @@ public class BackendManager : MonoBehaviour
         {
             case EPOIType.Where:
                 {
-                    pointsOfInterestSO.WherePOIChosenAsSolution = controller.POI;
+                    pointsOfInterestSO.WherePOIChosenAsSolutionId = controller.POI.id;
                 }
                 break;
             case EPOIType.When:
                 {
-                    pointsOfInterestSO.WhenPOIChosenAsSolution = controller.POI;
+                    pointsOfInterestSO.WhenPOIChosenAsSolutionId = controller.POI.id;
                 }
                 break;
             case EPOIType.How:
                 {
-                    pointsOfInterestSO.HowPOIChosenAsSolution = controller.POI;
+                    pointsOfInterestSO.HowPOIChosenAsSolutionId = controller.POI.id;
+                }
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Handle the deselection of an item from part of the solution
+    /// </summary>
+    /// <param name="controller">The controller for the solution item</param>
+    private void HandleSolutionItemDeselection(SolutionItemController controller)
+    {
+        switch (controller.POI.type)
+        {
+            case EPOIType.Where:
+                {
+                    pointsOfInterestSO.WherePOIChosenAsSolutionId = 0;
+                }
+                break;
+            case EPOIType.When:
+                {
+                    pointsOfInterestSO.WhenPOIChosenAsSolutionId = 0;
+                }
+                break;
+            case EPOIType.How:
+                {
+                    pointsOfInterestSO.HowPOIChosenAsSolutionId = 0;
                 }
                 break;
         }
@@ -220,9 +246,9 @@ public class BackendManager : MonoBehaviour
     /// </summary>
     private void HandleSolutionGiven() 
     {
-        if (pointsOfInterestSO.WherePOIChosenAsSolution.isUseful &&
-            pointsOfInterestSO.WhenPOIChosenAsSolution.isUseful &&
-            pointsOfInterestSO.HowPOIChosenAsSolution.isUseful)
+        if ((pointsOfInterestSO.WherePOIChosenAsSolutionId == pointsOfInterestSO.WherePOISolutionId) &&
+            (pointsOfInterestSO.WhenPOIChosenAsSolutionId == pointsOfInterestSO.WhenPOISolutionId) &&
+            (pointsOfInterestSO.HowPOIChosenAsSolutionId == pointsOfInterestSO.WherePOISolutionId))
         {
             // Victory
             Debug.Log("Victory!");
