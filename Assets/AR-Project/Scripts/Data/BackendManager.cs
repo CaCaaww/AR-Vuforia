@@ -145,11 +145,11 @@ public class BackendManager : MonoBehaviour
     private void HandlePOIDetected(string imageName)
     {
         // If the POI was already detected, skip it
-        if (pointsOfInterestSO.ImageNameAndPOI[imageName].alreadyDetected)
-            return;
+        //if (pointsOfInterestSO.ImageNameAndPOI[imageName].alreadyDetected)
+        //    return;
         
         // Set this POI as detected
-        pointsOfInterestSO.ImageNameAndPOI[imageName].alreadyDetected = true;
+        //pointsOfInterestSO.ImageNameAndPOI[imageName].alreadyDetected = true;
 
         // Check the type and add the POI to the respective list
         switch (pointsOfInterestSO.ImageNameAndPOI[imageName].type)

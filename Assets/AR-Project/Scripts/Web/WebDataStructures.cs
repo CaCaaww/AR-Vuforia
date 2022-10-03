@@ -24,10 +24,8 @@ public class POI
     public int avatar_id;
     // The name of the avatar
     public string avatar_name;
-    // How many seconds before showing the POI if it's not an AR POI
-    //public int timer;
-    // The id for the linked POI without AR
-    //public int linked_poi;
+    // True if this POI was detected, false if not
+    public bool detected;
 }
 
 public class DataStructure
@@ -42,16 +40,8 @@ public class DataStructure
     public string defeat_text;
     // The number of hints at the start
     public int hints;
-    // The session's logical duration in seconds
-    //public int logical_duration;
-    // True if the AR POIs are revealed automatically after some time
-    //public bool autoreveal_pois;
-    // Logical duration percentage for when starting to autoreveal AR and "not AR" POIs together
-    //public int autoreveal_percentage;
-    // How many POIs to autoreveal at the same time
-    //public int autoreveal_number_of_pois;
-    // Interval in seconds to autoreveal the POIs
-    //public int autoreveal_timer;
+    // If we are resuming an unfinished session or not
+    public bool resume_session;
     // The list of all the POIs
     public List<POI> pois = new List<POI>();
 }

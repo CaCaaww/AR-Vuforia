@@ -42,21 +42,17 @@ public class VuforiaManager : MonoBehaviour
     private void OnEnable()
     {
         arEventChannelSO.OnPOIDetected += HandlePOIDetected;
-        //uiEventsChannelSO.OnStartGameEventRaised += EnableVuforiaBehaviour;
     }
 
     private void OnDisable()
     {
         arEventChannelSO.OnPOIDetected -= HandlePOIDetected;
-        //uiEventsChannelSO.OnStartGameEventRaised -= EnableVuforiaBehaviour;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         VuforiaApplication.Instance.OnVuforiaInitialized += StartSpwanImageTargets;
-
-        //DisableVuforiaBehaviour();
     }
 
     #region Coroutines
@@ -65,9 +61,20 @@ public class VuforiaManager : MonoBehaviour
     /// </summary>
     private IEnumerator SpawnImageTargets()
     {
+        if(sessionDataSO.ResumeSession)
+            Debug.Log("[VUFORIA] Resuming previous session");
+
         // For every p.o.i. in the session
         for (int i = 0; i < sessionDataSO.PointsOfInterest.Points.Count; i++)
         {
+            // If we are resuming a previous session ignore the POIs that were already found
+            if (sessionDataSO.PointsOfInterest.Points[i].detected)
+            {
+                Debug.Log("[VUFORIA] POI " + sessionDataSO.PointsOfInterest.Points[i].title + " already found, skipped");
+                continue;
+            }
+                
+            // Set to 1 for incrementing in the foreach loop the image target gameobject name    
             int k = 1;
 
             // Loop through every image inside the p.o.i.
@@ -85,7 +92,7 @@ public class VuforiaManager : MonoBehaviour
                     // Add the Observer to the ImageTarget
                     var observer = mImageTarget.gameObject.AddComponent<CustomObserverEventHandler>();
 
-                    Debug.Log("Target created and active" + mImageTarget.gameObject.name);
+                    Debug.Log("[VUFORIA] Target created and active" + mImageTarget.gameObject.name);
 
                     // Set the reference for the AR Event Channel SO
                     observer.AREventChannelSO = arEventChannelSO;
@@ -98,14 +105,14 @@ public class VuforiaManager : MonoBehaviour
                     // Keep track of the relation between a POI image name and a Vuforia Image Target Object
                     sessionDataSO.PointsOfInterest.ImageNameAndImageTargetObject.Add(entry.Key, observer.gameObject);
 
-                    Debug.Log("[ARP] " + entry.Key + " imageName: " + mImageTarget.TargetName);
+                    Debug.Log("[VUFORIA] " + entry.Key + " imageName: " + mImageTarget.TargetName);
 
                     k++;
                 }
                 // if The image is not readable
                 else
                 {
-                    Debug.Log($"[ARP] Image {entry.Key} must be readable to be added to the image library.");
+                    Debug.Log($"[VUFORIA] Image {entry.Key} must be readable to be added to the image library.");
                     
                     yield return null;
                 }
@@ -113,7 +120,7 @@ public class VuforiaManager : MonoBehaviour
         }
          
         // If we are still in the loading state it means that the scene it's just starting to run
-        // so we can notify that the reference library creation is completed 
+        // so we can notify that the image targets creation is finished 
         if (gameStateSO.CurrentGameState == GameState.Loading)
         {
             // Raise an event to notify that the reference library was created for the first time
@@ -130,24 +137,6 @@ public class VuforiaManager : MonoBehaviour
     private void StartSpwanImageTargets(VuforiaInitError error)
     {
         StartCoroutine(SpawnImageTargets());
-    }
-
-    /// <summary>
-    /// Callback to enable the Vuforia Behaviour
-    /// </summary>
-    private void EnableVuforiaBehaviour()
-    {
-        VuforiaBehaviour.Instance.enabled = true;
-        debugUIEventChannelSO.RaiseDebugEvent(VuforiaBehaviour.Instance.enabled.ToString());
-    }
-
-    /// <summary>
-    /// Callback to disable the Vuforia Behaviour
-    /// </summary>
-    private void DisableVuforiaBehaviour()
-    {
-        VuforiaBehaviour.Instance.enabled = false;
-        debugUIEventChannelSO.RaiseDebugEvent(VuforiaBehaviour.Instance.enabled.ToString());
     }
 
     /// <summary>

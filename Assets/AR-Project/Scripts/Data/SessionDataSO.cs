@@ -39,25 +39,30 @@ public class SessionDataSO : ScriptableObject
     [Tooltip("The defeat text for the session")]
     [SerializeField] string defeatText;
     /// <summary>
+    /// True if we are resuming an unifished game session
+    /// </summary>
+    [Tooltip("True if we are resuming an unifished game session")]
+    [SerializeField] bool resumeSession;
+    /// <summary>
     /// True if the AR POIs are revealed automatically after some time
     /// </summary>
-    [Tooltip("True if the AR POIs are revealed automatically after some time")]
-    [SerializeField] bool autoreveal;
+    //[Tooltip("True if the AR POIs are revealed automatically after some time")]
+    //[SerializeField] bool autoreveal;
     /// <summary>
     /// Logical duration percentage for when starting to autoreveal AR and "not AR" POIs together
     /// </summary>
-    [Tooltip("Logical duration percentage for when starting to autoreveal AR and \"not AR\" POIs together")]
-    [SerializeField] int autorevealPercentage;
+    //[Tooltip("Logical duration percentage for when starting to autoreveal AR and \"not AR\" POIs together")]
+    //[SerializeField] int autorevealPercentage;
     /// <summary>
     /// How many POIs to autoreveal at the same time
     /// </summary>
-    [Tooltip("How many POIs to autoreveal at the same time")]
-    [SerializeField] int autorevealNumber;
+    //[Tooltip("How many POIs to autoreveal at the same time")]
+    //[SerializeField] int autorevealNumber;
     /// <summary>
     /// Interval in seconds to autoreveal the POIs
     /// </summary>
-    [Tooltip("How many POIs to autoreveal at the same time")]
-    [SerializeField] int autorevealTimer;
+    //[Tooltip("How many POIs to autoreveal at the same time")]
+    //[SerializeField] int autorevealTimer;
     #endregion
 
     #region Variables
@@ -69,10 +74,11 @@ public class SessionDataSO : ScriptableObject
     public string IntroText { get => introText; set => introText = value; }
     public string VictoryText { get => victoryText; set => victoryText = value; }
     public string DefeatText { get => defeatText; set => defeatText = value; }
-    public bool Autoreveal { get => autoreveal; set => autoreveal = value; }
-    public int AutorevealPercentage { get => autorevealPercentage; set => autorevealPercentage = value; }
-    public int AutorevealNumber { get => autorevealNumber; set => autorevealNumber = value; }
-    public int AutorevealTimer { get => autorevealTimer; set => autorevealTimer = value; }
+    public bool ResumeSession { get => resumeSession; set => resumeSession = value; }
+    //public bool Autoreveal { get => autoreveal; set => autoreveal = value; }
+    //public int AutorevealPercentage { get => autorevealPercentage; set => autorevealPercentage = value; }
+    //public int AutorevealNumber { get => autorevealNumber; set => autorevealNumber = value; }
+    //public int AutorevealTimer { get => autorevealTimer; set => autorevealTimer = value; }
     public PointsOfInterestSO PointsOfInterest { get => pointsOfInterestSO; } 
     #endregion
 }

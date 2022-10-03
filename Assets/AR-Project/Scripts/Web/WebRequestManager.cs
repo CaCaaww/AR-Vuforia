@@ -91,6 +91,47 @@ public class WebRequestManager : MonoBehaviour
 
         return www;
     }
+
+    private async Task<UnityWebRequest> SendRemoteData(string nickname, string password, string data)
+    {
+        #if UNITY_EDITOR
+        //string url = String.Concat(
+        //    remoteWebConsoleSO.JoinGate,
+        //    remoteWebConsoleSO.NicknameParameter,
+        //    remoteWebConsoleSO.NicknameValue,
+        //    remoteWebConsoleSO.PasswordParameter,
+        //    remoteWebConsoleSO.PasswordValue);
+        string url = String.Concat(
+            remoteWebConsoleSO.JoinGate,
+            remoteWebConsoleSO.PasswordParameter,
+            remoteWebConsoleSO.PasswordValue);
+        #elif UNITY_ANDROID
+        string url = String.Concat(
+            remoteWebConsoleSO.JoinGate,
+        //    remoteWebConsoleSO.NicknameParameter,
+        //    nickname,
+            remoteWebConsoleSO.PasswordParameter,
+            password);
+
+        #endif
+
+        Debug.Log(url);
+
+        string postData = data;
+
+        var www = UnityWebRequest.Post(url, postData);
+
+        // Set the request timeout
+        www.timeout = 10;
+
+        var operation = www.SendWebRequest();
+
+        while (!operation.isDone)
+            await Task.Yield();
+
+        return www;
+    }
+
 #endregion
 
 #region Callbacks
@@ -128,6 +169,9 @@ public class WebRequestManager : MonoBehaviour
         sessionDataSO.DefeatText = dataStructure.defeat_text;
         Debug.Log("[WEB] Defeat text: " + sessionDataSO.DefeatText);
 
+        sessionDataSO.ResumeSession = dataStructure.resume_session;
+        Debug.Log("[WEB] Resuming a previous session: " + sessionDataSO.ResumeSession);
+
         int numberOfPois = dataStructure.pois.Count;
         Debug.Log("[WEB] Number of POIs: " + numberOfPois);
 
@@ -136,29 +180,26 @@ public class WebRequestManager : MonoBehaviour
 
         // Clear the helper dictionaries
         sessionDataSO.PointsOfInterest.ImageNameAndPOI.Clear();
-        //sessionDataSO.PointsOfInterest.IDAndPOI_Dict.Clear();
-        //sessionDataSO.PointsOfInterest.IDAndARPOI_Dict.Clear();
-        //sessionDataSO.PointsOfInterest.IDAndNOARPOI_Dict.Clear();
         
     
         for (int i = 0; i < numberOfPois; i++)
         {
-            // Add a new p.o.i. object
+            // Add a new POI object
             sessionDataSO.PointsOfInterest.Points.Add(new PointOfInterest());
 
-            // Set the p.o.i. id
+            // Set the POI id
             sessionDataSO.PointsOfInterest.Points[i].id = dataStructure.pois[i].id;
             Debug.Log("[WEB] ID: " + dataStructure.pois[i].id);
 
-            // Set the p.o.i. title
+            // Set the POI title
             sessionDataSO.PointsOfInterest.Points[i].title = dataStructure.pois[i].title;
             Debug.Log("[WEB] Title: " + dataStructure.pois[i].title);
 
-            // Set the p.o.i. type
+            // Set the POI type
             sessionDataSO.PointsOfInterest.Points[i].type = (EPOIType)dataStructure.pois[i].type;
             Debug.Log("[WEB] Clue type: " + (EPOIType)dataStructure.pois[i].type);
 
-            // Set the p.o.i. description
+            // Set the POI description
             sessionDataSO.PointsOfInterest.Points[i].description = dataStructure.pois[i].description;
             Debug.Log("[WEB] Description: " + dataStructure.pois[i].description);
 
@@ -177,19 +218,18 @@ public class WebRequestManager : MonoBehaviour
 
                 // Retrieve the image as a texture2D
                 sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture.Add(image.Key, await Utils.GetRemoteTexture(image.Value));
-                #if UNITY_EDITOR
+                
+                // For debug in the Unity Editor only
+                #if UNITY_EDITOR && !UNITY_ANDROID
                 sessionDataSO.PointsOfInterest.Points[i].images.Add(sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture[image.Key]);
                 #endif
             }
 
-            //sessionDataSO.PointsOfInterest.Points[i].isAR = dataStructure.ar_pois[i].is_ar;
-            //Debug.Log("[WEB] Is AR: " + dataStructure.ar_pois[i].is_ar);
-
-            // Set if the p.o.i. is useful on not for the solution
+            // Set if the POI is useful on not for the solution
             sessionDataSO.PointsOfInterest.Points[i].isUseful = dataStructure.pois[i].is_useful;
             Debug.Log("[WEB] Is useful to to the solution: " + dataStructure.pois[i].is_useful);
 
-            // If useful store the id in a variable (taking account of the p.o.i. type)
+            // If useful store the id in a variable (taking account of the POI type)
             if (dataStructure.pois[i].is_useful)
             {
                 switch (sessionDataSO.PointsOfInterest.Points[i].type)
@@ -212,39 +252,48 @@ public class WebRequestManager : MonoBehaviour
                 }
             }
 
-            // Set the icon type for the p.o.i.
+            // Set the icon type for the POI
             sessionDataSO.PointsOfInterest.Points[i].iconType = (EIconType)dataStructure.pois[i].icon_type;
             Debug.Log("[WEB] Icon type: " + (EIconType)dataStructure.pois[i].icon_type);
 
-            // Set the avatar id for the p.o.i.
+            // Set the avatar id for the POI
             sessionDataSO.PointsOfInterest.Points[i].avatarID = dataStructure.pois[i].avatar_id;
             Debug.Log("[WEB] Avatar id: " + dataStructure.pois[i].avatar_id);
 
-            // Set the avatar name for the p.o.i.
+            // Set the avatar name for the POI
             sessionDataSO.PointsOfInterest.Points[i].avatarName = dataStructure.pois[i].avatar_name;
             Debug.Log("[WEB] Avatar name: " + dataStructure.pois[i].avatar_name);
-            
-            //sessionDataSO.PointsOfInterest.Points[i].timer = dataStructure.ar_pois[i].timer;
-            //Debug.Log("[WEB] Timer to wait before revealing: " + dataStructure.ar_pois[i].timer);
 
-            //sessionDataSO.PointsOfInterest.Points[i].linkedTo = dataStructure.ar_pois[i].linked_poi;
-            //Debug.Log("[WEB] The ID of the linked POI: " + dataStructure.ar_pois[i].linked_poi);
-       
-            //sessionDataSO.PointsOfInterest.AddToIDAndPOI_Dict(sessionDataSO.PointsOfInterest.Points[i].id, sessionDataSO.PointsOfInterest.Points[i]);
-            
-            /*if (sessionDataSO.PointsOfInterest.Points[i].isAR)
+            // If we are resuming a previous session restore the "detected" state of the POI
+            if (sessionDataSO.ResumeSession)
             {
-                // Waiting for Simo to add the id to the json
-                //sessionDataSO.PointsOfInterest.AddToIDAndARPOI_Dict(sessionDataSO.PointsOfInterest.Points[i].id, sessionDataSO.PointsOfInterest.Points[i]);
+                // If the POI was previously detected
+                if (dataStructure.pois[i].detected)
+                {
+                    // Set the detected flag
+                    sessionDataSO.PointsOfInterest.Points[i].detected = dataStructure.pois[i].detected;
+
+                    // Check the type and add the POI to the respective list
+                    switch (sessionDataSO.PointsOfInterest.Points[i].type)
+                    {
+                        case EPOIType.Where:
+                            {
+                                sessionDataSO.PointsOfInterest.WherePois.Add(sessionDataSO.PointsOfInterest.Points[i]);
+                            }
+                            break;
+                        case EPOIType.When:
+                            {
+                                sessionDataSO.PointsOfInterest.WhenPois.Add(sessionDataSO.PointsOfInterest.Points[i]);
+                            }
+                            break;
+                        case EPOIType.How:
+                            {
+                                sessionDataSO.PointsOfInterest.HowPois.Add(sessionDataSO.PointsOfInterest.Points[i]);
+                            }
+                            break;
+                    }
+                }   
             }
-            else
-            {
-                // Waiting for Simo to add the id to the json
-                //sessionDataSO.PointsOfInterest.AddToIDAndNOARPOI_Dict(sessionDataSO.PointsOfInterest.Points[i].id, sessionDataSO.PointsOfInterest.Points[i]);
-            }*/
-            
-            // Retrieve the actual image as a texture2D
-            //sessionDataSO.PointsOfInterest.Points[i].image = await Utils.GetRemoteTexture(sessionDataSO.PointsOfInterest.Points[i].imageUrl);      
         }
 
         // Raise an event for finishing the loading of the session data

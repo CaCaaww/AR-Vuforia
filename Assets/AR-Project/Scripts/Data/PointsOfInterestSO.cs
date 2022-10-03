@@ -26,7 +26,8 @@ public class PointOfInterest
     public Dictionary<string, string> imageNameAndUrl = new();
     public bool isUseful;
     public EIconType iconType;
-    public bool alreadyDetected;
+    //public bool alreadyDetected;
+    public bool detected;
     public int avatarID;
     public string avatarName;
     public int timer;
