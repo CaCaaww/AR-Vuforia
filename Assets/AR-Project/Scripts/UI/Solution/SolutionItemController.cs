@@ -73,6 +73,7 @@ public class SolutionItemController : MonoBehaviour
         {
             isSelected = false;
             itemImage.sprite = itemUnselected;
+            uIEventsChannelSO.RaiseSolutionItemDeselectedEvent(this);
         }
     }
     #endregion
