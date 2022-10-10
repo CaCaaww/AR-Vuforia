@@ -18,14 +18,14 @@ public class POI
     public Dictionary<string, string> images = new Dictionary<string, string>();
     // True if this POI is part of the solution, false if not  
     public bool is_useful;
-    // The icon type of the POI
+    // The icon type of the POI (0 = event, 1 = dialogue, 2 = object)
     public int icon_type;
     // The id of the avatar
     public int avatar_id;
     // The name of the avatar
     public string avatar_name;
-    // True if this POI was detected, false if not
-    public bool detected;
+    // The state of a POI (0 = undetected, 1 = detected, 2 = detected and deleted))
+    public int detected; 
 }
 
 public class DataStructure

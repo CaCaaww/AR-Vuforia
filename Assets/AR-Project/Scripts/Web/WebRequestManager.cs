@@ -268,10 +268,10 @@ public class WebRequestManager : MonoBehaviour
             if (sessionDataSO.ResumeSession)
             {
                 // If the POI was previously detected
-                if (dataStructure.pois[i].detected)
+                if (dataStructure.pois[i].detected == (int)EPOIState.Detected)
                 {
-                    // Set the detected flag
-                    sessionDataSO.PointsOfInterest.Points[i].detected = dataStructure.pois[i].detected;
+                    // Set the state Enum
+                    sessionDataSO.PointsOfInterest.Points[i].state = (EPOIState)dataStructure.pois[i].detected;
 
                     // Check the type and add the POI to the respective list
                     switch (sessionDataSO.PointsOfInterest.Points[i].type)

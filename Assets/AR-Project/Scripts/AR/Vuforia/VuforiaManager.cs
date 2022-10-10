@@ -67,8 +67,8 @@ public class VuforiaManager : MonoBehaviour
         // For every p.o.i. in the session
         for (int i = 0; i < sessionDataSO.PointsOfInterest.Points.Count; i++)
         {
-            // If we are resuming a previous session ignore the POIs that were already found
-            if (sessionDataSO.PointsOfInterest.Points[i].detected)
+            // If we are resuming a previous session ignore the POIs that were already found or deleted by the hint system
+            if (sessionDataSO.PointsOfInterest.Points[i].state != EPOIState.Undetected)
             {
                 Debug.Log("[VUFORIA] POI " + sessionDataSO.PointsOfInterest.Points[i].title + " already found, skipped");
                 continue;

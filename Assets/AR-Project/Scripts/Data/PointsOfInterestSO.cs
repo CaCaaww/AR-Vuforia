@@ -11,6 +11,13 @@ public enum EPOIType
     How
 }
 
+public enum EPOIState
+{
+    Undetected,
+    Detected,
+    Deleted
+}
+
 [Serializable]
 public class PointOfInterest
 {
@@ -27,7 +34,7 @@ public class PointOfInterest
     public bool isUseful;
     public EIconType iconType;
     //public bool alreadyDetected;
-    public bool detected;
+    public EPOIState state;
     public int avatarID;
     public string avatarName;
     public int timer;
