@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class WebRequestManager : MonoBehaviour
+public class WebLoginManager : MonoBehaviour
 {
     #region Inspector
     [Header("SO Send Channels")]

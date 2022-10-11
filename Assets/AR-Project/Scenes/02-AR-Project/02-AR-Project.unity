@@ -252,10 +252,11 @@ GameObject:
   m_Component:
   - component: {fileID: 230865117}
   - component: {fileID: 230865118}
+  - component: {fileID: 230865121}
   - component: {fileID: 230865119}
   - component: {fileID: 230865120}
   m_Layer: 0
-  m_Name: GameManagers
+  m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -324,6 +325,18 @@ MonoBehaviour:
   pointsOfInterestSO: {fileID: 11400000, guid: 86583b92ac7685836801b880c75ec801, type: 2}
   debugUIEventChannelSO: {fileID: 11400000, guid: 9f4c4087d26805f48880da47d8521c32,
     type: 2}
+--- !u!114 &230865121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230865116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb6e3fab40f06812b0b54192f4e00fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1063707732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -853,7 +866,7 @@ PrefabInstance:
     - target: {fileID: 8540911785888336897, guid: ced923ea727ee0b2183dab65e7f40a31,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2787564
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ced923ea727ee0b2183dab65e7f40a31, type: 3}
@@ -967,6 +980,21 @@ PrefabInstance:
     - target: {fileID: 262636115906698810, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2085430902047946824, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2085430902047946824, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2085430902047946824, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
+        type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4292171658406741398, guid: 2592ee63cef2f7e158d13f8c2669d6ca,

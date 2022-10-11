@@ -1212,7 +1212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugUIEventChannelSO: {fileID: 11400000, guid: 9f4c4087d26805f48880da47d8521c32,
     type: 2}
-  debugText: {fileID: 1890640252}
+  debugText: {fileID: 0}
   debugText1: {fileID: 0}
 --- !u!1 &1051937972
 GameObject:
@@ -2508,21 +2508,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 8561897665583943461, guid: daa7fcb3342ffbc10b62b257081033fc,
-        type: 3}
-      propertyPath: m_InputType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8561897665583943461, guid: daa7fcb3342ffbc10b62b257081033fc,
-        type: 3}
-      propertyPath: m_KeyboardType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8561897665583943461, guid: daa7fcb3342ffbc10b62b257081033fc,
-        type: 3}
-      propertyPath: m_CharacterValidation
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8561897665704295436, guid: daa7fcb3342ffbc10b62b257081033fc,
         type: 3}
