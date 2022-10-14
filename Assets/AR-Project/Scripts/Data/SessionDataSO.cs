@@ -14,6 +14,16 @@ public class SessionDataSO : ScriptableObject
     [SerializeField] PointsOfInterestSO pointsOfInterestSO;
     [Header("Session Parameters")]
     /// <summary>
+    /// The player ID
+    /// </summary>
+    [Tooltip("The player ID")]
+    [SerializeField] int playerId;
+    /// <summary>
+    /// The session ID
+    /// </summary>
+    [Tooltip("The session ID")]
+    [SerializeField] int sessionId;
+    /// <summary>
     /// The number of hints at the start of the session
     /// </summary>
     [Tooltip("The number of hints at the start of the session")]
@@ -69,6 +79,8 @@ public class SessionDataSO : ScriptableObject
     #endregion
 
     #region Properties
+    public int PlayerId { get => playerId; set => playerId = value; }
+    public int SessionId { get => sessionId; set => sessionId = value; }
     public int Hints { get => hints; set => hints = value; }
     public string TitleText { get => titleText; set => titleText = value; }
     public string IntroText { get => introText; set => introText = value; }

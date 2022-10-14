@@ -16,5 +16,7 @@ MonoBehaviour:
   joinGate: join
   nicknameParameter: ?nickname=
   nicknameValue: 
-  passwordParameter: ?code=
+  nicknamePreHashtagValue: 
+  nicknamePostHashtagValue: 
+  passwordParameter: '&code='
   passwordValue: OcaDu

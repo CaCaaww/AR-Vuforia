@@ -15,7 +15,7 @@ public class NicknameInputValidatorSO : TMPro.TMP_InputValidator
     /// <returns>Return the character you'd allow into </returns>
     public override char Validate(ref string text, ref int pos, char ch)
     {
-        Debug.Log($"Text = {text}; pos = {pos}; chr = {ch}");
+        //Debug.Log($"Text = {text}; pos = {pos}; chr = {ch}");
         // If the text length is less than the max length
         if(text.Length < 30)
         {

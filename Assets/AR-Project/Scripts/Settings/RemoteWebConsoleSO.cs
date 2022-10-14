@@ -29,14 +29,26 @@ public class RemoteWebConsoleSO : ScriptableObject
     /// <summary>
     /// Nickname value for the current session
     /// </summary>
-    [Tooltip("Nickname for the current session")]
+    [Tooltip("Nickname value for the current session")]
     [SerializeField] private string nicknameValue = "";
+
+    /// <summary>
+    /// Nickname pre-hashtag value for the current session
+    /// </summary>
+    [Tooltip("Nickname pre-hashtag value for the current session")]
+    [SerializeField] private string nicknamePreHashtagValue = "";
+
+    /// <summary>
+    /// Nickname post-hashtag value for the current session
+    /// </summary>
+    [Tooltip("Nickname pre-hashtag value for the current session")]
+    [SerializeField] private string nicknamePostHashtagValue = "";
 
     /// <summary>
     /// The password parameter name expected for the current session
     /// </summary>
     [Tooltip("The password parameter name expected for the current session")]
-    [SerializeField] private string passwordParameter = "?code";
+    [SerializeField] private string passwordParameter = "&code";
 
     /// <summary>
     /// Password value for the current session

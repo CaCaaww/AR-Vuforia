@@ -24,12 +24,16 @@ public class POI
     public int avatar_id;
     // The name of the avatar
     public string avatar_name;
-    // The state of a POI (0 = undetected, 1 = detected, 2 = detected and deleted))
+    // The state of a POI (0 = undetected, 1 = detected, 2 = detected and deleted)
     public int detected; 
 }
 
-public class DataStructure
+public class LoginGetDataStructure
 {
+    // The player id
+    public int player_id;
+    // The session id
+    public int session_id;
     // The title text for the story
     public string title;
     // The introduction text for the story
@@ -44,4 +48,45 @@ public class DataStructure
     public bool resume_session;
     // The list of all the POIs
     public List<POI> pois = new List<POI>();
+}
+
+public class POIFoundDataStructure
+{
+    // The POI 
+    public int poi_id;
+    // The time in seconds from the start of the session (nope, just the timestamp)
+    public int time_elapsed;
+
+    public int player_id;
+    public int session_id;
+}
+
+public class HintUsedDataStructure
+{
+    // The where POI id deleted by the hint (0 if none was deleted) 
+    public int where_poi_id;
+    // The POI 
+    public int when_poi_id;
+    // The POI 
+    public int how_poi_id;
+    // The time in seconds from the start of the session (nope, just the timestamp)
+    public int time_elapsed;
+
+    public int player_id;
+    public int session_id;
+}
+
+public class SolutionGivenDataStructure
+{
+    // Where POI id 
+    public int where_poi_id;
+    // When POI id 
+    public int when_poi_id;
+    // How POI id 
+    public int how_poi_id;
+    // The time in seconds from the start of the session
+    public int time_elapsed;
+
+    public int player_id;
+    public int session_id;
 }

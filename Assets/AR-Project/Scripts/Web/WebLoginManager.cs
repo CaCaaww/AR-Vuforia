@@ -24,7 +24,7 @@ public class WebLoginManager : MonoBehaviour
     #endregion
 
     #region Properties
-    private DataStructure dataStructure;
+    private LoginGetDataStructure dataStructure;
     #endregion
 
     #region Unity methods
@@ -42,22 +42,21 @@ public class WebLoginManager : MonoBehaviour
     #region Helper methods
     private async Task<UnityWebRequest> GetRemoteData(string nickname, string password)
     {
+        
+
         #if UNITY_EDITOR
-        //string url = String.Concat(
-        //    remoteWebConsoleSO.JoinGate,
-        //    remoteWebConsoleSO.NicknameParameter,
-        //    remoteWebConsoleSO.NicknameValue,
-        //    remoteWebConsoleSO.PasswordParameter,
-        //    remoteWebConsoleSO.PasswordValue);
         string url = String.Concat(
             remoteWebConsoleSO.JoinGate,
+            remoteWebConsoleSO.NicknameParameter,
+            remoteWebConsoleSO.NicknameValue,
             remoteWebConsoleSO.PasswordParameter,
             remoteWebConsoleSO.PasswordValue);
         #elif UNITY_ANDROID
+        nickname = nickname.Replace("#", "%23");
         string url = String.Concat(
             remoteWebConsoleSO.JoinGate,
-        //    remoteWebConsoleSO.NicknameParameter,
-        //    nickname,
+            remoteWebConsoleSO.NicknameParameter,
+            nickname,
             remoteWebConsoleSO.PasswordParameter,
             password);
 
@@ -145,7 +144,7 @@ public class WebLoginManager : MonoBehaviour
             return;
         }
 
-        dataStructure = JsonConvert.DeserializeObject<DataStructure>(www.downloadHandler.text);
+        dataStructure = JsonConvert.DeserializeObject<LoginGetDataStructure>(www.downloadHandler.text);
 
         Debug.Log("DATASTRUCTURE");
         foreach(KeyValuePair<string, string> entry in dataStructure.pois[0].images)
@@ -153,6 +152,12 @@ public class WebLoginManager : MonoBehaviour
             Debug.Log("Key: " + entry.Key);
             Debug.Log("Value: " + entry.Value);
         }
+
+        sessionDataSO.PlayerId = dataStructure.player_id;
+        Debug.Log("[WEB] Player ID: " + sessionDataSO.PlayerId);
+
+        sessionDataSO.SessionId = dataStructure.session_id;
+        Debug.Log("[WEB] Session ID: " + sessionDataSO.SessionId);
 
         sessionDataSO.Hints = dataStructure.hints;
         Debug.Log("[WEB] Number of hints: " + sessionDataSO.Hints);
