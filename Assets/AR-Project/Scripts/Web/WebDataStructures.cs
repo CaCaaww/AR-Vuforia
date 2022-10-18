@@ -50,12 +50,23 @@ public class LoginGetDataStructure
     public List<POI> pois = new List<POI>();
 }
 
+
+public class StartGameDataStructure
+{
+    // When the game actually started
+    public string timestamp;
+
+    public int player_id;
+    public int session_id;
+}
+
 public class POIFoundDataStructure
 {
-    // The POI 
+    // The POI id 
     public int poi_id;
-    // The time in seconds from the start of the session (nope, just the timestamp)
-    public int time_elapsed;
+
+    // When the POI was found
+    public string timestamp;
 
     public int player_id;
     public int session_id;
@@ -65,12 +76,13 @@ public class HintUsedDataStructure
 {
     // The where POI id deleted by the hint (0 if none was deleted) 
     public int where_poi_id;
-    // The POI 
+    // The when POI id deleted by the hint (0 if none was deleted)  
     public int when_poi_id;
-    // The POI 
+    // The The when POI id deleted by the hint (0 if none was deleted)  
     public int how_poi_id;
-    // The time in seconds from the start of the session (nope, just the timestamp)
-    public int time_elapsed;
+    
+    // When a hint was used
+    public string timestamp;
 
     public int player_id;
     public int session_id;
@@ -78,14 +90,15 @@ public class HintUsedDataStructure
 
 public class SolutionGivenDataStructure
 {
-    // Where POI id 
+    // Where POI id chosen as part of the solution
     public int where_poi_id;
-    // When POI id 
+    // When POI id chosen as part of the solution
     public int when_poi_id;
-    // How POI id 
+    // How POI id chosen as part of the solution
     public int how_poi_id;
-    // The time in seconds from the start of the session
-    public int time_elapsed;
+
+    // When the solution was chosen
+    public string timestamp;
 
     public int player_id;
     public int session_id;

@@ -15,6 +15,7 @@ public class UIEventsChannelSO : ScriptableObject
     public Action<PointOfInterest> OnPOIFoundEventRaised;
     public Action<PointOfInterest> OnPOIViewEventRaised;
     public Action OnHintRequestedEventRaised;
+    public Action<int, int, int> OnPOIDeletedByHintEventRaised;
     public Action<PointOfInterest> OnPOIRemovedEventRaised;
     public Action<SolutionItemController> OnSolutionItemSelectedEventRaised;
 	public Action<SolutionItemController> OnSolutionItemDeselectedEventRaised;
@@ -65,6 +66,14 @@ public class UIEventsChannelSO : ScriptableObject
 		if (OnHintRequestedEventRaised != null)
 		{
             OnHintRequestedEventRaised.Invoke();
+        }
+	}
+
+	public void RaisePOIDeletedByHintEvent(int wherePoiId, int whenPoiId, int howPoiId) 
+	{
+		if (OnPOIDeletedByHintEventRaised != null)
+		{
+            OnPOIDeletedByHintEventRaised.Invoke(whenPoiId, whenPoiId, howPoiId);
         }
 	}
 

@@ -17,6 +17,7 @@ public class AREventChannelSO : ScriptableObject
 	public Action OnFinishedCreatingImageTargets;
     #endregion
 
+    #region Raiser methods
     /// <summary>
     /// Raise an event when an image is recognized
     /// </summary>
@@ -38,4 +39,5 @@ public class AREventChannelSO : ScriptableObject
             OnFinishedCreatingImageTargets.Invoke();
 		}
     }
+    #endregion
 }

@@ -87,11 +87,11 @@ public class BackendManager : MonoBehaviour
 
     #region Helper methods
     /// <summary>
-    /// Remove a random unuseful POI from a list
+    /// Remove a random unuseful POI from a list and return it's id
     /// </summary>
     /// <param name="pois">The list from where remove the POI</param>
     /// <param name="totalPois">The total number of POIs in the list</param>
-    private void RemoveUnusefulPOI(List<PointOfInterest> pois, int totalPois)
+    private int RemoveUnusefulPOI(List<PointOfInterest> pois, int totalPois)
     {
         // Clear the temp list (just to be sure)
         tempPOIsList.Clear();
@@ -118,12 +118,21 @@ public class BackendManager : MonoBehaviour
             // Send the poi through the event channel for the ui
             uiEventsChannelSO.RaisePOIRemovedEvent(tempPOIsList[randomIndex]);
 
+            // Save the POI id
+            int deletedPOIId = tempPOIsList[randomIndex].id;
+
             // Remove the POI
             pois.Remove(tempPOIsList[randomIndex]);
+
+            // Return the POI id;
+            return deletedPOIId;
         }
         else
         {
             Debug.Log("No unuseful POI found");
+
+            // return 0
+            return 0;
         }
     }
     #endregion
@@ -184,9 +193,12 @@ public class BackendManager : MonoBehaviour
     private void HandleHintRequest()
     {
         // Remove a single random item (not part of the solution) for every type
-        RemoveUnusefulPOI(pointsOfInterestSO.WherePois, pointsOfInterestSO.WherePois.Count);
-        RemoveUnusefulPOI(pointsOfInterestSO.WhenPois, pointsOfInterestSO.WhenPois.Count);
-        RemoveUnusefulPOI(pointsOfInterestSO.HowPois, pointsOfInterestSO.HowPois.Count);
+        int wherePoiId = RemoveUnusefulPOI(pointsOfInterestSO.WherePois, pointsOfInterestSO.WherePois.Count);
+        int whenPoiId = RemoveUnusefulPOI(pointsOfInterestSO.WhenPois, pointsOfInterestSO.WhenPois.Count);
+        int howPoiId = RemoveUnusefulPOI(pointsOfInterestSO.HowPois, pointsOfInterestSO.HowPois.Count);
+
+        // Raise an event informing which POIs where deleted by the hint
+        uiEventsChannelSO.RaisePOIDeletedByHintEvent(whenPoiId, whenPoiId, howPoiId);
     }
    
     /// <summary>

@@ -9,7 +9,7 @@ using UnityEngine.Networking;
 public class WebLoginManager : MonoBehaviour
 {
     #region Inspector
-    [Header("SO Send Channels")]
+    [Header("SO Listen Channels")]
     [SerializeField]
     private UIEventsChannelSO uiEventsChannelSO;
 
@@ -90,50 +90,9 @@ public class WebLoginManager : MonoBehaviour
 
         return www;
     }
+    #endregion
 
-    private async Task<UnityWebRequest> SendRemoteData(string nickname, string password, string data)
-    {
-        #if UNITY_EDITOR
-        //string url = String.Concat(
-        //    remoteWebConsoleSO.JoinGate,
-        //    remoteWebConsoleSO.NicknameParameter,
-        //    remoteWebConsoleSO.NicknameValue,
-        //    remoteWebConsoleSO.PasswordParameter,
-        //    remoteWebConsoleSO.PasswordValue);
-        string url = String.Concat(
-            remoteWebConsoleSO.JoinGate,
-            remoteWebConsoleSO.PasswordParameter,
-            remoteWebConsoleSO.PasswordValue);
-        #elif UNITY_ANDROID
-        string url = String.Concat(
-            remoteWebConsoleSO.JoinGate,
-        //    remoteWebConsoleSO.NicknameParameter,
-        //    nickname,
-            remoteWebConsoleSO.PasswordParameter,
-            password);
-
-        #endif
-
-        Debug.Log(url);
-
-        string postData = data;
-
-        var www = UnityWebRequest.Post(url, postData);
-
-        // Set the request timeout
-        www.timeout = 10;
-
-        var operation = www.SendWebRequest();
-
-        while (!operation.isDone)
-            await Task.Yield();
-
-        return www;
-    }
-
-#endregion
-
-#region Callbacks
+    #region Callbacks
     private async void Login(string nicknameText, string passwordText)
     {
         var www = await GetRemoteData(nicknameText, passwordText);
