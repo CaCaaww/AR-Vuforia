@@ -71,7 +71,7 @@ public class RemoteWebConsoleSO : ScriptableObject
     /// <summary>
     /// Return the complete URL for the start game gate
     /// </summary>
-    public string StarGameGate => String.Concat(host, startGameGate);
+    public string StartGameGate => String.Concat(host, startGameGate);
 
     /// <summary>
     /// Return the complete URL for the POI found gate

@@ -28,29 +28,32 @@ public class WebSendDataManager : MonoBehaviour
     void OnEnable()
     {
         uiEventsChannelSO.OnStartGameEventRaised += HandleOnStartGameEvent;
-        uiEventsChannelSO.OnPOIFoundEventRaised += HandleOnPOIFoundEvent;
-        uiEventsChannelSO.OnPOIDeletedByHintEventRaised += HandlePOIDeletedByHintEvent;
-        uiEventsChannelSO.OnSolutionGivenEventRaised += HandleOnSolutionGivenEvent;
+        //uiEventsChannelSO.OnPOIFoundEventRaised += HandleOnPOIFoundEvent;
+        //uiEventsChannelSO.OnPOIDeletedByHintEventRaised += HandlePOIDeletedByHintEvent;
+        //uiEventsChannelSO.OnSolutionGivenEventRaised += HandleOnSolutionGivenEvent;
     }
 
 
     void OnDisable()
     {
         uiEventsChannelSO.OnStartGameEventRaised -= HandleOnStartGameEvent;
-        uiEventsChannelSO.OnPOIFoundEventRaised -= HandleOnPOIFoundEvent;
-        uiEventsChannelSO.OnPOIDeletedByHintEventRaised -= HandlePOIDeletedByHintEvent;
-        uiEventsChannelSO.OnSolutionGivenEventRaised -= HandleOnSolutionGivenEvent;
+        //uiEventsChannelSO.OnPOIFoundEventRaised -= HandleOnPOIFoundEvent;
+        //uiEventsChannelSO.OnPOIDeletedByHintEventRaised -= HandlePOIDeletedByHintEvent;
+        //uiEventsChannelSO.OnSolutionGivenEventRaised -= HandleOnSolutionGivenEvent;
     }
     #endregion
 
     #region Helper Methods
-    private async Task<UnityWebRequest> SendRemoteData(string data, string url)
+    private async Task<UnityWebRequest> SendRemoteData(WWWForm form, string url)
     {
-        Debug.Log(url);
+        
 
-        string postData = data;
+        //string postData = data;
 
-        var www = UnityWebRequest.Post(url, postData);
+        var www = UnityWebRequest.Post(url, form);
+
+        Debug.Log("[URL]: " + url);
+        Debug.Log("[POSTDATA]: " + form);
 
         // Set the request timeout
         www.timeout = 10;
@@ -69,17 +72,16 @@ public class WebSendDataManager : MonoBehaviour
     {
         StartGameDataStructure startGameDataStructure = new();
 
+        WWWForm form = new();
         startGameDataStructure.player_id = sessionDataSO.PlayerId;
         startGameDataStructure.session_id = sessionDataSO.SessionId;
         startGameDataStructure.timestamp = DateTime.Now.ToString(dateTimeFormat);
 
+        
+        form.AddField("player_id", sessionDataSO.PlayerId);
+
         #if UNITY_EDITOR
-        string url = String.Concat(
-            remoteWebConsoleSO.StarGameGate,
-            remoteWebConsoleSO.NicknameParameter,
-            remoteWebConsoleSO.NicknameValue,
-            remoteWebConsoleSO.PasswordParameter,
-            remoteWebConsoleSO.PasswordValue);
+        string url = remoteWebConsoleSO.StartGameGate;
         #elif UNITY_ANDROID
         string url = String.Concat(
             remoteWebConsoleSO.StarGameGate,
@@ -88,21 +90,28 @@ public class WebSendDataManager : MonoBehaviour
             remoteWebConsoleSO.PasswordParameter,
             password);
         #endif
+       
+        //string dataToSend = "\"player_id\":2";
 
         string dataToSend = JsonConvert.SerializeObject(startGameDataStructure);
 
-        var www = await SendRemoteData(dataToSend, url);
+        Debug.Log("DATA TO SEND: " + dataToSend);
+
+        var www = await SendRemoteData(form, url);
 
         if (www.result != UnityWebRequest.Result.Success)
         {
+            Debug.Log($"[GAME STARTED SEND] Error: {www.downloadHandler.text}");
             Debug.Log("The timestamp for the start of the game was sent successfully.");
         }
         else
         {
+            Debug.Log($"[GAME STARTED SEND] Success: {www.downloadHandler.text}");
             Debug.Log("Error sending the timestamp for the start of the game.");
         }
     }
 
+    /*
     private async void HandleOnPOIFoundEvent(PointOfInterest poi)
     {
         POIFoundDataStructure poiFoundGameDataStructure = new();
@@ -132,12 +141,16 @@ public class WebSendDataManager : MonoBehaviour
 
         var www = await SendRemoteData(dataToSend, url);
 
+        Debug.Log($"[SEND] Url: {url}");
+
         if (www.result != UnityWebRequest.Result.Success)
         {
+            Debug.Log($"[SEND] Error: {www.downloadHandler.text}");
             Debug.Log("The timestamp for the POI found event was sent successfully.");
         }
         else
         {
+            Debug.Log($"[SEND] Success: {www.downloadHandler.text}");
             Debug.Log("Error sending the timestamp for the POI found event.");
         }
     }
@@ -222,6 +235,6 @@ public class WebSendDataManager : MonoBehaviour
         {
             Debug.Log("Error sending the timestamp for the solution given event.");
         }
-    }
+    }*/
     #endregion
 }
