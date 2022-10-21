@@ -47,7 +47,7 @@ public class LoginGetDataStructure
     // If we are resuming an unfinished session or not
     public bool resume_session;
     // The list of all the POIs
-    public List<POI> pois = new List<POI>();
+    public List<POI> pois = new();
 }
 
 

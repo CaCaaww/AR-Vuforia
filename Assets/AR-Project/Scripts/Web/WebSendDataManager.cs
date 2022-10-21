@@ -71,12 +71,7 @@ public class WebSendDataManager : MonoBehaviour
         #if UNITY_EDITOR
         string url = remoteWebConsoleSO.StartGameGate;
         #elif UNITY_ANDROID
-        string url = String.Concat(
-            remoteWebConsoleSO.StarGameGate,
-            remoteWebConsoleSO.NicknameParameter,
-            nickname,
-            remoteWebConsoleSO.PasswordParameter,
-            password);
+        string url = remoteWebConsoleSO.StartGameGate;
         #endif
        
         //string dataToSend = "\"player_id\":2";
@@ -93,6 +88,8 @@ public class WebSendDataManager : MonoBehaviour
             Debug.Log($"[GAME STARTED SEND] Success: {www.downloadHandler.text}");
             Debug.Log("The timestamp for the start of the game was sent successfully.");
         }
+
+        www.Dispose();
     }
 
     private async void HandleOnPOIFoundEvent(PointOfInterest poi)
@@ -106,12 +103,7 @@ public class WebSendDataManager : MonoBehaviour
         #if UNITY_EDITOR
         string url = remoteWebConsoleSO.POIFoundGate;
         #elif UNITY_ANDROID
-        string url = String.Concat(
-            remoteWebConsoleSO.POIFoundGate,
-            remoteWebConsoleSO.NicknameParameter,
-            nickname,
-            remoteWebConsoleSO.PasswordParameter,
-            password);
+        string url = remoteWebConsoleSO.POIFoundGate;
         #endif
 
         var www = await SendRemoteData(url, form);
@@ -126,6 +118,8 @@ public class WebSendDataManager : MonoBehaviour
             Debug.Log($"[POI FOUND SEND] Success: {www.downloadHandler.text}");
             Debug.Log("The timestamp for the POI found event was sent successfully.");
         }
+
+        www.Dispose();
     }
 
     private async void HandlePOIDeletedByHintEvent(int wherePoiId, int whenPoiId, int howPoiId)
@@ -138,16 +132,12 @@ public class WebSendDataManager : MonoBehaviour
         form.AddField("where_poi_id", wherePoiId.ToString());
         form.AddField("when_poi_id", whenPoiId.ToString());
         form.AddField("how_poi_id", howPoiId.ToString());
+        form.AddField("remaining_hints", sessionDataSO.Hints);
 
         #if UNITY_EDITOR
         string url = remoteWebConsoleSO.HintUsedGate;
         #elif UNITY_ANDROID
-        string url = String.Concat(
-            remoteWebConsoleSO.HintUsedGate,
-            remoteWebConsoleSO.NicknameParameter,
-            nickname,
-            remoteWebConsoleSO.PasswordParameter,
-            password);
+        string url = remoteWebConsoleSO.HintUsedGate;
         #endif
 
         var www = await SendRemoteData(url, form);
@@ -159,9 +149,11 @@ public class WebSendDataManager : MonoBehaviour
         }
         else
         {
-            Debug.Log($"[HINT USED SEND] Error: {www.downloadHandler.text}");
+            Debug.Log($"[HINT USED SEND] Success: {www.downloadHandler.text}");
             Debug.Log("The timestamp for the hint used found event was sent successfully.");
         }
+
+        www.Dispose();
     }
     
     private async void HandleOnSolutionGivenEvent()
@@ -178,12 +170,7 @@ public class WebSendDataManager : MonoBehaviour
         #if UNITY_EDITOR
         string url = remoteWebConsoleSO.SolutionGivenGate;
         #elif UNITY_ANDROID
-        string url = String.Concat(
-            remoteWebConsoleSO.SolutionGivenGate,
-            remoteWebConsoleSO.NicknameParameter,
-            nickname,
-            remoteWebConsoleSO.PasswordParameter,
-            password);
+        string url = remoteWebConsoleSO.SolutionGivenGate;
         #endif
 
         var www = await SendRemoteData(url, form);
@@ -195,9 +182,11 @@ public class WebSendDataManager : MonoBehaviour
         }
         else
         {
-            Debug.Log($"[SOLUTION SEND] Error: {www.downloadHandler.text}");
+            Debug.Log($"[SOLUTION SEND] Success: {www.downloadHandler.text}");
             Debug.Log("The timestamp for the solution given event was sent successfully.");
         }
+
+        www.Dispose();
     }
     #endregion
 }
