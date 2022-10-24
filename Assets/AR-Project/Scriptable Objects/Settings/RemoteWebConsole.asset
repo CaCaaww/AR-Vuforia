@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   host: https://test1.dedalus.cc/arGame/public/api/
   joinGate: join
+  startGameGate: gameStarted
+  poiFoundGate: poiFound
+  hintUsedGate: hintUsed
+  solutionGivenGate: solutionGiven
   nicknameParameter: ?nickname=
-  nicknameValue: 
-  nicknamePreHashtagValue: 
-  nicknamePostHashtagValue: 
+  nicknameValue: test%231
   passwordParameter: '&code='
   passwordValue: OcaDu

@@ -44,13 +44,9 @@ public class WebSendDataManager : MonoBehaviour
     #endregion
 
     #region Helper Methods
-    private async Task<UnityWebRequest> SendRemoteData(string data, string url)
+    private async Task<UnityWebRequest> SendRemoteData(string url, WWWForm form)
     {
-        Debug.Log(url);
-
-        string postData = data;
-
-        var www = UnityWebRequest.Post(url, postData);
+        var www = UnityWebRequest.Post(url, form);
 
         // Set the request timeout
         www.timeout = 10;
@@ -67,161 +63,130 @@ public class WebSendDataManager : MonoBehaviour
     #region Callbacks
     private async void HandleOnStartGameEvent()
     {
-        StartGameDataStructure startGameDataStructure = new();
-
-        startGameDataStructure.player_id = sessionDataSO.PlayerId;
-        startGameDataStructure.session_id = sessionDataSO.SessionId;
-        startGameDataStructure.timestamp = DateTime.Now.ToString(dateTimeFormat);
+        WWWForm form = new();       
+        form.AddField("player_id", sessionDataSO.PlayerId.ToString());
+        form.AddField("session_id", sessionDataSO.SessionId.ToString());
+        form.AddField("timestamp", DateTime.Now.ToString(dateTimeFormat));
 
         #if UNITY_EDITOR
-        string url = String.Concat(
-            remoteWebConsoleSO.StarGameGate,
-            remoteWebConsoleSO.NicknameParameter,
-            remoteWebConsoleSO.NicknameValue,
-            remoteWebConsoleSO.PasswordParameter,
-            remoteWebConsoleSO.PasswordValue);
+        string url = remoteWebConsoleSO.StartGameGate;
         #elif UNITY_ANDROID
-        string url = String.Concat(
-            remoteWebConsoleSO.StarGameGate,
-            remoteWebConsoleSO.NicknameParameter,
-            nickname,
-            remoteWebConsoleSO.PasswordParameter,
-            password);
+        string url = remoteWebConsoleSO.StartGameGate;
         #endif
+       
+        //string dataToSend = "\"player_id\":2";
 
-        string dataToSend = JsonConvert.SerializeObject(startGameDataStructure);
-
-        var www = await SendRemoteData(dataToSend, url);
+        var www = await SendRemoteData(url, form);
 
         if (www.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log("The timestamp for the start of the game was sent successfully.");
+            Debug.Log($"[GAME STARTED SEND] Error: {www.downloadHandler.text}");
+            Debug.Log("Error sending the timestamp for the start of the game.");
         }
         else
         {
-            Debug.Log("Error sending the timestamp for the start of the game.");
+            Debug.Log($"[GAME STARTED SEND] Success: {www.downloadHandler.text}");
+            Debug.Log("The timestamp for the start of the game was sent successfully.");
         }
+
+        www.Dispose();
     }
 
     private async void HandleOnPOIFoundEvent(PointOfInterest poi)
     {
-        POIFoundDataStructure poiFoundGameDataStructure = new();
-
-        poiFoundGameDataStructure.player_id = sessionDataSO.PlayerId;
-        poiFoundGameDataStructure.session_id = sessionDataSO.SessionId;
-        poiFoundGameDataStructure.timestamp = DateTime.Now.ToString(dateTimeFormat);
-        poiFoundGameDataStructure.poi_id = poi.id;
+        WWWForm form = new();
+        form.AddField("player_id", sessionDataSO.PlayerId.ToString());
+        form.AddField("session_id", sessionDataSO.SessionId.ToString());
+        form.AddField("timestamp", DateTime.Now.ToString(dateTimeFormat));
+        form.AddField("poi_id", poi.id.ToString());
 
         #if UNITY_EDITOR
-        string url = String.Concat(
-            remoteWebConsoleSO.POIFoundGate,
-            remoteWebConsoleSO.NicknameParameter,
-            remoteWebConsoleSO.NicknameValue,
-            remoteWebConsoleSO.PasswordParameter,
-            remoteWebConsoleSO.PasswordValue);
+        string url = remoteWebConsoleSO.POIFoundGate;
         #elif UNITY_ANDROID
-        string url = String.Concat(
-            remoteWebConsoleSO.POIFoundGate,
-            remoteWebConsoleSO.NicknameParameter,
-            nickname,
-            remoteWebConsoleSO.PasswordParameter,
-            password);
+        string url = remoteWebConsoleSO.POIFoundGate;
         #endif
 
-        string dataToSend = JsonConvert.SerializeObject(poiFoundGameDataStructure);
-
-        var www = await SendRemoteData(dataToSend, url);
+        var www = await SendRemoteData(url, form);
 
         if (www.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log("The timestamp for the POI found event was sent successfully.");
+            Debug.Log($"[POI FOUND SEND] Error: {www.downloadHandler.text}");
+            Debug.Log("Error sending the timestamp for the POI found event.");
         }
         else
         {
-            Debug.Log("Error sending the timestamp for the POI found event.");
+            Debug.Log($"[POI FOUND SEND] Success: {www.downloadHandler.text}");
+            Debug.Log("The timestamp for the POI found event was sent successfully.");
         }
+
+        www.Dispose();
     }
 
     private async void HandlePOIDeletedByHintEvent(int wherePoiId, int whenPoiId, int howPoiId)
     {
-        HintUsedDataStructure hintUsedGameDataStructure = new();
+        WWWForm form = new();
 
-        hintUsedGameDataStructure.player_id = sessionDataSO.PlayerId;
-        hintUsedGameDataStructure.session_id = sessionDataSO.SessionId;
-        hintUsedGameDataStructure.timestamp = DateTime.Now.ToString(dateTimeFormat);
-        hintUsedGameDataStructure.where_poi_id = wherePoiId;
-        hintUsedGameDataStructure.when_poi_id = whenPoiId;
-        hintUsedGameDataStructure.how_poi_id = howPoiId;
+        form.AddField("player_id", sessionDataSO.PlayerId.ToString());
+        form.AddField("session_id", sessionDataSO.SessionId.ToString());
+        form.AddField("timestamp", DateTime.Now.ToString(dateTimeFormat));
+        form.AddField("where_poi_id", wherePoiId.ToString());
+        form.AddField("when_poi_id", whenPoiId.ToString());
+        form.AddField("how_poi_id", howPoiId.ToString());
+        form.AddField("remaining_hints", sessionDataSO.Hints);
 
         #if UNITY_EDITOR
-        string url = String.Concat(
-            remoteWebConsoleSO.HintUsedGate,
-            remoteWebConsoleSO.NicknameParameter,
-            remoteWebConsoleSO.NicknameValue,
-            remoteWebConsoleSO.PasswordParameter,
-            remoteWebConsoleSO.PasswordValue);
+        string url = remoteWebConsoleSO.HintUsedGate;
         #elif UNITY_ANDROID
-        string url = String.Concat(
-            remoteWebConsoleSO.HintUsedGate,
-            remoteWebConsoleSO.NicknameParameter,
-            nickname,
-            remoteWebConsoleSO.PasswordParameter,
-            password);
+        string url = remoteWebConsoleSO.HintUsedGate;
         #endif
 
-        string dataToSend = JsonConvert.SerializeObject(hintUsedGameDataStructure);
-
-        var www = await SendRemoteData(dataToSend, url);
+        var www = await SendRemoteData(url, form);
 
         if (www.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log("The timestamp for the POI found event was sent successfully.");
+            Debug.Log($"[HINT USED SEND] Error: {www.downloadHandler.text}");
+            Debug.Log("Error sending the timestamp for the hint used event.");
         }
         else
         {
-            Debug.Log("Error sending the timestamp for the POI found event.");
+            Debug.Log($"[HINT USED SEND] Success: {www.downloadHandler.text}");
+            Debug.Log("The timestamp for the hint used found event was sent successfully.");
         }
+
+        www.Dispose();
     }
     
     private async void HandleOnSolutionGivenEvent()
     {
-        SolutionGivenDataStructure solutionGivenDataStructure = new();
+        WWWForm form = new();
 
-        solutionGivenDataStructure.player_id = sessionDataSO.PlayerId;
-        solutionGivenDataStructure.session_id = sessionDataSO.SessionId;
-        solutionGivenDataStructure.timestamp = DateTime.Now.ToString(dateTimeFormat);
-        solutionGivenDataStructure.where_poi_id = sessionDataSO.PointsOfInterest.WherePOISolutionId;
-        solutionGivenDataStructure.when_poi_id = sessionDataSO.PointsOfInterest.WhenPOIChosenAsSolutionId;
-        solutionGivenDataStructure.how_poi_id = sessionDataSO.PointsOfInterest.HowPOIChosenAsSolutionId;
+        form.AddField("player_id", sessionDataSO.PlayerId.ToString());
+        form.AddField("session_id", sessionDataSO.SessionId.ToString());
+        form.AddField("timestamp", DateTime.Now.ToString(dateTimeFormat));
+        form.AddField("where_poi_id", sessionDataSO.PointsOfInterest.WherePOIChosenAsSolutionId.ToString());
+        form.AddField("when_poi_id", sessionDataSO.PointsOfInterest.WhenPOIChosenAsSolutionId.ToString());
+        form.AddField("how_poi_id", sessionDataSO.PointsOfInterest.HowPOIChosenAsSolutionId.ToString());
 
         #if UNITY_EDITOR
-        string url = String.Concat(
-            remoteWebConsoleSO.SolutionGivenGate,
-            remoteWebConsoleSO.NicknameParameter,
-            remoteWebConsoleSO.NicknameValue,
-            remoteWebConsoleSO.PasswordParameter,
-            remoteWebConsoleSO.PasswordValue);
+        string url = remoteWebConsoleSO.SolutionGivenGate;
         #elif UNITY_ANDROID
-        string url = String.Concat(
-            remoteWebConsoleSO.SolutionGivenGate,
-            remoteWebConsoleSO.NicknameParameter,
-            nickname,
-            remoteWebConsoleSO.PasswordParameter,
-            password);
+        string url = remoteWebConsoleSO.SolutionGivenGate;
         #endif
 
-        string dataToSend = JsonConvert.SerializeObject(solutionGivenDataStructure);
-
-        var www = await SendRemoteData(dataToSend, url);
+        var www = await SendRemoteData(url, form);
 
         if (www.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log("The timestamp for the solution given event was sent successfully.");
+            Debug.Log($"[SOLUTION SEND] Error: {www.downloadHandler.text}");
+            Debug.Log("Error sending the timestamp for the solution given event.");
         }
         else
         {
-            Debug.Log("Error sending the timestamp for the solution given event.");
+            Debug.Log($"[SOLUTION SEND] Success: {www.downloadHandler.text}");
+            Debug.Log("The timestamp for the solution given event was sent successfully.");
         }
+
+        www.Dispose();
     }
     #endregion
 }

@@ -60,7 +60,7 @@ public class BackendManager : MonoBehaviour
 
         #if UNITY_EDITOR
         // Reset the variables in the POIs SO
-        pointsOfInterestSO.ResetVariables();
+        //pointsOfInterestSO.ResetVariables(sessionDataSO.ResumeSession);
         #endif
 
         // Uncomment only in builds with just the 02-AR-Project scene
@@ -102,6 +102,7 @@ public class BackendManager : MonoBehaviour
             if (!pois[i].isUseful) 
             {
                 tempPOIsList.Add(pois[i]);
+                //Debug.Log
             }
         }
 
@@ -153,29 +154,22 @@ public class BackendManager : MonoBehaviour
     /// <param name="imageName">The name of the image detected</param>
     private void HandlePOIDetected(string imageName)
     {
-        // If the POI was already detected, skip it
-        //if (pointsOfInterestSO.ImageNameAndPOI[imageName].alreadyDetected)
-        //    return;
-        
-        // Set this POI as detected
-        //pointsOfInterestSO.ImageNameAndPOI[imageName].alreadyDetected = true;
-
-        // Check the type and add the POI to the respective list
+        // Check the type and add the POI to the respective (POI found) list
         switch (pointsOfInterestSO.ImageNameAndPOI[imageName].type)
         {
             case EPOIType.Where:
                 {
-                    pointsOfInterestSO.WherePois.Add(pointsOfInterestSO.ImageNameAndPOI[imageName]);
+                    pointsOfInterestSO.WherePOIsFound.Add(pointsOfInterestSO.ImageNameAndPOI[imageName]);
                 }
                 break;
             case EPOIType.When:
                 {
-                    pointsOfInterestSO.WhenPois.Add(pointsOfInterestSO.ImageNameAndPOI[imageName]);
+                    pointsOfInterestSO.WhenPOIsFound.Add(pointsOfInterestSO.ImageNameAndPOI[imageName]);
                 }
                 break;
             case EPOIType.How:
                 {
-                    pointsOfInterestSO.HowPois.Add(pointsOfInterestSO.ImageNameAndPOI[imageName]);
+                    pointsOfInterestSO.HowPOIsFound.Add(pointsOfInterestSO.ImageNameAndPOI[imageName]);
                 }
                 break;
         }
@@ -193,12 +187,12 @@ public class BackendManager : MonoBehaviour
     private void HandleHintRequest()
     {
         // Remove a single random item (not part of the solution) for every type
-        int wherePoiId = RemoveUnusefulPOI(pointsOfInterestSO.WherePois, pointsOfInterestSO.WherePois.Count);
-        int whenPoiId = RemoveUnusefulPOI(pointsOfInterestSO.WhenPois, pointsOfInterestSO.WhenPois.Count);
-        int howPoiId = RemoveUnusefulPOI(pointsOfInterestSO.HowPois, pointsOfInterestSO.HowPois.Count);
+        int wherePoiId = RemoveUnusefulPOI(pointsOfInterestSO.WherePOIsFound, pointsOfInterestSO.WherePOIsFound.Count);
+        int whenPoiId = RemoveUnusefulPOI(pointsOfInterestSO.WhenPOIsFound, pointsOfInterestSO.WhenPOIsFound.Count);
+        int howPoiId = RemoveUnusefulPOI(pointsOfInterestSO.HowPOIsFound, pointsOfInterestSO.HowPOIsFound.Count);
 
         // Raise an event informing which POIs where deleted by the hint
-        uiEventsChannelSO.RaisePOIDeletedByHintEvent(whenPoiId, whenPoiId, howPoiId);
+        uiEventsChannelSO.RaisePOIDeletedByHintEvent(wherePoiId, whenPoiId, howPoiId);
     }
    
     /// <summary>
@@ -260,7 +254,7 @@ public class BackendManager : MonoBehaviour
     {
         if ((pointsOfInterestSO.WherePOIChosenAsSolutionId == pointsOfInterestSO.WherePOISolutionId) &&
             (pointsOfInterestSO.WhenPOIChosenAsSolutionId == pointsOfInterestSO.WhenPOISolutionId) &&
-            (pointsOfInterestSO.HowPOIChosenAsSolutionId == pointsOfInterestSO.WherePOISolutionId))
+            (pointsOfInterestSO.HowPOIChosenAsSolutionId == pointsOfInterestSO.HowPOISolutionId))
         {
             // Victory
             Debug.Log("Victory!");
@@ -285,9 +279,9 @@ public class BackendManager : MonoBehaviour
     private void PopulateInventory()
     {
         // Clear the lists (just to be sure)
-        //pointsOfInterestSO.WherePois.Clear();
-        //pointsOfInterestSO.WhenPois.Clear();
-        //pointsOfInterestSO.HowPois.Clear();
+        //pointsOfInterestSO.WherePoisFound.Clear();
+        //pointsOfInterestSO.WhenPoisFound.Clear();
+        //pointsOfInterestSO.HowPoisFound.Clear();
 
         foreach (var poi in pointsOfInterestSO.Points)
         {
@@ -295,17 +289,17 @@ public class BackendManager : MonoBehaviour
                 {
                     case EPOIType.Where:
                         {
-                            pointsOfInterestSO.WherePois.Add(poi);
+                            pointsOfInterestSO.WherePOIsFound.Add(poi);
                         }
                         break;
                     case EPOIType.When:
                         {
-                            pointsOfInterestSO.WhenPois.Add(poi);
+                            pointsOfInterestSO.WhenPOIsFound.Add(poi);
                         }
                         break;
                     case EPOIType.How:
                         {
-                            pointsOfInterestSO.HowPois.Add(poi);
+                            pointsOfInterestSO.HowPOIsFound.Add(poi);
                         }
                         break;
                 }

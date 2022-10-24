@@ -33,7 +33,6 @@ public class PointOfInterest
     public Dictionary<string, string> imageNameAndUrl = new();
     public bool isUseful;
     public EIconType iconType;
-    //public bool alreadyDetected;
     public EPOIState state;
     public int avatarID;
     public string avatarName;
@@ -59,17 +58,17 @@ public class PointsOfInterestSO : ScriptableObject
     /// The list of all the "where" POIs found for the session
     /// </summary>
     [Tooltip("The list of all the _where_ POIs found for the session")]
-    [SerializeField] private List<PointOfInterest> wherePoisFound = new();
+    [SerializeField] private List<PointOfInterest> wherePOIsFound = new();
     /// <summary>
     /// The list of all the "when" POIs found for the session
     /// </summary>
     [Tooltip("The list of all the _when_ POIs found for the session")]
-    [SerializeField] private List<PointOfInterest> whenPoisFound = new();
+    [SerializeField] private List<PointOfInterest> whenPOIsFound = new();
     /// <summary>
     /// The list of all the "how" POIs found for the session
     /// </summary>
     [Tooltip("The list of all the _how_ POIs found for the session")]
-    [SerializeField] private List<PointOfInterest> howPoisFound = new();
+    [SerializeField] private List<PointOfInterest> howPOIsFound = new();
     
     [Header("Solution")]
     /// <summary>
@@ -119,19 +118,14 @@ public class PointsOfInterestSO : ScriptableObject
     /// <summary>
     /// Dictionary to store the relation between image name and Vuforia ImageTarget object
     /// </summary>
-    private readonly Dictionary<string, GameObject> imageNameAndImageTargetObject = new();
-
-    //private Dictionary<int, PointOfInterest> idAndARPOI_Dict = new Dictionary<int, PointOfInterest>();
-    //private Dictionary<int, PointOfInterest> idAndNOARPOI_Dict = new Dictionary<int, PointOfInterest>();
-    
+    private readonly Dictionary<string, GameObject> imageNameAndImageTargetObject = new();    
     #endregion
 
     #region Public properties
     public List<PointOfInterest> Points  { get => points; }
-    public List<PointOfInterest> WherePois { get => wherePoisFound; }
-    public List<PointOfInterest> WhenPois { get => whenPoisFound; }
-    public List<PointOfInterest> HowPois { get => howPoisFound; }
-
+    public List<PointOfInterest> WherePOIsFound { get => wherePOIsFound; }
+    public List<PointOfInterest> WhenPOIsFound { get => whenPOIsFound; }
+    public List<PointOfInterest> HowPOIsFound { get => howPOIsFound; }
 
     public int WherePOISolutionId { get => wherePOISolutionId; set => wherePOISolutionId = value; }
     public int WhenPOISolutionId { get => whenPOISolutionId; set => whenPOISolutionId = value; }
@@ -141,13 +135,8 @@ public class PointsOfInterestSO : ScriptableObject
     public int WhenPOIChosenAsSolutionId { get => whenPOIChosenAsSolutionId; set => whenPOIChosenAsSolutionId = value; }
     public int HowPOIChosenAsSolutionId { get => howPOIChosenAsSolutionId; set => howPOIChosenAsSolutionId = value; }
 
-
     public Dictionary<string, PointOfInterest> ImageNameAndPOI { get => imageNameAndPOI; }
     public Dictionary<string, GameObject> ImageNameAndImageTargetObject { get => imageNameAndImageTargetObject; }
-    
-    //public Dictionary<int, PointOfInterest> IDAndPOI_Dict { get => idAndPOI_Dict; }
-    //public Dictionary<int, PointOfInterest> IDAndARPOI_Dict { get => idAndARPOI_Dict; }
-    //public Dictionary<int, PointOfInterest> IDAndNOARPOI_Dict { get => idAndNOARPOI_Dict; }
     #endregion
 
     #region Public Methods
@@ -161,31 +150,22 @@ public class PointsOfInterestSO : ScriptableObject
     /// </summary>
     public void ResetVariables()
     {
-        wherePoisFound.Clear();
-        whenPoisFound.Clear();
-        howPoisFound.Clear();
-
+        // Clear the POIs found lists
+        wherePOIsFound.Clear();
+        whenPOIsFound.Clear();
+        howPOIsFound.Clear();
+  
+        // Clear the POI chosen ad solutions IDs
         wherePOIChosenAsSolutionId = 0;
         whenPOIChosenAsSolutionId = 0;
         howPOIChosenAsSolutionId = 0;
-    }
 
-    /*
-    public void AddToIDAndPOI_Dict(int id, PointOfInterest poi)
-    {
-        idAndPOI_Dict.Add(id, poi);
-    }
+        // Clear the POI list
+        points.Clear();
 
-    public void AddToIDAndARPOI_Dict(int id, PointOfInterest poi)
-    {
-        idAndARPOI_Dict.Add(id, poi);
+        // Clear the helper dictionaries
+        imageNameAndPOI.Clear();
     }
-
-    public void AddToIDAndNOARPOI_Dict(int id, PointOfInterest poi)
-    {
-        idAndNOARPOI_Dict.Add(id, poi);
-    }
-    */
     #endregion
 }
 

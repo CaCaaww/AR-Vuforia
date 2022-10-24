@@ -41,9 +41,7 @@ public class WebLoginManager : MonoBehaviour
     
     #region Helper methods
     private async Task<UnityWebRequest> GetRemoteData(string nickname, string password)
-    {
-        
-
+    {       
         #if UNITY_EDITOR
         string url = String.Concat(
             remoteWebConsoleSO.JoinGate,
@@ -59,7 +57,6 @@ public class WebLoginManager : MonoBehaviour
             nickname,
             remoteWebConsoleSO.PasswordParameter,
             password);
-
         #endif
 
         Debug.Log(url);
@@ -139,13 +136,11 @@ public class WebLoginManager : MonoBehaviour
         int numberOfPois = dataStructure.pois.Count;
         Debug.Log("[WEB] Number of POIs: " + numberOfPois);
 
-        // Clear the POI list
-        sessionDataSO.PointsOfInterest.Points.Clear();
+        #if UNITY_EDITOR
+        // Reset the variables in the editor 
+        sessionDataSO.PointsOfInterest.ResetVariables();
+        #endif
 
-        // Clear the helper dictionaries
-        sessionDataSO.PointsOfInterest.ImageNameAndPOI.Clear();
-        
-    
         for (int i = 0; i < numberOfPois; i++)
         {
             // Add a new POI object
@@ -242,17 +237,17 @@ public class WebLoginManager : MonoBehaviour
                     {
                         case EPOIType.Where:
                             {
-                                sessionDataSO.PointsOfInterest.WherePois.Add(sessionDataSO.PointsOfInterest.Points[i]);
+                                sessionDataSO.PointsOfInterest.WherePOIsFound.Add(sessionDataSO.PointsOfInterest.Points[i]);
                             }
                             break;
                         case EPOIType.When:
                             {
-                                sessionDataSO.PointsOfInterest.WhenPois.Add(sessionDataSO.PointsOfInterest.Points[i]);
+                                sessionDataSO.PointsOfInterest.WhenPOIsFound.Add(sessionDataSO.PointsOfInterest.Points[i]);
                             }
                             break;
                         case EPOIType.How:
                             {
-                                sessionDataSO.PointsOfInterest.HowPois.Add(sessionDataSO.PointsOfInterest.Points[i]);
+                                sessionDataSO.PointsOfInterest.HowPOIsFound.Add(sessionDataSO.PointsOfInterest.Points[i]);
                             }
                             break;
                     }
@@ -262,6 +257,8 @@ public class WebLoginManager : MonoBehaviour
 
         // Raise an event for finishing the loading of the session data
         uiEventsChannelSO.RaiseSessionDataLoadedEvent(true);
+
+        www.Dispose();
     }
 #endregion
 }
