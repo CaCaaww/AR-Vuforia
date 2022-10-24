@@ -50,8 +50,7 @@ public class BackendManager : MonoBehaviour
         uiEventsChannelSO.OnSolutionItemDeselectedEventRaised += HandleSolutionItemDeselection;
         uiEventsChannelSO.OnSolutionGivenEventRaised += HandleSolutionGiven;
 
-        arEventChannelSO.OnPOIDetected += HandlePOIDetected;
-        
+        arEventChannelSO.OnPOIDetected += HandlePOIDetected;      
     }
 
     void Start()

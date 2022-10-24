@@ -23,11 +23,13 @@ public class EndgameUIController : MonoBehaviour
     private void OnEnable()
     {
         uiEventsChannelsSO.OnEndgameReachedEventRaised += HandleEndgameReached;
+        uiEventsChannelsSO.OnGamePlaytimeReceveidEventRaised += HandleGamePlaytimeReceveidEvent;
     }
 
     private void OnDisable()
     {
         uiEventsChannelsSO.OnEndgameReachedEventRaised -= HandleEndgameReached;
+        uiEventsChannelsSO.OnGamePlaytimeReceveidEventRaised -= HandleGamePlaytimeReceveidEvent;
     }
 
     void Awake()
@@ -52,13 +54,22 @@ public class EndgameUIController : MonoBehaviour
         descriptionText.text = endgameText;
 
         // Set the timer text
-        timerText.text = "You played for " + timePlaying.Minutes + " minutes and " + timePlaying.Seconds + " seconds";
+        //timerText.text = "You played for " + timePlaying.Minutes + " minutes and " + timePlaying.Seconds + " seconds";
 
         // Add a quit function to the exit button
         exitButton.onClick.AddListener(() => Utils.QuitGame());
 
         // Enable the canvas
         endgameCanvas.enabled = true;       
+    }
+
+    private void HandleGamePlaytimeReceveidEvent(int playtime)
+    {
+        // Create a TimeSpan from the total playtime.
+        TimeSpan timePlaying = TimeSpan.FromSeconds(playtime);
+
+        // Set the timer text
+        timerText.text = "You played for " + timePlaying.Minutes + " minutes and " + timePlaying.Seconds + " seconds";
     }
     #endregion
 }

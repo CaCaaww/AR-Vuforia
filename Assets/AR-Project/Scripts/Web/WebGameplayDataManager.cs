@@ -33,7 +33,6 @@ public class WebGameplayDataManager : MonoBehaviour
         uiEventsChannelSO.OnSolutionGivenEventRaised += HandleOnSolutionGivenEvent;
     }
 
-
     void OnDisable()
     {
         uiEventsChannelSO.OnStartGameEventRaised -= HandleOnStartGameEvent;
@@ -175,15 +174,29 @@ public class WebGameplayDataManager : MonoBehaviour
 
         var www = await SendRemoteData(url, form);
 
+        Dictionary<string, string> response = new();
+
+        //Debug.Log("END MESSAGE: " + response["message"]);
+
+        //Debug.Log("END TIME: " + response["time"]);
+
         if (www.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log($"[SOLUTION SEND] Error: {www.downloadHandler.text}");
+            response = JsonConvert.DeserializeObject<Dictionary<string, string>>(www.downloadHandler.text);
+
+            Debug.Log($"[SOLUTION SEND] Error: {response["message"]}");
             Debug.Log("Error sending the timestamp for the solution given event.");
+
+            uiEventsChannelSO.RaiseGamePlaytimeReceveidEvent(0);
         }
         else
         {
-            Debug.Log($"[SOLUTION SEND] Success: {www.downloadHandler.text}");
+            response = JsonConvert.DeserializeObject<Dictionary<string, string>>(www.downloadHandler.text);
+
+            Debug.Log($"[SOLUTION SEND] Success: {response["message"]}");
             Debug.Log("The timestamp for the solution given event was sent successfully.");
+
+            uiEventsChannelSO.RaiseGamePlaytimeReceveidEvent(int.Parse(response["time"]));
         }
 
         www.Dispose();
