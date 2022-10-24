@@ -44,7 +44,7 @@ public class InventoryUIController : MonoBehaviour
     void Awake()
     {
         #if UNITY_EDITOR
-        sessionDataSO.Hints = 5;
+        //sessionDataSO.Hints = 5;
         #endif
 
         SetupUI();

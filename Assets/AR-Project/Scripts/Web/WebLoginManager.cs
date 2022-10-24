@@ -223,15 +223,15 @@ public class WebLoginManager : MonoBehaviour
             sessionDataSO.PointsOfInterest.Points[i].avatarName = dataStructure.pois[i].avatar_name;
             Debug.Log("[WEB] Avatar name: " + dataStructure.pois[i].avatar_name);
 
-            // If we are resuming a previous session restore the "detected" state of the POI
+            // Set the state Enum from the remote data
+            sessionDataSO.PointsOfInterest.Points[i].state = (EPOIState)dataStructure.pois[i].detected;
+
+            // If we are resuming a previous session
             if (sessionDataSO.ResumeSession)
             {
                 // If the POI was previously detected
                 if (dataStructure.pois[i].detected == (int)EPOIState.Detected)
                 {
-                    // Set the state Enum
-                    sessionDataSO.PointsOfInterest.Points[i].state = (EPOIState)dataStructure.pois[i].detected;
-
                     // Check the type and add the POI to the respective list
                     switch (sessionDataSO.PointsOfInterest.Points[i].type)
                     {

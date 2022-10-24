@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class WebSendDataManager : MonoBehaviour
+public class WebGameplayDataManager : MonoBehaviour
 {
     #region Inspector
     [Header("SO Listen Channels")]
