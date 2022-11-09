@@ -87,8 +87,9 @@ public class PopUpPanelController : MonoBehaviour
 
         poiIconImage.sprite = poiIconCollectionSO.GetIconByType(poi.iconType);
 
-        poiTellerImage.sprite = npcAvatarCollectionSO.GetAvatarSpriteByID(poi.avatarID);
+        //poiTellerImage.sprite = npcAvatarCollectionSO.GetAvatarSpriteByID(poi.avatarID);
 
+        poiTellerImage.sprite = poi.avatarImage;
     }
     #endregion
 }

@@ -216,12 +216,15 @@ public class WebLoginManager : MonoBehaviour
             Debug.Log("[WEB] Icon type: " + (EIconType)dataStructure.pois[i].icon_type);
 
             // Set the avatar id for the POI
-            sessionDataSO.PointsOfInterest.Points[i].avatarID = dataStructure.pois[i].avatar_id;
-            Debug.Log("[WEB] Avatar id: " + dataStructure.pois[i].avatar_id);
+            //sessionDataSO.PointsOfInterest.Points[i].avatarID = dataStructure.pois[i].avatar_id;
+            //Debug.Log("[WEB] Avatar id: " + dataStructure.pois[i].avatar_id);
 
             // Set the avatar name for the POI
-            sessionDataSO.PointsOfInterest.Points[i].avatarName = dataStructure.pois[i].avatar_name;
-            Debug.Log("[WEB] Avatar name: " + dataStructure.pois[i].avatar_name);
+            //sessionDataSO.PointsOfInterest.Points[i].avatarName = dataStructure.pois[i].avatar_name;
+            //Debug.Log("[WEB] Avatar name: " + dataStructure.pois[i].avatar_name);
+
+            // Set the avatar image name for the POI
+            sessionDataSO.PointsOfInterest.Points[i].avatarImage = Utils.Texture2DToSprite(await Utils.GetRemoteTexture(dataStructure.pois[i].avatar_image));
 
             // Set the state Enum from the remote data
             sessionDataSO.PointsOfInterest.Points[i].state = (EPOIState)dataStructure.pois[i].detected;

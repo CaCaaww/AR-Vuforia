@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3f657e85a7d63dda95771d8995df010, type: 3}
-  m_Name: RemoteWebConsole
+  m_Name: RemoteWebConsoleProd
   m_EditorClassIdentifier: 
   host: https://test1.dedalus.cc/arGame/public/api/
   joinGate: join

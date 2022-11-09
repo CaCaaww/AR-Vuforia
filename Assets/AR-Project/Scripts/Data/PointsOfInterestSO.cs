@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 #region External classes
@@ -36,6 +37,7 @@ public class PointOfInterest
     public EPOIState state;
     public int avatarID;
     public string avatarName;
+    public Sprite avatarImage;
     public int timer;
     public int linkedTo;
 }

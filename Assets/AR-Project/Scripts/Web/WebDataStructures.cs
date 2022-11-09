@@ -24,6 +24,8 @@ public class POI
     public int avatar_id;
     // The name of the avatar
     public string avatar_name;
+    // The image name of the avatar
+    public string avatar_image;
     // The state of a POI (0 = undetected, 1 = detected, 2 = detected and deleted)
     public int detected; 
 }

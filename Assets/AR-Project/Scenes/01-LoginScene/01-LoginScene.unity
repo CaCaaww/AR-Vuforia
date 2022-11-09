@@ -1245,7 +1245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
-  remoteWebConsoleSO: {fileID: 11400000, guid: e7bf1463db69a34a398b07b465bf470f, type: 2}
+  remoteWebConsoleSO: {fileID: 11400000, guid: 593a16be3a780afef8844222d93a4f0a, type: 2}
   sessionDataSO: {fileID: 11400000, guid: bd04b964e8642e264b2347319ec61a4a, type: 2}
 --- !u!4 &1051937974
 Transform:

@@ -45,6 +45,15 @@ public class Utils : MonoBehaviour
         }
     }
 
+    // Convert a texture to a sprite
+    public static Sprite Texture2DToSprite(Texture2D texture)
+    {   
+        return Sprite.Create(texture, 
+                            new Rect(0f, 0f, texture.width, texture.height), 
+                            new Vector2(0.5f, 0.5f), 50f, 0, SpriteMeshType.FullRect);
+    }
+    
+
     public static T Attach<T>(GameObject go, int arg1, int arg2, string arg3) where T : Component
     {
             T componentToAttach = go.AddComponent<T>();
