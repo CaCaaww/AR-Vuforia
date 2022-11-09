@@ -21,6 +21,7 @@ public class UIEventsChannelSO : ScriptableObject
 	public Action<SolutionItemController> OnSolutionItemDeselectedEventRaised;
 	public Action OnSolutionGivenEventRaised;
     public Action<bool, string, TimeSpan> OnEndgameReachedEventRaised;
+	public Action<int> OnGamePlaytimeReceveidEventRaised;
     public Action OnClosingUIEventRaised;
 	public Action OnOpeningUIEventRaised;
     public Action OnStartGameEventRaised;
@@ -113,6 +114,14 @@ public class UIEventsChannelSO : ScriptableObject
 		if (OnEndgameReachedEventRaised != null)
 		{
             OnEndgameReachedEventRaised.Invoke(isVictory, endgameText, timeSpan);
+        }
+	}
+
+	public void RaiseGamePlaytimeReceveidEvent(int playtime)
+	{
+		if (OnGamePlaytimeReceveidEventRaised != null)
+		{
+			OnGamePlaytimeReceveidEventRaised.Invoke(playtime);
         }
 	}
 
