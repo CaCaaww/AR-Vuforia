@@ -24,6 +24,7 @@ public class PointOfInterest
 {
     public int id;
     public string title;
+    public string short_title;
     public EPOIType type;
     public string description;
     public bool isAR;
