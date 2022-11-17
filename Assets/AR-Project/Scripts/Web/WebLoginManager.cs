@@ -154,6 +154,10 @@ public class WebLoginManager : MonoBehaviour
             sessionDataSO.PointsOfInterest.Points[i].title = dataStructure.pois[i].title;
             Debug.Log("[WEB] Title: " + dataStructure.pois[i].title);
 
+            // Set the POI short title
+            sessionDataSO.PointsOfInterest.Points[i].short_title = dataStructure.pois[i].short_title;
+            Debug.Log("[WEB] Title: " + dataStructure.pois[i].short_title);
+
             // Set the POI type
             sessionDataSO.PointsOfInterest.Points[i].type = (EPOIType)dataStructure.pois[i].type;
             Debug.Log("[WEB] Clue type: " + (EPOIType)dataStructure.pois[i].type);

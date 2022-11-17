@@ -6,8 +6,10 @@ public class POI
 {
     // The id of the POI.
     public int id;
-    // The name of the POI.
+    // The title of the POI.
     public string title;
+    // The short title of the POI.
+    public string short_title;
     // The type of the POI (0 = where, 1 = when, 2 = how)
     public int type;
     // The description of the POI
@@ -20,8 +22,6 @@ public class POI
     public bool is_useful;
     // The icon type of the POI (0 = event, 1 = dialogue, 2 = object)
     public int icon_type;
-    // The id of the avatar
-    public int avatar_id;
     // The name of the avatar
     public string avatar_name;
     // The image name of the avatar

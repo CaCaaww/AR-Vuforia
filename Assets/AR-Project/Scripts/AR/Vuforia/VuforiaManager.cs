@@ -84,7 +84,7 @@ public class VuforiaManager : MonoBehaviour
                 if (entry.Value.isReadable)
                 {
                     // Schedule a job to add the image to the library
-                    var mImageTarget = VuforiaBehaviour.Instance.ObserverFactory.CreateImageTarget(entry.Value, 1, sessionDataSO.PointsOfInterest.Points[i].title + k.ToString());
+                    var mImageTarget = VuforiaBehaviour.Instance.ObserverFactory.CreateImageTarget(entry.Value, 1, sessionDataSO.PointsOfInterest.Points[i].short_title + k.ToString());
 
                     // Yield until the the image is added to the library
                     yield return new WaitUntil(() => mImageTarget != null);
