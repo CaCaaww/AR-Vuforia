@@ -39,7 +39,7 @@ public class Utils : MonoBehaviour
         else 
         {
             #if UNITY_EDITOR
-            Debug.Log(request.error);
+            Debug.Log(request.error + ": " + url);
             #endif
             return null;
         }
