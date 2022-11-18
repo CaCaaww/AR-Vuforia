@@ -1,0 +1,263 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7340778725756380547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89df54eebccd0704dbbe96915fbb9a6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabled: 1
+  distributionList:
+    distributions: []
+  architectures:
+  - target: 13
+    name: Android
+    enabled: 1
+    binaryNameFormat: '{0}.apk'
+  variants:
+  - variantName: Device Type
+    selectedIndex: 1
+    values:
+    - ARMv7
+    - ARM64
+    - X86
+    - X86_64
+    - All
+  - variantName: Texture Compression
+    selectedIndex: 0
+    values:
+    - Generic
+    - DXT
+    - PVRTC
+    - ATC
+    - ETC
+    - ETC2
+    - ASTC
+  - variantName: Build Output
+    selectedIndex: 0
+    values:
+    - App
+    - Gradle Project
+  - variantName: Binary Type
+    selectedIndex: 2
+    values:
+    - APK
+    - Split APK
+    - AAB
+  - variantName: APK Expansion Type
+    selectedIndex: 0
+    values:
+    - Single Binary
+    - Split App Binary
+  - variantName: Min SDK Version
+    selectedIndex: 14
+    values:
+    - Auto
+    - 16
+    - 17
+    - 18
+    - 19
+    - 21
+    - 22
+    - 23
+    - 24
+    - 25
+    - 26
+    - 27
+    - 28
+    - 29
+    - 30
+  - variantName: Target SDK Version
+    selectedIndex: 0
+    values:
+    - Auto
+    - 16
+    - 17
+    - 18
+    - 19
+    - 21
+    - 22
+    - 23
+    - 24
+    - 25
+    - 26
+    - 27
+    - 28
+    - 29
+    - 30
+  platformName: Android
+  dataDirNameFormat: '{0}_Data'
+  targetGroup: 7
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5886119a5c7b34d8872ab527ca3e1b, type: 3}
+  m_Name: SuperUnityBuildSettings
+  m_EditorClassIdentifier: 
+  _basicSettings:
+    baseBuildFolder: Builds
+    buildPath: $VERSION/$RELEASE_TYPE/$PLATFORM/$ARCHITECTURE
+    openFolderPostBuild: 1
+  _productParameters:
+    buildCounter: 0
+    buildVersion: 
+    versionTemplate: 1.0.0.$BUILD
+    autoGenerate: 1
+    syncWithPlayerSettings: 0
+  _releaseTypeList:
+    releaseTypes:
+    - typeName: Testing
+      bundleIdentifier: com.DedalusSNC.ARDetective
+      companyName: Dedalus SNC
+      productName: AR Detective
+      buildOptions: 0
+      customDefines: 
+      sceneList:
+        enabledScenes:
+        - fileGUID: fc3ab3a9a3518af0a8ebbe58d24546d9
+        - fileGUID: bbc81ad5b73762ab2beacdf813e182d4
+    - typeName: Production
+      bundleIdentifier: com.DedalusSNC.ARDetective
+      companyName: Dedalus SNC
+      productName: AR Detective
+      buildOptions: 0
+      customDefines: 
+      sceneList:
+        enabledScenes:
+        - fileGUID: fc3ab3a9a3518af0a8ebbe58d24546d9
+        - fileGUID: bbc81ad5b73762ab2beacdf813e182d4
+  _platformList:
+    platforms:
+    - {fileID: -7340778725756380547}
+  _projectConfigurations:
+    configSet:
+      _Buckets: 0000000005000000ffffffffffffffff02000000ffffffff04000000
+      _HashCodes: ae62d12d827bd40ace4f861a3185ee4c4b64672787e8682000000000
+      _Next: ffffffffffffffffffffffff0100000003000000ffffffff00000000
+      _Count: 6
+      _Version: 6
+      _FreeList: -1
+      _FreeCount: 0
+      _Keys:
+      - Testing/Android/Android (ARM64,Generic,App,AAB,Single Binary,30,Auto)
+      - Testing/Android
+      - Testing
+      - Production/Android/Android (ARM64,Generic,App,AAB,Single Binary,30,Auto)
+      - Production/Android
+      - Production
+      - 
+      _Values:
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys:
+        - Testing/Android/Android (ARM64,Generic,App,AAB,Single Binary,30,Auto)
+      - enabled: 1
+        childKeys:
+        - Testing/Android
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys:
+        - Production/Android/Android (ARM64,Generic,App,AAB,Single Binary,30,Auto)
+      - enabled: 1
+        childKeys:
+        - Production/Android
+      - enabled: 1
+        childKeys: []
+    showViewOptions: 0
+    showConfigs: 0
+    showBuildInfo: 0
+    hideDisabled: 0
+    treeView: 0
+    selectedKeyChain: Testing/Android/Android (ARM64,Generic,App,AAB,Single Binary,30,30)
+  _preBuildActions:
+    buildActions:
+    - {fileID: 2637310539022668197}
+    - {fileID: 1632551889274179711}
+  _postBuildActions:
+    buildActions: []
+--- !u!114 &839618536147247847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53e57274e8a0e234a958832c2e1af045, type: 3}
+  m_Name: OverrideDefines
+  m_EditorClassIdentifier: 
+  actionType: 1
+  actionName: OverrideDefines
+  note: 
+  actionEnabled: 1
+  configureEditor: 0
+  filter:
+    condition: 0
+    clauses: []
+  removeDefines: 
+  addDefines: 
+--- !u!114 &1632551889274179711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53e57274e8a0e234a958832c2e1af045, type: 3}
+  m_Name: OverrideDefines
+  m_EditorClassIdentifier: 
+  actionType: 1
+  actionName: OverrideDefines
+  note: Production
+  actionEnabled: 1
+  configureEditor: 0
+  filter:
+    condition: 1
+    clauses:
+    - type: 0
+      comparison: 0
+      test: Production
+  removeDefines: 
+  addDefines: PRODUCTION_BUILD
+--- !u!114 &2637310539022668197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53e57274e8a0e234a958832c2e1af045, type: 3}
+  m_Name: OverrideDefines
+  m_EditorClassIdentifier: 
+  actionType: 1
+  actionName: OverrideDefines
+  note: Testing
+  actionEnabled: 1
+  configureEditor: 0
+  filter:
+    condition: 1
+    clauses:
+    - type: 0
+      comparison: 0
+      test: Testing
+  removeDefines: 
+  addDefines: TESTING_BUILD

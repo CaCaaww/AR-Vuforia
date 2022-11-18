@@ -8,6 +8,11 @@ using UnityEngine.Networking;
 
 public class WebLoginManager : MonoBehaviour
 {
+    #region Constants
+    private const string PRODUCTION_REMOTE_SETTINGS_SO = "RemoteWebConsoleProduction";
+    private const string TESTING_REMOTE_SETTINGS_SO = "RemoteWebConsoleTesting";
+    #endregion
+    
     #region Inspector
     [Header("SO Listen Channels")]
     [SerializeField]
@@ -28,6 +33,17 @@ public class WebLoginManager : MonoBehaviour
     #endregion
 
     #region Unity methods
+    void Awake()
+    {
+        #if !UNITY_EDITOR && TESTING_BUILD
+        RemoteWebConsoleSO remoteSettingsSO = Resources.Load<RemoteWebConsoleSO>(TESTING_REMOTE_SETTINGS_SO);
+        remoteWebConsoleSO = remoteSettingsSO;
+        #elif !UNITY_EDITOR && PRODUCTION_BUILD
+        RemoteWebConsoleSO remoteSettingsSO = Resources.Load<RemoteWebConsoleSO>(PRODUCTION_REMOTE_SETTINGS_SO);
+        remoteWebConsoleSO = remoteSettingsSO;
+        #endif
+    }
+
     void OnEnable()
     {
         uiEventsChannelSO.OnLoginCredentialsSentEventRaised += Login;
