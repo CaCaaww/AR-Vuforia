@@ -48,7 +48,7 @@ public class LoadingUIController : MonoBehaviour
     }
 
     #region Callback methods
-    private void HandleSessionDataLoadedEvent() 
+    private void HandleSessionDataLoadedEvent(bool session) 
     {
         continueButton.GetComponent<Button>().onClick.AddListener(() => 
         {
