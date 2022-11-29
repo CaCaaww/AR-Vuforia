@@ -13,6 +13,8 @@ public class DebugUIInteraction : MonoBehaviour
     PointerEventData click_data;
     List<RaycastResult> click_results;
 
+    private FMOD.Studio.EventInstance uiConfirm;
+
     void OnEnable()
     {
         EnhancedTouchSupport.Enable();
@@ -42,7 +44,9 @@ public class DebugUIInteraction : MonoBehaviour
         click_results.Clear();
 
         ui_raycaster.Raycast(click_data, click_results);
-
+        uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+        uiConfirm.start();
+        uiConfirm.release();
         foreach(RaycastResult result in click_results)
         {
             GameObject ui_element = result.gameObject;
