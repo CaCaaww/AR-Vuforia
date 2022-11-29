@@ -30,6 +30,10 @@ public class PopUpPanelController : MonoBehaviour
     [SerializeField] private Button closeButton;
     #endregion
 
+    #region
+    private FMOD.Studio.EventInstance uiChime;
+    #endregion
+
     #region UnityMethods
     private void OnEnable()
     {
@@ -77,6 +81,10 @@ public class PopUpPanelController : MonoBehaviour
     #region Callbacks
     private void ViewPOI(PointOfInterest poi)
     {
+        uiChime = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Chime");
+        uiChime.start();
+        uiChime.release();
+
         Debug.Log("[ARP] Image detected/viewing: " + poi.title);
 
         canvas.enabled = true;
