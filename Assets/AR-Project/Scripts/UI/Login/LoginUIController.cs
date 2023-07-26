@@ -114,6 +114,9 @@ public class LoginUIController : MonoBehaviour
             loginButton.onClick.AddListener(() => 
             {
                 SceneManager.LoadScene("02-AR-Project");
+
+                // Change the login button text   
+                loginButtonText.text = "LOADING"; 
             });
 
             // Hide the log text
