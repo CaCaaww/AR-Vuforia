@@ -7,7 +7,13 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class WebGameplayDataManager : MonoBehaviour
-{
+{   
+    #region Constants
+    private const string dateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+    private const string PRODUCTION_REMOTE_SETTINGS_SO = "RemoteWebConsoleProduction";
+    private const string TESTING_REMOTE_SETTINGS_SO = "RemoteWebConsoleTesting";
+    #endregion
+
     #region Inspector
     [Header("SO Listen Channels")]
     [SerializeField]
@@ -20,11 +26,18 @@ public class WebGameplayDataManager : MonoBehaviour
     private SessionDataSO sessionDataSO;
     #endregion
 
-    #region Constants
-    private const string dateTimeFormat = "yyyy-MM-dd HH:mm:ss";
-    #endregion
-
     #region Unity methods
+    void Awake()
+    {
+        #if !UNITY_EDITOR && TESTING_BUILD
+        RemoteWebConsoleSO remoteSettingsSO = Resources.Load<RemoteWebConsoleSO>(TESTING_REMOTE_SETTINGS_SO);
+        remoteWebConsoleSO = remoteSettingsSO;
+        #elif !UNITY_EDITOR && PRODUCTION_BUILD
+        RemoteWebConsoleSO remoteSettingsSO = Resources.Load<RemoteWebConsoleSO>(PRODUCTION_REMOTE_SETTINGS_SO);
+        remoteWebConsoleSO = remoteSettingsSO;
+        #endif
+    }
+
     void OnEnable()
     {
         uiEventsChannelSO.OnStartGameEventRaised += HandleOnStartGameEvent;
@@ -182,6 +195,8 @@ public class WebGameplayDataManager : MonoBehaviour
 
         if (www.result != UnityWebRequest.Result.Success)
         {
+            Debug.Log("ERROR RESPONSE BEFORE: " + www.downloadHandler.text);
+
             response = JsonConvert.DeserializeObject<Dictionary<string, string>>(www.downloadHandler.text);
 
             Debug.Log($"[SOLUTION SEND] Error: {response["message"]}");
@@ -191,6 +206,8 @@ public class WebGameplayDataManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("SUCCESS RESPONSE BEFORE: " + www.downloadHandler.text);
+
             response = JsonConvert.DeserializeObject<Dictionary<string, string>>(www.downloadHandler.text);
 
             Debug.Log($"[SOLUTION SEND] Success: {response["message"]}");

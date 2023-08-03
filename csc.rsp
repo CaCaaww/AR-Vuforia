@@ -1,0 +1,2 @@
+-define:TESTING_BUILD
+-define:PRODUCTION_BUILD

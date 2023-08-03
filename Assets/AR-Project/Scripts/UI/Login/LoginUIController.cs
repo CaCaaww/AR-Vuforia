@@ -34,7 +34,11 @@ public class LoginUIController : MonoBehaviour
     /// The message to show when the login is not successful
     /// </summary>
     private const string errorMessage = "Login denied: check nickname/password or the network connection";
-    #endregion 
+    /// <summary>
+    /// The message to show when the login is not successful
+    /// </summary>
+    private FMOD.Studio.EventInstance uiConfirm;
+    #endregion
 
     #region Unity methods
     private void OnEnable()
@@ -76,6 +80,10 @@ public class LoginUIController : MonoBehaviour
     /// </summary>
     private void Login()
     {
+        uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+        uiConfirm.start();
+        uiConfirm.release();
+
         // Raise an LoginCredentialsSentEvent
         uiEventsChannelSO.RaiseLoginCredentialsSentEvent(nicknameInputField.text, passwordInputField.text);
 
@@ -113,20 +121,32 @@ public class LoginUIController : MonoBehaviour
             // Add a lister to the login button to load the AR scene
             loginButton.onClick.AddListener(() => 
             {
-                SceneManager.LoadScene("02-AR-Project");
+                uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+                uiConfirm.start();
+                uiConfirm.release();
+
+                SceneManager.LoadSceneAsync("02-AR-Project");
+
+                // Change the login button text   
+                loginButtonText.text = "LOADING";
+
+                loadingCircle.SetActive(true);
             });
 
             // Hide the log text
             logText.enabled = false;
 
             // Destroy the loading circle
-            Destroy(loadingCircle);
+             //Destroy(loadingCircle);
+
+           loadingCircle.SetActive(false);
 
             // Change the login button text
             loginButtonText.text = "CONTINUE";
 
             // Make the login button interactable
             loginButton.interactable = true;
+
         }
         else
         {
