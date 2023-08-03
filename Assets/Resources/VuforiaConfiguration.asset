@@ -23,12 +23,15 @@ MonoBehaviour:
     modelTargetRecoWhileExtendedTracked: 0
     shareRecordingsInITunes: 0
     logLevel: 0
-    version: 10.9.3
-    eulaAcceptedVersions: '{"Values":["","0.0","10.8","10.9"]}'
+    version: 10.16.5
+    eulaAcceptedVersions: '{"Values":["","0.0","10.8","10.9","10.16"]}'
   database:
     disableModelExtraction: 1
   shaders:
     depthMaskShader: {fileID: 4800000, guid: 1ce7eb78425fb1540838bc9d5d95857a, type: 3}
+    outlineShader: {fileID: 4800000, guid: 88d3b6b5cf364476ca39fcec255331b1, type: 3}
+    unlitTransparentShader: {fileID: 10750, guid: 0000000000000000f000000000000000,
+      type: 0}
   videoBackground:
     numDivisions: 2
     videoBackgroundShader: {fileID: 4800000, guid: f40623b353e2f1943b1b3ba42975db7a,
@@ -41,7 +44,7 @@ MonoBehaviour:
     autoImportArcore: 1
     thirdPartyARCoreClientDetected: 0
   playmode:
-    mSequencePath: C:/UnityProjects/ar-vuforia/Assets/AR-Project/Recordings/image_target.mp4
+    mRecordingPath: C:/UnityProjects/ar-vuforia/Assets/AR-Project/Recordings/image_target.mp4
     playModeType: 2
   webcam:
     renderTextureLayer: 30

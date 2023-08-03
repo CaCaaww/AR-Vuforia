@@ -195,6 +195,8 @@ public class WebGameplayDataManager : MonoBehaviour
 
         if (www.result != UnityWebRequest.Result.Success)
         {
+            Debug.Log("ERROR RESPONSE BEFORE: " + www.downloadHandler.text);
+
             response = JsonConvert.DeserializeObject<Dictionary<string, string>>(www.downloadHandler.text);
 
             Debug.Log($"[SOLUTION SEND] Error: {response["message"]}");
@@ -204,6 +206,8 @@ public class WebGameplayDataManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("SUCCESS RESPONSE BEFORE: " + www.downloadHandler.text);
+
             response = JsonConvert.DeserializeObject<Dictionary<string, string>>(www.downloadHandler.text);
 
             Debug.Log($"[SOLUTION SEND] Success: {response["message"]}");
