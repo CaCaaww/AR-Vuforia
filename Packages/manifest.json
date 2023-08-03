@@ -1,16 +1,17 @@
 {
   "scopedRegistries": [
-        {
-            "name": "package.openupm.com",
-            "url": "https://package.openupm.com",
-            "scopes": [
-                "com.github.superunitybuild.buildactions",
-                "com.github.superunitybuild.buildtool"
-            ]
-        }
-    ],
-
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.github.superunitybuild.buildactions",
+        "com.github.superunitybuild.buildtool"
+      ]
+    }
+  ],
   "dependencies": {
+    "com.github.superunitybuild.buildactions": "3.0.1",
+    "com.github.superunitybuild.buildtool": "6.0.1",
     "com.ptc.vuforia.engine": "file:com.ptc.vuforia.engine-10.9.3.tgz",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.collab-proxy": "1.17.7",
@@ -56,8 +57,6 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0",
-    "com.github.superunitybuild.buildtool": "5.0.4",
-    "com.github.superunitybuild.buildactions": "2.2.0"
+    "com.unity.modules.xr": "1.0.0"
   }
 }
