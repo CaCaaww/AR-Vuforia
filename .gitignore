@@ -76,6 +76,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Packages/com.ptc.vuforia.engine-10.9.3.tgz
+Packages/com.ptc.vuforia.engine-10.16.5.tgz
 
 ########## FMOD #############
 # Never ignore DLLs in the FMOD subfolder.

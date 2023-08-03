@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{a938f90b-9d9c-4f0f-9f7d-92adf58e5a12}">
+		<property name="assetPath">
+			<value>Ui_Chime-003.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3.2999999999999998</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{dff0713a-db03-4c76-9069-5328e9d42bbf}</destination>
+		</relationship>
+	</object>
+</objects>

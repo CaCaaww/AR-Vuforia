@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -57,7 +58,8 @@ public class EndgameUIController : MonoBehaviour
         //timerText.text = "You played for " + timePlaying.Minutes + " minutes and " + timePlaying.Seconds + " seconds";
 
         // Add a quit function to the exit button
-        exitButton.onClick.AddListener(() => Utils.QuitGame());
+        //exitButton.onClick.AddListener(() => Utils.QuitGame());
+        exitButton.onClick.AddListener(() => SceneManager.LoadSceneAsync("01-LoginScene"));
 
         // Enable the canvas
         endgameCanvas.enabled = true;       

@@ -30,7 +30,7 @@ public class EditorRecordingPlayer : MonoBehaviour
         {
             // In case we haven't already reloaded our scene (with ReloadScene()), then we need to setup the recording
             // name, and Deinit Vuforia, so that upon Scene change, we can load our sequence
-            if (VuforiaConfiguration.Instance.PlayMode.SequencePath != BasePath + RecordingName || UseWebCam)
+            if (VuforiaConfiguration.Instance.PlayMode.RecordingPath != BasePath + RecordingName || UseWebCam)
                 ConfigureScene();
             // To this point, you should only get, after you have your VuforiaConfiguration.Instance.PlayMode.SequencePath
             // set up, and after the Scene reload had happened
@@ -54,7 +54,7 @@ public class EditorRecordingPlayer : MonoBehaviour
             return;
 
         VuforiaConfiguration.Instance.PlayMode.PlayModeType = sOriginalConfiguration.OriginalPlayModeType;
-        VuforiaConfiguration.Instance.PlayMode.SequencePath = sOriginalConfiguration.OriginalSequencePath;
+        VuforiaConfiguration.Instance.PlayMode.RecordingPath = sOriginalConfiguration.OriginalSequencePath;
         if (VuforiaApplication.Instance.IsInitialized)
             VuforiaApplication.Instance.Deinit();
 
@@ -70,7 +70,7 @@ public class EditorRecordingPlayer : MonoBehaviour
 
         sOriginalConfiguration = new SceneConfiguration
         {
-            OriginalSequencePath = VuforiaConfiguration.Instance.PlayMode.SequencePath,
+            OriginalSequencePath = VuforiaConfiguration.Instance.PlayMode.RecordingPath,
             OriginalPlayModeType = VuforiaConfiguration.Instance.PlayMode.PlayModeType
         };
 
@@ -82,9 +82,9 @@ public class EditorRecordingPlayer : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Selecting recording {VuforiaConfiguration.Instance.PlayMode.SequencePath} " +
+            Debug.LogWarning($"Selecting recording {VuforiaConfiguration.Instance.PlayMode.RecordingPath} " +
                           $"for playback in scene {SceneManager.GetActiveScene().name}.");
-            VuforiaConfiguration.Instance.PlayMode.SequencePath = BasePath + RecordingName;
+            VuforiaConfiguration.Instance.PlayMode.RecordingPath = BasePath + RecordingName;
         }
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().path);
@@ -94,7 +94,7 @@ public class EditorRecordingPlayer : MonoBehaviour
     {
         var currentConfiguration = new SceneConfiguration
         {
-            OriginalSequencePath = VuforiaConfiguration.Instance.PlayMode.SequencePath,
+            OriginalSequencePath = VuforiaConfiguration.Instance.PlayMode.RecordingPath,
             OriginalPlayModeType = VuforiaConfiguration.Instance.PlayMode.PlayModeType
         };
 

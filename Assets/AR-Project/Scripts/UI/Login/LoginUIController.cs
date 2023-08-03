@@ -34,7 +34,11 @@ public class LoginUIController : MonoBehaviour
     /// The message to show when the login is not successful
     /// </summary>
     private const string errorMessage = "Login denied: check nickname/password or the network connection";
-    #endregion 
+    /// <summary>
+    /// The message to show when the login is not successful
+    /// </summary>
+    private FMOD.Studio.EventInstance uiConfirm;
+    #endregion
 
     #region Unity methods
     private void OnEnable()
@@ -76,6 +80,10 @@ public class LoginUIController : MonoBehaviour
     /// </summary>
     private void Login()
     {
+        uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+        uiConfirm.start();
+        uiConfirm.release();
+
         // Raise an LoginCredentialsSentEvent
         uiEventsChannelSO.RaiseLoginCredentialsSentEvent(nicknameInputField.text, passwordInputField.text);
 
@@ -113,6 +121,10 @@ public class LoginUIController : MonoBehaviour
             // Add a lister to the login button to load the AR scene
             loginButton.onClick.AddListener(() => 
             {
+                uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+                uiConfirm.start();
+                uiConfirm.release();
+
                 SceneManager.LoadSceneAsync("02-AR-Project");
 
                 // Change the login button text   
