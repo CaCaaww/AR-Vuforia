@@ -125,20 +125,28 @@ public class LoginUIController : MonoBehaviour
                 uiConfirm.start();
                 uiConfirm.release();
 
-                SceneManager.LoadScene("02-AR-Project");
+                SceneManager.LoadSceneAsync("02-AR-Project");
+
+                // Change the login button text   
+                loginButtonText.text = "LOADING";
+
+                loadingCircle.SetActive(true);
             });
 
             // Hide the log text
             logText.enabled = false;
 
             // Destroy the loading circle
-            Destroy(loadingCircle);
+             //Destroy(loadingCircle);
+
+           loadingCircle.SetActive(false);
 
             // Change the login button text
             loginButtonText.text = "CONTINUE";
 
             // Make the login button interactable
             loginButton.interactable = true;
+
         }
         else
         {
