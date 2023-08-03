@@ -1212,7 +1212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugUIEventChannelSO: {fileID: 11400000, guid: 9f4c4087d26805f48880da47d8521c32,
     type: 2}
-  debugText: {fileID: 1890640252}
+  debugText: {fileID: 0}
   debugText1: {fileID: 0}
 --- !u!1 &1051937972
 GameObject:
@@ -1245,7 +1245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiEventsChannelSO: {fileID: 11400000, guid: b3c1746ba0283fc4f9be59042921e545, type: 2}
-  remoteWebConsoleSO: {fileID: 11400000, guid: e7bf1463db69a34a398b07b465bf470f, type: 2}
+  remoteWebConsoleSO: {fileID: 11400000, guid: 593a16be3a780afef8844222d93a4f0a, type: 2}
   sessionDataSO: {fileID: 11400000, guid: bd04b964e8642e264b2347319ec61a4a, type: 2}
 --- !u!4 &1051937974
 Transform:
@@ -2508,21 +2508,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 8561897665583943461, guid: daa7fcb3342ffbc10b62b257081033fc,
-        type: 3}
-      propertyPath: m_InputType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8561897665583943461, guid: daa7fcb3342ffbc10b62b257081033fc,
-        type: 3}
-      propertyPath: m_KeyboardType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8561897665583943461, guid: daa7fcb3342ffbc10b62b257081033fc,
-        type: 3}
-      propertyPath: m_CharacterValidation
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8561897665704295436, guid: daa7fcb3342ffbc10b62b257081033fc,
         type: 3}

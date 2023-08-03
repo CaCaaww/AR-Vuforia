@@ -18,11 +18,10 @@ MonoBehaviour:
     type: 0
     description: Vuforia Astronaut
     isAR: 0
-    images:
-    - {fileID: 0}
+    images: []
     isUseful: 1
     iconType: 1
-    alreadyDetected: 0
+    state: 1
     avatarID: 0
     avatarName: CiccioGamer89
     timer: 0
@@ -32,11 +31,10 @@ MonoBehaviour:
     type: 1
     description: Vuforia Drone
     isAR: 0
-    images:
-    - {fileID: 0}
+    images: []
     isUseful: 1
     iconType: 1
-    alreadyDetected: 0
+    state: 1
     avatarID: 0
     avatarName: CiccioGamer89
     timer: 0
@@ -46,11 +44,10 @@ MonoBehaviour:
     type: 2
     description: Vuforia Fissure
     isAR: 0
-    images:
-    - {fileID: 0}
+    images: []
     isUseful: 1
     iconType: 1
-    alreadyDetected: 0
+    state: 1
     avatarID: 0
     avatarName: CiccioGamer89
     timer: 0
@@ -60,86 +57,65 @@ MonoBehaviour:
     type: 2
     description: Oxygen
     isAR: 0
-    images:
-    - {fileID: 0}
+    images: []
     isUseful: 0
     iconType: 1
-    alreadyDetected: 0
+    state: 0
     avatarID: 0
     avatarName: CiccioGamer89
     timer: 0
     linkedTo: 0
-  - id: 62
-    title: _Homer
-    type: 0
-    description: Doh!
-    isAR: 0
-    images:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    isUseful: 0
-    iconType: 1
-    alreadyDetected: 0
-    avatarID: 0
-    avatarName: CiccioGamer89
-    timer: 0
-    linkedTo: 0
-  wherePoisFound:
+  wherePOIsFound:
   - id: 65
     title: _Astronaut
     type: 0
     description: Vuforia Astronaut
     isAR: 0
-    images:
-    - {fileID: 0}
+    images: []
     isUseful: 1
     iconType: 1
-    alreadyDetected: 1
+    state: 1
     avatarID: 0
     avatarName: CiccioGamer89
     timer: 0
     linkedTo: 0
-  whenPoisFound:
+  whenPOIsFound:
   - id: 66
     title: _Drone
     type: 1
     description: Vuforia Drone
     isAR: 0
-    images:
-    - {fileID: 0}
+    images: []
     isUseful: 1
     iconType: 1
-    alreadyDetected: 1
+    state: 1
     avatarID: 0
     avatarName: CiccioGamer89
     timer: 0
     linkedTo: 0
-  howPoisFound:
-  - id: 67
-    title: _Oxygen
-    type: 2
-    description: Oxygen
-    isAR: 0
-    images:
-    - {fileID: 0}
-    isUseful: 0
-    iconType: 1
-    alreadyDetected: 1
-    avatarID: 0
-    avatarName: CiccioGamer89
-    timer: 0
-    linkedTo: 0
+  howPOIsFound:
   - id: 68
     title: _Fissure
     type: 2
     description: Vuforia Fissure
     isAR: 0
-    images:
-    - {fileID: 0}
+    images: []
     isUseful: 1
     iconType: 1
-    alreadyDetected: 1
+    state: 1
+    avatarID: 0
+    avatarName: CiccioGamer89
+    timer: 0
+    linkedTo: 0
+  - id: 67
+    title: _Oxygen
+    type: 2
+    description: Oxygen
+    isAR: 0
+    images: []
+    isUseful: 0
+    iconType: 1
+    state: 0
     avatarID: 0
     avatarName: CiccioGamer89
     timer: 0
@@ -147,6 +123,6 @@ MonoBehaviour:
   wherePOISolutionId: 65
   whenPOISolutionId: 66
   howPOISolutionId: 68
-  wherePOIChosenAsSolutionId: 65
-  whenPOIChosenAsSolutionId: 66
-  howPOIChosenAsSolutionId: 67
+  wherePOIChosenAsSolutionId: 0
+  whenPOIChosenAsSolutionId: 0
+  howPOIChosenAsSolutionId: 0

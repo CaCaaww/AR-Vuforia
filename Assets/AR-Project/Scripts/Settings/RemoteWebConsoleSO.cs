@@ -20,6 +20,18 @@ public class RemoteWebConsoleSO : ScriptableObject
     [Tooltip("API gate for the join operation")]
     [SerializeField] private string joinGate = "join";
 
+    [Tooltip("API gate for the start game notification")]
+    [SerializeField] private string startGameGate = "start";
+
+    [Tooltip("API gate for the POI found notification")]
+    [SerializeField] private string poiFoundGate = "poi";
+
+    [Tooltip("API gate for the hint used notification")]
+    [SerializeField] private string hintUsedGate = "poi";
+
+    [Tooltip("API gate for the solution given notification")]
+    [SerializeField] private string solutionGivenGate = "poi";
+
     /// <summary>
     /// The nickname parameter name expected by the join gate
     /// </summary>
@@ -29,14 +41,14 @@ public class RemoteWebConsoleSO : ScriptableObject
     /// <summary>
     /// Nickname value for the current session
     /// </summary>
-    [Tooltip("Nickname for the current session")]
+    [Tooltip("Nickname value for the current session")]
     [SerializeField] private string nicknameValue = "";
 
     /// <summary>
     /// The password parameter name expected for the current session
     /// </summary>
     [Tooltip("The password parameter name expected for the current session")]
-    [SerializeField] private string passwordParameter = "?code";
+    [SerializeField] private string passwordParameter = "&code";
 
     /// <summary>
     /// Password value for the current session
@@ -55,6 +67,26 @@ public class RemoteWebConsoleSO : ScriptableObject
     /// Return the complete URL for the join gate
     /// </summary>
     public string JoinGate => String.Concat(host, joinGate);
+
+    /// <summary>
+    /// Return the complete URL for the start game gate
+    /// </summary>
+    public string StartGameGate => String.Concat(host, startGameGate);
+
+    /// <summary>
+    /// Return the complete URL for the POI found gate
+    /// </summary>
+    public string POIFoundGate => String.Concat(host, poiFoundGate);
+
+    /// <summary>
+    /// Return the complete URL for the hint used gate
+    /// </summary>
+    public string HintUsedGate => String.Concat(host, hintUsedGate);
+
+    /// <summary>
+    /// Return the complete URL for the solution given gate
+    /// </summary>
+    public string SolutionGivenGate => String.Concat(host, solutionGivenGate);
 
     /// <summary>
     /// Return the nickname parameter name

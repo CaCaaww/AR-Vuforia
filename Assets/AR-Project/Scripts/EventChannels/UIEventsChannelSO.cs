@@ -15,11 +15,13 @@ public class UIEventsChannelSO : ScriptableObject
     public Action<PointOfInterest> OnPOIFoundEventRaised;
     public Action<PointOfInterest> OnPOIViewEventRaised;
     public Action OnHintRequestedEventRaised;
+    public Action<int, int, int> OnPOIDeletedByHintEventRaised;
     public Action<PointOfInterest> OnPOIRemovedEventRaised;
     public Action<SolutionItemController> OnSolutionItemSelectedEventRaised;
 	public Action<SolutionItemController> OnSolutionItemDeselectedEventRaised;
 	public Action OnSolutionGivenEventRaised;
     public Action<bool, string, TimeSpan> OnEndgameReachedEventRaised;
+	public Action<int> OnGamePlaytimeReceveidEventRaised;
     public Action OnClosingUIEventRaised;
 	public Action OnOpeningUIEventRaised;
     public Action OnStartGameEventRaised;
@@ -68,6 +70,14 @@ public class UIEventsChannelSO : ScriptableObject
         }
 	}
 
+	public void RaisePOIDeletedByHintEvent(int wherePoiId, int whenPoiId, int howPoiId) 
+	{
+		if (OnPOIDeletedByHintEventRaised != null)
+		{
+            OnPOIDeletedByHintEventRaised.Invoke(whenPoiId, whenPoiId, howPoiId);
+        }
+	}
+
 	public void RaisePOIRemovedEvent(PointOfInterest poi) 
 	{
 		if (OnPOIRemovedEventRaised != null)
@@ -104,6 +114,14 @@ public class UIEventsChannelSO : ScriptableObject
 		if (OnEndgameReachedEventRaised != null)
 		{
             OnEndgameReachedEventRaised.Invoke(isVictory, endgameText, timeSpan);
+        }
+	}
+
+	public void RaiseGamePlaytimeReceveidEvent(int playtime)
+	{
+		if (OnGamePlaytimeReceveidEventRaised != null)
+		{
+			OnGamePlaytimeReceveidEventRaised.Invoke(playtime);
         }
 	}
 

@@ -46,9 +46,7 @@ public class InventoryScrollviewController : MonoBehaviour
 
     void Start()
     {
-        #if UNITY_EDITOR
-        //PopulateInventoryView();
-        #endif
+        PopulateInventoryView(poiType);
     }
     #endregion
     
@@ -73,28 +71,58 @@ public class InventoryScrollviewController : MonoBehaviour
         {
             Debug.Log("[UI] REMOVE POI From InventoryView - Title: " + poi.title + " Type: " + poi.type);
 
-            Destroy(scrollviewItems[poi].gameObject);
+            Destroy(scrollviewItems[poi]);
 
             scrollviewItems.Remove(poi);
         }
     }
-    #endregion
 
-    #region Editor-only methods
-    private void PopulateInventoryView()
+    private void PopulateInventoryView(EPOIType poiType)
     {
-        foreach (var poi in pointsOfInterestSO.Points)
+        List<PointOfInterest> list = new();
+
+        switch (poiType)
         {
-            if (poi.type == poiType)
-            {
-                GameObject inventoryItem = Instantiate(itemPrefab, itemParent.transform);
+            case EPOIType.Where:
+                {
+                    if (pointsOfInterestSO.WherePOIsFound.Count == 0)
+                        return;
+                    
+                    list = pointsOfInterestSO.WherePOIsFound;
+                }
+                break;
+            case EPOIType.When:
+                {
+                    if (pointsOfInterestSO.WhenPOIsFound.Count == 0)
+                        return;
+                    
+                    list = pointsOfInterestSO.WhenPOIsFound;
+                }
+                break;
+            case EPOIType.How:
+                {
+                    if (pointsOfInterestSO.HowPOIsFound.Count == 0)
+                        return;
 
-                InventoryItemController inventoryItemController = inventoryItem.GetComponent<InventoryItemController>();
+                    list = pointsOfInterestSO.HowPOIsFound;
+                }
+                break;
+            default:
+                break;
+        }
 
-                inventoryItemController.POI = poi;
+        if (list.Count == 0)
+            return;
 
-                scrollviewItems.Add(poi, inventoryItem);
-            }      
+        foreach (var poi in list)
+        {
+            GameObject inventoryItem = Instantiate(itemPrefab, itemParent.transform);
+
+            InventoryItemController inventoryItemController = inventoryItem.GetComponent<InventoryItemController>();
+
+            inventoryItemController.POI = poi;
+
+            scrollviewItems.Add(poi, inventoryItem);
         }
     }
     #endregion

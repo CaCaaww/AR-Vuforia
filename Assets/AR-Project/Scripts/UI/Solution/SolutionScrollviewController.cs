@@ -24,7 +24,7 @@ public class SolutionScrollviewController : MonoBehaviour
     #endregion
 
     #region Variables
-    Dictionary<PointOfInterest, GameObject> scrollviewItems = new Dictionary<PointOfInterest, GameObject>();
+    Dictionary<PointOfInterest, GameObject> scrollviewItems = new();
     #endregion
 
     #region Properties
@@ -46,9 +46,7 @@ public class SolutionScrollviewController : MonoBehaviour
 
     void Start()
     {
-        #if UNITY_EDITOR
-        //PopulateSolutionView();
-        #endif
+        PopulateSolutionView(poiType);
     }
     #endregion
     
@@ -75,28 +73,58 @@ public class SolutionScrollviewController : MonoBehaviour
         {
             Debug.Log("[UI] REMOVE POI From SolutionView - Title: " + poi.title + " Type: " + poi.type);
 
-            Destroy(scrollviewItems[poi].gameObject);
+            Destroy(scrollviewItems[poi]);
 
             scrollviewItems.Remove(poi);
         }
     }
-    #endregion
 
-    #region Editor-only methods
-    private void PopulateSolutionView()
+    private void PopulateSolutionView(EPOIType poiType)
     {
-        foreach (var poi in pointsOfInterestSO.Points)
+        List<PointOfInterest> list = new();
+
+        switch (poiType)
         {
-            if (poi.type == poiType)
-            {
-                GameObject inventoryItem = Instantiate(itemPrefab, itemParent.transform);
+            case EPOIType.Where:
+                {
+                    if (pointsOfInterestSO.WherePOIsFound.Count == 0)
+                        return;
 
-                SolutionItemController solutionItemController = inventoryItem.GetComponent<SolutionItemController>();
+                    list = pointsOfInterestSO.WherePOIsFound;
+                }
+                break;
+            case EPOIType.When:
+                {
+                    if (pointsOfInterestSO.WhenPOIsFound.Count == 0)
+                        return;
 
-                solutionItemController.POI = poi;
+                    list = pointsOfInterestSO.WhenPOIsFound;
+                }
+                break;
+            case EPOIType.How:
+                {
+                    if (pointsOfInterestSO.HowPOIsFound.Count == 0)
+                        return;
 
-                scrollviewItems.Add(poi, inventoryItem);
-            }      
+                    list = pointsOfInterestSO.HowPOIsFound;
+                }
+                break;
+            default:
+                break;
+        }
+
+        if (list.Count == 0)
+            return;
+
+        foreach (var poi in list)
+        {
+            GameObject inventoryItem = Instantiate(itemPrefab, itemParent.transform);
+
+            SolutionItemController solutionItemController = inventoryItem.GetComponent<SolutionItemController>();
+
+            solutionItemController.POI = poi;
+
+            scrollviewItems.Add(poi, inventoryItem);
         }
     }
     #endregion

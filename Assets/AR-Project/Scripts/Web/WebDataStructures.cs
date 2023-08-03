@@ -6,8 +6,10 @@ public class POI
 {
     // The id of the POI.
     public int id;
-    // The name of the POI.
+    // The title of the POI.
     public string title;
+    // The short title of the POI.
+    public string short_title;
     // The type of the POI (0 = where, 1 = when, 2 = how)
     public int type;
     // The description of the POI
@@ -18,20 +20,22 @@ public class POI
     public Dictionary<string, string> images = new Dictionary<string, string>();
     // True if this POI is part of the solution, false if not  
     public bool is_useful;
-    // The icon type of the POI
+    // The icon type of the POI (0 = event, 1 = dialogue, 2 = object)
     public int icon_type;
-    // The id of the avatar
-    public int avatar_id;
     // The name of the avatar
     public string avatar_name;
-    // How many seconds before showing the POI if it's not an AR POI
-    //public int timer;
-    // The id for the linked POI without AR
-    //public int linked_poi;
+    // The image name of the avatar
+    public string avatar_image;
+    // The state of a POI (0 = undetected, 1 = detected, 2 = detected and deleted)
+    public int detected; 
 }
 
-public class DataStructure
+public class LoginGetDataStructure
 {
+    // The player id
+    public int player_id;
+    // The session id
+    public int session_id;
     // The title text for the story
     public string title;
     // The introduction text for the story
@@ -42,16 +46,62 @@ public class DataStructure
     public string defeat_text;
     // The number of hints at the start
     public int hints;
-    // The session's logical duration in seconds
-    //public int logical_duration;
-    // True if the AR POIs are revealed automatically after some time
-    //public bool autoreveal_pois;
-    // Logical duration percentage for when starting to autoreveal AR and "not AR" POIs together
-    //public int autoreveal_percentage;
-    // How many POIs to autoreveal at the same time
-    //public int autoreveal_number_of_pois;
-    // Interval in seconds to autoreveal the POIs
-    //public int autoreveal_timer;
+    // If we are resuming an unfinished session or not
+    public bool resume_session;
     // The list of all the POIs
-    public List<POI> pois = new List<POI>();
+    public List<POI> pois = new();
+}
+
+
+public class StartGameDataStructure
+{
+    // When the game actually started
+    public string timestamp;
+
+    public int player_id;
+    public int session_id;
+}
+
+public class POIFoundDataStructure
+{
+    // The POI id 
+    public int poi_id;
+
+    // When the POI was found
+    public string timestamp;
+
+    public int player_id;
+    public int session_id;
+}
+
+public class HintUsedDataStructure
+{
+    // The where POI id deleted by the hint (0 if none was deleted) 
+    public int where_poi_id;
+    // The when POI id deleted by the hint (0 if none was deleted)  
+    public int when_poi_id;
+    // The The when POI id deleted by the hint (0 if none was deleted)  
+    public int how_poi_id;
+    
+    // When a hint was used
+    public string timestamp;
+
+    public int player_id;
+    public int session_id;
+}
+
+public class SolutionGivenDataStructure
+{
+    // Where POI id chosen as part of the solution
+    public int where_poi_id;
+    // When POI id chosen as part of the solution
+    public int when_poi_id;
+    // How POI id chosen as part of the solution
+    public int how_poi_id;
+
+    // When the solution was chosen
+    public string timestamp;
+
+    public int player_id;
+    public int session_id;
 }
