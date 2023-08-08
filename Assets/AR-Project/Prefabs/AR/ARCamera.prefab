@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6079886710450631770}
   - component: {fileID: 6079886710450631771}
   - component: {fileID: 6079886710450631772}
-  - component: {fileID: 6079886710450631773}
+  - component: {fileID: 1742046321920514610}
   - component: {fileID: 7713412760943909757}
   m_Layer: 0
   m_Name: ARCamera
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961417a5c22bc3c4baedccbdaa455dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6079886710450631773
+--- !u!114 &1742046321920514610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BasePath: Assets/AR-Project/Recordings/
-  RecordingName: image_target.mp4
+  RecordingName: standard_model_target.mp4
   UseWebCam: 0
 --- !u!114 &7713412760943909757
 MonoBehaviour:

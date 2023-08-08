@@ -31,8 +31,8 @@ public class PointOfInterest
     #if UNITY_EDITOR
     public List<Texture2D> images = new();
     #endif
-    public Dictionary<string, Texture2D> imageNameAndTexture = new();
-    public Dictionary<string, string> imageNameAndUrl = new();
+    public GenericDictionary<string, Texture2D> imageNameAndTexture = new();
+    public GenericDictionary<string, string> imageNameAndUrl = new();
     public bool isUseful;
     public EIconType iconType;
     public EPOIState state;

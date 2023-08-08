@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,7 +53,7 @@ public class VuforiaManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        VuforiaApplication.Instance.OnVuforiaInitialized += StartSpwanImageTargets;
+        VuforiaApplication.Instance.OnVuforiaInitialized += StartSpawnImageTargets;
     }
 
     #region Coroutines
@@ -83,6 +84,8 @@ public class VuforiaManager : MonoBehaviour
                 // If the image is readable
                 if (entry.Value.isReadable)
                 {
+                    Debug.Log("[VUFORIA] Start creating image target " + sessionDataSO.PointsOfInterest.Points[i].short_title + k.ToString()+ entry.Key);
+
                     // Schedule a job to add the image to the library
                     var mImageTarget = VuforiaBehaviour.Instance.ObserverFactory.CreateImageTarget(entry.Value, 1, sessionDataSO.PointsOfInterest.Points[i].short_title + k.ToString());
 
@@ -92,7 +95,7 @@ public class VuforiaManager : MonoBehaviour
                     // Add the Observer to the ImageTarget
                     var observer = mImageTarget.gameObject.AddComponent<CustomObserverEventHandler>();
 
-                    Debug.Log("[VUFORIA] Target created and active" + mImageTarget.gameObject.name);
+                    Debug.Log("[VUFORIA] Target created and active " + mImageTarget.gameObject.name);
 
                     // Set the reference for the AR Event Channel SO
                     observer.AREventChannelSO = arEventChannelSO;
@@ -119,7 +122,7 @@ public class VuforiaManager : MonoBehaviour
             }
         }
          
-        // If we are still in the loading state it means that the scene it's just starting to run
+        // If we are still in the loading state it means that the scene is just starting to run
         // so we can notify that the image targets creation is finished 
         if (gameStateSO.CurrentGameState == GameState.Loading)
         {
@@ -134,7 +137,7 @@ public class VuforiaManager : MonoBehaviour
     /// Callbak to spawn all the Vuforia Image Target objects
     /// </summary>
     /// <param name="error">The Vuforia error value</param>
-    private void StartSpwanImageTargets(VuforiaInitError error)
+    private void StartSpawnImageTargets(VuforiaInitError error)
     {
         StartCoroutine(SpawnImageTargets());
     }
