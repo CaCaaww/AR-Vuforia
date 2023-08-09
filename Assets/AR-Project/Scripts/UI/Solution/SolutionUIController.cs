@@ -13,11 +13,17 @@ public class SolutionUIController : MonoBehaviour
 
     [Header("SO References")]
     [SerializeField] private GameStateSO gameStateSO;
+    [SerializeField] private PointsOfInterestSO pointOfInterestSO;
+    
 
     [Header("Solution UI References")]
     [SerializeField] private Canvas solutionCanvas;
     [SerializeField] private Button closeButton;
     [SerializeField] private Button solveButton;
+
+    [Header("Warning Popup UI References")] 
+    [SerializeField] private Canvas warningCanvas;
+
 
     [Header("Where References")]
     [SerializeField] private Canvas whereCanvas;
@@ -33,6 +39,7 @@ public class SolutionUIController : MonoBehaviour
     [SerializeField] private Canvas howCanvas;
     [SerializeField] private Button howButton;
     [SerializeField] private Image howButtonBackground;
+    
     #endregion
 
     #region Variables
@@ -157,18 +164,28 @@ public class SolutionUIController : MonoBehaviour
 
     private void SolveButtonBehaviour()
     {
-        uiEventsChannelSO.RaiseSolutionGivenEvent();
         
-        solutionCanvas.enabled = false;
-        whereCanvas.enabled = false;
-        whenCanvas.enabled = false;
-        howCanvas.enabled = false;
+        //check if each category has a selection, if not enable the popup
+        if (pointOfInterestSO.HowPOIChosenAsSolutionId != 0 && pointOfInterestSO.WherePOIChosenAsSolutionId != 0 &&
+            pointOfInterestSO.WhenPOIChosenAsSolutionId != 0)
+        {
+            uiEventsChannelSO.RaiseSolutionGivenEvent();
         
-        //Sound for UI Confirmation
-        uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
-        uiConfirm.start();
-        uiConfirm.release();
-
+            solutionCanvas.enabled = false;
+            whereCanvas.enabled = false;
+            whenCanvas.enabled = false;
+            howCanvas.enabled = false;
+        
+            //Sound for UI Confirmation
+            uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+            uiConfirm.start();
+            uiConfirm.release();
+        }
+        else
+        {
+            warningCanvas.enabled = true;
+        }
+        
     }
     #endregion
 
