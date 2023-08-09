@@ -184,6 +184,9 @@ public class SolutionUIController : MonoBehaviour
         else
         {
             warningCanvas.enabled = true;
+            whereCanvas.enabled = false;
+            whenCanvas.enabled = false;
+            howCanvas.enabled = false;
         }
         
     }
