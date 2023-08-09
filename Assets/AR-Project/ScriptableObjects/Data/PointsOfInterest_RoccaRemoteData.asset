@@ -73,72 +73,12 @@ MonoBehaviour:
     avatarImage: {fileID: 0}
     timer: 0
     linkedTo: 0
-  wherePOIsFound:
-  - id: 65
-    title: _Astronaut
-    short_title: test
-    type: 0
-    description: Vuforia Astronaut
-    isAR: 0
-    images: []
-    isUseful: 1
-    iconType: 1
-    state: 0
-    avatarID: 0
-    avatarName: 
-    avatarImage: {fileID: 0}
-    timer: 0
-    linkedTo: 0
-  whenPOIsFound:
-  - id: 66
-    title: _Drone
-    short_title: test
-    type: 1
-    description: Vuforia Drone
-    isAR: 0
-    images: []
-    isUseful: 1
-    iconType: 1
-    state: 0
-    avatarID: 0
-    avatarName: 
-    avatarImage: {fileID: 0}
-    timer: 0
-    linkedTo: 0
-  howPOIsFound:
-  - id: 67
-    title: _Oxygen
-    short_title: test
-    type: 2
-    description: Oxygen
-    isAR: 0
-    images: []
-    isUseful: 1
-    iconType: 1
-    state: 0
-    avatarID: 0
-    avatarName: 
-    avatarImage: {fileID: 0}
-    timer: 0
-    linkedTo: 0
-  - id: 68
-    title: _Fissure
-    short_title: test
-    type: 2
-    description: Vuforia Fissure
-    isAR: 0
-    images: []
-    isUseful: 0
-    iconType: 1
-    state: 0
-    avatarID: 0
-    avatarName: 
-    avatarImage: {fileID: 0}
-    timer: 0
-    linkedTo: 0
+  wherePOIsFound: []
+  whenPOIsFound: []
+  howPOIsFound: []
   wherePOISolutionId: 65
   whenPOISolutionId: 66
   howPOISolutionId: 67
-  wherePOIChosenAsSolutionId: 65
-  whenPOIChosenAsSolutionId: 66
-  howPOIChosenAsSolutionId: 68
+  wherePOIChosenAsSolutionId: 0
+  whenPOIChosenAsSolutionId: 0
+  howPOIChosenAsSolutionId: 0
