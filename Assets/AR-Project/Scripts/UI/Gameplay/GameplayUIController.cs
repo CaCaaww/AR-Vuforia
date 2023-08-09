@@ -21,6 +21,14 @@ public class GameplayUIController : MonoBehaviour
     [SerializeField] private Canvas solutionCanvas;
     #endregion
 
+    #region Variables
+    /// <summary>
+    /// The message to show when the login is not successful
+    /// </summary>
+    private FMOD.Studio.EventInstance uiConfirm;
+    #endregion
+    
+
     #region Unity methods
     void Awake()
     {
@@ -37,6 +45,12 @@ public class GameplayUIController : MonoBehaviour
 
         baseInventoryButton.onClick.AddListener(() =>
         {
+            
+            //Sound for UI Confirmation
+            uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+            uiConfirm.start();
+            uiConfirm.release();
+            
             if (!inventoryCanvas.enabled)
             {
                 gameStateSO.UpdateGameState(GameState.UI);
@@ -50,6 +64,11 @@ public class GameplayUIController : MonoBehaviour
 
         baseSolutionButton.onClick.AddListener(() =>
         {
+            //Sound for UI Confirmation
+            uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+            uiConfirm.start();
+            uiConfirm.release();
+            
             if (!solutionCanvas.enabled)
             {
                 gameStateSO.UpdateGameState(GameState.UI);

@@ -32,6 +32,10 @@ public class PopUpPanelController : MonoBehaviour
 
     #region
     private FMOD.Studio.EventInstance uiChime;
+    /// <summary>
+    /// The message to show when the login is not successful
+    /// </summary>
+    private FMOD.Studio.EventInstance uiConfirm;
     #endregion
 
     #region UnityMethods
@@ -59,6 +63,10 @@ public class PopUpPanelController : MonoBehaviour
     #region Helper methods
     private void CloseButtonBehaviour()
     {
+        //Sound for UI Confirmation
+        uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+        uiConfirm.start();
+        uiConfirm.release();
         switch (gameStateSO.CurrentGameState)
         {
             case GameState.POIPopUp:

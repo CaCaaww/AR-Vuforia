@@ -37,6 +37,11 @@ public class SolutionUIController : MonoBehaviour
 
     #region Variables
     EPOIType currentPOITypeMenu;
+    
+    /// <summary>
+    /// The message to show when the login is not successful
+    /// </summary>
+    private FMOD.Studio.EventInstance uiConfirm;
     #endregion
 
     #region Unity methods
@@ -89,6 +94,11 @@ public class SolutionUIController : MonoBehaviour
 
         howCanvas.enabled = false;
         howButtonBackground.color = Color.white;
+        
+        //Sound for UI Confirmation
+        uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+        uiConfirm.start();
+        uiConfirm.release();
     }
 
     private void WhenButtonBehaviour()
@@ -103,6 +113,11 @@ public class SolutionUIController : MonoBehaviour
 
         howCanvas.enabled = false; 
         howButtonBackground.color = Color.white;
+        
+        //Sound for UI Confirmation
+        uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+        uiConfirm.start();
+        uiConfirm.release();
     }
 
     private void HowButtonBehaviour()
@@ -117,6 +132,11 @@ public class SolutionUIController : MonoBehaviour
 
         whereCanvas.enabled = false;
         whereButtonBackground.color = Color.white;
+        
+        //Sound for UI Confirmation
+        uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+        uiConfirm.start();
+        uiConfirm.release();
     }
     
     private void CloseButtonBehaviour()
@@ -128,6 +148,11 @@ public class SolutionUIController : MonoBehaviour
         whereCanvas.enabled = false;
         whenCanvas.enabled = false;
         howCanvas.enabled = false;
+        
+        //Sound for UI Confirmation
+        uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+        uiConfirm.start();
+        uiConfirm.release();
     }
 
     private void SolveButtonBehaviour()
@@ -138,6 +163,11 @@ public class SolutionUIController : MonoBehaviour
         whereCanvas.enabled = false;
         whenCanvas.enabled = false;
         howCanvas.enabled = false;
+        
+        //Sound for UI Confirmation
+        uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+        uiConfirm.start();
+        uiConfirm.release();
 
     }
     #endregion

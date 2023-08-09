@@ -23,6 +23,11 @@ public class StartGameUiController : MonoBehaviour
 
     #region Variables
     private Canvas startGameCanvas;
+    
+    /// <summary>
+    /// The FMOD for when the button is clicked
+    /// </summary>
+    private FMOD.Studio.EventInstance uiConfirm;
     #endregion
     
     #region Unity methods
@@ -72,6 +77,11 @@ public class StartGameUiController : MonoBehaviour
 
             // Notify that the game is starting
             uiEventsChannelSO.RaiseStartGameEvent();
+            
+            //Sound for UI Confirmation
+            uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+            uiConfirm.start();
+            uiConfirm.release();
         });
 
         // Set the button as interactable

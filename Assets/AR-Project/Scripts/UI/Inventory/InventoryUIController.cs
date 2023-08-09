@@ -38,6 +38,11 @@ public class InventoryUIController : MonoBehaviour
 
     #region Variables
     EPOIType currentPOITypeMenu;
+    
+    /// <summary>
+    /// The message to show when the login is not successful
+    /// </summary>
+    private FMOD.Studio.EventInstance uiConfirm;
     #endregion
 
     #region Unity methods
@@ -101,6 +106,12 @@ public class InventoryUIController : MonoBehaviour
 
         howCanvas.enabled = false;
         howButtonBackground.color = Color.white;
+        
+        //Sound for UI Confirmation
+        uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+        uiConfirm.start();
+        uiConfirm.release();
+        
     }
 
     private void WhenButtonBehaviour()
@@ -115,6 +126,11 @@ public class InventoryUIController : MonoBehaviour
 
         howCanvas.enabled = false; 
         howButtonBackground.color = Color.white;
+        
+        //Sound for UI Confirmation
+        uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+        uiConfirm.start();
+        uiConfirm.release();
     }
 
     private void HowButtonBehaviour()
@@ -129,6 +145,11 @@ public class InventoryUIController : MonoBehaviour
 
         whereCanvas.enabled = false;
         whereButtonBackground.color = Color.white;
+        
+        //Sound for UI Confirmation
+        uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+        uiConfirm.start();
+        uiConfirm.release();
     }
     
     private void CloseButtonBehaviour()
@@ -140,6 +161,11 @@ public class InventoryUIController : MonoBehaviour
         whereCanvas.enabled = false;
         whenCanvas.enabled = false;
         howCanvas.enabled = false;
+        
+        //Sound for UI Confirmation
+        uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+        uiConfirm.start();
+        uiConfirm.release();
     }
 
     private void HintButtonBehaviour()
@@ -156,6 +182,11 @@ public class InventoryUIController : MonoBehaviour
             }
 
             uiEventsChannelSO.RaiseHintRequestedEvent();
+            
+            //Sound for UI Confirmation
+            uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+            uiConfirm.start();
+            uiConfirm.release();
         } 
     }
     #endregion
