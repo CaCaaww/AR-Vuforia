@@ -23,6 +23,7 @@ public class SolutionUIController : MonoBehaviour
 
     [Header("Warning Popup UI References")] 
     [SerializeField] private Canvas warningCanvas;
+    [SerializeField] private Button warningCloseButton;
 
 
     [Header("Where References")]
@@ -87,6 +88,8 @@ public class SolutionUIController : MonoBehaviour
         closeButton.onClick.AddListener(CloseButtonBehaviour);
 
         solveButton.onClick.AddListener(SolveButtonBehaviour);
+        
+        warningCloseButton.onClick.AddListener(warningCloseButtonBehavior);
     }
 
     private void WhereButtonBehaviour()
@@ -189,6 +192,53 @@ public class SolutionUIController : MonoBehaviour
             howCanvas.enabled = false;
         }
         
+    }
+
+    /// <summary>
+    /// This will handle the close button of the warning pop-up for when the player hits solve too early.
+    /// </summary>
+    private void warningCloseButtonBehavior()
+    {
+        warningCanvas.enabled = false;
+
+        //to ensure the player stays on the same page they left, used the button color to determine
+        if (whereButtonBackground.color == Utils.buttonSelectedColor)
+        {
+            whereCanvas.enabled = true;
+            
+            howCanvas.enabled = false;
+            howButtonBackground.color = Color.white;
+
+            whenCanvas.enabled = false;
+            whenButtonBackground.color = Color.white;
+        }
+        else if (whenButtonBackground.color == Utils.buttonSelectedColor)
+        {
+            whenCanvas.enabled = true;
+            
+            howCanvas.enabled = false;
+            howButtonBackground.color = Color.white;
+
+            whereCanvas.enabled = false;
+            whereButtonBackground.color = Color.white;
+        }
+        else if (howButtonBackground.color == Utils.buttonSelectedColor)
+        {
+            howCanvas.enabled = true;
+            
+            whenCanvas.enabled = false;
+            whenButtonBackground.color = Color.white;
+
+            whereCanvas.enabled = false;
+            whereButtonBackground.color = Color.white;
+        }
+
+
+
+        //Sound for UI Confirmation
+        uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
+        uiConfirm.start();
+        uiConfirm.release();
     }
     #endregion
 
