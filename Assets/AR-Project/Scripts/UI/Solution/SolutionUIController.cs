@@ -232,9 +232,7 @@ public class SolutionUIController : MonoBehaviour
             whereCanvas.enabled = false;
             whereButtonBackground.color = Color.white;
         }
-
-
-
+        
         //Sound for UI Confirmation
         uiConfirm = FMODUnity.RuntimeManager.CreateInstance("event:/UI/UI_Confirm");
         uiConfirm.start();

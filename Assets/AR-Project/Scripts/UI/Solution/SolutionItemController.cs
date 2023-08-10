@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Color = System.Drawing.Color;
 
 public class SolutionItemController : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class SolutionItemController : MonoBehaviour
     [SerializeField] private Image itemImage;
     [SerializeField] private TextMeshProUGUI itemText;
     [SerializeField] private Image itemIcon;
-
+    [SerializeField] private Image frameSelected;
+    [SerializeField] private Image frameNotSelected;
+    
     [Header("UI Style References")]
     [SerializeField] private Sprite itemSelected;
     [SerializeField] private Sprite itemUnselected;
@@ -28,6 +31,9 @@ public class SolutionItemController : MonoBehaviour
     private PointOfInterest poi;
     [SerializeField]
     private bool isSelected;
+
+    private UnityEngine.Color selectedColor;
+    private UnityEngine.Color notSelectedColor;
     #endregion
 
     #region Properties
@@ -55,6 +61,11 @@ public class SolutionItemController : MonoBehaviour
         itemIcon.sprite = poiIconCollectionSO.GetIconByType(poi.iconType);
 
         itemImage.sprite = itemUnselected;
+        
+        selectedColor = new UnityEngine.Color(.62f, .24f, .13f);
+        //notSelectedColor = new UnityEngine.Color(1, .56f, .45f);
+        notSelectedColor = UnityEngine.Color.white;
+
     }
     #endregion
 
@@ -68,12 +79,23 @@ public class SolutionItemController : MonoBehaviour
             itemImage.sprite = itemSelected;
 
             uIEventsChannelSO.RaiseSolutionItemSelectedEvent(this);
+            
+            //change the border
+            frameSelected.enabled = true;
+            frameNotSelected.enabled = false;
+            itemImage.color = selectedColor;
+
         }
         else
         {
             isSelected = false;
             itemImage.sprite = itemUnselected;
             uIEventsChannelSO.RaiseSolutionItemDeselectedEvent(this);
+            frameSelected.enabled = false;
+            frameNotSelected.enabled = true;
+            itemImage.color = notSelectedColor;
+
+
         }
     }
     #endregion
@@ -92,6 +114,10 @@ public class SolutionItemController : MonoBehaviour
 
         isSelected = false;
         itemImage.sprite = itemImage.sprite = itemUnselected;
+        frameSelected.enabled = false;
+        frameNotSelected.enabled = true;
+        itemImage.color = notSelectedColor;
+
     }
     #endregion
 }
