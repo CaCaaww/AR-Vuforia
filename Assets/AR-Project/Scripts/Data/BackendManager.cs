@@ -185,13 +185,22 @@ public class BackendManager : MonoBehaviour
     /// </summary>
     private void HandleHintRequest()
     {
-        // Remove a single random item (not part of the solution) for every type
-        int wherePoiId = RemoveUnusefulPOI(pointsOfInterestSO.WherePOIsFound, pointsOfInterestSO.WherePOIsFound.Count);
-        int whenPoiId = RemoveUnusefulPOI(pointsOfInterestSO.WhenPOIsFound, pointsOfInterestSO.WhenPOIsFound.Count);
-        int howPoiId = RemoveUnusefulPOI(pointsOfInterestSO.HowPOIsFound, pointsOfInterestSO.HowPOIsFound.Count);
+        int totalPOIs = pointsOfInterestSO.WherePOIsFound.Count + pointsOfInterestSO.WhenPOIsFound.Count + pointsOfInterestSO.HowPOIsFound.Count;
+        int percentageRemoved = (((totalPOIs - 3) / 5) / 3);
+        if (percentageRemoved == 0)
+		{
+            percentageRemoved = 1;
+		}
 
-        // Raise an event informing which POIs where deleted by the hint
-        uiEventsChannelSO.RaisePOIDeletedByHintEvent(wherePoiId, whenPoiId, howPoiId);
+        for (int i = 0; i < percentageRemoved; i++) {
+            // Remove a single random item (not part of the solution) for every type
+            int wherePoiId = RemoveUnusefulPOI(pointsOfInterestSO.WherePOIsFound, pointsOfInterestSO.WherePOIsFound.Count);
+            int whenPoiId = RemoveUnusefulPOI(pointsOfInterestSO.WhenPOIsFound, pointsOfInterestSO.WhenPOIsFound.Count);
+            int howPoiId = RemoveUnusefulPOI(pointsOfInterestSO.HowPOIsFound, pointsOfInterestSO.HowPOIsFound.Count);
+
+            // Raise an event informing which POIs where deleted by the hint
+            uiEventsChannelSO.RaisePOIDeletedByHintEvent(wherePoiId, whenPoiId, howPoiId);
+        }
     }
    
     /// <summary>
