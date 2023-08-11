@@ -19,6 +19,7 @@ public class InventoryUIController : MonoBehaviour
     [SerializeField] private Button closeButton;
     [SerializeField] private Button hintButton;
     [SerializeField] private TextMeshProUGUI hintLabel;
+    [SerializeField] private TextMeshProUGUI poiCount;
 
     [Header("Where References")]
     [SerializeField] private Canvas whereCanvas;
@@ -85,6 +86,8 @@ public class InventoryUIController : MonoBehaviour
         closeButton.onClick.AddListener(CloseButtonBehaviour);
 
         hintLabel.text = "Get Hint (" + sessionDataSO.Hints + ")";
+
+        poiCount.text = "0/" + sessionDataSO.PointsOfInterest.Points.Count + " Items Found";
         
         if (sessionDataSO.Hints == 0)
             {
@@ -197,6 +200,8 @@ public class InventoryUIController : MonoBehaviour
         if(!inventoryCanvas.enabled)
             return;
 
+        //change the text for the poi count
+        poiCount.text = (sessionDataSO.PointsOfInterest.HowPOIsFound.Count + sessionDataSO.PointsOfInterest.WhenPOIsFound.Count + sessionDataSO.PointsOfInterest.WherePOIsFound.Count)  + "/" + sessionDataSO.PointsOfInterest.Points.Count + " Items Found";
         switch (currentPOITypeMenu)
         {
             case EPOIType.Where:
