@@ -78,6 +78,8 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Packages/com.ptc.vuforia.engine-10.9.3.tgz
 Packages/com.ptc.vuforia.engine-10.16.5.tgz
+Assets/Editor/Migration/com.ptc.vuforia.engine-10.16.5.tgz
+Assets/Editor/Migration/com.ptc.vuforia.engine-10.16.5.tgz.meta
 
 ########## FMOD #############
 # Never ignore DLLs in the FMOD subfolder.
@@ -106,4 +108,3 @@ fmod_editor.log
 /FMODAssets/Project/.cache
 /FMODAssets/Project/.user
 /FMODAssets/Project/.unsaved
-
