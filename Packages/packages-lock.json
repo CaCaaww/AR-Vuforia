@@ -17,7 +17,7 @@
       "url": "https://package.openupm.com"
     },
     "com.ptc.vuforia.engine": {
-      "version": "file:com.ptc.vuforia.engine-10.16.5.tgz",
+      "version": "file:../Assets/Editor/Migration/com.ptc.vuforia.engine-10.16.5.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
