@@ -16,6 +16,10 @@ public class BackendManager : MonoBehaviour
     [SerializeField] private GameStateSO gameStateSO;
     [SerializeField] private SessionDataSO sessionDataSO;
     [SerializeField] private PointsOfInterestSO pointsOfInterestSO;
+
+    [Header("Hint Removal")]
+    // Removal is hint# * 3 (types of POIs)
+    [SerializeField] private int removal;
     #endregion
 
     #region Private Variables
@@ -185,13 +189,21 @@ public class BackendManager : MonoBehaviour
     /// </summary>
     private void HandleHintRequest()
     {
+        // Debug for counting
+        /*Debug.Log("Where: " + pointsOfInterestSO.WherePOIsFound.Count);
+        Debug.Log("When: " + pointsOfInterestSO.WhenPOIsFound.Count);
+        Debug.Log("How: " + pointsOfInterestSO.HowPOIsFound.Count);*/
+
+        // Figures out how many POIs to remove from each type
         int totalPOIs = pointsOfInterestSO.WherePOIsFound.Count + pointsOfInterestSO.WhenPOIsFound.Count + pointsOfInterestSO.HowPOIsFound.Count;
-        int percentageRemoved = (((totalPOIs - 3) / 5) / 3);
-        if (percentageRemoved == 0)
+        int percentageRemoved = ((totalPOIs - 3) / removal);
+        // Base case when we have less than the number of removal
+        if (percentageRemoved <= 0)
 		{
             percentageRemoved = 1;
 		}
 
+        // Loops a remove. If none can be removed it continues.
         for (int i = 0; i < percentageRemoved; i++) {
             // Remove a single random item (not part of the solution) for every type
             int wherePoiId = RemoveUnusefulPOI(pointsOfInterestSO.WherePOIsFound, pointsOfInterestSO.WherePOIsFound.Count);

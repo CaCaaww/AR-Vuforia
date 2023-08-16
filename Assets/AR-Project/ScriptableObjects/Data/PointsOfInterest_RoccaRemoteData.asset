@@ -19,7 +19,18 @@ MonoBehaviour:
     type: 0
     description: Vuforia Astronaut
     isAR: 0
-    images: []
+    images:
+    - {fileID: 0}
+    imageNameAndTexture:
+      list:
+      - Key: AvgouGXQDsf2Jy5DrimjUnKFepjYs0cEf3fUhIrG
+        Value: {fileID: 0}
+      keyCollision: 0
+    imageNameAndUrl:
+      list:
+      - Key: AvgouGXQDsf2Jy5DrimjUnKFepjYs0cEf3fUhIrG
+        Value: https://test1.dedalus.cc/arGameDebug/public/storage/pois/AvgouGXQDsf2Jy5DrimjUnKFepjYs0cEf3fUhIrG.jpg
+      keyCollision: 0
     isUseful: 1
     iconType: 1
     state: 0
@@ -34,7 +45,18 @@ MonoBehaviour:
     type: 1
     description: Vuforia Drone
     isAR: 0
-    images: []
+    images:
+    - {fileID: 0}
+    imageNameAndTexture:
+      list:
+      - Key: AynOtShQuBftdJIed3Ig76JhBTT6Diacwtzo2fu5
+        Value: {fileID: 0}
+      keyCollision: 0
+    imageNameAndUrl:
+      list:
+      - Key: AynOtShQuBftdJIed3Ig76JhBTT6Diacwtzo2fu5
+        Value: https://test1.dedalus.cc/arGameDebug/public/storage/pois/AynOtShQuBftdJIed3Ig76JhBTT6Diacwtzo2fu5.jpg
+      keyCollision: 0
     isUseful: 1
     iconType: 1
     state: 0
@@ -49,7 +71,18 @@ MonoBehaviour:
     type: 2
     description: Vuforia Fissure
     isAR: 0
-    images: []
+    images:
+    - {fileID: 0}
+    imageNameAndTexture:
+      list:
+      - Key: 8pvgCaYQRQYBjCLBLKVKxmkzVT6PonyQ3f55Uarv
+        Value: {fileID: 0}
+      keyCollision: 0
+    imageNameAndUrl:
+      list:
+      - Key: 8pvgCaYQRQYBjCLBLKVKxmkzVT6PonyQ3f55Uarv
+        Value: https://test1.dedalus.cc/arGameDebug/public/storage/pois/8pvgCaYQRQYBjCLBLKVKxmkzVT6PonyQ3f55Uarv.jpg
+      keyCollision: 0
     isUseful: 0
     iconType: 1
     state: 0
@@ -64,7 +97,18 @@ MonoBehaviour:
     type: 2
     description: Oxygen
     isAR: 0
-    images: []
+    images:
+    - {fileID: 0}
+    imageNameAndTexture:
+      list:
+      - Key: Y6kRbSOv5Ue7VTfKUy2gfVwm9u5yLG6sgJzQJaDL
+        Value: {fileID: 0}
+      keyCollision: 0
+    imageNameAndUrl:
+      list:
+      - Key: Y6kRbSOv5Ue7VTfKUy2gfVwm9u5yLG6sgJzQJaDL
+        Value: https://test1.dedalus.cc/arGameDebug/public/storage/pois/Y6kRbSOv5Ue7VTfKUy2gfVwm9u5yLG6sgJzQJaDL.jpg
+      keyCollision: 0
     isUseful: 1
     iconType: 1
     state: 0
@@ -73,9 +117,144 @@ MonoBehaviour:
     avatarImage: {fileID: 0}
     timer: 0
     linkedTo: 0
-  wherePOIsFound: []
-  whenPOIsFound: []
-  howPOIsFound: []
+  - id: 33
+    title: Occhi puntati
+    short_title: test
+    type: 2
+    description: "Trascorso qualche giorno, mentre ti appresti a pagare il pasto,
+      Gervasio il locandiere ti fa una confidenza: \r\n<br><br>\r\n\"Ultimamente
+      il Maleficiario ha fatto qualche domanda sul tuo conto, nulla di ufficiale,
+      ma il tuo gironzolare per il paese non \xE8 certo passato inosservato.\r\n<br><br>\r\nRingrazi
+      l'oste e ti incammini rimuginando sulla questione \u2026 che il funzionario
+      dell'Inquisizione stia sospettando qualcosa ?"
+    isAR: 0
+    images:
+    - {fileID: 0}
+    imageNameAndTexture:
+      list:
+      - Key: eMyIURe4AGtYj4BrFmGFjIWtnKSFBM6ECaanRsm8
+        Value: {fileID: 0}
+      keyCollision: 0
+    imageNameAndUrl:
+      list:
+      - Key: eMyIURe4AGtYj4BrFmGFjIWtnKSFBM6ECaanRsm8
+        Value: https://test1.dedalus.cc/arGameDebug/public/storage/pois/eMyIURe4AGtYj4BrFmGFjIWtnKSFBM6ECaanRsm8.jpg
+      keyCollision: 0
+    isUseful: 0
+    iconType: 1
+    state: 0
+    avatarID: 0
+    avatarName: 
+    avatarImage: {fileID: 0}
+    timer: 0
+    linkedTo: 0
+  wherePOIsFound:
+  - id: 65
+    title: _Astronaut
+    short_title: test
+    type: 0
+    description: Vuforia Astronaut
+    isAR: 0
+    images:
+    - {fileID: 0}
+    imageNameAndTexture:
+      list:
+      - Key: AvgouGXQDsf2Jy5DrimjUnKFepjYs0cEf3fUhIrG
+        Value: {fileID: 0}
+      keyCollision: 0
+    imageNameAndUrl:
+      list:
+      - Key: AvgouGXQDsf2Jy5DrimjUnKFepjYs0cEf3fUhIrG
+        Value: https://test1.dedalus.cc/arGameDebug/public/storage/pois/AvgouGXQDsf2Jy5DrimjUnKFepjYs0cEf3fUhIrG.jpg
+      keyCollision: 0
+    isUseful: 1
+    iconType: 1
+    state: 0
+    avatarID: 0
+    avatarName: 
+    avatarImage: {fileID: 0}
+    timer: 0
+    linkedTo: 0
+  whenPOIsFound:
+  - id: 66
+    title: _Drone
+    short_title: test
+    type: 1
+    description: Vuforia Drone
+    isAR: 0
+    images:
+    - {fileID: 0}
+    imageNameAndTexture:
+      list:
+      - Key: AynOtShQuBftdJIed3Ig76JhBTT6Diacwtzo2fu5
+        Value: {fileID: 0}
+      keyCollision: 0
+    imageNameAndUrl:
+      list:
+      - Key: AynOtShQuBftdJIed3Ig76JhBTT6Diacwtzo2fu5
+        Value: https://test1.dedalus.cc/arGameDebug/public/storage/pois/AynOtShQuBftdJIed3Ig76JhBTT6Diacwtzo2fu5.jpg
+      keyCollision: 0
+    isUseful: 1
+    iconType: 1
+    state: 0
+    avatarID: 0
+    avatarName: 
+    avatarImage: {fileID: 0}
+    timer: 0
+    linkedTo: 0
+  howPOIsFound:
+  - id: 67
+    title: _Oxygen
+    short_title: test
+    type: 2
+    description: Oxygen
+    isAR: 0
+    images:
+    - {fileID: 0}
+    imageNameAndTexture:
+      list:
+      - Key: Y6kRbSOv5Ue7VTfKUy2gfVwm9u5yLG6sgJzQJaDL
+        Value: {fileID: 0}
+      keyCollision: 0
+    imageNameAndUrl:
+      list:
+      - Key: Y6kRbSOv5Ue7VTfKUy2gfVwm9u5yLG6sgJzQJaDL
+        Value: https://test1.dedalus.cc/arGameDebug/public/storage/pois/Y6kRbSOv5Ue7VTfKUy2gfVwm9u5yLG6sgJzQJaDL.jpg
+      keyCollision: 0
+    isUseful: 1
+    iconType: 1
+    state: 0
+    avatarID: 0
+    avatarName: 
+    avatarImage: {fileID: 0}
+    timer: 0
+    linkedTo: 0
+  - id: 68
+    title: _Fissure
+    short_title: test
+    type: 2
+    description: Vuforia Fissure
+    isAR: 0
+    images:
+    - {fileID: 0}
+    imageNameAndTexture:
+      list:
+      - Key: 8pvgCaYQRQYBjCLBLKVKxmkzVT6PonyQ3f55Uarv
+        Value: {fileID: 0}
+      keyCollision: 0
+    imageNameAndUrl:
+      list:
+      - Key: 8pvgCaYQRQYBjCLBLKVKxmkzVT6PonyQ3f55Uarv
+        Value: https://test1.dedalus.cc/arGameDebug/public/storage/pois/8pvgCaYQRQYBjCLBLKVKxmkzVT6PonyQ3f55Uarv.jpg
+      keyCollision: 0
+    isUseful: 0
+    iconType: 1
+    state: 0
+    avatarID: 0
+    avatarName: 
+    avatarImage: {fileID: 0}
+    timer: 0
+    linkedTo: 0
   wherePOISolutionId: 65
   whenPOISolutionId: 66
   howPOISolutionId: 67

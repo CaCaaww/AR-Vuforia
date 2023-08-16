@@ -26,7 +26,8 @@ public class AREventChannelSO : ScriptableObject
 		if (OnPOIDetected != null)
         {
 			OnPOIDetected.Invoke(imageName);
-		}
+            OnPOIDetected.Invoke(imageName+ "1");
+        }
     }
 
     /// <summary>
