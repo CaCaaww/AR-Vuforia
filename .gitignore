@@ -80,6 +80,7 @@ Packages/com.ptc.vuforia.engine-10.9.3.tgz
 Packages/com.ptc.vuforia.engine-10.16.5.tgz
 Assets/Editor/Migration/com.ptc.vuforia.engine-10.16.5.tgz
 Assets/Editor/Migration/com.ptc.vuforia.engine-10.16.5.tgz.meta
+/QCAR
 
 ########## FMOD #############
 # Never ignore DLLs in the FMOD subfolder.
