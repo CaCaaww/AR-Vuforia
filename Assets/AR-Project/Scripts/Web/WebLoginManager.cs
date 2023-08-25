@@ -118,6 +118,11 @@ public class WebLoginManager : MonoBehaviour
 
         dataStructure = JsonConvert.DeserializeObject<LoginGetDataStructure>(www.downloadHandler.text);
 
+        if (dataStructure == null )
+        {
+            Debug.LogError("The object downloaded from the server is null");
+        }
+
         Debug.Log("DATASTRUCTURE");
         foreach(KeyValuePair<string, string> entry in dataStructure.pois[0].images)
         {

@@ -74,20 +74,19 @@ public class VuforiaManager : MonoBehaviour
                 Debug.Log("[VUFORIA] POI " + sessionDataSO.PointsOfInterest.Points[i].title + " already found, skipped");
                 continue;
             }
-                
-            // Set to 1 for incrementing in the foreach loop the image target gameobject name    
-            int k = 1;
 
+            int k = 1;
+                
             // Loop through every image inside the p.o.i.
             foreach (KeyValuePair<string, Texture2D> entry in sessionDataSO.PointsOfInterest.Points[i].imageNameAndTexture)
             {
                 // If the image is readable
                 if (entry.Value.isReadable)
                 {
-                    Debug.Log("[VUFORIA] Start creating image target " + sessionDataSO.PointsOfInterest.Points[i].short_title + k.ToString()+ entry.Key);
+                    Debug.Log("[VUFORIA] Start creating image target " + sessionDataSO.PointsOfInterest.Points[i].short_title + "_" + entry.Key);
 
                     // Schedule a job to add the image to the library
-                    var mImageTarget = VuforiaBehaviour.Instance.ObserverFactory.CreateImageTarget(entry.Value, 1, sessionDataSO.PointsOfInterest.Points[i].short_title + k.ToString());
+                    var mImageTarget = VuforiaBehaviour.Instance.ObserverFactory.CreateImageTarget(entry.Value, 1, sessionDataSO.PointsOfInterest.Points[i].short_title + "_" + k.ToString());
 
                     // Yield until the the image is added to the library
                     yield return new WaitUntil(() => mImageTarget != null);
