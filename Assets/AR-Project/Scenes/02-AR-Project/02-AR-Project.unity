@@ -244,7 +244,7 @@ PrefabInstance:
     - target: {fileID: 4296602276888590102, guid: b9412c8673bf30d9991142f9a1b00dc3,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5208207821584478100, guid: b9412c8673bf30d9991142f9a1b00dc3,
         type: 3}
@@ -313,7 +313,7 @@ MonoBehaviour:
   gameStateSO: {fileID: 11400000, guid: 50acf5239845e4484833b42b2d245639, type: 2}
   sessionDataSO: {fileID: 11400000, guid: bd04b964e8642e264b2347319ec61a4a, type: 2}
   pointsOfInterestSO: {fileID: 11400000, guid: 86583b92ac7685836801b880c75ec801, type: 2}
-  removal: 15
+  removalPercentage: 0.25
 --- !u!114 &230865119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1467,7 +1467,7 @@ PrefabInstance:
     - target: {fileID: 1742046321920514610, guid: ef0361d79c27f9c498cc8eb204eb11cb,
         type: 3}
       propertyPath: RecordingName
-      value: image_target.mp4
+      value: videonuovo.mp4
       objectReference: {fileID: 0}
     - target: {fileID: 6079886710450631776, guid: ef0361d79c27f9c498cc8eb204eb11cb,
         type: 3}
@@ -1895,6 +1895,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4292171658406741398, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5938268334390600034, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
         type: 3}
       propertyPath: m_Name
@@ -1913,7 +1918,7 @@ PrefabInstance:
     - target: {fileID: 8820555890798734747, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 47420
+      value: 7756600
       objectReference: {fileID: 0}
     - target: {fileID: 8939382283431721024, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
         type: 3}

@@ -18,14 +18,18 @@ public class BackendManager : MonoBehaviour
     [SerializeField] private PointsOfInterestSO pointsOfInterestSO;
 
     [Header("Hint Removal")]
-    // Removal is hint# * 3 (types of POIs)
-    [SerializeField] private int removal;
+    /// <summary>
+    /// Removal percentage (in decimal format) for every time an hint is used by the player
+    /// The value should be between 0.01f and 0.99f with a step of 0.01f
+    /// </summary>
+    [Tooltip("Removal percentage(in decimal format) for every time an hint is used by the player. The value should be between 0.01f and 0.99f with a step of 0.01f")]
+    [SerializeField] private float removalPercentage;
     #endregion
 
     #region Private Variables
     private TimerController timerController;
     //private int numberOfPOIs;
-    private List<PointOfInterest> tempPOIsList = new List<PointOfInterest>();
+    private List<PointOfInterest> tempPOIsList = new ();
     #endregion
 
     #region Properties
@@ -196,23 +200,30 @@ public class BackendManager : MonoBehaviour
 
         // Figures out how many POIs to remove from each type
         int totalPOIs = pointsOfInterestSO.WherePOIsFound.Count + pointsOfInterestSO.WhenPOIsFound.Count + pointsOfInterestSO.HowPOIsFound.Count;
-        int percentageRemoved = ((totalPOIs - 3) / removal);
+        Debug.Log("POIs Found before hint: " + totalPOIs);
+        int totalPoiRemoved = Mathf.FloorToInt(totalPOIs * removalPercentage);
+        Debug.Log("totalPoiRemoved: " + totalPoiRemoved);
+        int totalPoiRemovedPerType = Mathf.FloorToInt(totalPoiRemoved / 3);
+        Debug.Log("totalPoiRemovedPerType: " + totalPoiRemovedPerType);
         // Base case when we have less than the number of removal
-        if (percentageRemoved <= 0)
+        if (totalPoiRemovedPerType <= 0)
 		{
-            percentageRemoved = 1;
+            totalPoiRemovedPerType = 1;
 		}
 
         // Loops a remove. If none can be removed it continues.
-        for (int i = 0; i < percentageRemoved; i++) {
+        for (int i = 0; i < totalPoiRemovedPerType; i++) {
             // Remove a single random item (not part of the solution) for every type
             int wherePoiId = RemoveUnusefulPOI(pointsOfInterestSO.WherePOIsFound, pointsOfInterestSO.WherePOIsFound.Count);
             int whenPoiId = RemoveUnusefulPOI(pointsOfInterestSO.WhenPOIsFound, pointsOfInterestSO.WhenPOIsFound.Count);
             int howPoiId = RemoveUnusefulPOI(pointsOfInterestSO.HowPOIsFound, pointsOfInterestSO.HowPOIsFound.Count);
 
             // Raise an event informing which POIs where deleted by the hint
-            uiEventsChannelSO.RaisePOIDeletedByHintEvent(wherePoiId, whenPoiId, howPoiId);
+            //uiEventsChannelSO.RaisePOIDeletedByHintEvent(wherePoiId, whenPoiId, howPoiId);
         }
+
+        totalPOIs = pointsOfInterestSO.WherePOIsFound.Count + pointsOfInterestSO.WhenPOIsFound.Count + pointsOfInterestSO.HowPOIsFound.Count;
+        Debug.Log("POIs Found after hint: " + totalPOIs);
     }
    
     /// <summary>
@@ -288,41 +299,6 @@ public class BackendManager : MonoBehaviour
             // Defeat
             Debug.Log("Nope, the answer is not correct, game over");
             uiEventsChannelSO.RaiseEndgameReachedEvent(false, sessionDataSO.DefeatText, timerController.TimePlaying);
-        }
-    }
-    #endregion
-
-    #region  Editor-only methods
-    /// <summary>
-    /// Populate the inventory when using the Unity Editor
-    /// </summary>
-    private void PopulateInventory()
-    {
-        // Clear the lists (just to be sure)
-        //pointsOfInterestSO.WherePoisFound.Clear();
-        //pointsOfInterestSO.WhenPoisFound.Clear();
-        //pointsOfInterestSO.HowPoisFound.Clear();
-
-        foreach (var poi in pointsOfInterestSO.Points)
-        {
-            switch (poi.type)
-                {
-                    case EPOIType.Where:
-                        {
-                            pointsOfInterestSO.WherePOIsFound.Add(poi);
-                        }
-                        break;
-                    case EPOIType.When:
-                        {
-                            pointsOfInterestSO.WhenPOIsFound.Add(poi);
-                        }
-                        break;
-                    case EPOIType.How:
-                        {
-                            pointsOfInterestSO.HowPOIsFound.Add(poi);
-                        }
-                        break;
-                }
         }
     }
     #endregion
