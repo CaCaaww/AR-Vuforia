@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{f1881d30-099e-41f6-9aa2-83b83dfebecc}">
+		<property name="note" />
 		<property name="assetPath">
 			<value>Ui_Confirm-003.wav</value>
 		</property>
@@ -11,7 +12,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>0.39310416666666664</value>
+			<value>0.22254166666666667</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{dff0713a-db03-4c76-9069-5328e9d42bbf}</destination>

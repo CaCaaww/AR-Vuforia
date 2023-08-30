@@ -31,8 +31,8 @@ public class PointOfInterest
     #if UNITY_EDITOR
     public List<Texture2D> images = new();
     #endif
-    public GenericDictionary<string, Texture2D> imageNameAndTexture = new();
-    public GenericDictionary<string, string> imageNameAndUrl = new();
+    public GenericDictionary<string, Texture2D> imageNameAndTexture = new GenericDictionary<string, Texture2D>();
+    public GenericDictionary<string, string> imageNameAndUrl = new GenericDictionary<string, string>();
     public bool isUseful;
     public EIconType iconType;
     public EPOIState state;
@@ -116,12 +116,12 @@ public class PointsOfInterestSO : ScriptableObject
     /// <summary>
     /// Dictionary to store the relation between image name and POI
     /// </summary>
-    private readonly Dictionary<string, PointOfInterest> imageNameAndPOI = new();
+    private readonly Dictionary<string, PointOfInterest> imageNameAndPOI = new Dictionary<string, PointOfInterest>();
 
     /// <summary>
     /// Dictionary to store the relation between image name and Vuforia ImageTarget object
     /// </summary>
-    private readonly Dictionary<string, GameObject> imageNameAndImageTargetObject = new();    
+    private readonly Dictionary<string, GameObject> imageNameAndImageTargetObject = new Dictionary<string, GameObject>();    
     #endregion
 
     #region Public properties

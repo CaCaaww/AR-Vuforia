@@ -41,7 +41,10 @@ public class WebLoginManager : MonoBehaviour
         #elif !UNITY_EDITOR && PRODUCTION_BUILD
         RemoteWebConsoleSO remoteSettingsSO = Resources.Load<RemoteWebConsoleSO>(PRODUCTION_REMOTE_SETTINGS_SO);
         remoteWebConsoleSO = remoteSettingsSO;
+        sessionDataSO.PointsOfInterest.ResetVariables();
         #endif
+
+
     }
 
     void OnEnable()
@@ -123,12 +126,14 @@ public class WebLoginManager : MonoBehaviour
             Debug.LogError("The object downloaded from the server is null");
         }
 
+        #if UNITY_EDITOR
         Debug.Log("DATASTRUCTURE");
         foreach(KeyValuePair<string, string> entry in dataStructure.pois[0].images)
         {
             Debug.Log("Key: " + entry.Key);
             Debug.Log("Value: " + entry.Value);
         }
+        #endif
 
         sessionDataSO.PlayerId = dataStructure.player_id;
         Debug.Log("[WEB] Player ID: " + sessionDataSO.PlayerId);
