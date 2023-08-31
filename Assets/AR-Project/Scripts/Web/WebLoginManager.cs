@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -41,10 +42,7 @@ public class WebLoginManager : MonoBehaviour
         #elif !UNITY_EDITOR && PRODUCTION_BUILD
         RemoteWebConsoleSO remoteSettingsSO = Resources.Load<RemoteWebConsoleSO>(PRODUCTION_REMOTE_SETTINGS_SO);
         remoteWebConsoleSO = remoteSettingsSO;
-        sessionDataSO.PointsOfInterest.ResetVariables();
         #endif
-
-
     }
 
     void OnEnable()
@@ -126,14 +124,18 @@ public class WebLoginManager : MonoBehaviour
             Debug.LogError("The object downloaded from the server is null");
         }
 
-        #if UNITY_EDITOR
         Debug.Log("DATASTRUCTURE");
-        foreach(KeyValuePair<string, string> entry in dataStructure.pois[0].images)
-        {
-            Debug.Log("Key: " + entry.Key);
-            Debug.Log("Value: " + entry.Value);
-        }
-        #endif
+        //Debug.Log("IMAGES ");
+        //foreach (POI poi in dataStructure.pois)
+        //{
+        //    foreach (KeyValuePair<string, string> entry in poi.images)
+        //    {
+        //        Debug.Log("POI image: " + poi.short_title);
+        //        Debug.Log("Key: " + entry.Key);
+        //        Debug.Log("Value: " + entry.Value);
+        //    }
+        //}
+        //Debug.Log("END IMAGES");
 
         sessionDataSO.PlayerId = dataStructure.player_id;
         Debug.Log("[WEB] Player ID: " + sessionDataSO.PlayerId);
@@ -162,10 +164,8 @@ public class WebLoginManager : MonoBehaviour
         int numberOfPois = dataStructure.pois.Count;
         Debug.Log("[WEB] Number of POIs: " + numberOfPois);
 
-        #if UNITY_EDITOR
         // Reset the variables in the editor 
         sessionDataSO.PointsOfInterest.ResetVariables();
-        #endif
 
         for (int i = 0; i < numberOfPois; i++)
         {
@@ -192,9 +192,24 @@ public class WebLoginManager : MonoBehaviour
             sessionDataSO.PointsOfInterest.Points[i].description = dataStructure.pois[i].description;
             Debug.Log("[WEB] Description: " + dataStructure.pois[i].description);
 
+            //Debug.Log("COUNT KEYS: " + sessionDataSO.PointsOfInterest.Points[i].imageNameAndUrl.Keys.ToList().Count());
+            //Debug.Log("COUNT VALUES: " + sessionDataSO.PointsOfInterest.Points[i].imageNameAndUrl.Values.ToList().Count());
+    
             // For every remote image name/url pair
             foreach (KeyValuePair<string, string> image in dataStructure.pois[i].images)
             {
+                //Debug.Log("[DEBUG] POI : " + dataStructure.pois[i].short_title);
+                //foreach (string item in sessionDataSO.PointsOfInterest.Points[i].imageNameAndUrl.Keys.ToList())
+                //{
+                //    Debug.Log("imageNameAndUrl.key: " + item);
+                //}
+                //foreach (string item in sessionDataSO.PointsOfInterest.Points[i].imageNameAndUrl.Keys.ToList())
+                //{
+                //    Debug.Log("imageNameAndUrl.value: " + item);
+                //}
+
+                //{ }
+
                 // Store the pair (key = image name, value = image url) in a dictionary
                 sessionDataSO.PointsOfInterest.Points[i].imageNameAndUrl.Add(image.Key, image.Value);
                 Debug.Log("[WEB] Image name: " + image.Key);

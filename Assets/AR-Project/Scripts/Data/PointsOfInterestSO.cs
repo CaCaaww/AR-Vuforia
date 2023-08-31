@@ -28,9 +28,7 @@ public class PointOfInterest
     public EPOIType type;
     public string description;
     public bool isAR;
-    #if UNITY_EDITOR
     public List<Texture2D> images = new();
-    #endif
     public GenericDictionary<string, Texture2D> imageNameAndTexture = new GenericDictionary<string, Texture2D>();
     public GenericDictionary<string, string> imageNameAndUrl = new GenericDictionary<string, string>();
     public bool isUseful;
