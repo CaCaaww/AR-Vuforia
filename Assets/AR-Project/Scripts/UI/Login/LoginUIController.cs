@@ -166,6 +166,10 @@ public class LoginUIController : MonoBehaviour
             // Hide the loading circle
             loadingCircle.SetActive(false);
 
+            // Allow the user to re-enter their login credentials
+            nicknameBox.SetActive(true);
+            passwordBox.SetActive(true);
+
             // Enable the log text
             logText.enabled = true;
             
