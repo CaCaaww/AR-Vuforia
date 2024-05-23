@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1467,7 +1466,7 @@ PrefabInstance:
     - target: {fileID: 1742046321920514610, guid: ef0361d79c27f9c498cc8eb204eb11cb,
         type: 3}
       propertyPath: RecordingName
-      value: videonuovo.mp4
+      value: image_target.mp4
       objectReference: {fileID: 0}
     - target: {fileID: 6079886710450631776, guid: ef0361d79c27f9c498cc8eb204eb11cb,
         type: 3}
@@ -1918,7 +1917,7 @@ PrefabInstance:
     - target: {fileID: 8820555890798734747, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 7756600
+      value: 8093540
       objectReference: {fileID: 0}
     - target: {fileID: 8939382283431721024, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
         type: 3}

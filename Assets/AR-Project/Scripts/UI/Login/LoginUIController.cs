@@ -24,6 +24,10 @@ public class LoginUIController : MonoBehaviour
     [SerializeField]
     private GameObject loadingCircle;
     [SerializeField]
+    private GameObject nicknameBox;
+    [SerializeField]
+    private GameObject passwordBox;
+    [SerializeField]
     private Button loginButton;
     [SerializeField]
     private TextMeshProUGUI loginButtonText;
@@ -64,6 +68,9 @@ public class LoginUIController : MonoBehaviour
 
         loginButton.onClick.AddListener(Login);
 
+        nicknameBox = GameObject.Find("NicknameInputField");
+        passwordBox = GameObject.Find("PasswordInputField");
+
         // Assign the error message to the log text
         logText.text = errorMessage;
     }
@@ -93,6 +100,10 @@ public class LoginUIController : MonoBehaviour
 
         // Make the login button not interactable        
         loginButton.interactable = false;
+
+        // Hide the nickname and password boxes
+        nicknameBox.SetActive(false);
+        passwordBox.SetActive(false);
 
         // Change the login button text
         loginButtonText.text = "LOADING";
@@ -139,7 +150,7 @@ public class LoginUIController : MonoBehaviour
             // Destroy the loading circle
              //Destroy(loadingCircle);
 
-           loadingCircle.SetActive(false);
+            loadingCircle.SetActive(false);
 
             // Change the login button text
             loginButtonText.text = "CONTINUE";

@@ -2452,6 +2452,8 @@ MonoBehaviour:
   passwordInputField: {fileID: 8561897664437752283}
   logText: {fileID: 3232676236916450883}
   loadingCircle: {fileID: 2023663452136917673}
+  nicknameBox: {fileID: 0}
+  passwordBox: {fileID: 0}
   loginButton: {fileID: 8561897665045698896}
   loginButtonText: {fileID: 8658309230738765440}
 --- !u!1 &8561897666048247612
