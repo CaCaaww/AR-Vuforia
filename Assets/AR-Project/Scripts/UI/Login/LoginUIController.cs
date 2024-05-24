@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using static System.TimeZoneInfo;
 
 public class LoginUIController : MonoBehaviour
 {
@@ -45,6 +46,8 @@ public class LoginUIController : MonoBehaviour
     /// The message to show when the login is not successful
     /// </summary>
     private FMOD.Studio.EventInstance uiConfirm;
+
+    private AsyncOperation asyncOp;
     #endregion
 
     #region Unity methods
@@ -76,6 +79,14 @@ public class LoginUIController : MonoBehaviour
 
         // Assign the error message to the log text
         logText.text = errorMessage;
+    }
+
+    public void Update() {
+        if ((asyncOp != null)) {
+            if (asyncOp.isDone) {
+                curtain.toggleCurtain();
+            }
+        }
     }
 
     private void OnDisable()
@@ -120,6 +131,7 @@ public class LoginUIController : MonoBehaviour
     #endregion
 
     #region Callback methods
+    public float transitionTime = 1f;
     /// <summary>
     /// Callback to handle if the session data was successfully retrieved or not
     /// </summary>
@@ -140,10 +152,13 @@ public class LoginUIController : MonoBehaviour
                 uiConfirm.start();
                 uiConfirm.release();
 
-                SceneManager.LoadSceneAsync("02-AR-Project");
-
-                // Change the login button text  
+                //CallLoadNextScene();
+                curtain.toggleCurtain();
+                //CallLoadNextScene();
+                asyncOp = SceneManager.LoadSceneAsync("02-AR-Project");
                 
+                // Change the login button text  
+
                 loginButtonText.text = "LOADING";
 
                 loadingCircle.SetActive(true);
@@ -155,7 +170,6 @@ public class LoginUIController : MonoBehaviour
             // Destroy the loading circle
              //Destroy(loadingCircle);
 
-            //curtain.toggleCurtain(); // James & Ryan
             loadingCircle.SetActive(false);
 
             // Change the login button text
@@ -186,6 +200,16 @@ public class LoginUIController : MonoBehaviour
             loginButtonText.text = "LOGIN";
         }
         //
+    }
+    private Coroutine CallLoadNextScene() {
+        return StartCoroutine(LoadNextScene("02-AR-Project"));
+    }
+    IEnumerator LoadNextScene(string sceneName) {
+        curtain.toggleCurtain();
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadSceneAsync(sceneName);
     }
     #endregion
 }

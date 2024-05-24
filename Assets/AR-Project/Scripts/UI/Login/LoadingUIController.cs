@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.Runtime.CompilerServices;
 
 public class LoadingUIController : MonoBehaviour
 {
@@ -42,7 +43,6 @@ public class LoadingUIController : MonoBehaviour
     {
         loginButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-            curtain.toggleCurtain(); // James & Ryan
             uiEventsChannelSO.RaiseLoginCredentialsSentEvent("aaa", accessCodeText.text);
             loginButton.SetActive(false);
             loadingLabel.SetActive(true);
@@ -55,10 +55,13 @@ public class LoadingUIController : MonoBehaviour
     {
         continueButton.GetComponent<Button>().onClick.AddListener(() => 
         {
+            //StartCoroutine(LoadNextScene());
             SceneManager.LoadScene("02-AR-Project");
         });
         loadingLabel.SetActive(false);
         continueButton.SetActive(true);
     }
+    
+    
     #endregion
 }
