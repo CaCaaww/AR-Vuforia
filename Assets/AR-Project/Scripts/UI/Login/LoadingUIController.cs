@@ -22,6 +22,8 @@ public class LoadingUIController : MonoBehaviour
     private GameObject loginButton;
     [SerializeField]
     private GameObject continueButton;
+    [SerializeField]
+    private CurtainScript curtain;
     #endregion
 
     #region Unity methods
@@ -40,6 +42,7 @@ public class LoadingUIController : MonoBehaviour
     {
         loginButton.GetComponent<Button>().onClick.AddListener(() =>
         {
+            curtain.toggleCurtain(); // James & Ryan
             uiEventsChannelSO.RaiseLoginCredentialsSentEvent("aaa", accessCodeText.text);
             loginButton.SetActive(false);
             loadingLabel.SetActive(true);

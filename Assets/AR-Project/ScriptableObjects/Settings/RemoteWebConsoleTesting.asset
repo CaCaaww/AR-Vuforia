@@ -19,6 +19,6 @@ MonoBehaviour:
   hintUsedGate: hintUsed
   solutionGivenGate: solutionGiven
   nicknameParameter: ?nickname=
-  nicknameValue: test%231
+  nicknameValue: test%233
   passwordParameter: '&code='
   passwordValue: OcaDu

@@ -47,6 +47,7 @@ MonoBehaviour:
     thirdPartyARCoreClientDetected: 0
   playmode:
     mRecordingPath: C:/Users/RJLE3/Dedalus_Project/ar-vuforia/Assets/AR-Project/Recordings/image_target.mp4
+    mRecordingPath: C:/Users/James/OneDrive/Documents/GitHub/ar-vuforia/Assets/AR-Project/Recordings/image_target.mp4
     playModeType: 2
   webcam:
     renderTextureLayer: 30

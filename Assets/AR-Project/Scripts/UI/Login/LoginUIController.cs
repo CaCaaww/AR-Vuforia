@@ -31,6 +31,9 @@ public class LoginUIController : MonoBehaviour
     private Button loginButton;
     [SerializeField]
     private TextMeshProUGUI loginButtonText;
+    [SerializeField] // James & Ryan
+    private CurtainScript curtain;  // James & Ryan
+
     #endregion
 
     #region Private variables
@@ -123,12 +126,13 @@ public class LoginUIController : MonoBehaviour
     /// <param name="success">True if the login was successful, false if not</param>
     private void HandleSessionDataLoadedEvent(bool success) 
     {
+       
         // If it was successsful
         if (success)
         {
             // Remove the listener from the login button
             loginButton.onClick.RemoveListener(Login);
-
+            
             // Add a lister to the login button to load the AR scene
             loginButton.onClick.AddListener(() => 
             {
@@ -138,7 +142,8 @@ public class LoginUIController : MonoBehaviour
 
                 SceneManager.LoadSceneAsync("02-AR-Project");
 
-                // Change the login button text   
+                // Change the login button text  
+                
                 loginButtonText.text = "LOADING";
 
                 loadingCircle.SetActive(true);
@@ -150,6 +155,7 @@ public class LoginUIController : MonoBehaviour
             // Destroy the loading circle
              //Destroy(loadingCircle);
 
+            //curtain.toggleCurtain(); // James & Ryan
             loadingCircle.SetActive(false);
 
             // Change the login button text
@@ -178,7 +184,8 @@ public class LoginUIController : MonoBehaviour
 
             // Change the login button text
             loginButtonText.text = "LOGIN";
-        }     
+        }
+        //
     }
     #endregion
 }
