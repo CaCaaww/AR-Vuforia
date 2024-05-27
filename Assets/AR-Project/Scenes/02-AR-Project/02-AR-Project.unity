@@ -724,6 +724,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 627070090801895506, guid: bffceabd438db42468ec2446f4e021e4,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 766990382939792088, guid: bffceabd438db42468ec2446f4e021e4,
         type: 3}
       propertyPath: m_Name
@@ -2000,7 +2005,7 @@ PrefabInstance:
     - target: {fileID: 8820555890798734747, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 32563340
+      value: 32878440
       objectReference: {fileID: 0}
     - target: {fileID: 8939382283431721024, guid: 2592ee63cef2f7e158d13f8c2669d6ca,
         type: 3}

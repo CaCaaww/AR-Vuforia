@@ -2498,10 +2498,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 627070090801895506, guid: bffceabd438db42468ec2446f4e021e4,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 766990382939792088, guid: bffceabd438db42468ec2446f4e021e4,
         type: 3}
       propertyPath: m_Name
       value: CurtainController
+      objectReference: {fileID: 0}
+    - target: {fileID: 3905675353466326203, guid: bffceabd438db42468ec2446f4e021e4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3905675353466326203, guid: bffceabd438db42468ec2446f4e021e4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3056
       objectReference: {fileID: 0}
     - target: {fileID: 4279589019158469438, guid: bffceabd438db42468ec2446f4e021e4,
         type: 3}
