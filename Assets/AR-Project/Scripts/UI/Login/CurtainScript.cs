@@ -12,13 +12,20 @@ public class CurtainScript : MonoBehaviour
     [SerializeField]
     private GameObject curtainPrefab;
     private void Awake() {
-        DontDestroyOnLoad(curtainPrefab);
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("01-LoginScene")) {
+            curtain.SetBool("NotFirstScene", false);
+        } else {
+            curtain.SetBool("NotFirstScene", true);
+
+        }
+        //DontDestroyOnLoad(curtainPrefab);
     }
     bool curtainDown = false;
     
     public void toggleCurtain() {
-        curtainDown = !curtainDown;
+        curtain.SetTrigger("CurtainToggle");
+        //curtainDown = !curtainDown;
         Debug.Log("TOGGLING CURTAIN ");
-        curtain.SetBool("CurtainDown", curtainDown);
+        //curtain.SetBool("CurtainDown", curtainDown);
     }
 }

@@ -156,6 +156,7 @@ public class LoginUIController : MonoBehaviour
                 curtain.toggleCurtain();
                 //CallLoadNextScene();
                 asyncOp = SceneManager.LoadSceneAsync("02-AR-Project");
+                //curtain.toggleCurtain();
                 
                 // Change the login button text  
 

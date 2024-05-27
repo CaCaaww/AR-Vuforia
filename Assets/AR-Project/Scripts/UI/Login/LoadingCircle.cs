@@ -9,7 +9,7 @@ public class LoadingCircle : MonoBehaviour
     
     #region Variables
     private RectTransform rectComponent;
-    private float rotateSpeed = 200f;
+    private float rotateSpeed = -200f;
     #endregion
     
     #region Properties
