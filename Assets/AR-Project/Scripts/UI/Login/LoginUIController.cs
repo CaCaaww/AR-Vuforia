@@ -152,11 +152,8 @@ public class LoginUIController : MonoBehaviour
                 uiConfirm.start();
                 uiConfirm.release();
 
-                //CallLoadNextScene();
-                curtain.toggleCurtain();
-                //CallLoadNextScene();
-                asyncOp = SceneManager.LoadSceneAsync("02-AR-Project");
-                //curtain.toggleCurtain();
+                curtain.toggleCurtain(); // James & Ryan
+                asyncOp = SceneManager.LoadSceneAsync("02-AR-Project"); // James & Ryan
                 
                 // Change the login button text  
 
@@ -201,16 +198,6 @@ public class LoginUIController : MonoBehaviour
             loginButtonText.text = "LOGIN";
         }
         //
-    }
-    private Coroutine CallLoadNextScene() {
-        return StartCoroutine(LoadNextScene("02-AR-Project"));
-    }
-    IEnumerator LoadNextScene(string sceneName) {
-        curtain.toggleCurtain();
-
-        yield return new WaitForSeconds(transitionTime);
-
-        SceneManager.LoadSceneAsync(sceneName);
     }
     #endregion
 }
